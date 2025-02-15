@@ -1,33 +1,4 @@
 $(function () {
-    // $('.carousel-custom').on('init reInit afterChange', function (event, slick, currentSlide) {
-    //     var $slick = $(slick.$slider);
-    //     $slick.find('.slick-slide').removeClass('prev-slide next-slide');
-    //     $slick.find('.slick-current').prev('.slick-slide').addClass('prev-slide');
-    //     $slick.find('.slick-current').next('.slick-slide').addClass('next-slide');
-    // });
-    // $('.carousel-custom').on('beforeChange', function (event, slick, currentSlideIndex, nextSlideIndex) {
-    //     var windowWidth = $(window).width();
-    //     $('.slick-slide').css('margin-top', '');
-
-
-    //     $(slick.$slides[nextSlideIndex]).prev().css('margin-top', '130px');
-    //     $(slick.$slides[nextSlideIndex]).next().css('margin-top', '10px');
-
-    //     if (windowWidth <= 1090) {
-    //         $(slick.$slides[nextSlideIndex]).next().css('margin-top', '40px');
-    //     }
-
-    // });
-
-
-    // $('.carousel-custom').on('afterChange', function (event, slick, currentSlideIndex) {
-    //     slick.setPosition();
-    //     $('.slick-slide').css('transform', '').css('margin-top', '');
-    //     $(slick.$slides[currentSlideIndex]).css('margin-top', '70px');
-    // });
-
-
-
     $('.carousel-custom').slick({
         infinite: true,
         slidesToShow: 1,

@@ -15,8 +15,8 @@
             <p style="font-size:18px">{{ session('success') }}</p>
         </div>
     @endif
-@section('ruLink', 'https://ltm.studio/ru/');
-@section('enLink', 'https://ltm.studio/en/');
+@section('ruLink', 'https://ltm.studio/ru/')
+@section('enLink', 'https://ltm.studio/en/')
 @section('tkLink', 'https://ltm.studio/tk/')
 
 <div class="mainSlider ">
@@ -143,6 +143,8 @@
             </div>
         </div>
     </div>
+    
+    
     <div class="container">
         <ul class="services_dots">
             <li>
@@ -218,7 +220,7 @@
         </div>
 
     </div>
-    <div class="container d-flex justify-content-center align-items-center">
+    {{-- <div class="container d-flex justify-content-center align-items-center">
         <div class="serv-mobile-dots">
 
         </div>
@@ -232,7 +234,7 @@
 
         </div>
 
-    </div>
+    </div> --}}
     <div class="services_buttons">
         <a href="/{{ $lang }}/services"
             class="btn first no-line m-auto"><span>{{ __('translate.allServ') }}</span></a>

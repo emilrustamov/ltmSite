@@ -62,8 +62,8 @@
                         <div class="dzin_icon">
                             <img src="{{ '../assets/images/phoneLightRed.png' }}" loading="lazy">
                         </div>
-                        <div class="dzin_phone"><a href="tel:+99312754480" class="no-line">+993 12 75 37 13</a></div>
-                        <div class="dzin_phone"><a href="tel:+99361648605" class="no-line">+993 61 00 97 92</a></div>
+                        <div class="dzin_phone"><a href="tel:+99312753713" class="no-line">+993 12 75 37 13</a></div>
+                        <div class="dzin_phone"><a href="tel:+99361009792" class="no-line">+993 61 00 97 92</a></div>
                         <div class="sub-text-under-content">
                             {!! nl2br(__('translate.contactsBackText')) !!}
                         </div>

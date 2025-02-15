@@ -492,62 +492,57 @@
     })(jQuery);
 </script>
 <script>
-    $(document).ready(function () {
-        // Функция для анимации чисел
-        function animateNumbers(element, start, end, duration) {
-            let range = end - start;
-            let current = start;
-            let increment = end > start ? 1 : -1;
-            let stepTime = Math.abs(Math.floor(duration / range));
-            let hasPlus = $(element).data('target').includes('+'); // Проверяем, есть ли плюс
+    // Функция для анимации чисел
+    function animateNumbers(element, start, end, duration) {
+        let range = end - start;
+        let current = start;
+        let increment = end > start ? 1 : -1;
+        let stepTime = Math.abs(Math.floor(duration / range));
+        let hasPlus = $(element).data('target').includes('+'); // Проверяем, есть ли плюс
 
-            let timer = setInterval(function () {
-                current += increment;
-                $(element).text(current + (hasPlus ? "+" : ""));
-                if (current >= end) {
-                    clearInterval(timer);
-                    $(element).text(end + (hasPlus ? "+" : "")); // Финальная точка с плюсом
+        let timer = setInterval(function () {
+            current += increment;
+            $(element).text(current + (hasPlus ? "+" : ""));
+            if (current >= end) {
+                clearInterval(timer);
+                $(element).text(end + (hasPlus ? "+" : "")); // Финальная точка с плюсом
+            }
+        }, stepTime);
+    }
+
+    // Проверка на видимость элемента
+    function checkVisibility() {
+        $('.stats_count').each(function () {
+            let $this = $(this);
+            let textValue = $this.attr('data-target').replace('+', ''); // Убираем знак "+" для правильного подсчета
+            let targetValue = parseInt(textValue); // Превращаем текст в число
+
+            // Проверка, виден ли элемент
+            let windowHeight = $(window).height();
+            let scrollTop = $(window).scrollTop();
+            let elementOffsetTop = $this.offset().top;
+            let elementHeight = $this.outerHeight();
+
+            // Условие видимости элемента
+            if (elementOffsetTop < scrollTop + windowHeight && elementOffsetTop + elementHeight > scrollTop) {
+                // Элемент виден — запускаем анимацию
+                if (!$this.hasClass('animating')) {
+                    animateNumbers($this, 0, targetValue, 2000);
+                    $this.addClass('animating');
                 }
-            }, stepTime);
-        }
-
-        // Проверка на видимость элемента
-        function checkVisibility() {
-            $('.stats_count').each(function () {
-                let $this = $(this);
-                let textValue = $this.attr('data-target').replace('+', ''); // Убираем знак "+" для правильного подсчета
-                let targetValue = parseInt(textValue); // Превращаем текст в число
-
-                // Проверка, виден ли элемент
-                let windowHeight = $(window).height();
-                let scrollTop = $(window).scrollTop();
-                let elementOffsetTop = $this.offset().top;
-                let elementHeight = $this.outerHeight();
-
-                // Условие видимости элемента
-                if (elementOffsetTop < scrollTop + windowHeight && elementOffsetTop + elementHeight > scrollTop) {
-                    // Элемент виден — запускаем анимацию
-                    if (!$this.hasClass('animating')) {
-                        animateNumbers($this, 0, targetValue, 2000);
-                        $this.addClass('animating');
-                    }
-                } else {
-                    // Элемент выходит за пределы видимости — сбрасываем класс, чтобы анимация могла быть запущена заново
-                    $this.removeClass('animating');
-                    $this.text("0+"); // Возвращаем элемент к исходному состоянию
-                }
-            });
-        }
-
-        // Отслеживаем скролл и проверяем видимость
-        $(window).on('scroll', function () {
-            checkVisibility();
+            } else {
+                // Элемент выходит за пределы видимости — сбрасываем класс, чтобы анимация могла быть запущена заново
+                $this.removeClass('animating');
+                $this.text("0+"); // Возвращаем элемент к исходному состоянию
+            }
         });
+    }
 
-        // Проверяем видимость элементов при загрузке страницы
-        checkVisibility();
-    });
+    // Отслеживаем скролл и проверяем видимость
+    $(window).on('scroll', checkVisibility);
 
+    // Проверяем видимость элементов при загрузке страницы
+    $(window).on('load', checkVisibility);
 </script>
 
 <!-- Google tag (gtag.js) -->

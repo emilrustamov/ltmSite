@@ -52,10 +52,10 @@
     --font20r: 20rem;
 }
 
-@font-face {
+/* @font-face {
     font-family: "Proxima Nova";
     src: url("../fonts/ProximaNova-Rg.ttf"), format("truetype");
-}
+} */
 webkit-details-marker {
     display: none;
 }
@@ -76,7 +76,7 @@ summary {
     /* font-weight: 700; */
    text-align: center;
     position: relative;
-    font-family: "ProbaPro-Bold";
+    /* font-family: "ProbaPro-Bold"; */
     /* z-index: 1; */
 }
 .mainSlider_content {
@@ -162,7 +162,7 @@ summary {
     /* opacity: 0; */
     font-size: var(--font1d8);
     font-weight: 700;
-    font-family: "Proxima Nova", sans-serif;
+    /* font-family: "Proxima Nova", sans-serif; */
     pointer-events: all;
     transition: 0.6s cubic-bezier(0.7, 0, 0.3, 1);
     display: inline-block;
@@ -199,7 +199,7 @@ summary {
     padding: 1.5em;
     font-size: var(--font3d6);
     font-weight: 700;
-    font-family: "Proxima Nova", sans-serif;
+    /* font-family: "Proxima Nova", sans-serif; */
 }
 .slider_next {
     background-color: transparent;
@@ -209,7 +209,7 @@ summary {
     padding: 1.5em;
     font-size: var(--font3d6);
     font-weight: 700;
-    font-family: "Proxima Nova", sans-serif;
+    /* font-family: "Proxima Nova", sans-serif; */
 }
 .slider_next_button {
     display: none;
@@ -329,10 +329,10 @@ summary {
     margin-left: 0;
     margin-right: auto;
     letter-spacing: 0.025em;
-    font-family: "Proxima Nova", sans-serif;
+    /* font-family: "Proxima Nova", sans-serif; */
 }
 .section_desc .cont {
-    font-family: ProbaPro;
+    /* font-family: ProbaPro; */
     line-height: 1.5 !important;
     font-size: var(--font2);
 }
@@ -442,12 +442,12 @@ summary {
 .first {
     background-color: var(--btn);
     font-size: var(--font16);
-    font-family: "Inter-Bold";
+    /* font-family: "Inter-Bold"; */
 }
 .second {
     background-color: var(--dark-primary);
     font-size: var(--font16);
-    font-family: "Inter-Bold";
+    /* font-family: "Inter-Bold"; */
     transition: all 0.3s ease;
 }
 
@@ -729,6 +729,7 @@ label {
 .serv-slider .slick-slide.slick-current {
     opacity: 1; /* Активный слайд полностью непрозрачный */
     /* width: 70vw;  */
+    /* margin-right: 30px; */
 }
 
 /* .serv-slider {
@@ -959,7 +960,7 @@ label {
 
 @media (max-width: 1440px) {
     .mainSlider {
-        margin-top: 125px;
+        margin-top: 55px;
     }
     .field-input:focus::placeholder {
         transform: translateY(-74%) scale(0.8, 0.8);
@@ -1109,7 +1110,7 @@ label {
     }
     .serv-mobile-item .section_desc {
         color: #b2afb2;
-        font-family: "Proxima Nova", sans-serif !important;
+        /* font-family: "Proxima Nova", sans-serif !important; */
     }
     .serv-mobile-p {
         font-size: var(--font20);

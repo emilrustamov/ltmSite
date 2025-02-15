@@ -110,10 +110,10 @@
   bottom: 0;
   z-index:-1;
   text-transform: lowercase;
-  opacity:0.2;
+  opacity:0.1;
   color: var(--dark-primary);
   text-shadow: -1px 0 var(--primary), 0 1px var(--primary), 1px 0 var(--primary), 0 -1px var(--primary);
-  font-family: 'Bebas Neue';
+  /* font-family: 'Bebas Neue'; */
   font-weight: 700;
   line-height: 1;
   font-size: var(--font110);

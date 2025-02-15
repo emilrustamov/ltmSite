@@ -1,37 +1,8 @@
-<div class="header-sticky-top ">
-    <div class="header-nav" itemscope itemtype="http://schema.org/SiteNavigationElement">
-        <div class="nav-item"> <a href="/{{ $lang }}/services" itemprop="url">
-                {{ __('translate.services') }} </a>
-            <div class="serv-dropdown-menu">
-                <div>
-                    <a class="no-line" href="/{{ $lang }}/services-bitrix">{{ __('translate.bitrix') }}</a>
-                </div>
-                <div>
-                    <a class="no-line" href="/{{ $lang }}/services-bcloud">{{ __('translate.bcloud') }}</a>
-                </div>
-                {{-- <div>
-                    <a class="no-line" href="/{{ $lang }}/services-webpages">{{ __('translate.web_nav') }}</a>
-                </div> --}}
-                {{-- <div>
-                    <a class="no-line" href="/{{ $lang }}/services-apps">{{ __('translate.mobile_nav') }}</a>
-                </div> --}}
-            </div>
-        </div>
-        <div class="nav-item"> <a href="/{{ $lang }}/about_us" itemprop="url">
-                {{ __('translate.aboutUs') }} </a> </div>
-        <div class="nav-item"> <a href="/{{ $lang }}/portfolio" itemprop="url">
-                {{ __('translate.portfolio') }} </a> </div>
-        {{-- <div class="nav-item"> <a href="/{{ $lang }}/blog">
-                {{ __('translate.blog') }}
-            </a> </div> --}}
-        <div class="nav-item"> <a href="/{{ $lang }}/contacts" itemprop="url">
-                {{ __('translate.contacts') }}
-            </a> </div>
-    </div>
+<div class="header-sticky-top">
     {{-- <div class="header-fixed position-fixed"> --}}
-        <div class="header-fixed">
-        <div class="container-fluid mt-0 justify-content-between d-flex">
-            <div class="rotating-logo d-flex">
+    <div class="header-fixed">
+        <div class="container-fluid mt-0 row">
+            <div class="rotating-logo d-flex col-4">
                 <div class="circle-container" id="logoMain">
                     <div class="scrolling-image">
                         <img src="{{ asset('/assets/images/circled-text.png') }}?v={{ time() }}"
@@ -44,7 +15,36 @@
                 <div class="typing-text"></div>
 
             </div>
-            <div class="contact-info">
+            <div class="header-nav col-4" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                <div class="nav-item"> <a href="/{{ $lang }}/services" itemprop="url">
+                        {{ __('translate.services') }} </a>
+                    <div class="serv-dropdown-menu">
+                        <div>
+                            <a class="no-line" href="/{{ $lang }}/services-bitrix">{{ __('translate.bitrix') }}</a>
+                        </div>
+                        <div>
+                            <a class="no-line" href="/{{ $lang }}/services-bcloud">{{ __('translate.bcloud') }}</a>
+                        </div>
+                        {{-- <div>
+                            <a class="no-line" href="/{{ $lang }}/services-webpages">{{ __('translate.web_nav') }}</a>
+                        </div> --}}
+                        {{-- <div>
+                            <a class="no-line" href="/{{ $lang }}/services-apps">{{ __('translate.mobile_nav') }}</a>
+                        </div> --}}
+                    </div>
+                </div>
+                <div class="nav-item"> <a href="/{{ $lang }}/about_us" itemprop="url">
+                        {{ __('translate.aboutUs') }} </a> </div>
+                <div class="nav-item"> <a href="/{{ $lang }}/portfolio" itemprop="url">
+                        {{ __('translate.portfolio') }} </a> </div>
+                {{-- <div class="nav-item"> <a href="/{{ $lang }}/blog">
+                        {{ __('translate.blog') }}
+                    </a> </div> --}}
+                <div class="nav-item"> <a href="/{{ $lang }}/contacts" itemprop="url">
+                        {{ __('translate.contacts') }}
+                    </a> </div>
+            </div>
+            <div class="contact-info col-md-4 col-8">
                 <span><a href="tel:+99361648605" class="no-line">+993 61 00 97 92</a></span>
                 <a href="https://www.linkedin.com/company/104843040" class="no-line"><i id="linkedIn"
                         class="fa-brands fa-linkedin"
@@ -107,7 +107,7 @@
         </div>
     @endif
 </div>
-<div class="modal fade modal-no-bg" id="complexMenuModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-no-bg" id="complexMenuModal" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content mobile-none">
             <div class="modal-body d-flex">

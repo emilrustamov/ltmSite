@@ -12,7 +12,7 @@
 @import 'style_portfolio.css';
 @import 'bootstrap.min.css';
 @import 'swiper.min.css';
-@font-face {
+/* @font-face {
     font-family: 'Inter-Light';
     src: url('/resources/fonts/Inter/Inter-Light.ttf');
 }
@@ -47,8 +47,8 @@
 @font-face {
     font-family: 'ProbaPro-Bold';
     src: url('/resources/fonts/ProbaPro-Bold.ttf');
-}
-@font-face {
+} */
+/* @font-face {
     font-family: 'Proxima Nova';
     src: url('/resources/fonts/ProximaNova-Rg.ttf');
-}
+} */
