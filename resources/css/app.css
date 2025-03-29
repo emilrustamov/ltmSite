@@ -1,54 +1,10 @@
-@import 'addProjectStyle.css';
-@import 'edit_portfolio.css';
-@import 'fontawesome.min.css';
+/* @import 'fontawesome.min.css'; */
 @import 's1700.css';
 @import 'slick.css';
 @import 'style.css';
 @import 'style_aboutUs.css';
-@import 'style_blog.css';
 @import 'style_contacts.css';
 @import 'style_faq.css';
 @import 'style_home.css';
 @import 'style_portfolio.css';
 @import 'bootstrap.min.css';
-@import 'swiper.min.css';
-/* @font-face {
-    font-family: 'Inter-Light';
-    src: url('/resources/fonts/Inter/Inter-Light.ttf');
-}
-@font-face {
-    font-family: 'Inter-Thin';
-    src: url('/resources/fonts/Inter/Inter-Thin.ttf');
-}
-@font-face {
-    font-family: 'Inter-Regular';
-    src: url('/resources/fonts/Inter/Inter-Regular.ttf');
-}
-@font-face {
-    font-family: 'Inter-Medium';
-    src: url('/resources/fonts/Inter/Inter-Medium.ttf');
-}
-@font-face {
-    font-family: 'Inter-Semibold';
-    src: url('/resources/fonts/Inter/Inter-SemiBold.ttf');
-}
-@font-face {
-    font-family: 'Inter-Bold';
-    src: url('/resources/fonts/Inter/Inter-Bold.ttf');
-}
-@font-face {
-    font-family: 'ProbaPro';
-    src: url('/resources/fonts/ProbaPro-Regular.ttf');
-}
-@font-face {
-    font-family: 'Bebas Neue';
-    src: url('/resources/fonts/BebasNeueRegular.ttf');
-}
-@font-face {
-    font-family: 'ProbaPro-Bold';
-    src: url('/resources/fonts/ProbaPro-Bold.ttf');
-} */
-/* @font-face {
-    font-family: 'Proxima Nova';
-    src: url('/resources/fonts/ProximaNova-Rg.ttf');
-} */

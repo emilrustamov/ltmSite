@@ -29,29 +29,36 @@
                                             @csrf
                                             <div class="row d-flex">
                                                 <label class="field">
-                                                    <input type="text" name="name" class="field-input" placeholder="{{ __('translate.formName') }}">
+                                                    <input type="text" name="name" class="field-input"
+                                                        placeholder="{{ __('translate.formName') }}">
                                                 </label>
                                                 <label class="field">
-                                                    <input type="text" name="phone" class="field-input" placeholder="{{ __('translate.formPhone') }}">
+                                                    <input type="text" name="phone" class="field-input"
+                                                        placeholder="{{ __('translate.formPhone') }}">
                                                 </label>
                                             </div>
                                             <div class="row d-flex">
                                                 <label class="field">
-                                                    <input type="text" name="subject" class="field-input" placeholder="{{ __('translate.formProject') }}">
+                                                    <input type="text" name="subject" class="field-input"
+                                                        placeholder="{{ __('translate.formProject') }}">
                                                 </label>
                                                 <label class="field">
-                                                    <input type="text" name="email" class="field-input" placeholder="{{ __('translate.formEmail') }}">
+                                                    <input type="text" name="email" class="field-input"
+                                                        placeholder="{{ __('translate.formEmail') }}">
                                                 </label>
                                             </div>
-                                            <input type="text" name="message" class="field-input field-textarea mt-5" placeholder="{{ __('translate.formComment') }}">
-                                            <button type="submit" class="btn send-p d-flex align-items-center text-white">{{ __('translate.sendText') }}</button>
+                                            <input type="text" name="message" class="field-input field-textarea mt-5"
+                                                placeholder="{{ __('translate.formComment') }}">
+                                            <button type="submit"
+                                                class="btn send-p d-flex align-items-center text-white">{{ __('translate.sendText') }}</button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-6 col-sm-6 col-12 d-flex flex-column">
                                 <div class="contacts_request">
-                                    <div class="d-flex align-items-center position-relative flex-column justify-content-center">
+                                    <div
+                                        class="d-flex align-items-center position-relative flex-column justify-content-center">
                                         <div class="dzin position-relative">
                                             <div class="dzin_title">
                                                 <img src="{{ '../assets/images/dzin__title.png' }}" loading="lazy">
@@ -59,13 +66,17 @@
                                             <div class="dzin_icon">
                                                 <img src="{{ '../assets/images/phoneLightRed.png' }}" loading="lazy">
                                             </div>
-                                            <div class="dzin_phone"><a href="tel:+99312753713" class="no-line">+993 12 75 37 13</a></div>
-                                            <div class="dzin_phone"><a href="tel:+99361009792" class="no-line">+993 61 00 97 92</a></div>
+                                            <div class="dzin_phone"><a href="tel:+99312753713" class="no-line">+993 12
+                                                    75 37 13</a></div>
+                                            <div class="dzin_phone"><a href="tel:+99361009792" class="no-line">+993 61
+                                                    00 97 92</a></div>
                                             <div class="sub-text-under-content">{!! nl2br(__('translate.contactsBackText')) !!}</div>
                                         </div>
                                         <div class="mail">
-                                            <div class="mail_icon"><img src="{{ '../assets/images/doveLightRed.png' }}" loading="lazy"></div>
-                                            <div class="mail_title"><a href="mailto:info@ltm.studio" class="no-line">{!! nl2br(__('translate.pigeon')) !!}</a></div>
+                                            <div class="mail_icon"><img src="{{ '../assets/images/doveLightRed.png' }}"
+                                                    loading="lazy"></div>
+                                            <div class="mail_title"><a href="mailto:info@ltm.studio"
+                                                    class="no-line">{!! nl2br(__('translate.pigeon')) !!}</a></div>
                                         </div>
                                     </div>
                                 </div>

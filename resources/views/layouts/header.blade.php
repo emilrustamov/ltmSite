@@ -18,20 +18,20 @@
             <div class="header-nav col-4" itemscope itemtype="http://schema.org/SiteNavigationElement">
                 <div class="nav-item"> <a href="/{{ $lang }}/services" itemprop="url">
                         {{ __('translate.services') }} </a>
-                    <div class="serv-dropdown-menu">
+                    {{-- <div class="serv-dropdown-menu">
                         <div>
                             <a class="no-line" href="/{{ $lang }}/services-bitrix">{{ __('translate.bitrix') }}</a>
                         </div>
                         <div>
                             <a class="no-line" href="/{{ $lang }}/services-bcloud">{{ __('translate.bcloud') }}</a>
                         </div>
-                        {{-- <div>
+                      <div>
                             <a class="no-line" href="/{{ $lang }}/services-webpages">{{ __('translate.web_nav') }}</a>
-                        </div> --}}
-                        {{-- <div>
+                        </div> 
+                       <div>
                             <a class="no-line" href="/{{ $lang }}/services-apps">{{ __('translate.mobile_nav') }}</a>
-                        </div> --}}
-                    </div>
+                        </div> 
+                    </div> --}}
                 </div>
                 <div class="nav-item"> <a href="/{{ $lang }}/about_us" itemprop="url">
                         {{ __('translate.aboutUs') }} </a> </div>
@@ -133,8 +133,8 @@
                     <div class="big-block-content d-flex flex-column m-auto w-50">
                         <a class="all-services-p no-line"
                             href="/{{ $lang }}/services">{{ __('translate.allServ') }}</a>
-                        <a class="phone-number-p no-line">+993 12 75 37 13</a>
-                        <a class="email-p no-line">info@ltm.studio</a>
+                        <a href="tel:+99312753713" class="phone-number-p no-line">+993 12 75 37 13</a>
+                        <a href="mailto:info@ltm.studio" class="email-p no-line">info@ltm.studio</a>
                         <div class="d-flex my-auto media-links">
                             <a class="menu-a no-line" href="instagram.com/ltmstudio" id="instLink">In</a>
                             <a class="menu-a no-line" href="linkedin.com/company/ltmstudio" id="linkedLink">Ln</a>
@@ -288,29 +288,24 @@
         });
         contactsMobileMenuLink.addEventListener('click', function() {
             window.location.href = '/{{ $lang }}/contacts';
-            console.log('clicked');
-
         });
         const element = document.querySelector('.followed-element');
 
         element.addEventListener('mouseenter', () => {
-            element.style.transform = 'scale(1.1)'; // Увеличиваем элемент при наведении
+            element.style.transform = 'scale(1.1)'; 
         });
 
         element.addEventListener('mouseleave', () => {
             element.style.transform =
-                'scale(1)'; // Возвращаем элемент в исходное состояние при уходе курсора
+                'scale(1)'; 
         });
 
         element.addEventListener('mousemove', (event) => {
-            // Получаем координаты курсора относительно элемента
             const x = event.offsetX;
             const y = event.offsetY;
-
-            // Выполняем перемещение элемента на основе координат курсора
             element.style.transform = `translate(${x}px, ${y}px) scale(1.1)`;
         });
-        if (window.innerWidth < 991) { // Проверяем ширину экрана (примерное значение для мобильных устройств)
+        if (window.innerWidth < 991) { 
             var windowHeight = window.innerHeight;
             document.getElementById('mobile-menu-body').style.height = windowHeight + 'px';
         }

@@ -128,3 +128,94 @@
         </div>
     </div>
 </section>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Cache DOM elements
+    const agTimeline = document.querySelector(".js-timeline");
+    const agTimelineLine = document.querySelector(".js-timeline_line");
+    const agTimelineLineProgress = document.querySelector(".js-timeline_line-progress");
+    const agTimelineItems = Array.from(document.querySelectorAll(".js-timeline_item"));
+    const pointSelector = ".js-timeline-card_point-box";
+
+    let agOuterHeight = window.outerHeight;
+    let agHeight = window.innerHeight;
+    let agPosY = window.pageYOffset;
+    let f = -1;
+    let agFlag = false;
+
+    // Helper function to get element's document offsetTop
+    function getOffsetTop(elem) {
+        return elem.getBoundingClientRect().top + window.pageYOffset;
+    }
+
+    function fnOnScroll() {
+        agPosY = window.pageYOffset;
+        fnUpdateFrame();
+    }
+
+    function fnOnResize() {
+        agPosY = window.pageYOffset;
+        agHeight = window.innerHeight;
+        fnUpdateFrame();
+    }
+
+    function fnUpdateWindow() {
+        agFlag = false;
+        // Calculate the top offset for the timeline line
+        const firstItem = agTimelineItems[0];
+        const firstPoint = firstItem.querySelector(pointSelector);
+        const firstItemOffset = getOffsetTop(firstItem);
+        const firstPointOffset = getOffsetTop(firstPoint);
+        const topVal = firstPointOffset - firstItemOffset;
+
+        // Calculate the bottom offset for the timeline line
+        const lastItem = agTimelineItems[agTimelineItems.length - 1];
+        const lastPoint = lastItem.querySelector(pointSelector);
+        const timelineOffset = getOffsetTop(agTimeline);
+        const lastPointOffset = getOffsetTop(lastPoint);
+        const bottomVal = timelineOffset + agTimeline.offsetHeight - lastPointOffset;
+
+        agTimelineLine.style.top = topVal + "px";
+        agTimelineLine.style.bottom = bottomVal + "px";
+
+        if (f !== agPosY) {
+            f = agPosY;
+            fnUpdateProgress();
+        }
+    }
+
+    function fnUpdateProgress() {
+        const lastItem = agTimelineItems[agTimelineItems.length - 1];
+        const lastPoint = lastItem.querySelector(pointSelector);
+        const i = getOffsetTop(lastPoint);
+        const a = getOffsetTop(agTimelineLineProgress);
+        let n = agPosY - a + agOuterHeight / 2;
+        if (i <= agPosY + agOuterHeight / 2) {
+            n = i - a;
+        }
+        agTimelineLineProgress.style.height = n + "px";
+
+        // Toggle active class based on scroll position
+        agTimelineItems.forEach(item => {
+            const point = item.querySelector(pointSelector);
+            const pointOffset = getOffsetTop(point);
+            if (pointOffset < agPosY + 0.5 * agOuterHeight) {
+                item.classList.add("js-ag-active");
+            } else {
+                item.classList.remove("js-ag-active");
+            }
+        });
+    }
+
+    function fnUpdateFrame() {
+        if (!agFlag) {
+            requestAnimationFrame(fnUpdateWindow);
+            agFlag = true;
+        }
+    }
+
+    // Attach event listeners
+    window.addEventListener("scroll", fnOnScroll);
+    window.addEventListener("resize", fnOnResize);
+});
+</script>

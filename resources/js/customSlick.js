@@ -63,7 +63,7 @@ $(function () {
         centerMode: false,
         variableWidth: true,
         speed: 1000,
-        nextArrow: '<button class="services_next"><img src="' + 'https://arassanusga.com/assets/images/long-arrow-right.png' + '" style="width: 5.4rem;" alt=""></button>',
+        nextArrow: '<button class="services_next"><img src="' + '/assets/images/long-arrow-right.png' + '" style="width: 5.4rem;" alt=""></button>',
         prevArrow: '<div></div>',
     });
     $('.services_dots').slick({
