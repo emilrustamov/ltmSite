@@ -29,6 +29,7 @@
     <link rel="alternate" hreflang="ru" href="{{ config('app.url') }}/ru/">
     <link rel="alternate" hreflang="en" href="{{ config('app.url') }}/en/">
     <link rel="alternate" hreflang="tk" href="{{ config('app.url') }}/tk/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
@@ -46,10 +47,11 @@
         </div>
     </div>
 
-    {{-- Cursor --}}
+    
+
     <div class="cursor-outer" id="custom-cursor"></div>
     <div class="cursor-inner" id="cursor-inner"></div>
-    {{-- Content --}}
+
     <div class="page-content">
         @include('layouts.header')
         @yield('custom-slider')
@@ -57,12 +59,12 @@
         @yield('circles')
 
 
-        <div class="container">
+        <div >
             @yield('content')
         </div>
 
         @hasSection('sec-serv-slider')
-            <div class="sec-serv-slider" style="position: relative">
+            <div class="sec-serv-slider relative">
                 @yield('sec-serv-slider')
             </div>
         @endif
@@ -80,7 +82,11 @@
     @include('layouts.scripts')
     <div class="follow-cursor"></div>
 
-    <button onclick="topFunction()" id="scrollBtn"><i class="fa-solid fa-arrow-up"></i></button>
+    <button onclick="topFunction()" id="scrollBtn"
+        class="hidden fixed bottom-5 right-8 z-[999] border-0 outline-none bg-white cursor-pointer text-white p-4 rounded-[10px] text-[18px] transition-all duration-300 ease-in-out hover:bg-transparent group">
+        <i
+            class="fa-solid fa-arrow-up text-[#1a1515] transition-all duration-300 ease-in-out group-hover:text-white"></i>
+    </button>
 
 </body>
 

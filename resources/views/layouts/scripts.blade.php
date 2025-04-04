@@ -40,7 +40,7 @@
                 data.forEach(p => {
                     $('.grid_portfolio').append(
                         '<a href="/{{ $lang }}/portfolio/' + p['id'] +
-                        '" class="grid-item no-line"> <div class="columnPort"> <img src="/storage/' +
+                        '" class="grid-item "> <div class="columnPort"> <img src="/storage/' +
                         p['photo'] +
                         '" alt="Image"> ' +
 
@@ -82,8 +82,8 @@
                                     'add-padding' : '';
 
                                 $('.grid_portfolio').append(
-                                    `<a href="/${lang}/portfolio/${p.id}" class="grid-item ${additionalClass} no-line" data-id="${p.id}">
-                                    <div class="columnPort position-relative content">
+                                    `<a href="/${lang}/portfolio/${p.id}" class="grid-item ${additionalClass} " data-id="${p.id}">
+                                    <div class="columnPort relative content">
                                         <img src="/storage/${p.photo}" alt="Image" loading="lazy">
                                         <div class="gridText content">
                                             <div class="rowPort">
@@ -140,8 +140,8 @@
                                     'add-padding' : '';
 
                                 $('.grid_portfolio').append(
-                                    `<a href="/${lang}/portfolio/${p.id}" class="grid-item ${additionalClass} no-line" data-id="${p.id}">
-                                    <div class="columnPort position-relative content">
+                                    `<a href="/${lang}/portfolio/${p.id}" class="grid-item ${additionalClass} " data-id="${p.id}">
+                                    <div class="columnPort relative content">
                                         <img src="/storage/${p.photo}" alt="Image" loading="lazy">
                                         <div class="gridText content">
                                             <div class="rowPort">

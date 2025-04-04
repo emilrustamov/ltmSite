@@ -8,10 +8,10 @@
     <div class="container">
         <div class="portfolioPage">
             <div class="portfolioIntro">
-                <div class="leftHeaderTop">
+                {{-- <div class="leftHeaderTop">
                     <p>{{__('translate.mainPage')}}</p>
                     <p>{{__('translate.services')}}</p>
-                </div>
+                </div> --}}
                 {{-- <div class="rowLeftHeader portfHeader">
              <a href="/{{$lang}}/"><p>{{__('translate.mainPage')}}</p> </a>
                <span> <p>{{$currentPage }}</p> </span>
@@ -19,9 +19,9 @@
                     <span><p>Проекты</p> </span>
                 </div> --}}
                 <div class="column left">
-                    <h1 class="title">{{ __('translate.portfolioTitle') }}</h1>
-                    <div class="subt">
-                        <div class="p1">
+                    <h1 >{{ __('translate.portfolioTitle') }}</h1>
+                    <div class="text-[2.4rem]">
+                        <div >
                             {{ __('translate.portfolioSub') }}
                         </div>
                     </div>
@@ -71,8 +71,8 @@
                 $additionalClass = ($i % 2 != 0) ? 'add-padding' : '';
             @endphp
                     <!-- {{-- @foreach ($portfolio as $portf) --}} -->
-                        <a href="/{{ $lang }}/portfolio/{{ $portf['id'] }}" class="grid-item {{$additionalClass}} no-line">
-                            <div class="columnPort position-relative content ">
+                        <a href="/{{ $lang }}/portfolio/{{ $portf['id'] }}" class="grid-item {{$additionalClass}} ">
+                            <div class="columnPort relative content ">
                                 @if ($portf['photo'] != '')
                                     <img src="{{ asset('storage/'. $portf['photo']) }}" alt="Image" class="">
                                         {{-- style="width: 300px !important; height: 200px !important;"> --}}

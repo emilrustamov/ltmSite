@@ -8,9 +8,9 @@
     <div class="circle-3">
         <img src="{{ '../assets/images/circle-3.png' }}" alt="" loading="lazy">
     </div>
-    <!-- <div class="circle-4">
-                                                        <img src="{{ '../assets/images/circle-4.png' }}" alt="" loading="lazy">
-                                                    </div> -->
+    <div class="circle-4">
+        <img src="{{ '../assets/images/circle-4.png' }}" alt="" loading="lazy">
+    </div>
     <div class="circle-5">
         <img src="{{ '../assets/images/circle-5.png' }}" alt="" loading="lazy">
     </div>
@@ -21,95 +21,75 @@
         <img src="{{ '../assets/images/radialCircle.png' }}" width="707px" loading="lazy">
     </div>
 @endsection
+
+
+
 @section('content')
-
-    <div class="servicesPage">
-        <div class="servicesIntro">
-            <div class="h"></div>
-
-            <div class="column left">
-
-                <h1 class="title"> {!! nl2br(__('translate.title')) !!} </h1>
-
-                <div class="subt">
-                    <div class="p1">{{ __('translate.p1') }}</div>
-                    <div class=" p1">{{ __('translate.p1_2') }} <span class="serv-p1">{{ __('translate.p1_2_custom') }}
-                        </span>
-                        {{ __('translate.p1_2_cont') }}
-                    </div>
+    <section class="relative">
+        <div class=" container">
+            <div class="md:max-w-[90%]">
+                <h1> {!! nl2br(__('translate.title')) !!} </h1>
+                <div class="text-[2.4rem]">
+                    <p class="mb-5">{{ __('translate.p1') }}</p>
+                    <p class="mb-5">{{ __('translate.p1_2') }}
+                        <span class="text-red-500">{{ __('translate.p1_2_custom') }}</span>{{ __('translate.p1_2_cont') }}
+                    </p>
                 </div>
             </div>
-            <div class="column right">
-                <div> {!! nl2br(__('translate.lampText')) !!}</div>
-
-                <img src="{{ '../assets/images/image.png' }}" loading="lazy">
-            </div>
+            <img src="{{ '../assets/images/image.png' }}" loading="lazy" class="absolute right-0 top-0 md:w-[25%]">
+            <div class="absolute right-100 top-0 text-2xl italic"> {!! nl2br(__('translate.lampText')) !!} </div>
         </div>
-    </div>
-@endsection
-
-@section('sec-serv-slider')
-    <div class="red-circle-serv">
-        <img src="{{ asset('/assets/images/pseudo-red.png') }}" alt="" loading="lazy">
-    </div>
+    </section>
     @include('components.services')
 @endsection
 
+
+
+
+
 @section('sec-content')
     @include('components.timeline')
-    <div class="emoji d-flex flex-column justify-content-center">
-        <p> {{ __('translate.emoji') }}</p>
+    {{-- <div class="relative text-white font-normal text-5xl leading-[1.6] text-center pb-20 flex flex-col justify-center">
+        <h4> {{ __('translate.emoji') }}</h4>
         <p>🤞🖖✌️</p>
-    </div>
+    </div> --}}
 
     <div class="servicesBody">
-        <div class="title">
-            {{ __('translate.qualityTitle') }}
-        </div>
-        <div class="sub">{{ __('translate.qualitySub') }}</div>
-        <ul>
-            <li>
-                <div class="item-1">{{ __('translate.q1_title') }} </div>
-                <div class="item-2">{{ __('translate.q1_sub') }}</div>
-            </li>
-            <li>
-                <div class="item-1">{{ __('translate.q2_title') }}</div>
-                <div class="item-2">{{ __('translate.q2_sub') }}</div>
-            </li>
-            <li>
-                <div class="item-1">{{ __('translate.q3_title') }}</div>
-                <div class="item-2">{{ __('translate.q3_sub') }}</div>
-            </li>
-            <li>
-                <div class="item-1">{{ __('translate.q4_title') }}</div>
-                <div class="item-2">{{ __('translate.q4_sub') }}</div>
-            </li>
-            <li>
-                <div class="item-1">{{ __('translate.q5_title') }} </div>
-                <div class="item-2">{{ __('translate.q5_sub') }}</div>
-            </li>
-            <li>
-                <div class="item-1">{{ __('translate.q6_title') }}</div>
-                <div class="item-2">{{ __('translate.q6_sub') }}</div>
-            </li>
-            <li>
-                <div class="item-1">{{ __('translate.q7_title') }}</div>
-                <div class="item-2">{{ __('translate.q7_sub') }}</div>
-            </li>
+        <h2 class="mb-5">{{ __('translate.qualityTitle') }}</h2>
+        <div class=" text-3xl my-20">{{ __('translate.qualitySub') }}</div>
+        <ul class="grid gap-4 list-none p-0 grid-cols-1 md:grid-cols-3">
+            @for ($i = 1; $i <= 7; $i++)
+                <li class="relative pl-[2.3rem] pr-[8rem] pb-[5rem] leading-[1.5]">
+                    <span
+                        class="absolute left-0 top-[13px] transform -translate-y-1/2 bg-[#e4abab] w-[1.2rem] h-[1.2rem] rounded-full"></span>
+                    <div class="font-semibold mb-3">{{ __('translate.q' . $i . '_title') }}</div>
+                    <div class="font-light text-[#b2afb2]">{{ __('translate.q' . $i . '_sub') }}</div>
+                </li>
+            @endfor
         </ul>
     </div>
- 
-    <div class="servicesQuestions" style="margin-bottom:120px">
+  
+
+    
+    <div class="text-center text-[2.8rem] leading-20">
         <p>
-            <strong>{{ __('translate.questionTitle') }}</strong>
+            <h3>{{ __('translate.questionTitle') }}</h3>
             <br> {{ __('translate.questionSub') }}
-            <strong> <a href="/{{ $lang }}/faq" class="no-line"><span class="serv-p1">
-                        {{ __('translate.questionSubCustom') }} </span></a></strong>
+            <strong>
+                <a href="/{{ $lang }}/faq" class="">
+                    <span class="text-red-500">{{ __('translate.questionSubCustom') }}</span>
+                </a>
+            </strong>
         </p>
-        <p>{{ __('translate.call') }}<a class="serv-p1 no-line" href="tel:+99312753713">{!! nl2br(__('translate.number')) !!}</a>
-            <strong><a class="no-line" href="mailto:info@ltm.studio">{{ __('translate.write_to_email') }}<span
-                        class="serv-p1"> {{ __('translate.mail') }}
-                    </span> </a></strong>
+        <p>
+            {{ __('translate.call') }}
+            <a class="text-red-500" href="tel:+99312753713">{!! nl2br(__('translate.number')) !!}</a>
+            <strong>
+                <a class="" href="mailto:info@ltm.studio">
+                    {{ __('translate.write_to_email') }}
+                    <span class="text-red-500"> {{ __('translate.mail') }} </span>
+                </a>
+            </strong>
         </p>
     </div>
 @endsection

@@ -20,7 +20,7 @@
                 <tr>
                     <td class="mb-2">{{$i['title_tm']}}</td>
                     <td class="d-flex">
-                        <a href="/{{$lang}}/admin/edit-article/{{$i['id']}}" class="no-line btn btn-primary mx-1">
+                        <a href="/{{$lang}}/admin/edit-article/{{$i['id']}}" class=" btn btn-primary mx-1">
                             <i class="fa-regular fa-pen-to-square"></i>
                         </a>
                         <form action="{{ route('articles.destroy', ['lang' => $lang, 'id' => $i['id']]) }}" method="POST" style="display:inline;">

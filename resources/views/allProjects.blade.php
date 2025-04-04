@@ -29,7 +29,7 @@
             <td>{{ json_decode($i['title'], true)[$lang] ?? 'No title' }}</td>
             <td>{{ $i['when'] }}</td>
             <td>
-                <a href="/{{$lang}}/admin/edit-project/{{$i['id']}}" class="no-line btn btn-primary">
+                <a href="/{{$lang}}/admin/edit-project/{{$i['id']}}" class=" btn btn-primary">
                     <i class="fa-regular fa-pen-to-square"></i>
                 </a>
             </td>

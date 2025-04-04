@@ -3,114 +3,67 @@
 @section('title', 'Project Details')
 
 @section('content')
-    <div class="">
-        <style>
-            .responsive-photo {
-                width: 100%;
-                height: auto;
-            }
-            @media (min-width: 768px) {
-                .responsive-photo {
-                    width: 1110px !important;
-                    height: 740px !important;
-                }
-            }
-        </style>
+    <section class="container">
+    @if ($portfolio['photo'] != '')
+        <img src="{{ asset('storage/' . $portfolio['photo']) }}" alt="Image" loading="lazy" class="w-full">
+    @else
+        <img src="{{ asset('assets/images/proformat.png') }}" alt="Image" loading="lazy" class="w-full">
+    @endif
 
-        @if ($portfolio['photo'] != '')
-            <img src="{{ asset('storage/' . $portfolio['photo']) }}" alt="Image" class="responsive-photo" loading="lazy">
-        @else
-            <img src="{{ asset('assets/images/proformat.png') }}" alt="Image" class="responsive-photo" loading="lazy">
-        @endif
-    </div>
 
-    <div class="project-details">
-        <div class="project-details-col1">
-            <p>{{ __('translate.projectDetails') }}</p>
-            <div class="header-flex">
-                <div class="item-q">
-                    <p>{{ __('translate.who') }}</p>
-                    <div class="project-details-row-title">
-                        {{ json_decode($portfolio['who'], true)[$lang] ?? '' }}
+        <div class="project-details">
+            <div class="mt-10">
+                <h1 class="mb-15">{{ __('translate.projectDetails') }}</h1>
+
+                <div class="flex flex-col md:flex-row justify-between gap-8 text-2xl">
+
+                    <div class="flex-1">
+                        <h4 class="text-white font-semibold mb-2">{{ __('translate.who') }}</h4>
+                        <h3 class="text-[#e4abab]">
+                            {{ $portfolio['who'][$lang] ?? '' }}
+                        </h3>
                     </div>
-                </div>
-                <div class="item-q">
-                    <p>{{ __('translate.what') }}</p>
-                    <div class="project-details-row-title">
-                        @foreach($categories as $categoryGroup)
-                            @foreach($categoryGroup as $category)
-                                <div>
-                                    {{ $category['category_' . $lang] }}
-                                </div>
+
+
+                    <div class="flex-1">
+                        <h4 class="text-white font-semibold mb-2">{{ __('translate.what') }}</h4>
+                        <h3 class="text-[#e4abab]">
+                            @foreach ($categories as $categoryGroup)
+                                @foreach ($categoryGroup as $category)
+                                    <div>{{ $category['category_' . $lang] }}</div>
+                                @endforeach
                             @endforeach
-                        @endforeach
+                        </h3>
                     </div>
-                </div>
-                <div class="item-q">
-                    <p>{{ __('translate.when') }}</p>
-                    <div class="project-details-row-title">
-                        {{ $portfolio['when'] }}
+
+
+                    <div class="flex-1">
+                        <h4 class="text-white font-semibold mb-2">{{ __('translate.when') }}</h4>
+                        <h3 class="text-[#e4abab]">
+                            {{ $portfolio['when'] }}
+                        </h3>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="result regular20">{{ json_decode($portfolio['target'], true)[$lang] ?? '' }}</div>
+        <div class="section">
+            <h2>Цель</h2>
+            <p>{{ $portfolio['target'][$lang] ?? '' }}</p>
+        </div>
 
-    @if(isset($portfolio['urlButton']))
-        <a href="{{ $portfolio['urlButton'] }}" class="no-line">
-            <button class="button-site custom-button">
-                {{ __('translate.goToSite') }}
-            </button>
-        </a>
-    @endif
+        <div class="section">
+            <h2>Результат</h2>
+            @if (isset($portfolio['urlButton']))
+                <button class="custom-button">
+                    <a href="{{ $portfolio['urlButton'] }}">
+                        {{ __('translate.goToSite') }}</a>
+                </button>
+            @endif
+            <p>
+                {{ $portfolio['result'][$lang] ?? '' }}
+            </p>
+        </div>
+    </section>
 
-    <div class="result regular20" id="">
-        {{ json_decode($portfolio['res'], true)[$lang] ?? '' }}
-    </div>
-
-    <script src="{{ asset('assets/js/jquery.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/slick.min.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var backButton = '<span class="slick-prev">&#129120</span>';
-            var nextButton = '<span class="slick-next">&#129122</span>'
-            $('.slider_portf').slick({
-                infinite: true,
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                prevArrow: backButton,
-                nextArrow: nextButton
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var currentTextId = "target";
-
-            document.getElementById("tar").addEventListener("click", function() {
-                showOrReplaceText("target");
-            });
-
-            document.getElementById("res").addEventListener("click", function() {
-                showOrReplaceText("result");
-            });
-
-            function showOrReplaceText(textId) {
-                var currentTextDiv = document.getElementById(currentTextId);
-                if (currentTextDiv) {
-                    currentTextDiv.style.display = 'none';
-                }
-
-                var newTextDiv = document.getElementById(textId);
-                if (newTextDiv) {
-                    newTextDiv.style.display = 'block';
-                }
-
-                currentTextId = textId;
-            }
-        });
-    </script>
 @endsection

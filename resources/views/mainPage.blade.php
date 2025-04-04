@@ -19,8 +19,8 @@
 @section('enLink', 'https://ltm.studio/en/')
 @section('tkLink', 'https://ltm.studio/tk/')
 
-<div class="mainSlider ">
-    <h1 class="homeTitle container">
+<div class="mainSlider m-auto">
+    <h1 class="text-center container">
         {{ __('translate.home_h1') }}
     </h1>
 
@@ -38,37 +38,34 @@
                 </a>
             </div>
         @endforeach
-
     </div>
-
 </div>
 @endsection
+
+
+
+
+
 @section('serv-slider')
-
-<div class="services_content mobile-none section">
-    <div class="red-circle-serv">
-        <img src="{{ asset('/assets/images/pseudo-red.png') }}" alt="" loading="lazy">
-    </div>
-    @include('components.services')
-</div>
-
+@include('components.services')
 @endsection
+
 @section('content')
 
-<div class="feedback-section section container parent">
-    <div class="red-circle-feedback">
+<div class="feedback-section section container relative">
+    {{-- <div class="red-circle-feedback">
         <img src="{{ asset('/assets/images/pseudo-red.png') }}" alt="" loading="lazy">
-    </div>
-    <h2 class="section_title" itemprop="name">
+    </div> --}}
+    <h2 class="mb-5" itemprop="name">
         {!! nl2br(__('translate.titleForm')) !!}
     </h2>
-    <div class="section_desc">
-        <p class="cont">{{ __('translate.descForm') }}</p>
+    <div>
+        <p>{{ __('translate.descForm') }}</p>
     </div>
     @if ($errors->any())
         <div class="alert alert-danger w-50">
 
-            <p style="font-size:18px">{{ __('translate.formError') }}</p>
+            <p>{{ __('translate.formError') }}</p>
         </div>
     @endif
     <div class="feedback_form" style="margin: 0 !important">
@@ -94,7 +91,8 @@
                 <input type="text" name="message" class="field-input w-100"
                     placeholder="{{ __('translate.formComment') }}">
             </label>
-            <button type="sumbit" class="btn send-p d-flex align-items-center text-white"
+            <button type="sumbit"
+                class="btn send-p text-[60px] font-bold tracking-[3px] d-flex align-items-center text-white"
                 style="">{{ __('translate.sendText') }}</button>
         </form>
     </div>
