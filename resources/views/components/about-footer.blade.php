@@ -34,42 +34,6 @@
         </div>
     </div>
 </section>
-<style>
-.about_company_title .redline {
-    position: relative;
-    display: inline-block;
-    z-index: 1;
-    overflow: hidden;
-    padding: 4px 0;
-}
-
-.about_company_title .redline::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #e31e24;
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform 1s ease;
-    z-index: -1;
-}
-
-.about_company_title.revealed .redline-1::before {
-    transition-delay: 0s;
-    transform: scaleX(1);
-}
-
-.about_company_title.revealed .redline-2::before {
-    transition-delay: 0.4s; /* задержка для второй строки */
-    transform: scaleX(1);
-}
-
-
-
-</style>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

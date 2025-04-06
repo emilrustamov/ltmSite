@@ -1,38 +1,44 @@
 <div id="mainHeader"
-     class="lg:sticky lg:top-0 z-50 transition-all duration-500 px-4 py-2 flex flex-wrap items-center gap-y-4">
+    class="lg:sticky lg:top-0 z-50 transition-all duration-500 px-4 py-2 flex flex-wrap items-center gap-y-4 justify-between">
 
     <!-- Лого -->
     <div class="flex items-center gap-2 w-1/2 sm:w-1/3 md:w-1/4 min-w-0">
-        <div class="circle-container" id="logoMain">
-            <div class="scrolling-image">
-                <img src="{{ asset('/assets/images/circled-text.png') }}?v={{ time() }}" alt="Scrolling Image">
+        <a href="/{{ $lang }}/">
+            <div class="circle-container" id="logoMain">
+                <div class="scrolling-image">
+                    <img src="{{ asset('/assets/images/circled-text.png') }}?v={{ time() }}" alt="Scrolling Image">
+                </div>
+                <div class="center-image">
+                    <img src="{{ asset('/assets/images/ltm-white.png') }}" alt="Center Image">
+                </div>
             </div>
-            <div class="center-image">
-                <img src="{{ asset('/assets/images/ltm-white.png') }}" alt="Center Image">
-            </div>
-        </div>
+        </a>
         <!-- Печатающий текст — только на >= lg -->
         <div class="typing-text hidden lg:block min-w-[150px] whitespace-nowrap overflow-hidden text-sm leading-none">
         </div>
     </div>
 
     <!-- Меню (только десктоп, центрировано) -->
-    <div class="hidden md:flex justify-center items-center gap-6 w-full md:w-1/2 lg:w-1/3 z-[999]"
+    <div class="hidden md:flex justify-center items-center gap-4 w-full md:w-1/2 lg:w-1/3 z-[999] whitespace-nowrap"
          itemscope itemtype="http://schema.org/SiteNavigationElement">
         <div class="nav-item">
-            <a href="/{{ $lang }}/services" class="{{ Request::is($lang . '/services*') ? 'active' : '' }}"
+            <a href="/{{ $lang }}/services"
+               class="text-sm md:text-base {{ Request::is($lang . '/services*') ? 'active' : '' }}"
                itemprop="url">{{ __('translate.services') }}</a>
         </div>
         <div class="nav-item">
-            <a href="/{{ $lang }}/about_us" class="{{ Request::is($lang . '/about_us*') ? 'active' : '' }}"
+            <a href="/{{ $lang }}/about_us"
+               class="text-sm md:text-base {{ Request::is($lang . '/about_us*') ? 'active' : '' }}"
                itemprop="url">{{ __('translate.aboutUs') }}</a>
         </div>
         <div class="nav-item">
-            <a href="/{{ $lang }}/portfolio" class="{{ Request::is($lang . '/portfolio*') ? 'active' : '' }}"
+            <a href="/{{ $lang }}/portfolio"
+               class="text-sm md:text-base {{ Request::is($lang . '/portfolio*') ? 'active' : '' }}"
                itemprop="url">{{ __('translate.portfolio') }}</a>
         </div>
         <div class="nav-item">
-            <a href="/{{ $lang }}/contacts" class="{{ Request::is($lang . '/contacts*') ? 'active' : '' }}"
+            <a href="/{{ $lang }}/contacts"
+               class="text-sm md:text-base {{ Request::is($lang . '/contacts*') ? 'active' : '' }}"
                itemprop="url">{{ __('translate.contacts') }}</a>
         </div>
     </div>
@@ -71,14 +77,14 @@
 
         <!-- Мобильное меню (бургер) -->
         <button id="mobileMenuOpen"
-                class="block md:hidden w-10 h-10 bg-[#e31e24] text-white rounded-full flex items-center justify-center">
-            <i class="fa-solid fa-bars"></i>
+            class="block md:hidden bg-[#e31e24] text-white rounded-full flex items-center justify-center w-full h-full">
+            <i class="fa-solid fa-bars text-[18px]"></i>
         </button>
     </div>
 </div>
 
 <!-- Левое меню (десктоп) -->
-<div class="leftHeader hidden xl:flex">
+<div class="leftHeader hidden xl:flex left-[26px] lg:left-[86px]">
     <div class="rowLeftHeader">
         <div class="followed-element">
             <a href="/{{ $lang }}/portfolio">

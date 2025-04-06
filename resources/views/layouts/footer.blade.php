@@ -64,10 +64,9 @@
                             <div class="w-full md:w-5/12">
                                 <div class="flex flex-col justify-center items-center relative w-full">
                                     <!-- Надпись ДЗЫНЬ-ДЗЫНЬ -->
-                                    <h3
-                                        class="text-[#f8052d] font-bold text-xl md:text-2xl lg:text-3xl text-center mb-2 animate-pulse-slow">
-                                        ДЗЫНЬ-ДЗЫНЬ!!!
-                                </h3>
+                                    <h3 class="text-[#f8052d] font-bold text-xl md:text-2xl lg:text-3xl text-center mb-2 animate-pulse-slow">
+                                        {{ __('translate.dzynDzyn') }}!!!
+                                    </h3>
         
                                     <!-- Телефон -->
                                     <div class="mb-4">

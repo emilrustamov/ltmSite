@@ -13,7 +13,7 @@
                                 <p class="desc_p">{!! nl2br(__('translate.contactsSub')) !!}
                                     {{-- <a href="" class="desc_p">{{ __('translate.messenger') }}</a> --}}
                                     {!! nl2br(__('translate.contactsSubCont')) !!}<a href="https://www.google.com/maps?q=37.956556,58.426333"
-                                        target="_blank" class="desc_p">{{ __('translate.map') }}</a>
+                                        target="_blank" class="desc_p !text-[#e31e24] ">{{ __('translate.map') }}</a>
                             </div>
 
                             @php
@@ -58,10 +58,9 @@
                     <div class="w-full md:w-5/12">
                         <div class="flex flex-col justify-center items-center relative w-full">
                             <!-- Надпись ДЗЫНЬ-ДЗЫНЬ -->
-                            <h3
-                                class="text-[#f8052d] font-bold text-xl md:text-2xl lg:text-3xl text-center mb-2 animate-pulse-slow">
-                                ДЗЫНЬ-ДЗЫНЬ!!!
-                        </h3>
+                            <h3 class="text-[#f8052d] font-bold text-xl md:text-2xl lg:text-3xl text-center mb-2 animate-pulse-slow">
+                                {{ __('translate.dzynDzyn') }}!!!
+                            </h3>
 
                             <!-- Телефон -->
                             <div class="mb-4">

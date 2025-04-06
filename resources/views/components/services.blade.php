@@ -88,23 +88,7 @@
         </div>
     </div>
 </div>
-<style>
-    .swiper-slide {
-        transition-property: transform;
-        transition-duration: 1000ms;
-        transition-timing-function: ease-in-out;
-    }
-    .fade-in {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-    }
 
-    .fade-in.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-</style>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
   let swiperInstance = null;

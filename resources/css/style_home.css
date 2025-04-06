@@ -176,16 +176,9 @@ label {
 }
 
 @media (max-width: 1440px) {
-    .mainSlider {
-        margin-top: 55px;
-    }
-
+   
     .field-input:focus::placeholder {
         transform: translateY(-74%) scale(0.8, 0.8);
-    }
-
-    .carousel-custom {
-        margin-top: 30px;
     }
 
     .carousel-custom .slick-slide {

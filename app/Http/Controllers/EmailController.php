@@ -23,7 +23,7 @@ class EmailController extends Controller
         $scs = 'Ваша форма отправлена успешно!';
 
         try {
-            Mail::to('a.ahmedova@arassanusga.com')->send(new ANMail($fields));
+            Mail::to('info@ltm.studio')->send(new ANMail($fields));
         } catch (\Throwable $th) {
             $scs = 'err';
         }

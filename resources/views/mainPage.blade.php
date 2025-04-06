@@ -19,7 +19,7 @@
 @section('enLink', 'https://ltm.studio/en/')
 @section('tkLink', 'https://ltm.studio/tk/')
 
-<div class="mainSlider m-auto">
+<section class="mainSlider">
     <h1 class="text-center container">
         {{ __('translate.home_h1') }}
     </h1>
@@ -39,7 +39,7 @@
             </div>
         @endforeach
     </div>
-</div>
+</section>
 @endsection
 
 
@@ -89,7 +89,7 @@
                     placeholder="{{ __('translate.formComment') }}">
             </label>
             <button type="sumbit"
-                class="btn send-p text-[60px] font-bold tracking-[3px] d-flex align-items-center text-white p-0"
+                class="btn send-p text-[32px] lg:text-[60px] font-bold tracking-[3px] d-flex align-items-center text-white p-0"
                 style="">{{ __('translate.sendText') }}</button>
         </form>
     </div>

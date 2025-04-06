@@ -64,8 +64,8 @@
                                 $stats = [
                                     ['target' => '4+', 'desc' => __('translate.years')],
                                     ['target' => '20+', 'desc' => __('translate.projects')],
-                                    ['target' => '20+', 'desc' => __('translate.clients')],
-                                    ['target' => '20+', 'desc' => __('translate.satClients')],
+                                    ['target' => '0', 'desc' => __('translate.skuka')],
+                                    ['target' => '3', 'desc' => __('translate.bitrix24')],
                                     ['target' => '589+', 'desc' => __('translate.redBull')],
                                 ];
                             @endphp
@@ -154,8 +154,7 @@
                                         <li
                                             class="flex-1 group bg-[#3d1414] rounded-2xl shadow-xl p-6 transition duration-300 hover:shadow-2xl hover:-translate-y-1 hover:bg-[#e31f25]">
                                             <a href="/{{ $lang }}/{{ $spec['route'] }}" class="block h-full">
-                                                <h3
-                                                    class="text-white mb-3 relative group-hover:text-black transition">
+                                                <h3 class="text-white mb-3 relative group-hover:text-black transition">
                                                     {{ $spec['title'] }}
                                                     <span
                                                         class="absolute bottom-0 left-0 w-8 h-1 bg-white rounded-full transition-all duration-300 group-hover:w-full group-hover:bg-black"></span>
@@ -170,7 +169,7 @@
                             </div>
                         </div>
                     </section>
-                    
+
                     {{-- <section>
                         <h2>{{ __('translate.aboutPartnerTitle') }}</h2>
                         <p>{{ __('translate.abtLtmstudio3') }} </p>
@@ -195,7 +194,5 @@
                 </div>
             </div>
         </div>
-
-    @endsection
- 
-    
+    </section>
+@endsection
