@@ -109,13 +109,13 @@
 
                             <p>{{ __('translate.valueSubCont') }}</p>
 
-                            <div class="aboutUs_certificates">
+                            {{-- <div class="aboutUs_certificates">
 
                                 <div class="certificates_info">
-                                    <div class="stats_count">15+</div>
+                                    <div class="stats_count text-7xl md:text-[135px] text-[#e31e24] font-bold leading-none tracking-wider">15+</div>
                                     <div class="certificates-info_desc"> {{ __('translate.exp') }}</div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </section>
 

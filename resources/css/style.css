@@ -953,6 +953,9 @@ section {
   blockquote:after {
     font-size: 60px;
   }
+  blockquote:before {
+    top: -40px;
+  }
 
   .section,
   section {

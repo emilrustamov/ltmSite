@@ -24,10 +24,10 @@
                                 <div >
                                     <div class="flex flex-col">
                                         <div class="modal-title flex flex-col items-start">
-                                            <h2 class="uppercase tracking-[6px] text-center">
+                                            <h2 class="uppercase tracking-[6px] text-center ">
                                                 {{ __('translate.formModalTitle') }}
                                             </h2>
-                                            <p >{{ __('translate.formModalDesc') }}</p>
+                                            <p class="hidden md:block">{{ __('translate.formModalDesc') }}</p>
                                         </div>
                                         <form action="{{ route('contact.submit', ['lang' => $lang]) }}" method="post">
                                             @csrf
@@ -54,7 +54,7 @@
                                             <input type="text" name="message" class="field-input field-textarea mt-5"
                                                 placeholder="{{ __('translate.formComment') }}">
                                             <button type="submit"
-                                                class="send-p btn !flex items-center text-white text-[60px] font-bold tracking-[3px]">
+                                                class="send-p btn !flex items-center text-white text-[32px] lg:text-[60px] font-bold tracking-[3px] p-0">
                                                 {{ __('translate.sendText') }}
                                             </button>
                                         </form>
