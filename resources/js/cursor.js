@@ -1,5 +1,16 @@
-
 document.addEventListener('DOMContentLoaded', () => {
+    // Проверка на мобильное устройство через navigator.userAgent
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+        const dot = document.querySelector('.follow-cursor');
+        const outer = document.getElementById('custom-cursor');
+        const inner = document.getElementById('cursor-inner');
+
+        if (dot) dot.style.display = 'none';
+        if (outer) outer.style.display = 'none';
+        if (inner) inner.style.display = 'none';
+        return;
+    }
+
     const dot = document.querySelector('.follow-cursor');
     const outer = document.getElementById('custom-cursor');
     const inner = document.getElementById('cursor-inner');
@@ -8,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let outerX = 0, outerY = 0;
     const speed = 0.15;
 
-    // Следим за мышкой
+    // Отслеживание курсора
     window.addEventListener('mousemove', e => {
         mouseX = e.clientX;
         mouseY = e.clientY;
@@ -44,4 +55,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     animate();
 });
-

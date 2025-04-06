@@ -48,9 +48,9 @@
     </div>
 
 
-    <div class="follow-cursor"></div>
-    <div class="cursor-outer" id="custom-cursor"></div>
-    <div class="cursor-inner" id="cursor-inner"></div>
+    <div class="follow-cursor hidden md:block"></div>
+    <div class="cursor-outer hidden md:block" id="custom-cursor"></div>
+    <div class="cursor-inner hidden md:block" id="cursor-inner"></div>
 
     <div class="page-content">
         @include('layouts.header')

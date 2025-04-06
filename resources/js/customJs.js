@@ -28,6 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const header = document.getElementById("mainHeader");
     const triggerOffset = header.offsetTop + 10;
 
+    // Do not add effects on mobile devices
+    if (window.innerWidth <= 768) return;
+
     window.addEventListener("scroll", () => {
         if (window.scrollY > triggerOffset) {
             header.classList.add(

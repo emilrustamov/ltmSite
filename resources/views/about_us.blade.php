@@ -73,10 +73,10 @@
                             <ul class="flex flex-wrap flex-row justify-start items-start text-left list-none">
                                 @foreach ($stats as $item)
                                     <li class="mb-16 w-1/2 sm:w-1/2 lg:w-1/3">
-                                        <div class="stats_count text-5xl sm:text-7xl md:text-[135px] text-[#e31e24] font-bold leading-none tracking-wider"
+                                        <div class="stats_count text-7xl md:text-[135px] text-[#e31e24] font-bold leading-none tracking-wider"
                                             data-target="{{ $item['target'] }}">0</div>
                                         <div
-                                            class="stats_desc -mt-4 sm:-mt-8 md:-mt-12 pl-2 sm:pl-4 md:pl-12 text-xl sm:text-3xl md:text-7xl">
+                                            class="stats_desc -mt-4 sm:-mt-8 md:-mt-12 pl-2 sm:pl-4 md:pl-12 text-3xl md:text-7xl">
                                             {{ $item['desc'] }}
                                         </div>
                                     </li>

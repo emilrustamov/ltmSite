@@ -1,8 +1,8 @@
-<!-- Хедер -->
-<div id="mainHeader" class="flex flex-wrap items-center px-4 gap-y-4 sticky top-0 z-50 transition-all duration-500">
+<div id="mainHeader"
+     class="lg:sticky lg:top-0 z-50 transition-all duration-500 px-4 py-2 flex flex-wrap items-center gap-y-4">
 
     <!-- Лого -->
-    <div class="flex items-center gap-4 w-full md:w-1/3 min-w-0">
+    <div class="flex items-center gap-2 w-1/2 sm:w-1/3 md:w-1/4 min-w-0">
         <div class="circle-container" id="logoMain">
             <div class="scrolling-image">
                 <img src="{{ asset('/assets/images/circled-text.png') }}?v={{ time() }}" alt="Scrolling Image">
@@ -11,51 +11,50 @@
                 <img src="{{ asset('/assets/images/ltm-white.png') }}" alt="Center Image">
             </div>
         </div>
-        <div class="typing-text min-w-[150px] whitespace-nowrap overflow-hidden text-sm md:text-base leading-none">
+        <!-- Печатающий текст — только на >= lg -->
+        <div class="typing-text hidden lg:block min-w-[150px] whitespace-nowrap overflow-hidden text-sm leading-none">
         </div>
     </div>
 
-    <!-- Меню (только десктоп) -->
-    <div class="hidden md:flex justify-center items-center gap-6 w-full md:w-1/3 z-[999]" itemscope
-        itemtype="http://schema.org/SiteNavigationElement">
+    <!-- Меню (только десктоп, центрировано) -->
+    <div class="hidden md:flex justify-center items-center gap-6 w-full md:w-1/2 lg:w-1/3 z-[999]"
+         itemscope itemtype="http://schema.org/SiteNavigationElement">
         <div class="nav-item">
             <a href="/{{ $lang }}/services" class="{{ Request::is($lang . '/services*') ? 'active' : '' }}"
-                itemprop="url">{{ __('translate.services') }}</a>
+               itemprop="url">{{ __('translate.services') }}</a>
         </div>
         <div class="nav-item">
             <a href="/{{ $lang }}/about_us" class="{{ Request::is($lang . '/about_us*') ? 'active' : '' }}"
-                itemprop="url">{{ __('translate.aboutUs') }}</a>
+               itemprop="url">{{ __('translate.aboutUs') }}</a>
         </div>
         <div class="nav-item">
             <a href="/{{ $lang }}/portfolio" class="{{ Request::is($lang . '/portfolio*') ? 'active' : '' }}"
-                itemprop="url">{{ __('translate.portfolio') }}</a>
+               itemprop="url">{{ __('translate.portfolio') }}</a>
         </div>
         <div class="nav-item">
             <a href="/{{ $lang }}/contacts" class="{{ Request::is($lang . '/contacts*') ? 'active' : '' }}"
-                itemprop="url">{{ __('translate.contacts') }}</a>
+               itemprop="url">{{ __('translate.contacts') }}</a>
         </div>
     </div>
 
     <!-- Контакты и язык -->
-    <div class="flex justify-end items-center gap-4 w-full md:w-1/3 text-base md:text-4xl font-bold">
+    <div class="flex justify-end items-center gap-4 w-1/2 sm:w-2/3 md:w-1/4 text-sm sm:text-base md:text-2xl font-bold">
         <a href="tel:+99361648605" class="whitespace-nowrap">+993 61 00 97 92</a>
 
-        <!-- Языки -->
+        <!-- Языки (только десктоп) -->
         <div class="hidden md:flex gap-5">
             @php $langs = ['ru', 'en', 'tm']; @endphp
             <div class="relative group flex items-center">
                 <div class="cursor-pointer flex items-center gap-1">
                     <span>{{ strtoupper($lang) }}</span>
-                    <i
-                        class="fa-solid fa-arrow-down-long text-[#e31e24] text-2xl group-hover:rotate-180 transition-transform"></i>
+                    <i class="fa-solid fa-arrow-down-long text-[#e31e24] text-xl group-hover:rotate-180 transition-transform"></i>
                 </div>
                 <div
                     class="absolute top-full left-0 mt-2 hidden group-hover:block bg-[#e31e24] text-white rounded px-4 py-2 z-50 shadow">
                     <ul class="text-center">
                         @foreach ($langs as $l)
                             @if ($lang !== $l)
-                                <li class="py-1 hover:underline"><a
-                                        href="/{{ $l }}">{{ strtoupper($l) }}</a></li>
+                                <li class="py-1 hover:underline"><a href="/{{ $l }}">{{ strtoupper($l) }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -63,22 +62,20 @@
             </div>
         </div>
 
-        <!-- Кнопка меню (десктоп) -->
+        <!-- Меню (десктоп) -->
         <div id="menuButton"
-            class="hidden md:block w-24 bg-[var(--primary)] text-center hover:rounded-[20%] hover:scale-105 transition duration-300 ease-linear"
-            data-bs-toggle="modal" data-bs-target="#complexMenuModal">
+             class="hidden md:block w-20 bg-[var(--primary)] text-center hover:rounded-[20%] hover:scale-105 transition duration-300 ease-linear"
+             data-bs-toggle="modal" data-bs-target="#complexMenuModal">
             {!! nl2br(__('translate.menu')) !!}
         </div>
 
         <!-- Мобильное меню (бургер) -->
         <button id="mobileMenuOpen"
-            class="block md:hidden w-15 h-15 bg-[#e31e24] text-white rounded-full flex items-center justify-center">
+                class="block md:hidden w-10 h-10 bg-[#e31e24] text-white rounded-full flex items-center justify-center">
             <i class="fa-solid fa-bars"></i>
         </button>
     </div>
 </div>
-
-
 
 <!-- Левое меню (десктоп) -->
 <div class="leftHeader hidden xl:flex">
