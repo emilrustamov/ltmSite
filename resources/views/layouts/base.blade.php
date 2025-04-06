@@ -47,8 +47,8 @@
         </div>
     </div>
 
-    
 
+    <div class="follow-cursor"></div>
     <div class="cursor-outer" id="custom-cursor"></div>
     <div class="cursor-inner" id="cursor-inner"></div>
 
@@ -59,7 +59,7 @@
         @yield('circles')
 
 
-        <div >
+        <div>
             @yield('content')
         </div>
 
@@ -80,14 +80,31 @@
     </div>
 
     @include('layouts.scripts')
-    <div class="follow-cursor"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 1.5, // больше = более тягучий скролл
+            easing: t => 1 - Math.pow(1 - t, 4), // кинематографичный, лёгкий на старте, тяжёлый в конце
+            smooth: true,
+            smoothTouch: false, // оставляем нативный скролл на телефонах
+            direction: 'vertical', // можно сделать horizontal scroll, если нужно
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    </script>
+
 
     <button onclick="topFunction()" id="scrollBtn"
-        class="hidden fixed bottom-5 right-8 z-[999] border-0 outline-none bg-white cursor-pointer text-white p-4 rounded-[10px] text-[18px] transition-all duration-300 ease-in-out hover:bg-transparent group">
-        <i
-            class="fa-solid fa-arrow-up text-[#1a1515] transition-all duration-300 ease-in-out group-hover:text-white"></i>
+        class="hidden fixed bottom-5 right-8 z-[999] border-0 outline-none bg-white cursor-pointer text-white p-4 rounded-[10px] text-[18px] transition-all duration-300 ease-in-out hover:bg-[#e31e24] group">
+        <i class="fa-solid fa-rocket text-[#1a1515] transition-all duration-300 ease-in-out group-hover:text-white"></i>
+
     </button>
+    <div class="crt-overlay"></div>
 
 </body>
-
 </html>

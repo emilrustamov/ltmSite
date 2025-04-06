@@ -56,7 +56,7 @@
     {{-- <div class="red-circle-feedback">
         <img src="{{ asset('/assets/images/pseudo-red.png') }}" alt="" loading="lazy">
     </div> --}}
-    <h2 class="mb-5" itemprop="name">
+    <h2  itemprop="name">
         {!! nl2br(__('translate.titleForm')) !!}
     </h2>
     <div>
@@ -68,7 +68,7 @@
             <p>{{ __('translate.formError') }}</p>
         </div>
     @endif
-    <div class="feedback_form" style="margin: 0 !important">
+    <div >
         <form action="{{ route('contact.submit', ['lang' => $lang]) }}" method="post">
             @csrf
             <label class="field">
@@ -87,7 +87,7 @@
                 <input type="email" name="email" class="field-input w-100"
                     placeholder="{{ __('translate.formEmail') }}">
             </label>
-            <label class="field_comment" style="margin: 5rem 0 !important">
+            <label class="field">
                 <input type="text" name="message" class="field-input w-100"
                     placeholder="{{ __('translate.formComment') }}">
             </label>

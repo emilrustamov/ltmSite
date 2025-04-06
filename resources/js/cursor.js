@@ -1,23 +1,47 @@
-document.addEventListener('DOMContentLoaded', () => {
 
-    const followCursor = () => { // объявляем функцию followCursor
-      const el = document.querySelector('.follow-cursor') // ищем элемент, который будет следовать за курсором
-  
-      window.addEventListener('mousemove', e => { // при движении курсора
-        const target = e.target // определяем, где находится курсор
-        if (!target) return
-  
-        if (target.closest('a')) { // если курсор наведён на ссылку
-          el.classList.add('follow-cursor_active') // элементу добавляем активный класс
-        } else { // иначе
-          el.classList.remove('follow-cursor_active') // удаляем активный класс
+document.addEventListener('DOMContentLoaded', () => {
+    const dot = document.querySelector('.follow-cursor');
+    const outer = document.getElementById('custom-cursor');
+    const inner = document.getElementById('cursor-inner');
+
+    let mouseX = 0, mouseY = 0;
+    let outerX = 0, outerY = 0;
+    const speed = 0.15;
+
+    // Следим за мышкой
+    window.addEventListener('mousemove', e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+
+        dot.style.left = `${mouseX}px`;
+        dot.style.top = `${mouseY}px`;
+        inner.style.left = `${mouseX}px`;
+        inner.style.top = `${mouseY}px`;
+
+        const hoveringLink = e.target.closest('a, button');
+
+        if (hoveringLink) {
+            dot.classList.add('follow-cursor_active');
+            inner.classList.add('active');
+            outer.classList.add('active');
+        } else {
+            dot.classList.remove('follow-cursor_active');
+            inner.classList.remove('active');
+            outer.classList.remove('active');
         }
-  
-        el.style.left = e.pageX + 'px' // задаём элементу позиционирование слева
-        el.style.top = e.pageY + 'px' // задаём элементу позиционирование сверху
-      })
+    });
+
+    // Плавная анимация внешнего круга
+    function animate() {
+        outerX += (mouseX - outerX) * speed;
+        outerY += (mouseY - outerY) * speed;
+
+        outer.style.left = `${outerX}px`;
+        outer.style.top = `${outerY}px`;
+
+        requestAnimationFrame(animate);
     }
-  
-    followCursor() // вызываем функцию followCursor
-  
-  })
+
+    animate();
+});
+

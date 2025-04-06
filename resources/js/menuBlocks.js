@@ -1,46 +1,80 @@
-$(document).ready(function () {
-    var menuOpen = false; // Флаг для отслеживания состояния модального окна
+document.addEventListener("DOMContentLoaded", function () {
+    let menuOpen = false;
 
-    $('#menuButton').click(function () {
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenuBody = document.querySelector(".mobile-menu-body");
+    const complexMenuModal = document.getElementById("complexMenuModal");
+    const closeButtons = [
+        document.getElementById("closeDesktopModal"),
+        document.getElementById("closeMobileModal")
+    ];
+
+    menuButton.addEventListener("click", function () {
         if (!menuOpen) {
             animateBlocks();
             console.log('что-то точно произошло, но что...');
 
-            if ($(window).width() < 991) {
-                var windowHeight = $(window).height();
-                $('.mobile-menu-body').height(windowHeight);
+            if (window.innerWidth < 991 && mobileMenuBody) {
+                mobileMenuBody.style.height = `${window.innerHeight}px`;
             }
-            menuOpen = true; // Устанавливаем флаг, что модальное окно открыто
+
+            menuOpen = true;
         }
     });
 
-    $('#closeDesktopModal, #closeMobileModal').click(function () {
-        var menu = $('#complexMenuModal');
-        menu.fadeOut(); // Используем fadeOut вместо slideUp
-        menuOpen = false; // Устанавливаем флаг, что модальное окно закрыто
-        simulateButtonClick(); // Вызываем функцию для симуляции клика
+    closeButtons.forEach(btn => {
+        if (btn) {
+            btn.addEventListener("click", function () {
+                if (complexMenuModal) {
+                    complexMenuModal.style.opacity = "1";
+                    complexMenuModal.style.transition = "opacity 0.3s";
+                    complexMenuModal.style.opacity = "0";
+
+                    // Прячем после анимации
+                    setTimeout(() => {
+                        complexMenuModal.style.display = "none";
+                    }, 300);
+                }
+
+                menuOpen = false;
+                simulateButtonClick();
+            });
+        }
     });
 
-    // Функция для симуляции клика на кнопку
     function simulateButtonClick() {
-        $('#menuButton').click();
+        menuButton.click();
     }
 
     function animateBlocks() {
-        $('#instLink').mouseenter(function () {
-            $('#linkAddress').text('https://www.instagram.com/');
-        });
+        const instLink = document.getElementById("instLink");
+        const linkedLink = document.getElementById("linkedLink");
+        const blogLink = document.getElementById("blogLink");
+        const linkAddress = document.getElementById("linkAddress");
+        const allLinks = document.querySelectorAll("#links a");
 
-        $('#linkedLink').mouseenter(function () {
-            $('#linkAddress').text('https://www.linkedin.com/');
-        });
+        if (instLink) {
+            instLink.addEventListener("mouseenter", () => {
+                linkAddress.textContent = "https://www.instagram.com/";
+            });
+        }
 
-        $('#blogLink').mouseenter(function () {
-            $('#linkAddress').text('https://arassanusga.com/blog');
-        });
+        if (linkedLink) {
+            linkedLink.addEventListener("mouseenter", () => {
+                linkAddress.textContent = "https://www.linkedin.com/";
+            });
+        }
 
-        $('#links a').mouseleave(function () {
-            $('#linkAddress').text('Выберите ссылку');
+        if (blogLink) {
+            blogLink.addEventListener("mouseenter", () => {
+                linkAddress.textContent = "/";
+            });
+        }
+
+        allLinks.forEach(link => {
+            link.addEventListener("mouseleave", () => {
+                linkAddress.textContent = "Выберите ссылку";
+            });
         });
     }
 });

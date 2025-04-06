@@ -1,25 +1,42 @@
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", () => {
+    const scrollBtn = document.getElementById("scrollBtn");
+    let isScrolling = false;
+    let scrollEndTimeout;
 
-    const scrollToTopButton = $("#scrollBtn");
+    // Показ кнопки при прокрутке
+    window.addEventListener("scroll", () => {
+        scrollBtn.style.display = window.scrollY > 20 ? "block" : "none";
 
-    window.addEventListener('toggleScrollButton', (event) => {
-        scrollToTopButton.css("display", event.detail.display ? "block" : "none");
-    });
+        // Отменить взлёт, если пользователь сам скроллит
+        if (isScrolling) {
+            clearTimeout(scrollEndTimeout);
+            scrollBtn.classList.remove("launched");
 
-    $(window).on("scroll", function () {
-        if ($(document).scrollTop() > 20 || $(document.documentElement).scrollTop() > 20) {
-            scrollToTopButton.css("display", "block");
-        } else {
-            scrollToTopButton.css("display", "none");
+            scrollEndTimeout = setTimeout(() => {
+                isScrolling = false;
+            }, 200);
         }
     });
 
-    scrollToTopButton.on("click", function () {
-        $("html, body").animate({ scrollTop: 0 }, "slow");
+    // Скролл вверх с контролем
+    scrollBtn.addEventListener("click", () => {
+        isScrolling = true;
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+        // Отслеживаем, когда скролл закончен
+        scrollEndTimeout = setTimeout(() => {
+            scrollBtn.classList.add("launched");
+
+            // Сброс взлёта через 1с
+            setTimeout(() => {
+                scrollBtn.classList.remove("launched");
+            }, 1000);
+
+            isScrolling = false;
+        }, 600); // Время = длительность scrollTo
     });
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-    // $('.button-close').click(function () {
-    //         $("#complexMenuModal").modal('hide');
-    // });
 });

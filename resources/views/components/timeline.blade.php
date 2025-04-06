@@ -1,134 +1,60 @@
 <section>
     <h2 class="text-center">Этапы нашей работы</h2>
-    <section class="ag-section m60">
-        <div class="ag-format-container">
+    <section>
+        <div class="relative">
             <div class="js-timeline ag-timeline">
                 <div class="js-timeline_line ag-timeline_line">
                     <div class="js-timeline_line-progress ag-timeline_line-progress"></div>
                 </div>
                 <div class="ag-timeline_list">
-                    <div class="js-timeline_item ag-timeline_item">
-                        <div class="ag-timeline-card_box">
-                            <div class="js-timeline-card_point-box ag-timeline-card_point-box">
+                    @php
+                        $timelineSteps = [
+                            [
+                                'title' => 'Анализ и подготовка',
+                                'description' => 'Сначала мы изучаем требования проекта, определяем его цели и задачи, исследуем аудиторию и конкурентов. Это позволяет создать план и выбрать подходящие технологии для успешного выполнения проекта.'
+                            ],
+                            [
+                                'title' => 'Проектирование и дизайн',
+                                'description' => 'Разрабатываем структуру и концепцию сайта, создаем макеты и прототипы страниц. Далее переходим к разработке дизайна, подбираем шрифты, цвета и графические элементы, которые соответствуют бренду и целям.'
+                            ],
+                            [
+                                'title' => 'Разработка и функционал',
+                                'description' => 'Реализуем основные функции сайта: от форм обратной связи до интеграций с внешними сервисами и системами управления контентом. Внедряем все необходимые инструменты для стабильной работы сайта.'
+                            ],
+                            [
+                                'title' => 'Тестирование и отладка',
+                                'description' => 'Перед запуском проводим полное тестирование сайта на разных устройствах и браузерах. Исправляем ошибки, оптимизируем скорость и производительность для обеспечения комфортного пользовательского опыта.'
+                            ],
+                            [
+                                'title' => 'Запуск и поддержка',
+                                'description' => 'После финальных проверок загружаем сайт на хостинг и запускаем его. Обучаем заказчика управлению проектом и оказываем дальнейшую поддержку для его развития и обновления.'
+                            ],
+                        ];
+                    @endphp
 
-                            </div>
-                        </div>
-                        <div class="ag-timeline-card_item">
-                            <div class="ag-timeline-card_inner">
-                                <div class="ag-timeline-card_img-box">
+                    @foreach ($timelineSteps as $step)
+                        <div class="js-timeline_item ag-timeline_item">
+                            <div class="ag-timeline-card_box">
+                                <div class="js-timeline-card_point-box ag-timeline-card_point-box">
+                                    @if (!$loop->first)
+                                        <div class="ag-timeline-card_point">
+                                            <span class="inline-block w-[60%] h-[60%] rounded-full bg-white"></span>
+                                        </div>
+                                    @endif
                                 </div>
-                                <div class="ag-timeline-card_info">
-                                    <div class="ag-timeline-card_title">Анализ и подготовка</div>
-                                    <div class="ag-timeline-card_desc">
-                                        Сначала мы изучаем требования проекта, определяем его цели и задачи, исследуем
-                                        аудиторию и конкурентов. Это позволяет создать план и выбрать подходящие
-                                        технологии
-                                        для успешного выполнения проекта.
+                            </div>
+                            <div class="ag-timeline-card_item p-4">
+                                <div class="ag-timeline-card_inner">
+                                   
+                                    <div class="text-left">
+                                        <h3>{{ $step['title'] }}</h3>
+                                        <p>{{ $step['description'] }}</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="ag-timeline-card_arrow"></div>
-                        </div>
-                    </div>
-
-                    <div class="js-timeline_item ag-timeline_item">
-                        <div class="ag-timeline-card_box">
-                            <div class="js-timeline-card_point-box ag-timeline-card_point-box">
-                                <div class="ag-timeline-card_point"><span class="dot"></span></div>
-                            </div>
-
-                        </div>
-                        <div class="ag-timeline-card_item">
-                            <div class="ag-timeline-card_inner">
-                                <div class="ag-timeline-card_img-box">
-                                </div>
-                                <div class="ag-timeline-card_info">
-                                    <div class="ag-timeline-card_title">Проектирование и дизайн
-                                    </div>
-                                    <div class="ag-timeline-card_desc">
-                                        Разрабатываем структуру и концепцию сайта, создаем макеты и прототипы страниц.
-                                        Далее
-                                        переходим к разработке дизайна, подбираем шрифты, цвета и графические элементы,
-                                        которые соответствуют бренду и целям.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ag-timeline-card_arrow"></div>
-                        </div>
-                    </div>
-
-                    <div class="js-timeline_item ag-timeline_item">
-                        <div class="ag-timeline-card_box">
-                            <div class="js-timeline-card_point-box ag-timeline-card_point-box">
-                                <div class="ag-timeline-card_point"><span class="dot"></span></div>
+                                <div class="ag-timeline-card_arrow"></div>
                             </div>
                         </div>
-                        <div class="ag-timeline-card_item">
-                            <div class="ag-timeline-card_inner">
-                                <div class="ag-timeline-card_img-box">
-                                </div>
-                                <div class="ag-timeline-card_info">
-                                    <div class="ag-timeline-card_title">Разработка и функционал
-                                    </div>
-                                    <div class="ag-timeline-card_desc">
-                                        Реализуем основные функции сайта: от форм обратной связи до интеграций с
-                                        внешними
-                                        сервисами и системами управления контентом. Внедряем все необходимые инструменты
-                                        для
-                                        стабильной работы сайта.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ag-timeline-card_arrow"></div>
-                        </div>
-                    </div>
-
-                    <div class="js-timeline_item ag-timeline_item">
-                        <div class="ag-timeline-card_box">
-                            <div class="js-timeline-card_point-box ag-timeline-card_point-box">
-                                <div class="ag-timeline-card_point"><span class="dot"></span></div>
-                            </div>
-                        </div>
-                        <div class="ag-timeline-card_item">
-                            <div class="ag-timeline-card_inner">
-                                <div class="ag-timeline-card_img-box">
-                                </div>
-                                <div class="ag-timeline-card_info">
-                                    <div class="ag-timeline-card_title">Тестирование и отладка</div>
-                                    <div class="ag-timeline-card_desc">
-                                        Перед запуском проводим полное тестирование сайта на разных устройствах и в
-                                        браузерах. Исправляем ошибки, оптимизируем скорость и производительность для
-                                        обеспечения комфортного пользовательского опыта.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ag-timeline-card_arrow"></div>
-                        </div>
-                    </div>
-
-                    <div class="js-timeline_item ag-timeline_item">
-                        <div class="ag-timeline-card_box">
-                            <div class="js-timeline-card_point-box ag-timeline-card_point-box">
-                                <div class="ag-timeline-card_point"><span class="dot"></span></div>
-                            </div>
-                        </div>
-                        <div class="ag-timeline-card_item">
-                            <div class="ag-timeline-card_inner">
-                                <div class="ag-timeline-card_img-box">
-                                </div>
-                                <div class="ag-timeline-card_info">
-                                    <div class="ag-timeline-card_title">Запуск и поддержка</div>
-                                    <div class="ag-timeline-card_desc">
-                                        После финальных проверок загружаем сайт на хостинг и запускаем его. Обучаем
-                                        заказчика управлению проектом и оказываем дальнейшую поддержку для его развития
-                                        и
-                                        обновления.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ag-timeline-card_arrow"></div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -148,7 +74,7 @@
             let f = -1;
             let agFlag = false;
 
-            // Helper function to get element's document offsetTop
+
             function getOffsetTop(elem) {
                 return elem.getBoundingClientRect().top + window.pageYOffset;
             }
@@ -199,8 +125,6 @@
                     n = i - a;
                 }
                 agTimelineLineProgress.style.height = n + "px";
-
-                // Toggle active class based on scroll position
                 agTimelineItems.forEach(item => {
                     const point = item.querySelector(pointSelector);
                     const pointOffset = getOffsetTop(point);
@@ -224,3 +148,151 @@
             window.addEventListener("resize", fnOnResize);
         });
     </script>
+</section>
+
+<style>
+
+
+
+.ag-timeline_item {
+  margin: 0 0 50px;
+  position: relative;
+}
+
+.ag-timeline_item:nth-child(2n) {
+  text-align: right;
+}
+
+.ag-timeline {
+  display: inline-block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.ag-timeline_line {
+  width: 2px;
+  background-color: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  bottom: 0;
+  overflow: hidden;
+  transform: translateX(-50%);
+}
+
+.ag-timeline_line-progress {
+  width: 100%;
+  height: 20%;
+  background: #e31e24;
+}
+
+.ag-timeline-card_box {
+  padding: 0 0 20px 50%;
+}
+
+.ag-timeline_item:nth-child(2n) .ag-timeline-card_box {
+  padding: 0 50% 20px 0;
+}
+
+.ag-timeline-card_point-box {
+  display: inline-block;
+  margin: 0 0px 0 -12px;
+}
+
+.ag-timeline_item:nth-child(2n) .ag-timeline-card_point-box {
+  margin: 0px -14px 0 0px;
+}
+
+.ag-timeline-card_point {
+  height: 25px;
+  line-height: 25px;
+  width: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(283.67deg,
+      rgba(255, 255, 255, 0.3) 0%,
+      rgba(255, 255, 255, 0.3) 96.25%);
+  background-color: #1d1d1b;
+  text-align: center;
+  font-size: 20px;
+  color: #fff;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.js-ag-active .ag-timeline-card_point {
+  color: red;
+  background: linear-gradient(283.67deg,
+      var(--primary) 0%,
+      var(--primary) 96.25%);
+}
+
+.ag-timeline-card_item {
+  display: inline-block;
+  width: 45%;
+  background: rgba(231, 240, 250, 0.3);
+  opacity: 0;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+  -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
+  -moz-transition: -moz-transform 0.5s, opacity 0.5s;
+  -o-transition: -o-transform 0.5s, opacity 0.5s;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.ag-timeline-card_item:hover {
+  background: rgba(255, 255, 255, 0);
+}
+
+.js-ag-active.ag-timeline_item:nth-child(2n + 1) .ag-timeline-card_item,
+.js-ag-active.ag-timeline_item:nth-child(2n) .ag-timeline-card_item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ag-timeline-card_arrow {
+  height: 18px;
+  width: 18px;
+  margin-top: 20px;
+  background: transparent;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.ag-timeline_item:nth-child(2n + 1) .ag-timeline-card_arrow {
+  margin-left: calc(-18px / 2);
+  margin-right: calc(-18px / 2);
+}
+
+.ag-timeline_item:nth-child(2n) .ag-timeline-card_arrow {
+  margin-left: -10px;
+  right: auto;
+  left: 0;
+}
+
+@media (max-width: 768px) {
+
+
+  .ag-timeline-card_item {
+    background: rgb(129 129 129);
+    width: 100%;
+  }
+}
+</style>

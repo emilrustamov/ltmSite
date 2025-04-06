@@ -7,9 +7,8 @@ $(function () {
         slidesToScroll: 1,
         speed: 1000,
         autoWidth: true,
-        prevArrow: '<div class="prev-cust-button"><i class="fa-solid fa-arrow-left "></i></div>',
-        nextArrow: '<div class="next-cust-button"><i class="fa-solid fa-arrow-right "></i></div>',
         useCSS: true,
+        arrows: false,
         useTransform: true,
         responsive: [
             {

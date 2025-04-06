@@ -1,26 +1,3 @@
-:root {
-    --font18: 18px;
-    --font40: 40px;
-    --font2: 2rem;
-    --font2d5: 2.5rem;
-    --font3: 3rem;
-    --font3d4: 3.4rem;
-    --font3d5: 3.5rem;
-    --font3d6: 3.6rem;
-    --font4: 4rem;
-    --font5: 5rem;
-    --font5d2: 5.2rem;
-    --font5d6: 5.6rem;
-    --font6: 6rem;
-    --font6d2: 6.2rem;
-    --font6d4: 6.4rem;
-    --font6d5: 6.5rem;
-    --font6d6: 6.6rem;
-    --font7: 7rem;
-    --font7d2: 7.2rem;
-    --font10r: 10rem;
-}
-
 .followed-element {
     position: relative;
     transform: scale(1);
@@ -33,93 +10,6 @@
     transform: scale(1);
     overflow: hidden;
     transition: transform 0.3s ease;
-}
-
-.red-circle-serv {
-    position: absolute;
-    top: -2%;
-    left: 0;
-    width: 600px;
-    z-index: -1;
-}
-
-.red-circle-serv img {
-    object-fit: contain;
-    width: 100%;
-    height: auto;
-}
-
-.red-circle-feedback {
-    position: absolute;
-    top: 3%;
-    right: 0;
-    transform: rotate(180deg);
-    width: 25%;
-    z-index: -1;
-}
-
-.red-circle-feedback img {
-    object-fit: contain;
-    width: 100%;
-    height: auto;
-}
-
-.services_title {
-    color: var(--primary);
-}
-
-.services_next {
-    background-image: url("../images/long-arrow-right.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 50%;
-    position: absolute;
-    top: -13.5rem;
-    right: 20px;
-    height: 10.5rem;
-    width: 10.5rem;
-    border-radius: 50%;
-    border: 1px solid var(--primary);
-    background-color: transparent;
-}
-
-.services_slider {
-    list-style-type: none;
-    display: flex;
-    align-items: stretch;
-    transition-duration: 0ms;
-    transform: translate3d(-10000px, 0px, 0px);
-    height: 515px;
-}
-
-.services_slider-item {
-    width: 125rem;
-    padding-left: 13.5rem;
-    transition: 0.4s;
-    flex-shrink: 0;
-    position: relative;
-    display: flex;
-    align-items: stretch;
-}
-
-.services_more {
-    color: white;
-    text-decoration: none;
-    margin-bottom: 2.5rem;
-    line-height: 40px !important;
-    position: relative;
-    bottom: auto;
-    right: auto;
-    font-size: var(--font3);
-}
-
-
-
-.feedback_form {
-    margin: 0 5rem;
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
 }
 
 label {
@@ -136,19 +26,12 @@ label {
     margin: 3rem 5rem 1rem 0 !important;
 }
 
-.field_comment {
-    margin: 5rem;
-    width: 100%;
-}
-
 .field-input {
-    height: 8rem;
     font-size: 24px;
-    width: 95%;
-    font-weight: 700;
+    width: 100%;
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 0;
+    padding: 10px 0;
     margin: 0;
     border-radius: 0;
     box-shadow: none;
@@ -161,10 +44,10 @@ label {
     display: block;
 }
 
-.btn-submit {
+/* .btn-submit {
     margin-top: 5rem;
     margin-left: 5rem;
-    font-size: var(--font6);
+    font-size: 60px;
     font-weight: 700;
     letter-spacing: 0.075em;
     background-color: transparent;
@@ -185,7 +68,7 @@ label {
     height: 3.2rem;
     margin-left: 4rem;
     transition: 0.2s;
-}
+} */
 
 
 .slide-text {
@@ -193,7 +76,7 @@ label {
     bottom: 20px;
     left: -80px;
     color: white;
-    font-size: var(--font5d2);
+    font-size: 52px;
     font-weight: 600;
     padding: 10px;
     z-index: 9;
@@ -207,10 +90,6 @@ label {
 
 .slide-a:hover {
     text-decoration: none;
-}
-
-.slide-span {
-    left: -80px;
 }
 
 .carousel-custom {
@@ -275,12 +154,6 @@ label {
     position: relative;
 }
 
-.contacts_request_ {
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-}
-
 .carousel-custom .slick-slide:not(.slick-current) .carousel-custom-item img {
     filter: brightness(50%);
 
@@ -296,22 +169,6 @@ label {
     display: inline-block;
 }
 
-.slick-prev {
-    position: absolute;
-    top: 38%;
-    left: -4%;
-}
-
-.slick-next {
-    position: absolute;
-    top: 38%;
-    right: -2%;
-}
-
-.button-block {
-    display: inline-block;
-    font-size: var(--font4);
-}
 
 .slick-slider {
     display: flex;
@@ -343,20 +200,6 @@ label {
 .modal-content {
     transition: transform 0.5s ease-in-out;
     transform: translateY(0);
-}
-
-.slide-out {
-    transform: translateY(100%);
-}
-
-@keyframes slideOut {
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(100%);
-    }
 }
 
 @media (max-width: 1440px) {
@@ -396,72 +239,12 @@ label {
     }
 }
 
-@media (max-width: 1024px) {
 
-    .slide-text {
-        bottom: 5px;
-    }
-
-    .slide-a {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 1000px) {
-    .slider_prev {
-        margin-bottom: 90px;
-    }
-}
 
 @media (max-width: 991px) {
 
-    .cursor-inner,
-    .cursor-outer {
-        display: none;
-    }
-
     #closeModalButton {
         display: block !important;
-    }
-
-
-
-    .services-buttons .btn span {
-        font-size: 24px;
-    }
-
-    .form-container {
-        margin: 0 6rem;
-    }
-
-    .show-more-block {
-        display: flex;
-    }
-
-    .show-more-block p,
-    .hide-more-block p {
-        font-size: var(--font18);
-        opacity: 0.4;
-    }
-
-    .show-more-btn,
-    .hide-more-btn {
-        margin-left: 10px;
-        background-color: #ff7a7a;
-        border: none;
-        height: 28px;
-        opacity: 0.8;
-        color: #fff;
-        border-radius: 50%;
-        padding: 6px;
-        cursor: pointer;
-        animation: pulse 2s infinite;
-    }
-
-    .show-more-btn svg,
-    .hide-more-btn svg {
-        font-size: 16px;
-        margin-bottom: 5px;
     }
 
     .rotate {
@@ -512,19 +295,8 @@ label {
     }
 }
 
-@media (max-width: 880px) {
-    .slider_next_button {
-        display: inline;
-    }
-
-    .services_next {
-        right: 1rem;
-        top: 10.5rem;
-    }
-}
 
 @media (max-width: 768px) {
-
 
     .carousel-custom .slick-slide {
         margin-left: 20px;
@@ -540,20 +312,8 @@ label {
     }
 }
 
-@media (max-width: 720px) {
-    .feedback_form {
-        margin: 0;
-        padding: 0;
-    }
-
-    .feedback_form .field {
-        width: 100%;
-    }
-}
-
 
 @media (max-width: 600px) {
-
     .field {
         margin: 3rem 5rem 1rem 0 !important;
         width: 100%;
@@ -562,9 +322,6 @@ label {
 
 @media (max-width: 500px) {
 
-    .red-circle-feedback {
-        right: 0;
-    }
 
     .slide-text {
         bottom: -6px;
@@ -578,22 +335,6 @@ label {
         margin-top: 20px;
     }
 
-    .field-input {
-        height: 9rem;
-        font-size: var(--font10r);
-    }
-
-    .field-input::placeholder {
-        font-size: 16px;
-    }
-
-    .start {
-        font-size: var(--font40);
-    }
-
-    .mobile-menu-url {
-        font-size: 24px;
-    }
 }
 
 @media (max-width: 991px) {

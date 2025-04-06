@@ -1,10 +1,10 @@
 <div class="bg-[#1c1b1b] section">
-    <div class="container mx-auto px-4">
-        <h3 class="services_title font-bold container">{{ __('translate.myRazbirayemsya') }}</h3>
+    <div class="container mx-auto">
+        <h3 class="text-[#e31e24]">{{ __('translate.myRazbirayemsya') }}</h3>
         <div class="swiper mySwiper">
            
             <div class="swiper-wrapper !h-[520px] py-16">
-                <div class="swiper-slide glassmorphism !w-auto max-w-[400px] h-[560px] p-6 rounded-xl shadow-lg bg-[#350000] flex flex-col fade-in"
+                <div class="swiper-slide  max-w-[400px] h-[560px] p-6 rounded-xl shadow-lg bg-[#350000] flex flex-col fade-in"
                     itemscope itemtype="http://schema.org/Service">
                     <svg class="w-10 h-10 mb-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
@@ -21,7 +21,7 @@
                     </a>
                 </div>
 
-                <div class="swiper-slide glassmorphism !w-auto max-w-[400px] h-[560px] p-6 rounded-xl shadow-lg bg-[#bc2c2c] flex flex-col fade-in"
+                <div class="swiper-slide  max-w-[400px] h-[560px] p-6 rounded-xl shadow-lg bg-[#bc2c2c] flex flex-col fade-in"
                     itemscope itemtype="http://schema.org/Service">
                     <svg class="w-10 h-10 mb-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
@@ -38,7 +38,7 @@
                     </a>
                 </div>
 
-                <div class="swiper-slide !w-auto max-w-[400px] h-[560px] p-6 rounded-xl shadow-lg bg-[#e31e24] flex flex-col fade-in"
+                <div class="swiper-slide  max-w-[400px] h-[560px] p-6 rounded-xl shadow-lg bg-[#e31e24] flex flex-col fade-in"
                     itemscope itemtype="http://schema.org/Service">
                     <svg class="w-10 h-10 mb-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
@@ -56,7 +56,7 @@
                     </a>
                 </div>
 
-                <div class="swiper-slide !w-auto max-w-[400px] h-[560px] p-6 rounded-xl shadow-lg bg-[#2b2a2a] flex flex-col fade-in"
+                <div class="swiper-slide  max-w-[400px] h-[560px] p-6 rounded-xl shadow-lg bg-[#2b2a2a] flex flex-col fade-in"
                     itemscope itemtype="http://schema.org/Service">
                     <svg class="w-10 h-10 mb-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
@@ -76,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex justify-start w-fit gap-4 mt-20 z-99">
+        <div class="flex justify-start w-fit gap-4 md:mt-20 z-99">
             <a href="/{{ $lang }}/services"
                 class="inline-flex items-center justify-center py-[10px] px-[20px] rounded text-white text-center m-auto bg-[#bc2c2c] hover:bg-[#340000]">
                 <p class="!m-0">{{ __('translate.allServ') }}</p>
@@ -107,22 +107,30 @@
 </style>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
- window.addEventListener('DOMContentLoaded', () => {
-        const swiper = new Swiper(".mySwiper", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: false, 
-            slidesPerView: "auto",
+    let swiperInstance = null;
 
+    function initSwiper() {
+        const isMobile = window.innerWidth < 768;
+
+        if (swiperInstance) swiperInstance.destroy(true, true);
+
+        swiperInstance = new Swiper(".mySwiper", {
+            grabCursor: true,
+            slidesPerView: "auto",
+            centeredSlides: isMobile,
+            spaceBetween: isMobile ? 20 : 0,
             loop: true,
             speed: 1000,
-            coverflowEffect: {
-                rotate: 50,
-                stretch: 0,
-                depth: 100,
-                modifier: 1,
-                slideShadows: true,
-            },
+            effect: isMobile ? "slide" : "coverflow",
+            ...(isMobile ? {} : {
+                coverflowEffect: {
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                }
+            }),
             on: {
                 slideChangeTransitionEnd: () => {
                     document.querySelectorAll(".swiper-slide").forEach((slide) => {
@@ -136,5 +144,12 @@
                 },
             },
         });
+    }
+
+    window.addEventListener('DOMContentLoaded', initSwiper);
+    window.addEventListener('resize', () => {
+        // Пересоздаём Swiper при изменении ширины окна
+        initSwiper();
     });
 </script>
+

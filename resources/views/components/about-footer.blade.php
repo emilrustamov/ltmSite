@@ -1,5 +1,5 @@
 <section>
-    <div class="flex flex-row gap-6">
+    <div class="flex flex-col md:flex-row gap-6">
         <div class="w-full md:w-7/12 flex">
             <div class="large-text-wrap relative">
                 <div class="absolute text-[rgba(255,0,0,0.1)] text-[6rem] lg:text-[12rem] leading-[0.9] capitalize opacity-[0.4] font-bold"
@@ -9,10 +9,12 @@
             </div>
             <div>
                 <div class="shortDesc md:max-w-[90%]">
-                    <h2 class="about_company_title">
-                        {{ __('translate.moreThan1') }} <br>
-                        {{ __('translate.moreThan2') }}
-                    </h2>
+                    <h3 class="about_company_title">
+                        <span class="redline redline-1">{{ __('translate.moreThan1') }}</span><br>
+                        <span class="redline redline-2">{{ __('translate.moreThan2') }}</span>
+                    </h3>
+                    
+                    
                     <div>
                         <p class="opacity-50">{{ __('translate.aboutUsFooter1') }}</p>
                         <p class="opacity-50">{{ __('translate.aboutUsFooter2') }}</p>
@@ -32,3 +34,67 @@
         </div>
     </div>
 </section>
+<style>
+.about_company_title .redline {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    overflow: hidden;
+    padding: 4px 0;
+}
+
+.about_company_title .redline::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #e31e24;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 1s ease;
+    z-index: -1;
+}
+
+.about_company_title.revealed .redline-1::before {
+    transition-delay: 0s;
+    transform: scaleX(1);
+}
+
+.about_company_title.revealed .redline-2::before {
+    transition-delay: 0.4s; /* задержка для второй строки */
+    transform: scaleX(1);
+}
+
+
+
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const title = document.querySelector(".about_company_title");
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    title.classList.add("revealed");
+                } else {
+                    title.classList.remove("revealed");
+                }
+            },
+            {
+                threshold: 0.5
+            }
+        );
+
+        if (title) {
+            observer.observe(title);
+        }
+    });
+</script>
+
+
+
+
+
