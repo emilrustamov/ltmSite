@@ -193,7 +193,7 @@ section {
 
 .circle-container {
   position: relative;
-  width: clamp(80px, 20vw, 140px);
+  width: clamp(80px, 20vw, 100px);
   aspect-ratio: 1 / 1;
   overflow: hidden;
 }

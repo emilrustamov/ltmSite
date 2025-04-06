@@ -107,49 +107,56 @@
 </style>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    let swiperInstance = null;
+  let swiperInstance = null;
 
-    function initSwiper() {
-        const isMobile = window.innerWidth < 768;
+function initSwiper() {
+    const isMobile = window.innerWidth < 768;
 
-        if (swiperInstance) swiperInstance.destroy(true, true);
+    if (swiperInstance) swiperInstance.destroy(true, true);
 
-        swiperInstance = new Swiper(".mySwiper", {
-            grabCursor: true,
-            slidesPerView: "auto",
-            centeredSlides: isMobile,
-            spaceBetween: isMobile ? 20 : 0,
-            loop: true,
-            speed: 1000,
-            effect: isMobile ? "slide" : "coverflow",
-            ...(isMobile ? {} : {
-                coverflowEffect: {
-                    rotate: 50,
-                    stretch: 0,
-                    depth: 100,
-                    modifier: 1,
-                    slideShadows: true,
-                }
-            }),
-            on: {
-                slideChangeTransitionEnd: () => {
-                    document.querySelectorAll(".swiper-slide").forEach((slide) => {
-                        slide.classList.add("show");
-                    });
-                },
-                init: () => {
-                    document.querySelectorAll(".swiper-slide").forEach((slide) => {
-                        slide.classList.add("show");
-                    });
-                },
+    swiperInstance = new Swiper(".mySwiper", {
+        grabCursor: true,
+        slidesPerView: "auto",
+        centeredSlides: isMobile,
+        spaceBetween: isMobile ? 20 : 0,
+        loop: true,
+        speed: 800,
+        slideToClickedSlide: true,
+        threshold: 10,
+        touchRatio: 1.2, // чуть более отзывчиво
+        resistanceRatio: 0.85, // мягкость при упоре в край
+        longSwipesRatio: 0.5, // меньше = сработает даже при коротком свайпе
+
+        effect: isMobile ? "slide" : "coverflow",
+        ...(isMobile
+            ? {}
+            : {
+                  coverflowEffect: {
+                      rotate: 50,
+                      stretch: 0,
+                      depth: 100,
+                      modifier: 1,
+                      slideShadows: true,
+                  },
+              }),
+
+        on: {
+            slideChangeTransitionEnd: () => {
+                document.querySelectorAll(".swiper-slide").forEach((slide) => {
+                    slide.classList.add("show");
+                });
             },
-        });
-    }
-
-    window.addEventListener('DOMContentLoaded', initSwiper);
-    window.addEventListener('resize', () => {
-        // Пересоздаём Swiper при изменении ширины окна
-        initSwiper();
+            init: () => {
+                document.querySelectorAll(".swiper-slide").forEach((slide) => {
+                    slide.classList.add("show");
+                });
+            },
+        },
     });
+}
+
+window.addEventListener("DOMContentLoaded", initSwiper);
+window.addEventListener("resize", initSwiper);
+
 </script>
 

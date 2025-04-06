@@ -43,9 +43,6 @@
 @endsection
 
 
-
-
-
 @section('serv-slider')
 @include('components.services')
 @endsection
