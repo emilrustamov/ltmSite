@@ -29,7 +29,7 @@
     <link rel="alternate" hreflang="ru" href="{{ config('app.url') }}/ru/">
     <link rel="alternate" hreflang="en" href="{{ config('app.url') }}/en/">
     <link rel="alternate" hreflang="tk" href="{{ config('app.url') }}/tk/">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
@@ -80,7 +80,7 @@
     </div>
 
     @include('layouts.scripts')
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script> --}}
     <script>
         const lenis = new Lenis({
             duration: 1.5, // больше = более тягучий скролл
