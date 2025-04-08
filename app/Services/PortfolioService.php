@@ -40,7 +40,7 @@ class PortfolioService
         $portfolio->urlButton = $data['urlButton'];
         $portfolio->isMainPage = $data['isMainPage'] ?? 0;
         $portfolio->when = $data['when'];
-        $portfolio->photo = $data['photo'] ?? null; // Добавляем поле photo
+        $portfolio->photo = $data['photo']; 
         
         $portfolio->title = [
             'tm' => $data['title_tm'],
@@ -67,7 +67,7 @@ class PortfolioService
             'ru' => $data['res_ru'],
             'en' => $data['res_en'],
         ];
-        // New fields added:
+      
         $portfolio->status = $data['status'] ?? true;
         $portfolio->ordering = $data['ordering'] ?? 0;
         $portfolio->save();
@@ -140,50 +140,5 @@ class PortfolioService
         $project->delete();
     }
 
-    public function getPortfolioForAjax($category)
-    {
-        $baseQuery = Portfolio::query()
-            ->join('category_portfolio', 'portfolio.id', '=', 'category_portfolio.portfolio_id')
-            ->join('categories', 'category_portfolio.category_id', '=', 'categories.id')
-            ->select('portfolio.*', 'categories.category_en as category_name');
 
-        if ($category == "All") {
-            return $baseQuery->orderBy('portfolio.when', 'asc')
-                ->limit(6)
-                ->get();
-        } else {
-            return $baseQuery->where('categories.category_en', '=', $category)
-                ->orderBy('portfolio.when', 'asc')
-                ->limit(6)
-                ->get();
-        }
-    }
-
-
-    public function getMoreProjects($pageOffset, $type)
-    {
-        $limit = 3;
-        $baseQuery = Portfolio::query()
-            ->join('category_portfolio', 'portfolio.id', '=', 'category_portfolio.portfolio_id')
-            ->join('categories', 'category_portfolio.category_id', '=', 'categories.id')
-            ->select('portfolio.*', 'categories.category_en as category_name');
-
-        if ($type != 'All') {
-            $portfolio = $baseQuery->where('categories.category_en', '=', $type)
-                ->orderBy('when', 'asc')
-                ->offset($pageOffset)
-                ->limit($limit + 1)
-                ->get();
-        } else {
-            $portfolio = Portfolio::orderBy('when', 'asc')
-                ->offset($pageOffset)
-                ->limit($limit + 1)
-                ->get();
-        }
-
-        $hasMore = $portfolio->count() > $limit;
-        $portfolio = $portfolio->take($limit);
-
-        return ['data' => $portfolio, 'hasMore' => $hasMore];
-    }
 }

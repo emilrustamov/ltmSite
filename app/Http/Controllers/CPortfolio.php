@@ -160,20 +160,12 @@ class CPortfolio extends Controller
         return redirect("/{$lang}/admin/all-projects")->with('message', 'Portfolio deleted successfully.');
     }
 
-    public function ajaxPortfolio(Request $req)
-    {
-        $portfolio = $this->portfolioService->getPortfolioForAjax($req->category);
-        return response()->json($portfolio);
-    }
+ 
 
     public function ajaxTmp(Request $req, string $lang)
     {
         return response()->json([]);
     }
 
-    public function showMore(string $lang, $pageOffset, $type)
-    {
-        $result = $this->portfolioService->getMoreProjects($pageOffset, $type);
-        return response()->json($result);
-    }
+  
 }

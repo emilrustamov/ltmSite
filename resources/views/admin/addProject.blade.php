@@ -54,7 +54,7 @@
 
             <div class="w-full px-4 mb-4">
                 <label for="formFile" class="block text-sm font-medium text-gray-700">Image</label>
-                <input class="border border-gray-300 rounded p-2 w-full" type="file" name="image" id="formFile" accept="image/*">
+                <input class="border border-gray-300 rounded p-2 w-full" type="file" name="photo" id="formFile" accept="image/*">
             </div>
 
             <div class="bg-white shadow rounded mb-4 w-full px-4">
@@ -99,7 +99,6 @@
 
     <div class="mt-5">
         <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded me-2">Save</button>
-        <button type="button" class="border border-gray-300 hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 rounded">Cancel</button>
     </div>
 </form>
 
