@@ -29,7 +29,8 @@
     <link rel="alternate" hreflang="ru" href="{{ config('app.url') }}/ru/">
     <link rel="alternate" hreflang="en" href="{{ config('app.url') }}/en/">
     <link rel="alternate" hreflang="tk" href="{{ config('app.url') }}/tk/">
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> --}}
+    <script src="{{ asset('assets/js/lenis.js') }}"></script>
+    <script src="{{ asset('assets/js/swiper.js') }}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>

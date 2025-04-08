@@ -41,32 +41,32 @@ class PortfolioService
         $portfolio->isMainPage = $data['isMainPage'] ?? 0;
         $portfolio->when = $data['when'];
         $portfolio->photo = $data['photo'] ?? null; // Добавляем поле photo
-
-        $portfolio->title = json_encode([
+        
+        $portfolio->title = [
             'tm' => $data['title_tm'],
             'ru' => $data['title_ru'],
             'en' => $data['title_en'],
-        ]);
-        $portfolio->who = json_encode([
+        ];
+        $portfolio->who = [
             'tm' => $data['who_tm'],
             'ru' => $data['who_ru'],
             'en' => $data['who_en'],
-        ]);
-        $portfolio->description = json_encode([
+        ];
+        $portfolio->description = [
             'tm' => $data['desc_tm'],
             'ru' => $data['desc_ru'],
             'en' => $data['desc_en'],
-        ]);
-        $portfolio->target = json_encode([
+        ];
+        $portfolio->target = [
             'tm' => $data['target_tm'],
             'ru' => $data['target_ru'],
             'en' => $data['target_en'],
-        ]);
-        $portfolio->result = json_encode([
+        ];
+        $portfolio->result = [
             'tm' => $data['res_tm'],
             'ru' => $data['res_ru'],
             'en' => $data['res_en'],
-        ]);
+        ];
 
         $portfolio->save();
     }
@@ -84,32 +84,31 @@ class PortfolioService
         if (isset($data['photo'])) {
             $portfolio->photo = $data['photo'];
         }
-
-        $portfolio->title = json_encode([
+        $portfolio->title = [
             'tm' => $data['title_tm'],
             'ru' => $data['title_ru'],
             'en' => $data['title_en'],
-        ]);
-        $portfolio->who = json_encode([
+        ];
+        $portfolio->who = [
             'tm' => $data['who_tm'],
             'ru' => $data['who_ru'],
             'en' => $data['who_en'],
-        ]);
-        $portfolio->description = json_encode([
+        ];
+        $portfolio->description = [
             'tm' => $data['desc_tm'],
             'ru' => $data['desc_ru'],
             'en' => $data['desc_en'],
-        ]);
-        $portfolio->target = json_encode([
+        ];
+        $portfolio->target = [
             'tm' => $data['target_tm'],
             'ru' => $data['target_ru'],
             'en' => $data['target_en'],
-        ]);
-        $portfolio->result = json_encode([
+        ];
+        $portfolio->result = [
             'tm' => $data['res_tm'],
             'ru' => $data['res_ru'],
             'en' => $data['res_en'],
-        ]);
+        ];
 
         if (isset($data['what'])) {
             $portfolio->categories()->sync($data['what']);

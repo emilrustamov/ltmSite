@@ -4,15 +4,10 @@ use App\Http\Controllers\ProjSliderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use App\Models\Portfolio;
-use App\Models\Images_Add;
-use App\Http\Controllers\CBlog;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CPortfolio;
 use App\Http\Controllers\HomeController;
-use App\Models\Blog;
-use App\Models\Categories;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Http\Request;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 
@@ -71,8 +66,6 @@ Route::get('/', function () {
 });
 
 
-
-
 ///mainPage
 Route::get('/{lang}', [HomeController::class, 'index'])->middleware('redirect');
 
@@ -80,40 +73,12 @@ Route::get('/{lang}', [HomeController::class, 'index'])->middleware('redirect');
 Route::middleware(['admin.access'])->group(function () {
     $path = 'App\Http\Controllers';
 
-    // Все блоги
-    Route::get('/{lang}/admin/all-articles', function ($lang) {
-        App::setLocale($lang);
-        Paginator::useBootstrap();
-        $blog = Blog::paginate(10);
-        return view('allArticles', ['lang' => $lang, 'blog' => $blog]);
-    });
-
-    // Добавление блога
-    Route::get('/{lang}/admin/add-article', function ($lang) {
-        App::setLocale($lang);
-        return view('addBlog', ['lang' => $lang]);
-    });
-    Route::post('/{lang}/admin/add-article', $path . '\CBlog@addBlog');
-
-    // Редактирование блога
-    Route::get('/{lang}/admin/edit-article/{id}', function ($lang, $id) {
-        App::setLocale($lang);
-        $blog = Blog::where('id', $id)->get();
-        return view('editBlog', ['lang' => $lang, 'id' => $id, 'blog' => $blog[0]]);
-    });
-    Route::post('/{lang}/admin/edit-article/{id}', $path . '\CBlog@editBlog');
-
-    // Удаление блога
-    Route::delete('/{lang}/admin/delete-article/{id}', [CBlog::class, 'destroy'])->name('articles.destroy');
-
-
-
     // Все проекты
     Route::get('/{lang}/admin/all-projects', function ($lang) {
         App::setLocale($lang);
-        Paginator::useBootstrap();
-        $portfolio = Portfolio::paginate(10);
-        return view('allProjects', ['lang' => $lang, 'portfolio' => $portfolio]);
+        Paginator::useTailwind();
+        $portfolio = Portfolio::paginate(30);
+        return view('admin.allProjects', ['lang' => $lang, 'portfolio' => $portfolio]);
     });
 
     // Добавление портфолио
@@ -124,7 +89,6 @@ Route::middleware(['admin.access'])->group(function () {
     Route::get('/{lang}/admin/edit-project/{id}', [CPortfolio::class, 'editProject']);
     Route::post('/{lang}/admin/edit-project/{id}', $path . '\CPortfolio@editPortfolio');
 });
-
 
 
 //services
@@ -152,21 +116,7 @@ Route::get('/{lang}/about_us', function ($lang) {
 Route::get('/{lang}/portfolio', [CPortfolio::class, 'index'])->middleware('redirect');
 Route::get('/{lang}/portfolio/{id}', [CPortfolio::class, 'showOnePortf'])->middleware('redirect');
 
-//blog
-Route::get('/{lang}/blog', function ($lang) {
-    App::setLocale($lang);
-    $leftMenu = true;
-    $currentPage = __('translate.blog');
-    $blog = Blog::offset(0)->limit(7)->get();
-    return view('blog', ['blog' => $blog, 'leftMenu' => $leftMenu, 'currentPage' => $currentPage, 'lang' => $lang]);
-})->middleware('redirect');
-Route::get('/{lang}/blog/{id}', function ($lang, $id) {
-    App::setLocale($lang);
-    $leftMenu = true;
-    $currentPage = "Блог";
-    $blog = Blog::where('id', $id)->get();
-    return view('oneArticleDetails', ['leftMenu' => $leftMenu, 'currentPage' => $currentPage, 'lang' => $lang, 'id' => $id, 'blog' => $blog[0]]);
-})->middleware('redirect');
+
 
 //contacts
 Route::get('/{lang}/contacts', function ($lang) {
@@ -175,45 +125,9 @@ Route::get('/{lang}/contacts', function ($lang) {
     $currentPage = "";
     return view('contacts', ['leftMenu' => $leftMenu, 'currentPage' => $currentPage, 'lang' => $lang]);
 })->middleware('redirect');
-//QA
-Route::get('/{lang}/faq', function ($lang) {
-    App::setLocale($lang);
-    $leftMenu = true;
-    $currentPage = "FAQ";
-    return view('faq', ['leftMenu' => $leftMenu, 'currentPage' => $currentPage, 'lang' => $lang]);
-})->middleware('redirect');
-//bitrix box
-Route::get('/{lang}/services-bitrix', function ($lang) {
-    App::setLocale($lang);
-    $leftMenu = true;
-    $currentPage = "";
-    return view('bitrixbox', ['leftMenu' => $leftMenu, 'currentPage' => $currentPage, 'lang' => $lang]);
-})->middleware('redirect');
-//bitrix cloud
-Route::get('/{lang}/services-bcloud', function ($lang) {
-    App::setLocale($lang);
-    $leftMenu = true;
-    $currentPage = "";
-    return view('bitrixcloud', ['leftMenu' => $leftMenu, 'currentPage' => $currentPage, 'lang' => $lang]);
-})->middleware('redirect');
-//apps
-Route::get('/{lang}/services-apps', function ($lang) {
-    App::setLocale($lang);
-    $leftMenu = true;
-    $currentPage = "";
-    return view('mobileapps', ['leftMenu' => $leftMenu, 'currentPage' => $currentPage, 'lang' => $lang]);
-})->middleware('redirect');
 
 
 
-Route::post('/{lang}/admin/delete-project', $path . '\CPortfolio@destroy');
-Route::post('/{lang}/ajax-portfolio', $path . '\CPortfolio@ajaxPortfolio');
-Route::post('/{lang}/ajax-tmp', $path . '\CPortfolio@ajaxTmp');
-Route::get('/{lang}/show-more/{pageOffset}/{type}', $path . '\CPortfolio@showMore');
-
-
-
-Route::post('/{lang}/ajax-blog', $path . '\CPortfolio@ajaxBlog');
 
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');

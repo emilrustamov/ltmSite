@@ -1,4 +1,3 @@
-import "./swiper.js";
 import "./customJs.js";
 import "./blurPortfolio.js";
 import "./customSlick.js";
@@ -9,4 +8,3 @@ import "./menuBlocks.js";
 import "./scrollTop.js";
 import "./showMoreText.js";
 import "./typingHeader.js";
-
