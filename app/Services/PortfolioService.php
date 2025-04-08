@@ -68,9 +68,8 @@ class PortfolioService
             'en' => $data['res_en'],
         ];
         // New fields added:
-        $portfolio->status = $data['status'];
-        $portfolio->ordering = $data['ordering'];
-
+        $portfolio->status = $data['status'] ?? true;
+        $portfolio->ordering = $data['ordering'] ?? 0;
         $portfolio->save();
     }
 

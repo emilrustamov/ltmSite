@@ -58,11 +58,11 @@
                 {{ $portfolio['result'][$lang] ?? '' }}
             </p>
             @if (!empty($portfolio['urlButton']))
-                <button class="custom-button">
-                    <a href="{{ $portfolio['urlButton'] }}">
+                <a href="{{ $portfolio['urlButton'] }}">
+                    <button class="custom-button">
                         {{ __('translate.goToSite') }}
-                    </a>
-                </button>
+                    </button>
+                </a>
             @endif
         </div>
     </section>
