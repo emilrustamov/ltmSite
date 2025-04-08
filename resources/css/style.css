@@ -1323,7 +1323,7 @@ section {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif');
+  background-image: url('../images/oEI9uBYSzLpBK.gif');
   background-size: cover;
   background-position: center;
   opacity: 0.03;
