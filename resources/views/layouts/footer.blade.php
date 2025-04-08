@@ -17,7 +17,7 @@
         <div id="modal" class="modal" style="height:100%">
             <div class="modal-overlay">
                 <div class="modal-content">
-                    <button id="closeModalButton" class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+                    <button id="closeModalButton" class="close"><i class="fa-solid fa-xmark"></i></button>
                     <div class="container">
                         <div class="flex flex-wrap justify-center items-center">
                             <div class="w-full lg:w-[58.3333%]">

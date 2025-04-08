@@ -17,6 +17,8 @@
         <tr>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Статус</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Сортировка</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Remove</th>
@@ -28,15 +30,24 @@
                 <td class="px-6 py-4 whitespace-nowrap">{{ $i['title'][$lang] ?? 'No title' }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $i['when'] }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">
+                    {{ $i['status'] ? 'Включено' : 'Выключено' }}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ $i['ordering'] }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
                     <a href="/{{ $lang }}/admin/edit-project/{{ $i['id'] }}" class="bg-blue-500 text-white px-2 py-1 rounded inline-flex items-center">
                         <i class="fa-regular fa-pen-to-square"></i>
                     </a>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">{{ $i['id'] }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <button type="button" class="bg-red-500 text-white px-2 py-1 rounded inline-flex items-center" onclick="deleteProject('{{ $i['id'] }}', '{{ $lang }}');">
-                        <i class="fa-regular fa-trash-can"></i>
-                    </button>
+                    <!-- Delete form -->
+                    <form method="POST" action="/{{ $lang }}/admin/destroy/{{ $i['id'] }}" onsubmit="return confirm('Are you sure you want to delete this project?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded inline-flex items-center">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach

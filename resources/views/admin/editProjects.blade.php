@@ -173,12 +173,33 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="mt-5 flex space-x-4 px-4">
-            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded">Save</button>
-            <button type="button" class="border border-gray-300 hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 rounded">Cancel</button>
+                <!-- New Fields for Status and Ordering -->
+                <div class="w-full px-4 mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Статус</label>
+                    <div class="flex items-center space-x-4 mt-2">
+                        <div class="flex items-center">
+                            <input type="radio" name="status" id="status_on" value="1" {{ ($portfolio->status ?? true) ? 'checked' : '' }} class="form-radio text-blue-600">
+                            <label for="status_on" class="ml-2 text-sm text-gray-700">Включено</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="radio" name="status" id="status_off" value="0" {{ (isset($portfolio->status) && !$portfolio->status) ? 'checked' : '' }} class="form-radio text-blue-600">
+                            <label for="status_off" class="ml-2 text-sm text-gray-700">Выключено</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full px-4 mb-4">
+                    <label for="ordering" class="block text-sm font-medium text-gray-700">Порядок</label>
+                    <input class="border border-gray-300 rounded p-2 w-full" type="number" id="ordering" name="ordering" value="{{ $portfolio->ordering ?? 0 }}">
+                </div>
+                <!-- End New Fields -->
+
+                <div class="mt-5 flex space-x-4 px-4">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded">Save</button>
+                    <button type="button" class="border border-gray-300 hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 rounded">Cancel</button>
+                </div>
+            </div>
         </div>
     </form>
 

@@ -18,6 +18,8 @@ class Portfolio extends Model
         'description' => 'array',
         'target' => 'array',
         'result' => 'array',
+        'status' => 'boolean',
+        'ordering' => 'integer',
     ];
 
     // Связь с категориями

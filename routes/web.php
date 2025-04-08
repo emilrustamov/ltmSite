@@ -88,6 +88,9 @@ Route::middleware(['admin.access'])->group(function () {
     // Редактирование портфолио
     Route::get('/{lang}/admin/edit-project/{id}', [CPortfolio::class, 'editProject']);
     Route::post('/{lang}/admin/edit-project/{id}', $path . '\CPortfolio@editPortfolio');
+
+    // Удаление портфолио
+    Route::delete('/{lang}/admin/destroy/{id}', [CPortfolio::class, 'destroy']);
 });
 
 

@@ -209,9 +209,7 @@ label {
 
 @media (max-width: 991px) {
 
-    #closeModalButton {
-        display: block !important;
-    }
+ 
 
     .rotate {
         transform: rotate(180deg);
@@ -301,11 +299,4 @@ label {
         margin-top: 20px;
     }
 
-}
-
-@media (max-width: 991px) {
-    #closeModalButton {
-        top: 20px !important;
-        right: 20px !important;
-    }
 }

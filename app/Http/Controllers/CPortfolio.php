@@ -86,6 +86,7 @@ class CPortfolio extends Controller
             'desc_tm', 'desc_ru', 'desc_en',
             'target_tm', 'target_ru', 'target_en',
             'res_tm', 'res_ru', 'res_en',
+            'status', 'ordering'
         ]);
     
         // Обработка загруженного файла
@@ -130,6 +131,7 @@ class CPortfolio extends Controller
             'target_tm', 'target_ru', 'target_en',
             'res_tm', 'res_ru', 'res_en',
             'what', 'deleteImages',
+            'status', 'ordering'
         ]);
     
         // Обработка загруженного файла
@@ -154,7 +156,8 @@ class CPortfolio extends Controller
     public function destroy($lang, Request $req)
     {
         $this->portfolioService->deletePortfolio($req->id);
-        return response()->json(['success' => true]);
+        // Redirect after deletion instead of returning JSON response.
+        return redirect("/{$lang}/admin/all-projects")->with('message', 'Portfolio deleted successfully.');
     }
 
     public function ajaxPortfolio(Request $req)

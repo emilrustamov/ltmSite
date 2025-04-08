@@ -13,10 +13,10 @@ class PortfolioService
 
     public function getPortfolioList()
     {
-        return Portfolio::orderBy('when', 'asc')
-            ->offset(0)
-            ->limit(6)
-            ->get();
+        // Changed ordering field and removed limit/offset to return all records
+        return Portfolio::where('status', true)
+        ->orderBy('ordering', 'asc')
+        ->get();
     }
 
 
@@ -67,6 +67,9 @@ class PortfolioService
             'ru' => $data['res_ru'],
             'en' => $data['res_en'],
         ];
+        // New fields added:
+        $portfolio->status = $data['status'];
+        $portfolio->ordering = $data['ordering'];
 
         $portfolio->save();
     }
@@ -109,6 +112,9 @@ class PortfolioService
             'ru' => $data['res_ru'],
             'en' => $data['res_en'],
         ];
+        // New fields update:
+        $portfolio->status = $data['status'];
+        $portfolio->ordering = $data['ordering'];
 
         if (isset($data['what'])) {
             $portfolio->categories()->sync($data['what']);
