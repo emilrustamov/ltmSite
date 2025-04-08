@@ -40,7 +40,7 @@
                     <div class="flex-1">
                         <h4 class="text-white font-semibold mb-2">{{ __('translate.when') }}</h4>
                         <h3 class="text-[#e4abab]">
-                            {{ \Carbon\Carbon::parse($portfolio['when'])->format('F Y') }}
+                            {{ \Carbon\Carbon::parse($portfolio['when'])->format('Y') }}
                         </h3>
                     </div>
                 </div>
@@ -48,12 +48,15 @@
         </div>
 
         <div class="section">
-            <h2>Цель</h2>
+            <h2>{{ __('translate.target') }}</h2>
             <p>{{ $portfolio['target'][$lang] ?? '' }}</p>
         </div>
 
         <div class="section">
-            <h2>Результат</h2>
+            <h2>{{ __('translate.result') }}</h2>
+            <p>
+                {{ $portfolio['result'][$lang] ?? '' }}
+            </p>
             @if (!empty($portfolio['urlButton']))
                 <button class="custom-button">
                     <a href="{{ $portfolio['urlButton'] }}">
@@ -61,9 +64,6 @@
                     </a>
                 </button>
             @endif
-            <p>
-                {{ $portfolio['result'][$lang] ?? '' }}
-            </p>
         </div>
     </section>
 
