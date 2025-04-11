@@ -1,30 +1,32 @@
 @extends('layouts.base')
+<!-- Подключаем lazysizes через CDN -->
+
 
 @section('title', 'Об IT-компании LTM Studio в Туркменистане')
 @section('circles')
     <div class="circle-1">
-        <img src="{{ '../assets/images/circle-1.png' }}" alt="" loading="lazy">
+        <img data-src="{{ asset('webp/circle-1.webp') }}" alt="Circle 1" class="lazyload">
     </div>
     <div class="circle-3">
-        <img src="{{ '../assets/images/circle-3.png' }}" alt="" loading="lazy">
+        <img data-src="{{ asset('webp/circle-3.webp') }}" alt="" class="lazyload">
     </div>
     <div class="circle-4">
-        <img src="{{ '../assets/images/circle-4.png' }}" alt="" loading="lazy">
+        <img data-src="{{ asset('webp/circle-4.webp') }}" alt="" class="lazyload">
     </div>
     <div class="circle-5">
-        <img src="{{ '../assets/images/circle-5.png' }}" alt="" loading="lazy">
+        <img data-src="{{ asset('webp/circle-5.webp') }}" alt="" class="lazyload">
     </div>
     <div class="circle-6">
-        <img src="{{ '../assets/images/circle-6.png' }}" alt="" loading="lazy">
+        <img data-src="{{ asset('webp/circle-6.webp') }}" alt="" class="lazyload">
     </div>
     <div class="circle-7">
-        <img src="{{ '../assets/images/radialCircle.png' }}">
+        <img data-src="{{ asset('webp/radialCircle.webp') }}" alt="" class="lazyload">
     </div>
     <div class="circle-3">
-        <img src="{{ '../assets/images/circle-3.png' }}" alt="" loading="lazy">
+        <img data-src="{{ asset('webp/circle-3.webp') }}" alt="" class="lazyload">
     </div>
     <div class="circle-5">
-        <img src="{{ '../assets/images/circle-5.png' }}" alt="" loading="lazy">
+        <img data-src="{{ asset('webp/circle-5.webp') }}" alt="" class="lazyload">
     </div>
 @endsection
 @section('content')

@@ -700,20 +700,21 @@ section {
 /*Конец лампа*/
 
 /*Начало Кнопка наверх*/
+//* Базовые стили кнопки "Наверх" */
+#scrollBtn {
+  position: fixed;
+  bottom: 5px;
+  right: 8px;
+  z-index: 999;
+  overflow: visible;
+  /* Дополнительные стили, как у вас */
+}
+
+/* Анимация мерцания при наведении */
 @keyframes launch-wiggle {
-
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-
-  25% {
-    transform: rotate(-4deg);
-  }
-
-  75% {
-    transform: rotate(4deg);
-  }
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-4deg); }
+  75% { transform: rotate(4deg); }
 }
 
 #scrollBtn:hover i {
@@ -725,25 +726,51 @@ section {
   z-index: 2;
 }
 
-#scrollBtn {
-  overflow: visible;
-}
-
+/* Анимация взлёта ракеты */
 #scrollBtn.launched {
   animation: rocket-launch 0.8s ease forwards;
 }
 
+/* Ключевые кадры анимации взлёта */
 @keyframes rocket-launch {
   0% {
     transform: translateY(0);
     opacity: 1;
   }
-
   100% {
     transform: translateY(-100vh);
     opacity: 0;
   }
 }
+
+/* Эффект дыма через псевдоэлемент */
+#scrollBtn.launched::after {
+  content: "";
+  position: absolute;
+  bottom: -10px; /* немного ниже кнопки */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(ellipse at center, rgba(200,200,200,0.8) 0%, rgba(200,200,200,0) 70%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  animation: smoke-effect 0.8s ease-out forwards;
+}
+
+/* Анимация эффекта дыма */
+@keyframes smoke-effect {
+  0% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50px) scale(1.5);
+  }
+}
+
 
 /*Конец кнопка наверх*/
 
@@ -1240,7 +1267,7 @@ section {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url('../images/oEI9uBYSzLpBK.gif');
+  background-image: var(--bg, none);
   background-size: cover;
   background-position: center;
   opacity: 0.03;

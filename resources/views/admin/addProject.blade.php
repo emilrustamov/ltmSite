@@ -54,7 +54,7 @@
 
             <div class="w-full px-4 mb-4">
                 <label for="formFile" class="block text-sm font-medium text-gray-700">Image</label>
-                <input class="border border-gray-300 rounded p-2 w-full" type="file" name="photo" id="formFile" accept="image/*">
+                <input class="border border-gray-300 rounded p-2 w-full" type="file" name="image" id="formFile" accept="image/*">
             </div>
 
             <div class="bg-white shadow rounded mb-4 w-full px-4">

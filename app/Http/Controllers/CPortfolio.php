@@ -6,7 +6,6 @@ use App\Models\Categories;
 use App\Models\Category_One_Project;
 use Illuminate\Http\Request;
 use App\Models\Portfolio;
-use App\Models\Images_Add;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
@@ -51,10 +50,6 @@ class CPortfolio extends Controller
             return Portfolio::findOrFail($id);
         });
 
-        $images_add = Cache::remember("images_add_{$id}", now()->addMinutes(10), function () use ($id) {
-            return Images_Add::where('portfolio_id', $id)->get();
-        });
-
         $categories = $this->portfolioService->getCategoriesForProject($id);
 
         return view('oneProjectDetails', [
@@ -64,7 +59,6 @@ class CPortfolio extends Controller
             'currentPage' => 'Проекты',
             'lang' => $lang,
             'id' => $id,
-            'images_add' => $images_add,
         ]);
     }
 
@@ -80,34 +74,75 @@ class CPortfolio extends Controller
     public function addPortfolio(Request $req, $lang)
     {
         $data = $req->only([
-            'urlButton', 'isMainPage', 'when',
-            'title_tm', 'title_ru', 'title_en',
-            'who_tm', 'who_ru', 'who_en',
-            'desc_tm', 'desc_ru', 'desc_en',
-            'target_tm', 'target_ru', 'target_en',
-            'res_tm', 'res_ru', 'res_en',
-            'status', 'ordering'
+            'urlButton',
+            'isMainPage',
+            'when',
+            'title_tm',
+            'title_ru',
+            'title_en',
+            'who_tm',
+            'who_ru',
+            'who_en',
+            'desc_tm',
+            'desc_ru',
+            'desc_en',
+            'target_tm',
+            'target_ru',
+            'target_en',
+            'res_tm',
+            'res_ru',
+            'res_en',
+            'status',
+            'ordering'
         ]);
-    
-        // Обработка загруженного файла
+
+        // Создаём запись портфолио без фото
+        $portfolio = new Portfolio;
+        $portfolio->urlButton  = $data['urlButton'];
+        $portfolio->isMainPage = $data['isMainPage'] ?? 0;
+        $portfolio->when       = $data['when'];
+        $portfolio->title      = [
+            'tm' => $data['title_tm'],
+            'ru' => $data['title_ru'],
+            'en' => $data['title_en'],
+        ];
+        $portfolio->who        = [
+            'tm' => $data['who_tm'],
+            'ru' => $data['who_ru'],
+            'en' => $data['who_en'],
+        ];
+        $portfolio->description = [
+            'tm' => $data['desc_tm'],
+            'ru' => $data['desc_ru'],
+            'en' => $data['desc_en'],
+        ];
+        $portfolio->target     = [
+            'tm' => $data['target_tm'],
+            'ru' => $data['target_ru'],
+            'en' => $data['target_en'],
+        ];
+        $portfolio->result     = [
+            'tm' => $data['res_tm'],
+            'ru' => $data['res_ru'],
+            'en' => $data['res_en'],
+        ];
+        $portfolio->status     = $data['status'] ?? true;
+        $portfolio->ordering   = $data['ordering'] ?? 0;
+        $portfolio->save();
+
+        // Если файл загружен, сохраняем его через Medialibrary
         if ($req->hasFile('image')) {
-            $image = $req->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('portfolio-image', $imageName); 
-            $data['photo'] = 'portfolio-image/' . $imageName; // Сохраняем путь к файлу
-        } else {
-            $data['photo'] = null; // Если файл не загружен, устанавливаем photo в null
+            $portfolio->addMediaFromRequest('image')
+                ->toMediaCollection('portfolio-images');
         }
-    
-        $this->portfolioService->createPortfolio($data);
-    
+
         return redirect('/' . $lang . '/admin/all-projects');
     }
+
 
     public function editProject($lang, $id)
     {
         $portfolio = Portfolio::with('categories')->findOrFail($id);
-        $images_add = Images_Add::where('portfolio_id', $id)->get();
         $categories = Categories::all();
         $selectedCategoryIds = $portfolio->categories->pluck('id')->toArray();
 
@@ -115,7 +150,6 @@ class CPortfolio extends Controller
             'lang' => $lang,
             'id' => $id,
             'portfolio' => $portfolio,
-            'images_add' => $images_add,
             'categories' => $categories,
             'selectedCategoryIds' => $selectedCategoryIds,
         ]);
@@ -124,34 +158,81 @@ class CPortfolio extends Controller
     public function editPortfolio(Request $req, $lang, $id)
     {
         $data = $req->only([
-            'urlButton', 'isMainPage', 'when',
-            'title_tm', 'title_ru', 'title_en',
-            'who_tm', 'who_ru', 'who_en',
-            'desc_tm', 'desc_ru', 'desc_en',
-            'target_tm', 'target_ru', 'target_en',
-            'res_tm', 'res_ru', 'res_en',
-            'what', 'deleteImages',
-            'status', 'ordering'
+            'urlButton',
+            'isMainPage',
+            'when',
+            'title_tm',
+            'title_ru',
+            'title_en',
+            'who_tm',
+            'who_ru',
+            'who_en',
+            'desc_tm',
+            'desc_ru',
+            'desc_en',
+            'target_tm',
+            'target_ru',
+            'target_en',
+            'res_tm',
+            'res_ru',
+            'res_en',
+            'what',
+            'deleteImages',
+            'status',
+            'ordering'
         ]);
-    
-        // Обработка загруженного файла
+
+        $portfolio = Portfolio::findOrFail($id);
+        $portfolio->urlButton  = $data['urlButton'];
+        $portfolio->isMainPage = $data['isMainPage'];
+        $portfolio->when       = $data['when'];
+
+        // Если загружен новый файл, добавляем его в Medialibrary
         if ($req->hasFile('image')) {
-            $image = $req->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('portfolio-image', $imageName); 
-            $data['photo'] = 'portfolio-image/' . $imageName; 
-        
-            // Удаляем старое изображение, если оно существует
-            $portfolio = Portfolio::findOrFail($id);
-            if ($portfolio->photo) {
-                Storage::delete('public/' . $portfolio->photo);
-            }
+            // При необходимости можно удалить старые медиа-файлы
+            $portfolio->clearMediaCollection('portfolio-images');
+
+            $portfolio->addMediaFromRequest('image')
+                ->toMediaCollection('portfolio-images');
         }
-    
-        $this->portfolioService->updatePortfolio($id, $data);
-    
+
+        $portfolio->title = [
+            'tm' => $data['title_tm'],
+            'ru' => $data['title_ru'],
+            'en' => $data['title_en'],
+        ];
+        $portfolio->who = [
+            'tm' => $data['who_tm'],
+            'ru' => $data['who_ru'],
+            'en' => $data['who_en'],
+        ];
+        $portfolio->description = [
+            'tm' => $data['desc_tm'],
+            'ru' => $data['desc_ru'],
+            'en' => $data['desc_en'],
+        ];
+        $portfolio->target = [
+            'tm' => $data['target_tm'],
+            'ru' => $data['target_ru'],
+            'en' => $data['target_en'],
+        ];
+        $portfolio->result = [
+            'tm' => $data['res_tm'],
+            'ru' => $data['res_ru'],
+            'en' => $data['res_en'],
+        ];
+        $portfolio->status   = $data['status'];
+        $portfolio->ordering = $data['ordering'];
+
+        if (isset($data['what'])) {
+            $portfolio->categories()->sync($data['what']);
+        }
+
+        $portfolio->save();
+
         return redirect('/' . $lang . '/admin/all-projects');
     }
+
 
     public function destroy($lang, Request $req)
     {
@@ -160,12 +241,10 @@ class CPortfolio extends Controller
         return redirect("/{$lang}/admin/all-projects")->with('message', 'Portfolio deleted successfully.');
     }
 
- 
+
 
     public function ajaxTmp(Request $req, string $lang)
     {
         return response()->json([]);
     }
-
-  
 }

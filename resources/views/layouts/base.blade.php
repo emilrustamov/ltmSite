@@ -81,7 +81,7 @@
     </div>
 
     @include('layouts.scripts')
-    {{-- <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script> --}}
+  
     <script>
         const lenis = new Lenis({
             duration: 1.5, // больше = более тягучий скролл
@@ -100,12 +100,31 @@
     </script>
 
 
-    <button onclick="topFunction()" id="scrollBtn"
-        class="hidden fixed bottom-5 right-8 z-[999] border-0 outline-none bg-white cursor-pointer text-white p-4 rounded-[10px] text-[18px] transition-all duration-300 ease-in-out hover:bg-[#e31e24] group">
-        <i class="fa-solid fa-rocket text-[#1a1515] transition-all duration-300 ease-in-out group-hover:text-white"></i>
+<button id="scrollBtn" 
+class="hidden fixed bottom-5 right-8 z-[999] border-0 outline-none bg-white cursor-pointer p-4 rounded-[10px] text-[18px] transition-all duration-300 ease-in-out hover:bg-[#e31e24] group">
+<i class="fa-solid fa-rocket text-[#1a1515] transition-all duration-300 ease-in-out group-hover:text-white"></i>
+</button>
 
-    </button>
-    <div class="crt-overlay"></div>
+    <div class="crt-overlay" data-bg="../images/oEI9uBYSzLpBK.gif"></div>
 
 </body>
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
+
+<script>
+    window.addEventListener('load', () => {
+        // Задаём задержку, например, 3 секунды (3000 мс)
+        setTimeout(() => {
+            const overlay = document.querySelector('.crt-overlay');
+            if (overlay) {
+                // Получаем путь к изображению из data-атрибута
+                const bgUrl = overlay.getAttribute('data-bg');
+                if (bgUrl) {
+                    // Устанавливаем значение CSS-переменной --bg
+                    overlay.style.setProperty('--bg', `url(${bgUrl})`);
+                }
+            }
+        }, 5000);
+    });
+    </script>
+    

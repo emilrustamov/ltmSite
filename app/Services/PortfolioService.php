@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Portfolio;
-use App\Models\Images_Add;
 use App\Models\Categories;
 use App\Models\Category_One_Project;
 use Illuminate\Support\Facades\Storage;
@@ -117,16 +116,6 @@ class PortfolioService
 
         if (isset($data['what'])) {
             $portfolio->categories()->sync($data['what']);
-        }
-
-        if (isset($data['deleteImages'])) {
-            foreach ($data['deleteImages'] as $imageId) {
-                $image = Images_Add::find($imageId);
-                if ($image) {
-                    Storage::disk('public')->delete($image->image_portf);
-                    $image->delete();
-                }
-            }
         }
 
         $portfolio->save();
