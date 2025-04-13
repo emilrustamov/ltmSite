@@ -14,7 +14,9 @@ class HomeController extends Controller
         $leftMenu = false;
         $currentPage = "Главная";
 
-        $projects = Portfolio::where('isMainPage', 1)->get();
+        $projects = Portfolio::where('isMainPage', 1)
+                      ->where('status', 1)
+                      ->get();
         // var_dump($projects);
         // console.log($projects);
         // dd($projects);

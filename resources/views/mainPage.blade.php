@@ -26,18 +26,20 @@
 
     <div class="carousel-custom ">
         @foreach ($projects as $p)
-            <div class="carousel-custom-item">
-                <a href="/{{ $lang }}/portfolio/{{ $p['id'] }}">
-                    <div class="col flex-column slide-text">
-                        <p class="slide-title">{{ $p['title_' . $lang] }}</p>
-                        <a class="slide-a"
-                            href="/{{ $lang }}/portfolio/{{ $p['id'] }}">{{ __('translate.readMore') }}</a>
-                    </div>
-                    <img class="image-container" src="{{ asset('storage/' . $p['photo']) }}" alt="Image"
-                        class="" loading="lazy">
-                </a>
-            </div>
-        @endforeach
+        <div class="carousel-custom-item">
+            <a href="/{{ $lang }}/portfolio/{{ $p->id }}">
+                <div class="col flex-column slide-text">
+                    <p class="slide-title">{{ $p['title_' . $lang] }}</p>
+                    <a class="slide-a" href="/{{ $lang }}/portfolio/{{ $p->id }}">{{ __('translate.readMore') }}</a>
+                </div>
+                @if($p->getFirstMediaUrl('portfolio-images', 'webp'))
+                    <img class="image-container" src="{{ $p->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="Image" loading="lazy">
+                @else
+                    <img class="image-container" src="{{ asset('storage/' . $p['photo']) }}" alt="Image" loading="lazy">
+                @endif
+            </a>
+        </div>
+    @endforeach
     </div>
 </section>
 @endsection
