@@ -14,7 +14,7 @@ class Portfolio extends Model implements HasMedia
 
     public $table = "portfolio";
 
-    // Преобразование JSON-полей в массивы
+    // Преобразование JSON-полей в массивы + добавлено поле photo
     protected $casts = [
         'title'       => 'array',
         'who'         => 'array',
@@ -23,6 +23,7 @@ class Portfolio extends Model implements HasMedia
         'result'      => 'array',
         'status'      => 'boolean',
         'ordering'    => 'integer',
+        'photo'       => 'string',
     ];
 
     // Пример связи с категориями

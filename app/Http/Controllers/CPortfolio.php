@@ -72,72 +72,78 @@ class CPortfolio extends Controller
     }
 
     public function addPortfolio(Request $req, $lang)
-    {
-        $data = $req->only([
-            'urlButton',
-            'isMainPage',
-            'when',
-            'title_tm',
-            'title_ru',
-            'title_en',
-            'who_tm',
-            'who_ru',
-            'who_en',
-            'desc_tm',
-            'desc_ru',
-            'desc_en',
-            'target_tm',
-            'target_ru',
-            'target_en',
-            'res_tm',
-            'res_ru',
-            'res_en',
-            'status',
-            'ordering'
-        ]);
+{
+    $data = $req->only([
+        'urlButton',
+        'isMainPage',
+        'when',
+        'title_tm',
+        'title_ru',
+        'title_en',
+        'who_tm',
+        'who_ru',
+        'who_en',
+        'desc_tm',
+        'desc_ru',
+        'desc_en',
+        'target_tm',
+        'target_ru',
+        'target_en',
+        'res_tm',
+        'res_ru',
+        'res_en',
+        'status',
+        'ordering'
+    ]);
 
-        // Создаём запись портфолио без фото
-        $portfolio = new Portfolio;
-        $portfolio->urlButton  = $data['urlButton'];
-        $portfolio->isMainPage = $data['isMainPage'] ?? 0;
-        $portfolio->when       = $data['when'];
-        $portfolio->title      = [
-            'tm' => $data['title_tm'],
-            'ru' => $data['title_ru'],
-            'en' => $data['title_en'],
-        ];
-        $portfolio->who        = [
-            'tm' => $data['who_tm'],
-            'ru' => $data['who_ru'],
-            'en' => $data['who_en'],
-        ];
-        $portfolio->description = [
-            'tm' => $data['desc_tm'],
-            'ru' => $data['desc_ru'],
-            'en' => $data['desc_en'],
-        ];
-        $portfolio->target     = [
-            'tm' => $data['target_tm'],
-            'ru' => $data['target_ru'],
-            'en' => $data['target_en'],
-        ];
-        $portfolio->result     = [
-            'tm' => $data['res_tm'],
-            'ru' => $data['res_ru'],
-            'en' => $data['res_en'],
-        ];
-        $portfolio->status     = $data['status'] ?? true;
-        $portfolio->ordering   = $data['ordering'] ?? 0;
+    // Создаём запись портфолио без фото
+    $portfolio = new Portfolio;
+    $portfolio->urlButton  = $data['urlButton'];
+    $portfolio->isMainPage = $data['isMainPage'] ?? 0;
+    $portfolio->when       = $data['when'];
+    $portfolio->title      = [
+        'tm' => $data['title_tm'],
+        'ru' => $data['title_ru'],
+        'en' => $data['title_en'],
+    ];
+    $portfolio->who        = [
+        'tm' => $data['who_tm'],
+        'ru' => $data['who_ru'],
+        'en' => $data['who_en'],
+    ];
+    $portfolio->description = [
+        'tm' => $data['desc_tm'],
+        'ru' => $data['desc_ru'],
+        'en' => $data['desc_en'],
+    ];
+    $portfolio->target     = [
+        'tm' => $data['target_tm'],
+        'ru' => $data['target_ru'],
+        'en' => $data['target_en'],
+    ];
+    $portfolio->result     = [
+        'tm' => $data['res_tm'],
+        'ru' => $data['res_ru'],
+        'en' => $data['res_en'],
+    ];
+    $portfolio->status     = $data['status'] ?? true;
+    $portfolio->ordering   = $data['ordering'] ?? 0;
+
+    // Если файл не передан, устанавливаем photo как пустую строку
+    $portfolio->photo = '';
+
+    $portfolio->save();
+
+    // Если файл загружен, сохраняем его через Medialibrary и записываем URL в поле photo
+    if ($req->hasFile('image')) {
+        $media = $portfolio->addMediaFromRequest('image')
+                           ->toMediaCollection('portfolio-images');
+        $portfolio->photo = $media->getUrl();
         $portfolio->save();
-
-        // Если файл загружен, сохраняем его через Medialibrary
-        if ($req->hasFile('image')) {
-            $portfolio->addMediaFromRequest('image')
-                ->toMediaCollection('portfolio-images');
-        }
-
-        return redirect('/' . $lang . '/admin/all-projects');
     }
+
+    return redirect('/' . $lang . '/admin/all-projects');
+}
 
 
     public function editProject($lang, $id)
