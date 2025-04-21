@@ -20,26 +20,31 @@
 
     <!-- Меню (только десктоп, центрировано) -->
     <div class="hidden md:flex justify-center items-center gap-4 w-full md:w-1/2 lg:w-1/3 z-[999] whitespace-nowrap"
-         itemscope itemtype="http://schema.org/SiteNavigationElement">
+        itemscope itemtype="http://schema.org/SiteNavigationElement">
         <div class="nav-item">
             <a href="/{{ $lang }}/services"
-               class="text-sm md:text-base {{ Request::is($lang . '/services*') ? 'active' : '' }}"
-               itemprop="url">{{ __('translate.services') }}</a>
+                class="text-sm md:text-base {{ Request::is($lang . '/services*') ? 'active' : '' }}"
+                itemprop="url">{{ __('translate.services') }}</a>
         </div>
         <div class="nav-item">
             <a href="/{{ $lang }}/about_us"
-               class="text-sm md:text-base {{ Request::is($lang . '/about_us*') ? 'active' : '' }}"
-               itemprop="url">{{ __('translate.aboutUs') }}</a>
+                class="text-sm md:text-base {{ Request::is($lang . '/about_us*') ? 'active' : '' }}"
+                itemprop="url">{{ __('translate.aboutUs') }}</a>
         </div>
         <div class="nav-item">
             <a href="/{{ $lang }}/portfolio"
-               class="text-sm md:text-base {{ Request::is($lang . '/portfolio*') ? 'active' : '' }}"
-               itemprop="url">{{ __('translate.portfolio') }}</a>
+                class="text-sm md:text-base {{ Request::is($lang . '/portfolio*') ? 'active' : '' }}" itemprop="url">
+                {{ __('translate.portfolio') }}
+                <span id="newProjectBadge" class="badge ml-1"></span>
+            </a>
         </div>
+
+        <!-- Добавьте стиль для бейджа, если его ещё нет -->
+
         <div class="nav-item">
             <a href="/{{ $lang }}/contacts"
-               class="text-sm md:text-base {{ Request::is($lang . '/contacts*') ? 'active' : '' }}"
-               itemprop="url">{{ __('translate.contacts') }}</a>
+                class="text-sm md:text-base {{ Request::is($lang . '/contacts*') ? 'active' : '' }}"
+                itemprop="url">{{ __('translate.contacts') }}</a>
         </div>
     </div>
 
@@ -53,14 +58,16 @@
             <div class="relative group flex items-center">
                 <div class="cursor-pointer flex items-center gap-1">
                     <span>{{ strtoupper($lang) }}</span>
-                    <i class="fa-solid fa-arrow-down-long text-[#e31e24] text-xl group-hover:rotate-180 transition-transform"></i>
+                    <i
+                        class="fa-solid fa-arrow-down-long text-[#e31e24] text-xl group-hover:rotate-180 transition-transform"></i>
                 </div>
                 <div
                     class="absolute top-full left-0 mt-2 hidden group-hover:block bg-[#e31e24] text-white rounded px-4 py-2 z-50 shadow">
                     <ul class="text-center">
                         @foreach ($langs as $l)
                             @if ($lang !== $l)
-                                <li class="py-1 hover:underline"><a href="/{{ $l }}">{{ strtoupper($l) }}</a></li>
+                                <li class="py-1 hover:underline"><a
+                                        href="/{{ $l }}">{{ strtoupper($l) }}</a></li>
                             @endif
                         @endforeach
                     </ul>
@@ -70,8 +77,8 @@
 
         <!-- Меню (десктоп) -->
         <div id="menuButton"
-             class="hidden md:block w-20 bg-[var(--primary)] text-center hover:rounded-[20%] hover:scale-105 transition duration-300 ease-linear"
-             data-bs-toggle="modal" data-bs-target="#complexMenuModal">
+            class="hidden md:block w-20 bg-[var(--primary)] text-center hover:rounded-[20%] hover:scale-105 transition duration-300 ease-linear"
+            data-bs-toggle="modal" data-bs-target="#complexMenuModal">
             {!! nl2br(__('translate.menu')) !!}
         </div>
 
@@ -163,7 +170,8 @@
                         </div>
                     </div>
                     <div class="block-item-40 text-center reveal-item" id="reveal-5"><span class="main-offer-link "
-                            id="openFromMenu"><a class="!text-5xl font-bold">{{ __('translate.sugProject') }}</a></span></div>
+                            id="openFromMenu"><a
+                                class="!text-5xl font-bold">{{ __('translate.sugProject') }}</a></span></div>
                 </div>
             </div>
         </div>
@@ -227,6 +235,43 @@
             closeBtn.addEventListener("click", () => {
                 modal.classList.add("translate-y-full");
             });
+        }
+    });
+</script>
+<style>
+    .badge {
+        background-color: #e31e24;
+        color: white;
+        border-radius: 1rem;
+        padding: 0 0.5rem;
+        display: none;
+        position: absolute;
+        right: -15px;
+        top: -10px;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", async function() {
+        // Если переменная уже установлена (на portfolio), используем её,
+        // иначе делаем AJAX запрос для получения количества проектов.
+        let totalProjects = window.totalProjectsCount || 0;
+        if (totalProjects === 0) {
+            try {
+                const response = await fetch('/api/portfolio-count/{{ $lang }}');
+                const data = await response.json();
+                totalProjects = data.total;
+            } catch (error) {
+                console.error('Ошибка загрузки количества проектов:', error);
+            }
+        }
+
+        let viewedProjects = JSON.parse(localStorage.getItem("viewedProjects") || "[]");
+        const newCount = totalProjects - viewedProjects.length;
+        const badge = document.getElementById("newProjectBadge");
+        if (badge && newCount > 0) {
+            badge.textContent = newCount;
+            badge.style.display = "inline-block";
         }
     });
 </script>

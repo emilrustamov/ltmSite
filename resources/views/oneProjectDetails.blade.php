@@ -58,4 +58,14 @@
             @endif
         </div>
     </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const projectId = {{ $id }};
+            let viewedProjects = JSON.parse(localStorage.getItem("viewedProjects") || "[]");
+            if (!viewedProjects.includes(projectId)) {
+                viewedProjects.push(projectId);
+                localStorage.setItem("viewedProjects", JSON.stringify(viewedProjects));
+            }
+        });
+    </script>
 @endsection

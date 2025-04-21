@@ -60,6 +60,7 @@ Route::get('/sitemap.xml', function () {
     return $sitemap->toResponse(request());
 });
 
+Route::get('/api/portfolio-count/{lang}', [\App\Http\Controllers\CPortfolio::class, 'getPortfolioCount']);
 // Переадресация на /ru только для корневого маршрута
 Route::get('/', function () {
     return redirect("/{lang}");
