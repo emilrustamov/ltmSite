@@ -1,314 +1,319 @@
 <?php
 
 return [
-  'services' => 'Serwisler',
-  'aboutUs' => 'Biz Barada',
-  'aboutUsTitle' => 'LTM Studio：',
-  'portfolio' => 'Portfolio',
-  'blog' => 'Blog',
-  'contacts' => 'Kontaktlar',
-  'mainPage' => 'Baş sahypa',
-  'dateAdded' => 'Gosulan senesi:',
-  'who' => 'Kim?',
-  'when' => 'Hacan?',
-  'what' => 'Näme?',
-  'projectDetails' => 'Taslamanyň jikme-jikleri',
-  'description' => 'Düşündiriş',
-  'target' => 'Maksat',
-  'result' => 'Netije',
-  'curator' => 'Kurator',
-  'customer' => 'Sargytçy',
-  'team' => 'Taslama topary',
-
-  'contactsBackText' => "TELEFON\nE-POÇTA\nAL\nJOGAP",
-  'picturesFromProject' => 'Taslamadan käbir suratlar',
-  'goToSite' => 'Sahypany gör',
-  'texts' => [
-    "Koronawirussyz saýt",
-    "Işewürligi gowulaşdyrmak",
-    "Türkmenistandaky IT-hyzmatlar",
-    "Başaryp bilýän kompaniýa)"
-   ],
-
-  'pre_title' => "Aşgabatda sanly agentligiň hyzmatlary",
-  'title' => "Ady we logotipinden başlap\n işjeň satuwa çenli \n bir iş alyp barmak",
-  'p1' => 'Aşgabatda işewür maslahat beriş kompaniýasy hökmünde çylşyrymly we
-            hususy kompaniýalaryň işini ösdürmek üçin aýratyn çözgütler',
-  'p1_2' => 'Biz diňe "işimizi" däl, biz bu prosese "önüm eýesi" hökmünde seredýäris -
-     taslamanyň ähli tapgyrlaryna ýokary konsentrasiýa bilen garaýas.
-     Aşakdaky hyzmatlary hodürleýäris:',
-  'p1_2_custom' => 'Aşgabatda saýt döretmek hyzmatlary',
-  'p1_2_cont' => 'ajaýyp dizaýn bilen ýokary derejede.',
-  'advert' => 'Biz siziň gaty uzak gözlän',
-  'advert_custom' => 'Aşgabatdaky Web studiýaňyz',
-  'advert_cont' => '',
-  'emoji' => 'Otdan we hyjuwdan doly emosional dizaýny ajaýyp başarýarys',
-  'qualityTitle' => 'Siziň proýektiňiz täsirli we girdejili bolar',
-  'qualitySub' => 'Biziň maksadymyz, lider hökmünde sizi bazara alyp barmak ýa-da iň bolmanda mümkin bolan iň ýokary derejäni ýetirmek.',
-  'q1_title' => 'Siz arkaly öwrenmeýäris',
-  'q1_sub' => '10 ýyldan gowrak tejribe',
-  'q2_title' => 'Göçme goşundy',
-  'q2_sub' => 'Hil we netije hemişe garaşyşyňyzdan has ýokar',
-  'q3_title' => 'Iň gowy seneler',
-  'q3_sub' => 'Wagtynda tamamlap berýäs',
-  'q4_title' => 'Dogry marka platformasyny döretýäs',
-  'q4_sub' => 'Hiç hili «kolhoz» ýok, eger bu «toplumyň bir bölegi bolmasa',
-  'q5_title' => 'Dogry strategiýa',
-  'q5_sub' => 'Integrirlenen taslamalar, iş üçin profil alýar,
-     her etapda netijelilik wektory we marketing maslahaty',
-  'q6_title' => 'Biz meselä doly girýäs',
-  'q6_sub' => 'Diňläris, pikirleneris, seljereris we karar bereris',
-  'q7_title' => 'Netije üçin alada etýäris',
-  'q7_sub' => 'Her taslama umumy "çaga" hökmünde seredýäris',
-  'questionTitle' => 'Web-hyzmatlar soraglary:',
-  'questionSub' => 'Hemme soraga jogap beren ýerimizde - sprawkada okap bilersiňiz',
-  'questionSubCustom' => 'köplenç berilýän web hyzmatlary barada soraglary',
-  'call' => "Ýa-da jaň edip bilersiňiz ☎️+993(12)-75-37-13\n ýa-da ",
-  'mail' => 'poçta ýazyp',
-  'footerTitle' => "Türkmenistandaky IT-kompaniýadan has köp",
-  'footerSub' => "Biz Türkmenistandaky IT-kompaniýa bolup, tehnologiýa bilimleri bilen strategiki işewür çözgütleriň üýtgeşik utgaşmasyny hödürleýäris.
-      Biziň maksadymyz – müşderilere IT çözgütlerini innowasion ulanyp, bazardaky tendensiýalary çuňňur düşünmek arkaly olaryň işewürlik maksatlaryna ýetmekde kömek etmekdir.\n
-      Biz sanly üýtgeşmeleriň strategiýalarynyň doly taýýarlanyşyna we durmuşa geçirilmegine ýöriteleşýäris,
-      bu bolsa iş proseslerini awtomatlaşdyryp we optimizirläp, işiň netijeliligini ýokarlandyrmaga we ösüş üçin täze mümkinçilikleri açmaga kömek edýär.\n
-      Biziň hyzmatlarymyz IT maslahat berişiniň ähli ugurlaryny öz içine alýar, şol sanda toplumlaýyn çözgütleriň işlenip düzülmegi,
-      internet marketing, kiberhowpsuzlyk, programma üpjünçiligini işläp düzmek we maglumatlaryň dolandyrylyşy.\n",
-  'footerSubStrong' => "",
-  'mobileMenuTitle' => 'Biz internetde we ondan daşarda işewürligiň ösüşi üçin çözgütler taýýarlaýarys',
+    'services' => 'Serwisler',
+    'aboutUs' => 'Biz barada',
+    'aboutUsTitle' => 'LTM Studio：',
+    'portfolio' => 'Portfolio',
+    'blog' => 'Blog',
+    'contacts' => 'Kontaktlar',
+    'mainPage' => 'Baş sahypa',
+    'title' => "Pikir dörän pursatyndan\n hakykata öwrülýänçä:",
+    'p1' => "Biz Türkmenistanda diňe bir IT hyzmatlaryny hödürleýän kompaniýada däl-de, eýsem müşderilerimiziň işini täze derejä çykarmagy maksat edinýän topar. Her bir proýekti iň ýokary üns we netijelilik bilen ýerine ýetirýäris. Biziň hünär ussatlygymyz we innowasion pikirlenşimiz birleşip, siziň işiňizi bäsdeşleriň arasynda tapawutlandyrjak çözgütleri döredýär.",
+    'p1_2' => "Biz bilen işleşip, siziň biznesiňiz täze ösüş ýoluna çykýar,",
+    'p1_2_custom' => "pikirleriňiz bolsa üstünlikli taslamalara öwrülýär.",
+    'p1_2_cont' => "Türkmenistandaky IT kompaniýasy bilen işiňize täze ösüş ýoluny açyň.",
+    'emoji' => "Her bir çözgüdimizde innowasiýanyň uçguny we tehnologiýalara bolan höwesimiziň yşygy bar.",
+    "emoji1" =>  "🤞🖖✌️",
+    'qualityTitle' => 'Siziň proýektiňiz netijeli we girdejili bolar',
+    'qualitySub' => 'Biziň maksadymyz — sizi bazarda liderlige çykarmak ýa-da iň bolmanda mümkinçiligiň ähli peýdasyny almak.',
+    'q1_title' => '🤓 Ilki özümizde synagdan geçýäris',
+    'q1_sub' => 'Ilki özümizde barlap görýäris, soňra beýleki müşderilere ornaşdyrýarys',
+    'q2_title' => '💰 Girdejili maýa goýum',
+    'q2_sub' => 'Hil we netije siziň garaşyşyňyzdan hem ýokary bolýar',
+    'q3_title' => '⏱️ Iň oňat möhletler',
+    'q3_sub' => 'Wagt taýdan bozulmalar ýa-da gijikdirmeler ýok',
+    'q4_title' => '🧱 Brend üçin dogry platforma döredýäris',
+    'q4_sub' => 'Sistemaly, logiki we kämil döredijilik bilen – hiç hili bulaşyklyk ýok',
+    'q5_title' => '🧭 Dogry strategiýa',
+    'q5_sub' => 'Toplumlaýyn proýektler işiň netijeliligini tapawutly ugurlar boýunça ýokarlandyrýar',
+    'q6_title' => '🧠 Meselä düýpli seredýäris',
+    'q6_sub' => 'Diňleýäris, pikirlenýäris, analiz edýäris we çözýäris',
+    'q7_title' => '❤️‍🔥 Netije üçin ýürekden alada edýäris',
+    'q7_sub' => 'Her bir proýekte öz proýektimiz ýaly çemeleşýäris',
+    'questionSub' => 'Jogap beren ähli soraglarymyzyň ýerleşen kömek sahypamyzy okap bilersiňiz',
+    'questionSubCustom' => 'Hyzmatlar baradaky ýygy-ýygydan berilýän soraglar',
+    'call' => "Isleseňiz jaň edip bilersiňiz ☎️",
+    'number' => "+993(12)75-37-13\n",
+    'write_to_email' => "ýa-da ýazyň",
+    'mail' => 'email arkaly',
+    'footerTitle' => "Больше, чем IT-компания в Туркменистане",
+    'footerSub' => "Мы - IT-компания в Туркменистане,
+     предлагающая уникальное сочетание технологической экспертизы и стратегических бизнес-решений.
+      Наша миссия — помогать клиентам достигать их бизнес-целей через инновационное применение IT-решений и глубокое понимание рыночных трендов.\n
+       Мы специализируемся на разработке и реализации комплексных стратегий цифровой трансформации,
+    которые повышают операционную эффективность за счет автоматизации и оптимизации бизнес-процессов, открывая новые возможности для роста.\n
+    Наши услуги охватывают весь спектр IT, включая разработку комплексных решений,
+     интернет маркетинг, кибербезопасность, разработку программного обеспечения и управление данными.",
+    'footerSubStrong' => "",
+    'mobileMenuTitle' => 'Biz internetde hem-de ondan daşarda netijeli biznes üçin çözgütleri işläp düzýäris',
+    'dateAdded' => 'Gosulan senesi:',
+    'who' => 'Kim?',
+    'when' => 'Hacan?',
+    'what' => 'Näme?',
+    'projectDetails' => 'Taslamanyň jikme-jikleri',
+    'description' => 'Düşündiriş',
+    'target' => 'Maksat',
+    'result' => 'Netije',
 
 
+    'picturesFromProject' => 'Proýektden birnäçe surat',
+    'contactsBackText' => "jaň etmek\nýazmak\njogap almak\nkabul etmek",
+    'goToSite' => 'Görmek',
+    'texts' => [
+    'Koronawirusyz saýtlary döredýäris',
+    'Biznesi has gowy tarapa üýtgedýäris',
+    'Türkmenistanda IT ösüşi',
+    'Başgaça pikir edýän kompaniýa)',
+    'Iki gezek girmegi utandyrmaýan programma',
+    'Bitrix psihoterapiýasyz hem bolup bilýär',
+    'Siziň biznesiňiz 5 dollarlyk şablondan has gymmatly',
+    'Hatda eneleriň hem ýitmejek internet dükanlary',
+    'Bitrix24: doga-dileg we şaman ýok – diňe netijeli iş prosesleri',
+],
 
 
-  'leftRequest' => 'Haýyş iberiň',
-  'copyright' => 'Türkmenistanda IT maslahat beriş kompaniýasy',
-  'moreThan1' => 'More than just',
-  'moreThan2' => 'IT-company',
-  'aboutSub' => 'Ilkinji',
-  'aboutSubCont' => 'Aşgabatda we umuman Türkmenistanda',
-  'aboutTitle' => 'Biz mynasyp kärhanalara has meşhur bolmaga kömek edýäris.',
-  'aboutP1' => 'Aşgabatdaky kompanivamyz, sanly gurşawy we awtonom görnüşi ulanyp,
-    sarp edijileriňize dogry çemeleşme tapmaga kömek edýär',
-  'aboutP2' => '',
-  'aboutP2custom' => 'At döretmekden we logotipden',
-  'aboutP2cont' => 'kanagatlanan müşderiler üçin web-sahypasyny döretmege çenli',
-  'aboutP3' => 'Işiňiz üçin dogry çözgütleri işläp düzmek bilen gyzyklanýarys:
-     logotipleri we korporatiw stili döretmek, web sahypalaryny ösdürmek,',
-  'aboutP3custom' => ' UI / UX interfeýsleri',
-  'aboutP3cont' => 'işlemek, mahabat strategiýasyny düzmek.',
-  'aboutP4' => "Sziň ulanyjylaryňyz hakda pikir etýaris we gowy pikirleri hödürleýaris",
-  'aboutP5' => 'Işgärlerden rezultat almak üçin olara seretmegiň zerur däldigini bilýäris,
-    biri-birimize ynanýarys. Biziň bilen işleýänleriň hemmesiniň höwesi bar we edýän işini gowy görýär.
-    Şonuň üçin uzakdan bolsa hem netijeli işleýäris. Bu aňly saýlaw we býudjet tygşytlamalaryňyzdan başga-da —
-    sebäbi ep-esli çykdajy aýrylýar. Toparymyzda Aşgabatda iň gowy dizaýnerleri bar, şonuň üçin hemme zady « gözellikde » edýäris.',
-  'history' => 'Taryh',
-  'aboutHistory' => "Biziň kompaniýamyz ýaly kompaniýalar az, biz edýän işlerimize hakykatdanam gatnaşýarys we
- müşderiniň bize «Mersedes» ýa-da «Shkoda» sürüp gelmegi möhüm däl. Ösüşe maýa goýumlaryna deň baha berýäris we iň ýokary täsirli çemeleşmeleri gysýarys.\n
- « markalaryny », « tendensiýalary », « çalşyklary » kowalamaýarys ... ... — biz olary döredýäris.\n
- Dogruçyllygy, hilini, stilini we döredijiligini gowy görýäris — şonuň üçin Aşgabatda ajaýyp döredijilik gullugy hökmünde çykyş edip,
- sarp ediji bilen 'dogry' marketing we täsirli aragatnaşyk esasynda awtoryň çemeleşmesini saýladyk.\n
- Biziň taryhymyz — bir taslamany işläp düzmekde iki sany meňzeş adam hökmünde ýygnanan adamlar hakda we
- birnäçe wagtdan soň ýüzden gowrak boldy. Işgärleriň sany hem köpeldi, indi biz on sany — hemişelik we ygtybarly. \n
- Hünärmenlerimiziň hemmesi “ täze başlanlar ” ýa-da « ştatdan daşary stajerler » däl. Uly hünärmenlerimiziň başarnyklarynyň
-iň pes derejesi Senior. Munuň sebäbi bize ýerine ýetirýän proýektlerimiziň hili biziň üçin möhümdigi sebäpliy.",
+    'leftRequest' => 'Arzaňyzy galdyryň',
+    'copyright' => 'Türkmenistandaky IT kompaniýasy',
+    'moreThan1' => 'Diňe bir zat däl',
+    'moreThan2' => 'IT kompaniýasyndan hem giň',
 
-  'aboutStatistics' => 'Sowuk statistika',
-  'years' => 'ýyl dizaýnda',
-  'projects' => 'Proýektler',
-  'skuka' => 'Müşderiler',
-  'bitrix24' => 'Razy müşderiler',
-  'redBull' => 'RedBull-lar içilen',
-  'aboutPerfect' => "Ganymyzdaky kämillik geni bar \n sebabi üstünlik jikme-jik üns bermekden \n we ýeterlik tertip-düzgün bilen bilelikde bolýar",
-  'valueTitle' => 'Biziň gymmatlyklarymyz',
-  'valueSub' => 'Her aýratynlygy ähli tarapdan ösdürmek',
-  'value1' => 'Peýdaly bolmak',
-  'value1Sub' => "Her etapda jogapkärçilikli\n we dogruçyl bolmak",
-  'value2' => 'Girdeji getirmek',
-  'value2Sub' => "Analizlemek, rasional\n we tasirli goşundydygyny\n barlamak",
-  'value3' => 'Ösmek',
-  'value3Sub' => "Duran ýeriňde durmazlyk. \n Dürli tarapdan meselelere seretmek",
-  'valueSubCont' => 'Okan taslamalarymyzyň arasynda, öwrenýäris we gowulaşmagy dowam etdirýäris',
-  'exp' => 'Tejribeden gowy zat ýok 😉',
-  'valueJobs' => 'Grafiki dizaýnda gowy ösdük: logotipleri mümkin boldugyça hünär taýdan ösdürýäris we olara korporatiw stiller, satuw ýerlerini döredýäris,
-     önümler üçin gaplamak bilen meşgullanýarys, bölek we sergi desgalarynyň düşünjelerine seredýäris.',
-  'aboutSpecTitle' => 'Kompaniýamyzyň ugry',
-  'aboutSpecSub' => 'Edip bilmeýän zadymyzy etmäge çalyşmaýarys, ýöne täze çözgütleri düzmekde hem gorkmaýarys, netijämizi ösdürýäris we gowulaşdyrýarys',
-  'spec1' => 'Web-saýtlary we internet dükanlaryny işläp düzmek',
-  'spec1Sub' => "Häzirki zaman tehnologiýalaryny ulanyp\n islendik çylşyrymlylykdaky web-saýtlary\n we internet dükanlaryny döretmek",
-  'spec2' => 'Mobil goşundylary işläp düzmek',
-  'spec2Sub' => "Kreatiwlik üçin akylly\n we netijeli maýa goýum",
-  'spec3' => 'Bitrix24 CRM Ulgamyny Ornaşdyrmak',
-  'spec3Sub' => "Bitrix24 platformasyny iş proseslerini awtomatlaşdyrmak, netijeliligi ýokarlandyrmak we kompaniýanyň içinde aragatnaşygy gowulandyrmak üçin integrasiýa we sazlama.",
+  'history' => 'Kompaniýanyň taryhy',
+'aboutHistory' => "📚 LTM Studio — Türkmenistanda web sahypalaryny, mobil goşundylary döretmek we Bitrix24 ulgamyny ornaşdyrmak boýunça döwrebap IT çözgütlerini hödürleýän kompaniýa. Biz uly we orta biznesler bilen işleýäris, diňe sanly önümleri döretmek däl-de, eýsem olaryň iş prosesindäki 'agry nokatlaryny' IT arkaly çözmegi maksat edinýäris.\n\n
 
-  'spec4' => "Dolandyryş maslahaty",
-  'spec4Sub' => "Optimizasiýa, strategiki ýolbaşçylyk, bäsdeşlik artykmaçlygy, prosesi gowulaşdyrmak, adamlaryň ösüşi.",
-  'aboutPartnerTitle' => 'Hyzmatdaşlyk',
-  'aoutPartnerSub' => 'Biz it-kompaniýalar, production kollektiwler, PR bilen meşgul bolýan kompaniýalar, binagärlik ussahanalary we beýlekiler ugrunda hyzmatlar bermek.
-     Biziň üçin teklip bar bolsa, ýazyň ýa-da jaň ediň',
-  'aboutTeamTitle' => 'Toparyň bölegi bolmak',
-  'aboutTeamSub' => "Eger siz ajaýyp hünärmen bolup, frilans ýa-da gündelik işden IT pudagynda täze ugra geçmäge taýýar we kararly bolsaňyz, siziň gündeliklikden ýadaman, we käbir kompaniýalaryň ýasama korporatiw etikasynyň sizi bizar edýän bolsa, mysal üçin, diňe project manager taslamany alyp barýarka-da, daşary ýurt dillerini hökmany bilmek talaby, ýa-da resepsiýada 'sekuntda-sekunt' bellik edip, jerime salmak ýaly – onda biziň toparymyza goşulyň 💪.
-   Ine, biziň kompaniýamyzda häzirki wagtda açyk wezipeler:",
-  'aboutTeamSub2' => 'Biz işgärlerimize hormat goýýarys we ösmäge mümkinçilik berýäris, dolandyryjymyz bolsa hemme zady
-    iň amatly görnüşde meýilnamalaýar. Emma rezýumeňizi ibermezden ozal şeýle häsiýetleri barlaň:',
-  'teamQ1' => 'Siz 100% hünärmen we belli bir derejä ýetdiňiz',
-  'teamQ2' => 'Öz işiňiziň muşdagy',
-  'teamQ3' => 'Düýn kurslary gutarmadyňyz, bir ugurda 5 ýyldan gowrak tejribäňiz bar',
-  'teamQ4' => 'Siz aýlygyňyzyň ýokarlanmagyna garaşman, işiňizden lezzet alýarsyňyz',
-  'teamQ5' => 'Jikme-jikliklere üns berýäňiz ',
-  'teamQ6' => "Siz öz işiňizde spesialist",
-  'teamQ7' => 'Kyn işlerden gorkmaýarsyňyz',
-  'teamQ8' => 'Hemişe hemme zady ahyryna çenli tamamlaýarsyňyz',
-  'teamQ9' => 'Täze bir zady kynçylyk hökmünde kabul edýärsiňiz we ýeňmäge taýyn',
-  'teamQ10' => 'Bir zat netije bermese, “depressiýa" düşmeýäňiz  ',
-  'teamQ11' => '"Düşünmedim", "bilmedim", "tapmadym" diýen sözler siziň sözlügiňizde ýok',
-  'teamQ12' => 'Öz ýalňyşlygyňyzda başga jogakäri gölemeýärsiňiz',
-  'teamQ13' => 'Siz aňsat turup bilýäňiz (10 töwerekler)',
-  'teamQ14' => 'Pişikleri gowy görýärsiňiz we hormatlaýarsyňyz',
-  'teamQ15' => '"Häzir Bali” -de dynç alýan hem bolsaňyz, elmydama habarlaşyp bilýärsiňiz',
-  'teamQ16' => 'Kärleriň arasynda aňsatlyk bilen geçýärsiňiz',
-  'teamQ17' => 'Her sekuntda täze bilim alýarsyňyz',
-  'teamQ18' => '“Synpdaşlarynda” hiç haçan akkaundyňyz ýokdy (Iň bolmanda abraýyňyza ýetirilen zyýana düşünýärsiňiz)',
-  'aboutFooterSub' => "Iň azyndan 12-si gabat geldimi? Onda rezýumeni iberip bilersiňiz\n",
-  'custom' => 'info@ltm.studio',
-  'mailHr' => 'info@ltm.studio',
-  'aboutFooterSubCont' => '– belki biziň toparymyzyň biri bolarsyňyz.',
-  'aboutFooterTitle' => " Aşgabatda marketing \n we mahabat gullugy \n",
+👨‍💻 'Biz — hünärmenler topary' diýen söz ähli saýtlarda bar, emma biz beýlekilerden tapawutly. LTM Studio — iri kompaniýalarda 4+ ýyllyk tejribesi bolan IT hünärmenlerinden ybarat topar. Biz öz proýektlerimizi döretmek we müşderilere täzeçe, döredijilikli çözgütleri hödürlemek üçin birleşdik. LTM Studio-da öň korporatiw çäklendirmeleriň kölegesinde galan pikirleri we çemeleşmeleri batyrgaý we innowasion görnüşde durmuşa geçirýäris.\n\n
 
-  'portfolioTitle' => 'Studiýa taslamalary',
-  'portfolioSub' => 'Býudjeti umumy mukdary 1500000 $ -den gowrak maýa goýujylaryna getirmegi başaran köp lezzetli iş',
-  'menuAll' => 'Hemmesi',
-  'menu' => "ME\nNU",
-  // 'menuLogo' => 'Logotipler we korporatiw stili',
-  // 'menuAdvert' => 'Polygrafiýa, mahabat',
-  // 'menuPack' => 'Упаковка',
-  'landing' => 'Lending',
-  'multiPage' => 'Köp sahypaly web-sahypa',
-  'dashboards' => 'Daşbordlar',
-  'mobApp' => 'Mobil applikasiýalar',
-  'onlineShop' => 'Internet Magazin',
-  'catalog' => 'Katalog web-sahypa',
-  'board' => 'Bildiriş tagtasy',
-  'more' => 'Has köp görkez',
+💡 Biziň ýörelgämiz — müşderiniň netijesine gönükdirilen iş we onuň işine hakykatdan hem peýda berjek zatlary teklip etmek. Her bir proýekte aýratyn çemeleşýäris, käwagt iň amatly çözgüt taýýar şablon bolsa-da (bu elbetde gowy däldir((( ), biz ony hem saýlap bilýäris.\n\n
 
-  'blogSub' => 'Biz peýdaly ýa-da gyzyklanýan dürli makalalary, bellikleri, habarlary we siziň halap biljek maglumatlaryňyzy paýlaşýarys. Şeýle hem ',
-  'blogSubCustom' => 'telegram kanalymyzda',
-  'blogSubCont' => 'amatly formatda okaň',
-  'blogDiff' => 'Dürli',
-  'blogNews' => 'Täzelikler',
-  'blogUseful' => 'Полезности',
-  'blogDigit' => 'Sanly makalalar',
+🚀 Maksatlaryňyza has laýyk gelýän aýratyn önümi döretmek mümkinçiligi bar bolsa — biz şol ýoly hödürläris. Biz müşderilerimize ösüşe tarap ýol açýan netijeli çözgütleri teklip edýäris we tehniki kynçylyklaryň hemmesini özümize alýarys.\n\n
 
-  'contactsTitle' => 'Biziň bilen habarlaşyň',
-  'contactsSub' => "Biz bilen 09.00-dan 18.00-a çenli (Duşenbe - Anna günleri aralygynda), \n ",
-  'messenger' => 'şenbe güni',
-  'contactsSubCont' => " 13.00-a çenli.\n Sorag gyssagly bolsa, has gowusy — jaň ediň.\nDuşuşmak — bolýa, biziň ofisimize geliň — ",
-  'map' => 'kartadaky biziň salgymyz',
-  'sugProject' => 'Taslama teklip et',
-  'pigeon' => "Email arkaly\n kepderi iber",
-  'sendText' => 'Ugratmak',
-  'formError' => 'Formada ýalňyşlyklar bar!',
-  'formName' => 'Adyňyz',
-  'formPhone' => ' Siziň telefon belgiňiz',
-  'formProject' => 'Haýsy taslama?',
-  'formEmail' => ' Siziň e-poçtaňyz',
-  'formComment' => 'Siziň teswiriňiz ýa-da düşündirişiňiz',
-  'weAreBest' => "Işewürlikde \niň gowusy",
-  'formFunny' => "NÄME ÜÇIN BIZ BAŞGA \n ETETMELI?",
-  'titleForm' => "Pikirleriňizi herekete öwüriň: \ indi bize ýüz tutmaň!",
-  'descForm' => 'Her beýik syýahat ilkinji ädimden başlaýar. Iş dünýäsinde bu ädim
-     ýönekeý bolup biler
-     täze mümkinçiliklere we üstünliklere gapy açýan habar. LTM Studio-da, her kimiň arkasynda durýandygyna ynanýarys
-     isleg innowasiýa we özgerişler üçin potensialdyr. ',
-  'formModalTitle' => 'Biz başlaýarysmy?',
-  'formModalDesc' => 'Biziň bilen taslamalar aňsat we rahat, geliň duşuşalyň!',
-  'lampText' => "Geldi, sürtdi,\n anketa iberdi ",
-  'myRazbirayemsya' => 'Biz düşünişýäris:',
-  'readMore' => 'Giňişleýin',
-  'allServ' => 'Ähli hyzmatlar',
-  'home_h1' => 'Türkmenistanda IT maslahat beriş - tehnologiýany artykmaçlyga öwürmek',
-  'servTitle1' => "Websaýt\n döretmek",
-  'servSubTitle1' => "Islendik çylşyrymlylykdaky, stildeki we täsir galdyryjy websaýtlar",
-  'servDesc1' => "Websaýt döretmegiň toplumlaýyn çemeleşmesi, dizaýn, programmalaşdyrmak we test etmegi öz içine alýar. Biziň çözgütlerimiz siziň işewürligiňiziň aýratynlyklaryna laýyk gelýär, ýokary funksiýalylygy, ulanyjy üçin amatlylygy we döwrebap dizaýny üpjün edýär. Işiňiz üçin artykmaçlyklaryňyzy görkezjek professional websaýt bilen internetde has görünür boluň.",
-  'servTitle2' => "Mobil programmalar döretmek",
-  'servSubTitle2' => "Siziň işewürligiňize mahsus aýratynlyklary nazara alyp, Android we IOS programmalar",
-  'servDesc2' => "Siziň işiňiz üçin ýöriteleşdirilen çözgütler. IOS we Android üçin programmalar döredýäris, siziň kompaniýaňyzyň netijeliligini ýokarlandyrmaga we belli bir işewürlik maksatlaryna ýetmäge gönükdirilen. Amaly, çalt we ygtybarly - biziň programmalar işewürlik arsenalynyň ygtybarly guralyna öwrüler.",
+🤝 LTM Studio — tehnologik innowasiýalara we sanly transformasiýa tarap ýolda siziň ygtybarly hyzmatdaşlaryňyz. Biz diňe bir meseläňizi çözüp goýbermeris — eýsem biziň hödürleýän çözgütlerimiz, bäsdeşleriňiz hünärini üýtgetmegine-de sebäp bolup biler.\n"    'aboutStatistics' => 'Холодная статистика',
+  
+    
+    'years' =>'IT-däki ýyllar',
+    'projects' => 'Işjeň proýektler',
+    'skuka' => 'Gyzyksyz çözgütler',
+    'bitrix24' => 'Bitrix24 ornaşdyryldy',
+    'redBull' => 'Içilen Redbull-lar',
+    'aboutPerfect' => "Bizde perfektsionizmiň geni bar\n — üstünlik bolsa \njikme-jikliklere we dissiplina bagly.",
+    'valueTitle' => 'Biziň gymmatlyklarymyz',
+    'valueSub' => 'Her bir ugra "çuňňur" düşünip, onuň gymmatyny artdyrmak',
+    'value1' => "Her ädimde \njogapkärçilik we dogruçyllyk",
+    'value1SubMobile' => "Her ädimde jogapkärçilik we dogruçyllyk",
+    'value2' => 'Girdeji gazanmak',
+    'value2Sub' => "Analiz etmek, seljermek \nwe netijeli \nmaýa goýmak",
+    'value2SubMobile' => "Analiz etmek, seljermek we netijeli maýa goýmak",
+    'value3' => 'Ösmek',
+    'value3Sub' => "Ýerinde durman, \nmeseleleri dürli ugurdan çözmek",
+    'value3SubMobile' => "Ýerinde durman, meseleleri dürli ugurdan çözmek",
+    'valueSubCont' => 'Proýektleriň arasynda biz öwrenýärdik, öwrenýäris we ösüşi dowam etdirýäris',
+    'exp' => 'Näçe öwrenseňem, tejribäniň ýerine geçjek zat ýok😉',
+    'valueJobs' => 'Grafiki dizaýn babatda biz güýçli ösüş gazandyk: Aşgabat boýunça at dakmak (neýming) işleri bilen meşgullanýarys, ýokary derejede logotipleri we olara degişli korporatiw stil döredýäris, satylýan web sahypalaryny taýýarlaýarys, önümler üçin gaplama dizaýnlaryny işläp düzýäris hem-de söwda we sergi stendleriniň konsepsiýalaryny düzýäris.',
+    'aboutSpecTitle' => 'LTM Studio-nyň ýöriteleşen ugurlary',
+    'aboutSpecSub' => 'Biz başarmaýan işimize baş goşmaýarys, ýöne täze çözgütleri öwrenmekdenem gorkmaýarys — biz yzygider ösýäris we netijämiz has-da  gowulaşýar.',
+    'spec1' => 'Разработка веб-сайтов и интернет магазинов',
+    'spec1Sub' => "Создание сайтов и интернет-магазинов любой\n сложности с использованием\n современных технологий",
+    'spec2' => 'Web sahypalaryny we internet dükanlaryny taýýarlamak',
+    'spec2Sub' => "Kreatiwlige\nakylly we netijeli\nmaýa goýum hökmünde",
+    'spec3' => 'Bitrix24 CRM ulgamyny ornaşdyrmak',
+    'spec3Sub' => 'Bitrix24 platformasyny integrirlemek we sazlamak arkaly iş proseslerini awtomatlaşdyrmak, netijeliligi ýokarlandyrmak we kompaniýanyň içindäki aragatnaşygy gowulandyrmak.',
 
-  'servTitle3' => "CRM Bitrix24-i ornaşdyrmak",
-  'servSubTitle3' => "Işgärleriň iş ýerini gözegçilikde saklaň we dolandyryň",
-  'servDesc3' => "Bitrix24 bilen siz amatly ulgamyň üsti bilen işgärleriň işine gözegçilik we monitoring alyp bararsyňyz
-      - wezipeler we hasabatlar ulgamy bilen. Ulgamyň CRM komponenti müşderiler bilen gatnaşyklaryňyzy gowulandyrar, ähli
-      interaksiýalary we amallar taryhyny yzygiderli yzarlamagy üpjün eder. Bitrix24 taslama
-      işlerini hem goldaýar, taslamalary toparyňyzda meýilleşdirmäge we utgaşdyrmaga kömek edýär, her bir wezipäniň
-      üstünlikli we wagtynda ýerine ýetirilmegini üpjün edýär.",
-  'servTitle4' => "Logo Tiger 3 we Akinsoft hasapçylyk programmalaryny ornaşdyrmak",
-  'servSubTitle4' => "Işewürlik hasapçylygy - aňsat we täsirli",
-  'servDesc4' => "Ammaryň gözegçiligi we monitoringi, inventarizasiýa meýilleşdirmesi, sargyt teklibi, resminamalar
-       dolanyşygynyň ýönekeýleşdirilmegi, el zähmetini we adam faktorlaryny azaltmak ýaly işewürligiňiziň
-       köp sanly funksiýasy hasapçylyk programmasyny ornaşdyrmak arkaly amala aşyrylýar. Iň möhümi bolsa, biz diňe
-       programmany gurup goýmaýarys, ony diňe iňlis dilinde galdyrman, işiňizi doly okadýarys we
-       tehniki taýdan goldaýarys.",
-  'servTitle5' => "Kompaniýanyň guramaçylyk diagnozy",
-  'servSubTitle5' => "Siziň işewürligiňizdäki gizlin mümkinçilikleri açmak",
-  'servDesc5' => "Biz netijesiz prosesleri, aragatnaşyk we dolandyryş meselesini, serişdeleriň irratsional
-     ulanylyşyny we kompaniýanyň gurluşyndaky gowşak baglanyşyklary anyklamaga we ýok etmäge kömek edýäris. Çuňňur
-     analiz we subut edilen usullar arkaly, işiňiziň häzirki ýagdaýyny anyk düşünmäge we
-     işiňizi optimizirlemek, öndürijiligi ýokarlandyrmak we umumy netijeliligi artdyrmak üçin
-     amaly maslahatlar berýäris.",
-  'servTitle6' => "Analitik gurallar",
-  'servSubTitle6' => "Dolandyryş çözgütleri üçin wizual analitika",
-  'servDesc6' => "Biziň toplumlaýyn çözgütlerimiz bilen menejerleriň statistikany görmek üçin
-     programma üpjünçiligi boýunça çuňňur bilime mätäçligini, adam faktoryny we sabotaj töwekgelçiligini, 
-     standart hasabat bilen ýygy-ýygydan ýüze çykýan meseleleri ýok edýäris. Biz islendik çylşyrymlylykda hasabatlar 
-     döredýäris, olar siziň işiňiziň zerurlyklaryna doly laýyk gelýär. Mobil programmanyň kömegi bilen, siz
-     dünýäniň islendik ýerinden maglumatlara elýeterlilik gazanyp, hemişe gözegçilik edip bilersiňiz we
-     üýtgeşmelere wagtynda jogap bermegiň mümkinçiligine eýe bolarsyňyz.",
+    'spec4Sub' => "Optimizasiýa, strategik ýolbaşçylyk, bäsdeşlik artykmaçlyklary, iş proseslerini kämilleşdirmek, işgärleri ösdürmek.",
 
-  //  'servTitle7' => "Management Consulting",
-  'servSubTitle7' => "Ösüş we täzelikler üçin çözgütler",
-  //  'servDesc7' => "Management consulting aims to solve specific problems that many businesses face: inconsistency in management processes, low productivity and inefficient use of resources. We help eliminate these shortcomings by offering strategies to improve internal communication and synergy between departments, optimization management decisions and increasing overall operational efficiency through the implementation of IT tools.",
-  'servTitle8' => "Antiwiruslar \n Eset we Kaspersky",
-  'servSubTitle8' => "Sanly howplara garşy siziň galkanyňyz",
-  'servDesc8' => "Biz öňdebaryjy işläp düzüjilerden – Eset we Kaspersky – ygtybarly antiwirus çözgütlerini hödürleýäris.
-     Bu önümler ähli görnüşdäki zyýanly programma üpjünçiligine, phishing-e, haker
-     hüjümlerine we beýleki howplara garşy toplumlaýyn goragy üpjün edýär. Biziň çözgütlerimiz bilen siz
-     korporatiw maglumatyňyzy we şahsy maglumatlaryňyzy gorap, tor operasiýalarynyň howpsuzlygyny ýokarlandyryp,
-     ulgamyňyzyň öndürijiligini we gizlinligini üpjün edip bilersiňiz.",
-  'servTitle9' => "Satuw bölüminiň diagnozy we ösdürilmegi",
-  'servSubTitle9' => "Satuwlar iň ýokary netijelilikde",
-  'servDesc9' => "Tekst gerek",
+    'aboutPartnerTitle' => 'Hyzmatdaşlyk we Partnýorçylyk',
+
+    'aboutPartnerSub' => 'Biz IT kompaniýalar, startaplar we hyzmatlary hödürleýän kärhanalar bilen hyzmatdaşlyga açyk. Teklipleriňiz bar bolsa — bize ýazyp ýa-da jaň edip bilersiňiz.',
+
+    'aboutTeamTitle' => 'Toparyň bir bölegi bol',
 
 
-  'aboutUsFooter1' => 'Biz siziň işiňizi öňe süýşürýän "detallar we gurallar" döredýäris. Her bir pikiri amala aşyran wagtymyz, onuň gymmatlyklaryny we pelsepesini giňeldýäris, işewürlikleriň zerur bolan ösüşine ýetmegine kömek edýän manyly çözgütler döredýäris.',
-  'aboutUsFooter2' => 'Biziň kompaniýamyz "netijeliligi" ilkinji ýere goýýar we işewürligiň ähli pragmatizmine garamazdan, siziň diňleýjiňiz bilen köp ýyllaryň dowamynda aragatnaşyk gurup biljek çözgütleri ornaşdyrmak üçin döredijilikli pikirleri tapýarys. LTM Studio başarýan studiýa!',
-  'aboutUsFooter3' => 'IT-kompaniýa "LTM Studio" 2017-nji ýylda esaslandyryldy. Biziň kompaniýamyzyň şygary: "Döredýär we ylham berýär". Giň gerimli professional IT-hyzmatlardan başga-da, biz öňdebaryjy tehnologiýalary we şahsy çemeleşmäni birleşdirýän IT çözgütlerimiz bilen buýsanýarys. Biz müşderilere olaryň işlerini ösdürmek üçin innowasion we täsirli strategiýalary, web sahypalaryndan we şahsy mobil programmalaradan başlap, belli bir işewürlik meseleleri üçin döredilen çylşyrymly toplumlaýyn ulgamlara çenli hödürleýäris.',
+    'aboutTeamSub' => "Eger siz ökde hünärmen bolsaňyz we frilansdan ýa-da birmeňzeş, gündelik işlerden dynyp, IT ulgamynda täze ugra geçmäge çynlakaý taýýar bolsaňyz — dogry ýere geldiňiz.  
+Eger sizi adaty korporatiw düzgünler ýadadýan bolsa, mysal üçin: diňe project manager taslamany alyp barýan hem bolsa-da, daşary ýurt dilini bilmek hökmany ýaly talaplar ýa-da resepsiýada sekuntma-sekunt bellige durmadyk üçin jerime salynýan ýagdaýlar — onda geliň biziň toparymyza goşulyň 💪  
+Şu ýerde häzirki açyk wezipeler bilen tanyşyp bilersiňiz:",
 
- 'aboutUsFooter4' => 'Biziň IT-hyzmatlarymyz müşderilere işewürlik proseslerini optimizirlemäge we müşderiler bilen
-     aragatnaşygy gowulandyrmaga kömek edýär. Biz diňe häzirki işewürlik zerurlyklaryna laýyk gelýän däl, eýsem geljekde boljak üýtgeşmelere hem uýgunlaşýan ýöriteleşdirilen IT çözgütlerini işläp düzýäris we ornaşdyrýarys, durnukly ösüşi we ösüşi üpjün edýäris.',
- 'aboutUsFooter5' => 'Biziň toparymyz IT pudagynda ýokary derejeli hünärmenlerden ybarat bolup, siziň işiňiziň hilini ýokarlandyrmaga, işgärleriň habardarlyk derejesini artdyrmaga, gyssagly işewürlik meselelerini çözmäge we kompaniýanyň girdejisini ýokarlandyrmaga kömek eder. Maslahat berlen kompaniýalar üçin biz her wagt garaşylanyndan has köpräk ýerine ýetirýäris, we olaryň üstünlikleri biziň abraýymyzdyr.',
- 'aboutUsFooter6' => 'Esasy gymmatlyk – töweregindäki jemgyýeti kämilleşdirýän işgärlerdir. "LTM Studio" IT we professional
-     iş ugurlarynda täze bilimler we başarnyklar gazanmaga bolan islegi birleşdirýär. Biz adaty çäkleri ýeňip geçip, öz pikirlerimizi durmuşa geçirýäris we biziň innowasion IT çözgütlerimiziň ähli kompaniýa üçin täze mümkinçilik bolup biljekdigine düşünýäris. Şonuň üçin biz adaty iş tejribämizde bolup geçýän üýtgeşikliklerden gorkmaýarys. Biz özüni professional we şahsy taýdan ösdürmäge çalyşýan, bilimlerini kärdeşleri bilen paýlaşýan we öz kompaniýasynyň bähbitlerine hyzmat edýän işgärleri ýokary baha berýäris. Biz "LTM Studio"-daky TOPAR bir näçe adamdan has köp zatdygyna ynanýarys. Bu, innowasion IT çözgütleriniň ösmegine we müşderilerimiziň işewürligini kämilleşdirmäge öz goşandyny goşmaga taýyn bolan hünärmenleriň birleşmesidir.',
- 'abtLtmstudio' => 'LTM Studio — siziň biznesiňiz üçin köpugurly IT çözgütlerini hödürleýän hünärmenler toparydyr. Biz diňe web sahypalary ýa-da programmalar döretmän, eýsem kompaniýanyň ösüşini çaltlandyrmak we içerki amallary kämilleşdirmek üçin strategiki gurallary döredýäris. Häzirki zaman tehnologiýalarynyň ornaşdyrylmagy müşderilerimiziň öndürijiligini ýokarlandyrmaga we iş proseslerini optimizirlemäge, täze kynçylyklara uýgunlaşmaga kömek edýär..',
- 'abtLtmstudio1' => 'Biziň çemeleşmämiz müşderi bilen ýakyn hyzmatdaşlyga esaslanýar. 
-Biz iň laýyk we täsirli çözgütleri teklip etmek üçin işiň aýratynlyklaryny jikme-jik öwrenýäris. 
-Eger taslamaňyz kiçi üýtgetmeleri ýa-da bar bolan prosesleriň doly täzeden gözden geçirilmegini talap edýän bolsa-da, 
-biz uzak möhletleýin netijeleri üpjün edýän iň optimal çözgüdi hödürlemäge taýýar.',
- 'abtLtmstudio3' => 'Biz IT-kompaniýalar, önümçilik kollektiwleri, PR kompaniýalar, arhitektura studiýalary we beýlekiler bilen hyzmatdaşlyga taýýar. 
-Eger siziň teklibiňiz bar bolsa, biziň bilen habarlaşyp bilersiňiz.',
-'our_serv_title' => 'Biziň hyzmatlarymyz',
-'mobile_nav' => 'Mobile apps',
-'web_nav' => 'Web-development',
-'bitrix' => 'Bitrix self-hosted',
-'bcloud' => 'Bitrix-cloud',
-'digitalAgencyServices' => 'Aşgabatda sanly agentlik hyzmatlary',
-'webDevelopment' => 'Web sahypalary döretmek',
-'webDevelopmentDescription1' => 'Stilistik we işjeň web sahypany döretmekde, şeýle hem üstünlikli internet dükan açmakda kömek etjek topar gözleýän bolsaňyz, siz dogry ýere ýüz tutduňyz.',
-'webDevelopmentDescription2' => 'Biz — siziň ideýalaryňyzy onlaýn giňişlikde durmuşa geçirmek üçin taýýar bolan hünärmenler topary. Web kart-sahypasy ýa-da çylşyrymly internet dükan gerekmi, biz dizaýndan başlap, ösüş we goldaw hyzmatlaryna çenli doly hyzmat hödürleýäris.',
-'trustUs' => 'Bize ynanyň, bilelikde siziň işiňiz üçin özboluşly we üstünlikli onlaýn giňişlik döredeliň.',
-'landingDescription' => 'Landig sahypasy – maksatly tomaşaçylaryň aragatnaşyk maglumatlaryny ýygnamak üçin döredilen sahypa. Bu marketing kampaniýalaryny güýçlendirmek üçin ulanylýar.',
-'siteCatalog' => 'Katalog sahypasy',
-'siteCatalogDescription' => 'Katalog sahypasy dürli sahypalary we bölümleri öz içine alýar.',
-'multipage' => 'Köp sahypaly sahypa',
-'multipageDescription' => 'Bu dürli görnüşli sahypalara degişli umumy adalgadyr: habar portaly, korporatiw sahypa we ş.m.',
-'onlineShopDescription' => 'Internet dükan harytlara 24/7 elýeterlilik, amatly töleg we eltip bermek bilen müşderileriň ynamyny gazanmaga kömek edýär.',
-'weAlsoSpecializeIn' => 'Biz şu ugurlar boýunça hem işleşýäris:',
-'studioProjects' => 'Studiýanyň taslamalary',
-'viewAll' => 'Hemmesini görmek',
+   'aboutTeamSub2' => "Biz işgärlerimize hormat bilen çemeleşýäris we ösüş üçin ähli mümkinçilikleri döredýäris.  
+Biziň superwaýzerlerimiz işlerimizi mümkin boldugyça amatly ýagdaýda meýilleşdirýärler.  
+Ýöne öz rezumeňizi ibermezden öň, aşakdaky häsiýetleriň sizde bardygyna göz ýetiriň:",
+
+   'teamQ1' => 'Siz 100% hünärmen we belli bir derejä ýetdiňiz',
+'teamQ2' => 'Siz öz işiňize söýgi bilen çemeleşýärsiňiz',
+'teamQ3' => 'Siz düýn kursy tamamlan däl-de, eýsem tejribäňiz bar',
+'teamQ4' => 'Siz işiňizden lezzet alýarsyňyz, diňe aýlyk ýokarlanmagyna garaşmaýarsyňyz',
+'teamQ5' => 'Siz jikme-jikliklere ünsli çemeleşýärsiňiz',
+ 'teamQ6' => 'Siz takyklygy we tertibi gowy görýän \n(hünärine jogapkärçilik bilen çemeleşýän) adam',
+
+'teamQ7' => 'Sizi örän çylşyrymly wezipeler hem gorkuzmaýar',
+'teamQ8' => 'Siz her bir işi soňuna çenli ýerine ýetirýärsiňiz',
+'teamQ9' => 'Täze zatlary synag hökmünde görýärsiňiz we ýeňmäge taýynsyňyz',
+'teamQ10' => 'Bir iş şowsuz bolanda, siz “depresiýa” düşmeýärsiňiz',
+'teamQ11' => '“Tapmadym”, “düşünmedim”, “bilemok” diýen sözler size nätanyş',
+'teamQ12' => 'Siz öz ýalňyşlygyňyzda hiç haçan beýlekini günäkärlemeýärsiňiz',
+    'teamQ13' => 'Siz ýeňil turýan adamlaryň biriňiz (takmynan sagat 10:00-dan başlap 😄)',
+'teamQ14' => 'Kofä bolan söýgiňiz we hormatyňyz ýokary',
+'teamQ15' => 'Siz hemişe aragatnaşykda — hatda “häzir Bali’de dynç alýan bolsaňyzam”',
+'teamQ16' => 'Siz wezipeler arasynda aňsatlyk bilen geçip bilýärsiňiz',
+'teamQ17' => 'Siz her sekunt täze bir zat öwrenmäge synanyşýarsyňyz',
+'teamQ18' => 'Sizde “Одноклассники” sahypasy ýok — hiç haçan bolan hem däldir (iň bolmanda onuň abraýa ýetirýän zyýanlaryny bilýärsiňiz)',
+
+    'aboutFooterSub' => 'Eger siz bu sanawdan azyndan 12 aýratynlyga laýyk gelýän bolsaňyz — onda bize öz rezumeňizi iberiň',
+'custom' => 'info@ltm.studio',
+'mailHr' => 'info@ltm.studio',
+'aboutFooterSubCont' => '– belki, siz biziň toparymyzyň täze agzasy bolarsyňyz.',
+
+   'portfolioTitle' => 'LTM Studio-nyň taslamalary',
+    'portfolioSub' => 'Много интересных кейсов, за которые не стыдно)',
+    'menuAll' => 'Hemmesi',
+    'menu' => "МЕN\nÝU",
+   
+
+    'contactsTitle' => 'Biziň bilen habarlaşyň',
+    'contactsSub' => 'Biz bilen duşenbe-den şenbe çenli, sagat 10:00-dan 19:00-a çenli aragatnaşyk saklap bilersiňiz',
+    'messenger' => 'şenbe',
+
+    'contactsSubCont' => " \n Eger mesele gyssagly bolsa, iň gowusy — jaňlaşmak.\nDuşuşmak isleýän bolsaňyz — gelin ofisimize — ",
+    'map' => '🗺️ salgymyz kartada',
+    'sugProject' => 'Taslamaňyz barmy? Hödürläň!',
+    'pigeon' => "Kepderi bilen\ne-poçta ugradyň",
+    'sendText' => 'Ugratmak',
+    'formError' => 'Formada ýalňyşlyk bar!',
+    'formName' => 'Adyňyz',
+    'formPhone' => 'Telefon belgiňiz',
+    'formProject' => 'Taslamaňyz barada',
+    'formEmail' => 'Email salgyňyz',
+    'formComment' => 'Teswiriňiz ýa-da belligiňiz',
+
+   'titleForm' => "Pikirleriňizi hakyky taslama öwrüliň:\n şu wagt biziň bilen habarlaşyň!",
+
+    'descForm' => 'Her bir beýik syýahat ilkinji ädimden başlanýar.  
+Biznes dünýä­sinde şol ädim täze mümkinçilikleriň we üstünlikleriň gapysyny açyp bilýän ýönekeý bir habar bolup biler.  
+LTM Studio-da biz her bir ýüzlenmäniň içinde ösüşe we täzeçillige mümkinçilik bardygyna ynanýarys.',
+
+
+    'formModalTitle' => 'Başlaýarysmy?',
+   'formModalDesc' => 'Biziň bilen işlemek ýeňil we ýakymly. Geliň, tanyş bolalyň!',
+
+   'weAreBest' => "Öz\n işimiziň ussatlary",
+
+   'formFunny' => "BIZ  HENIZEM  TANYŞ DÄLMI?!  \n ÝOK-LA..." 
+
+    'lampText' => "Geldi,  aýlandy, \n arzasyny goýberdi",
+
+    'myRazbirayemsya' => 'Biz şu ugurlar boýunça işleýäris:',
+
+    'readMore' => 'Giňişleýin oka',
+    'allServ' => 'Ähli hyzmatlar',
+    'home_h1' => 'Türkmenistanda ýerleşýän IT kompaniýasy – tehnologiýany artykmaçlyga öwürýäris',
+
+   'servTitle1' => "Web sahypa \n taýýarlaýarys",
+
+    'servSubTitle1' => "Islendik stilde we çylşyrymlylykda, özboluşly täsirli saýtlar",
+
+   'servDesc1' => "Web sahypalary döretmegiň toplumlaýyn çemeleşmesi: taslama taýýarlamak, dizaýn, programmirleme we synagdan geçirmek.  
+Biziň çözgütlerimiz siziň işiňize laýyklykda ýöriteleşdirilýär — ýokary funksiýany, ulanyjy üçin amatlylygy we döwrebap dizaýny üpjün edýär.  
+Hünär taýdan taýýarlanan web sahypa bilen internetde has görnükli boluň we işiňiziň artykmaçlyklaryny görkezmegiň ýoluny tapyň.",
+
+   'servTitle2' => "Mobil priloženiýalary \n taýýarlaýarys",
+'servSubTitle2' => "Siziň işiňiziň aýratynlyklaryna laýyk Android we iOS priloženiýalar",
+
+   'servDesc2' => "Siziň işiňiz üçin ýöriteleşdirilen çözgütler.  
+Biz iOS we Android üçin işiňizi gowulandyrmaga hem-de anyk iş maksatly netijelere ýetmäge gönükdirilen mobil priloženiýalary taýýarlaýarys.  
+Amatly, çalt we ygtybarly — biziň gpriloženiýalarymyz iş gurallaryňyzyň arasynda ynamdar hyzmatdaş bolar.",
+
+    'servTitle3' => "Internet \n dükanlaryny taýýarlaýarys",
+
+    'servSubTitle3' => "Işiňiziň aýratynlyklaryna laýyk onlaýn dükanlar",
+
+    'servDesc3' => "Işiňiziň we müşderileriň zerurlyklaryna laýyklykda taýýarlanýan aýratyn çözgütler.  
+Biz onlaýn satuw üçin amatly, ygtybarly we köpugurly internet dükanlaryny döredýäris — olar internetde üznüksiz söwdany we işiňiziň ösmegini üpjün edýär.  
+Üstünlikli söwda üçin ähli zerur gurallar bilen doly integrasiýa edýäris. Siziň işiňiz indi 24/7 elýeterli bolar.",
+
+    'servTitle4' => "Bitrix24 \n CRM ulgamyny ornaşdyrmak",
+
+    'servSubTitle4' => "Işgärleriň iş meýdançasyny dolandyrmak we gözegçilik etmek",
+
+    'servDesc4' => "Bitrix24 işgärleriň işine gözegçiligi tabşyryk we hasabat ulgamy arkaly üpjün edýär.  
+CRM komponenti müşderiler bilen gatnaşygy ösdürýär — söwdalary we gatnaşyk taryhlaryny doly hasaba alýar.  
+Platforma taslamalary meýilleşdirmäge we utgaşdyrmaga kömek edýär, netijede olaryň üstünlikli ýerine ýetirilmegine şert döredýär.",
+
+    'aboutUsFooter1' => 'Biz işiňizi öňe sürýän "detallar we gurallar" döredýäris.  
+Her bir pikiri çuňňur işläp taýýarlaýarys, onuň gymmatlyklaryny we filosofiýasyny giňeldýäris.  
+Netijede, işiňiziň ösmegine kömek edýän möhüm çözgütleri döredýäris.',
+
+   'aboutUsFooter2' => 'Biziň üçin esasy zat — netije.  
+"Işiň çylşyrymlylygyna garamazdan, biz täze pikirleri ýüze çykarýarys."
+LTM Studio — pikir bilen duýgyny baglanyşdyrýan studiýa. Biz muny başarýarys!',
+
+  'aboutUsFooter3' => 'LTM Studio — Türkmenistanda web sahypalary, mobil priloženiýalary taýýarlamak we Bitrix24 ulgamyny ornaşdyrmak boýunça IT çözgütleri hödürleýän kompaniýa.  
+Biz orta we uly biznes üçin işläp, diňe sanly önüm döretmek bilen çäklenmän, eýsem IT arkaly iş prosesindäki kynçylyklary hem çözmäge kömek edýäris.',
+
+   'aboutUsFooter4' => '"Biz — professional topar" diýen söz her bir saýtda gabat gelýär.  
+Emma biz başga ugurdan ýöremegi saýladyk.  
+LTM Studio — iri kompaniýalarda 4+ ýyl tejribesi bolan IT hünärmenleriň topary.  
+Biz  öz taslamalarymyzy döretmek we müşderilerimize täze, döredijilikli çözgütleri hödürlemek üçin birleşdik.  
+Biz LTM Studio-da  öň korporatiw çäklendirmeler sebäpli durmuşa geçirilmedik pikirleri amala aşyrmaga mümkinçilik aldyk — indi bolsa batyrgaý we innowasion çözgütleri hödürleýäris.',
+
+    'aboutUsFooter5' => 'Biziň ýörelgämiz — müşderiniň netijesine gönükdirilen iş we onuň işine hakykatdan hem peýda berjek zatlary teklip etmek. Her bir proýekte aýratyn çemeleşýäris, käwagt iň amatly çözgüt taýýar şablon bolsa-da (bu elbetde gowy däldir((( ), biz ony hem saýlap bilýäris.Maksatlaryňyza has laýyk gelýän aýratyn önümi döretmek mümkinçiligi bar bolsa — biz şol ýoly hödürläris. Biz müşderilerimize ösüşe tarap ýol açýan netijeli çözgütleri teklip edýäris we tehniki kynçylyklaryň hemmesini özümize alýarys.',
+    'aboutUsFooter6' => 'LTM Studio — tehnologik innowasiýalara we sanly transformasiýa tarap ýolda siziň ygtybarly hyzmatdaşlaryňyz. Biz diňe bir meseläňizi çözüp goýbermeris — eýsem biziň hödürleýän çözgütlerimiz, bäsdeşleriňiz hünärini üýtgetmegine-de sebäp bolup biler.',
+    'abt1' => 'LTM Studio — işiňiz üçin toplumlaýyn IT çözgütleri hödürleýän kompaniýa.  
+Biz diňe bir web sahypalaryny ýa-da mobil goşundylary däl, eýsem kompaniýanyň ösüşini çaltlandyrmaga we içerki iş proseslerini gowulandyrmaga kömek edýän strategik gurallary döredýäris.  
+Döwrüň talaplaryna laýyk tehnologiýalary ornaşdyrmak müşderilerimiziň öndürijiligini ýokarlandyrmaga we iş tertibini optimizirlemäge ýardam berýär.',
+
+    'abt2' => 'Biz müşderi bilen ýakyn hyzmatdaşlyga esaslanýarys.  
+Biz işiň aýratynlyklaryny içgin öwrenip, iň laýyk we netijeli çözgütleri teklip edýäris.  
+Taslamaňyz diňe ownuk üýtgetmeleri talap edýän bolsa-da, ýa-da bar bolan prosesleriň düýpli täzeden gurulmagyny, biz uzak möhletleýin netije berjek iň oňat usuly hödürlemäge taýýar.',
+
+    'our_serv_title' => 'Biziň hyzmatlarymyz',
+
+   'abtLtmstudio' => 'LTM Studio — işiňiz üçin toplumlaýyn IT çözgütleri hödürleýän hünärmenleriň topary.  
+Biz diňe bir web sahypalaryny ýa-da mobil goşundylary däl-de, kompaniýanyň ösüşini çaltlandyrmaga we içerki iş proseslerini gowulandyrmaga mümkinçilik berýän strategik gurallary döredýäris.  
+Döwrüň häzirki tehnologiýalaryny ornaşdyrmak müşderilerimize öndürijiligi ýokarlandyrmaga we iş tertibini optimizirlemäge kömek edýär.',
+
+   'abtLtmstudio1' => 'Biziň iş ýörelgämiz müşderi bilen ýakyn hyzmatdaşlyga esaslanýar.  
+Biz işiň aýratynlyklaryny içgin öwrenýäris we iň laýyk hem-de netijeli çözgütleri teklip edýäris.  
+Taslamaňyz diňe ownuk üýtgetmeleri talap edýän ýagdaýda-da ýa-da bar bolan prosesleriň düýpli täzelenmegini zerur edýän ýagdaýynda-da, biz uzak möhletleýin netijeleri üpjün edip biljek iň oňat ýoluny hödürlemäge taýýar.',
+
+   'abtLtmstudio3' => 'Biz IT kompaniýalar, önümçilik toparlary, PR agentlikleri, arhitektura studiýalary we beýleki hyzmatdaşlyk mümkinçiliklerine açyk.  
+    Eger teklibiňiz bar bolsa — biziň bilen habarlaşyp bilersiňiz.',
+
+   'viewAll' => 'Ählisini gör',
+'dzynDzyn' => 'Dzyn-dzyn!!!',
+
+
+    'timeline' => [
+        'heading' => 'Iş tapgyrlarymyz',
+
+        'steps' => [
+            [
+                'title' => 'Analiz we taýýarlyk',
+
+                'description' => 'Ilki bilen biz proýektiň talaplaryny öwrenýäris, maksatlaryny we wezipelerini kesgitleýäris, maksatlaýyn topary we bäsdeşleri seljerýäris.  
+Bu bolsa proýekti üstünlikli ýerine ýetirmek üçin meýilnama düzmäge we laýyk tehnologiýalary saýlamaga mümkinçilik berýär.',
+
+            ],
+            [
+               'title' => 'Taslamalar we dizaýn',
+'description' => 'Web sahypanyň gurluşyny we konsepsiýasyny taýýarlaýarys, sahypalaryň maketlerini we prototiplerini düzýäris.  
+Soňra dizaýn işlerine geçýäris — şriftleri, reňkleri we brendiňize hem-de maksatlaryňyza laýyk grafiki elementleri saýlaýarys.',
+
+            ],
+            [
+               'title' => 'Programmirleme we funksional',
+'description' => 'Web sahypanyň esasy funksiýalaryny işläp düzýäris — aragatnaşyk formalaryndan başlap, daşarky ulgamlara we mazmun dolandyryş platformalaryna çenli integrasiýalar.  
+Sahypanyň durnukly işlemegini üpjün etmek üçin ähli zerur gurallary ornaşdyrýarys.',
+
+            ],
+            [
+               'title' => 'Synag we sazlaýyş',
+'description' => 'Web sahypa işe girizilmezinden ozal dürli enjamlar we brauzerler arkaly doly synagdan geçirilýär.  
+Ýalňyşlyklar düzedilýär, tizligi we öndürijiligi optimizasiýa edilýär, ulanyjy üçin amatly tejribe üpjün edilýär.',
+
+            ],
+            [
+               'title' => 'Işe girizmek we goldaw',
+'description' => 'Ahyrky barlaglardan soň web sahypany hostinge ýerleşdirýäris we işe girizýäris.  
+Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem-de täzelenmegi üçin dowamly goldaw berýäris.',
+
+            ],
+        ],
+    ],
 ];
