@@ -70,7 +70,18 @@ p {
   line-height: 1.5;
   margin: 20px 0;
 }
-
+td {
+  font-size: 18px;
+  font-weight: 600;
+}
+th {
+  font-size: 24px;
+  font-weight: 600;
+}
+button {
+  font-size: 18px;
+  font-weight: 600;
+}
 input {
   background-color: none;
   outline: none !important;
@@ -700,7 +711,7 @@ section {
 /*Конец лампа*/
 
 /*Начало Кнопка наверх*/
-//* Базовые стили кнопки "Наверх" */
+/* Базовые стили кнопки "Наверх" */
 #scrollBtn {
   position: fixed;
   bottom: 5px;

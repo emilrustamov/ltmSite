@@ -99,7 +99,7 @@
             </a>
         </div>
     </div>
-    @if ($leftMenu)
+    @if (!empty($leftMenu))
         <div class="rowLeftHeader">
             <a href="/{{ $lang }}/">
                 <p>{{ __('translate.mainPage') }}</p>

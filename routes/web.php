@@ -67,6 +67,11 @@ Route::get('/', function () {
 });
 
 
+Route::get('/{lang}/bitrix24', function ($lang) {
+    App::setLocale($lang);
+    return view('bitrix', ['lang' => $lang]);
+})->middleware('redirect');
+
 ///mainPage
 Route::get('/{lang}', [HomeController::class, 'index'])->middleware('redirect');
 
