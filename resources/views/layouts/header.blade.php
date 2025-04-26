@@ -27,6 +27,11 @@
                 itemprop="url">{{ __('translate.services') }}</a>
         </div>
         <div class="nav-item">
+            <a href="/{{ $lang }}/bitrix24"
+                class="text-sm md:text-base {{ Request::is($lang . '/bitrix*') ? 'active' : '' }}"
+                itemprop="url">{{ __('translate.bitrix') }}</a>
+        </div>
+        <div class="nav-item">
             <a href="/{{ $lang }}/about_us"
                 class="text-sm md:text-base {{ Request::is($lang . '/about_us*') ? 'active' : '' }}"
                 itemprop="url">{{ __('translate.aboutUs') }}</a>
@@ -53,27 +58,40 @@
         <a href="tel:+99361648605" class="whitespace-nowrap">+993 61 00 97 92</a>
 
         <!-- Языки (только десктоп) -->
+        <!-- Языки (десктоп) -->
         <div class="hidden md:flex gap-5">
             @php $langs = ['ru', 'en', 'tm']; @endphp
-            <div class="relative group flex items-center">
-                <div class="cursor-pointer flex items-center gap-1">
+
+            <!-- ▸ триггер и меню в одном .relative блоке  -->
+            <div class="relative flex items-center">
+
+                <!-- кнопка-триггер -->
+                <button id="langToggle" class="flex items-center gap-1 cursor-pointer select-none" aria-haspopup="true"
+                    aria-expanded="false">
                     <span>{{ strtoupper($lang) }}</span>
-                    <i
-                        class="fa-solid fa-arrow-down-long text-[#e31e24] text-xl group-hover:rotate-180 transition-transform"></i>
-                </div>
-                <div
-                    class="absolute top-full left-0 mt-2 hidden group-hover:block bg-[#e31e24] text-white rounded px-4 py-2 z-50 shadow">
+                    <i id="langArrow"
+                    class="fa-solid fa-arrow-down-long text-[#e31e24] text-xl
+                           transition-transform duration-300 ease-in-out"></i>
+                 
+                </button>
+
+                <!-- выпадающий список -->
+                <div id="langMenu"
+                    class="hidden absolute left-0 top-full mt-2 bg-[#e31e24] text-white
+                    rounded px-4 py-2 z-50 shadow">
                     <ul class="text-center">
                         @foreach ($langs as $l)
                             @if ($lang !== $l)
-                                <li class="py-1 hover:underline"><a
-                                        href="/{{ $l }}">{{ strtoupper($l) }}</a></li>
+                                <li class="py-1 hover:underline">
+                                    <a href="/{{ $l }}">{{ strtoupper($l) }}</a>
+                                </li>
                             @endif
                         @endforeach
                     </ul>
                 </div>
             </div>
         </div>
+
 
         <!-- Меню (десктоп) -->
         <div id="menuButton"
@@ -143,7 +161,8 @@
                             <a class="menu-a" href="linkedin.com/company/ltmstudio" id="linkedLink">Ln</a>
                             -->
                         </div>
-                        <a class="opacity-[0.7]" href="/{{ $lang }}/" id="linkAddress">https://ltm.studio/</a>
+                        <a class="opacity-[0.7]" href="/{{ $lang }}/"
+                            id="linkAddress">https://ltm.studio/</a>
                     </div>
                 </div>
                 <div class="block-40">
@@ -199,6 +218,7 @@
     <nav class="flex flex-col gap-4 text-xl font-semibold mb-6">
         <a href="/{{ $lang }}/">{{ __('translate.mainPage') }}</a>
         <a href="/{{ $lang }}/services">{{ __('translate.services') }}</a>
+        <a href="/{{ $lang }}/bitrix24">{{ __('translate.bitrix') }}</a>
         <a href="/{{ $lang }}/about_us">{{ __('translate.aboutUs') }}</a>
         <a href="/{{ $lang }}/portfolio">{{ __('translate.portfolio') }}</a>
         <a href="/{{ $lang }}/contacts">{{ __('translate.contacts') }}</a>
@@ -275,3 +295,43 @@
         }
     });
 </script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('langToggle');   // кнопка
+        const menu   = document.getElementById('langMenu');     // список
+        const arrow  = document.getElementById('langArrow');    // иконка-стрелка
+    
+        // открываем/закрываем меню по клику на кнопку
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180');
+            toggle.setAttribute(
+                'aria-expanded',
+                menu.classList.contains('hidden') ? 'false' : 'true'
+            );
+        });
+    
+        // закрываем при клике вне меню
+        document.addEventListener('click', (e) => {
+            if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+                if (!menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                    arrow.classList.remove('rotate-180');
+                    toggle.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+    
+        // закрываем по Esc
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+                toggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+    });
+    </script>
+    

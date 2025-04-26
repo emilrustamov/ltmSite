@@ -233,7 +233,7 @@ section {
 }
 
 .typing-text {
-  font-size: 24px;
+  font-size: 18px;
   z-index: 3;
   display: flex;
   align-items: center;

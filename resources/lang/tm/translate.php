@@ -5,6 +5,7 @@ return [
     'aboutUs' => 'Biz barada',
     'aboutUsTitle' => 'LTM Studio：',
     'portfolio' => 'Portfolio',
+    'bitrix' => 'Bitrix24',
     'blog' => 'Blog',
     'contacts' => 'Kontaktlar',
     'mainPage' => 'Baş sahypa',
@@ -61,16 +62,16 @@ return [
     'contactsBackText' => "jaň etmek\nýazmak\njogap almak\nkabul etmek",
     'goToSite' => 'Görmek',
     'texts' => [
-    'Koronawirusyz saýtlary döredýäris',
-    'Biznesi has gowy tarapa üýtgedýäris',
-    'Türkmenistanda IT ösüşi',
-    'Başgaça pikir edýän kompaniýa)',
-    'Iki gezek girmegi utandyrmaýan programma',
-    'Bitrix psihoterapiýasyz hem bolup bilýär',
-    'Siziň biznesiňiz 5 dollarlyk şablondan has gymmatly',
-    'Hatda eneleriň hem ýitmejek internet dükanlary',
-    'Bitrix24: doga-dileg we şaman ýok – diňe netijeli iş prosesleri',
-],
+        'Koronawirusyz saýtlary döredýäris',
+        'Biznesi has gowy tarapa üýtgedýäris',
+        'Türkmenistanda IT ösüşi',
+        'Başgaça pikir edýän kompaniýa)',
+        'Iki gezek girmegi utandyrmaýan programma',
+        'Bitrix psihoterapiýasyz hem bolup bilýär',
+        'Siziň biznesiňiz 5 dollarlyk şablondan has gymmatly',
+        'Hatda eneleriň hem ýitmejek internet dükanlary',
+        'Bitrix24: doga-dileg we şaman ýok – diňe netijeli iş prosesleri',
+    ],
 
 
     'leftRequest' => 'Arzaňyzy galdyryň',
@@ -78,8 +79,8 @@ return [
     'moreThan1' => 'Diňe bir zat däl',
     'moreThan2' => 'IT kompaniýasyndan hem giň',
 
-  'history' => 'Kompaniýanyň taryhy',
-'aboutHistory' => "📚 LTM Studio — Türkmenistanda web sahypalaryny, mobil goşundylary döretmek we Bitrix24 ulgamyny ornaşdyrmak boýunça döwrebap IT çözgütlerini hödürleýän kompaniýa. Biz uly we orta biznesler bilen işleýäris, diňe sanly önümleri döretmek däl-de, eýsem olaryň iş prosesindäki 'agry nokatlaryny' IT arkaly çözmegi maksat edinýäris.\n\n
+    'history' => 'Kompaniýanyň taryhy',
+    'aboutHistory' => "📚 LTM Studio — Türkmenistanda web sahypalaryny, mobil goşundylary döretmek we Bitrix24 ulgamyny ornaşdyrmak boýunça döwrebap IT çözgütlerini hödürleýän kompaniýa. Biz uly we orta biznesler bilen işleýäris, diňe sanly önümleri döretmek däl-de, eýsem olaryň iş prosesindäki 'agry nokatlaryny' IT arkaly çözmegi maksat edinýäris.\n\n
 
 👨‍💻 'Biz — hünärmenler topary' diýen söz ähli saýtlarda bar, emma biz beýlekilerden tapawutly. LTM Studio — iri kompaniýalarda 4+ ýyllyk tejribesi bolan IT hünärmenlerinden ybarat topar. Biz öz proýektlerimizi döretmek we müşderilere täzeçe, döredijilikli çözgütleri hödürlemek üçin birleşdik. LTM Studio-da öň korporatiw çäklendirmeleriň kölegesinde galan pikirleri we çemeleşmeleri batyrgaý we innowasion görnüşde durmuşa geçirýäris.\n\n
 
@@ -87,10 +88,11 @@ return [
 
 🚀 Maksatlaryňyza has laýyk gelýän aýratyn önümi döretmek mümkinçiligi bar bolsa — biz şol ýoly hödürläris. Biz müşderilerimize ösüşe tarap ýol açýan netijeli çözgütleri teklip edýäris we tehniki kynçylyklaryň hemmesini özümize alýarys.\n\n
 
-🤝 LTM Studio — tehnologik innowasiýalara we sanly transformasiýa tarap ýolda siziň ygtybarly hyzmatdaşlaryňyz. Biz diňe bir meseläňizi çözüp goýbermeris — eýsem biziň hödürleýän çözgütlerimiz, bäsdeşleriňiz hünärini üýtgetmegine-de sebäp bolup biler.\n"    'aboutStatistics' => 'Холодная статистика',
-  
-    
-    'years' =>'IT-däki ýyllar',
+🤝 LTM Studio — tehnologik innowasiýalara we sanly transformasiýa tarap ýolda siziň ygtybarly hyzmatdaşlaryňyz. Biz diňe bir meseläňizi çözüp goýbermeris — eýsem biziň hödürleýän çözgütlerimiz, bäsdeşleriňiz hünärini üýtgetmegine-de sebäp bolup biler.\n",
+    'aboutStatistics' => 'Холодная статистика',
+
+
+    'years' => 'IT-däki ýyllar',
     'projects' => 'Işjeň proýektler',
     'skuka' => 'Gyzyksyz çözgütler',
     'bitrix24' => 'Bitrix24 ornaşdyryldy',
@@ -131,40 +133,40 @@ return [
 Eger sizi adaty korporatiw düzgünler ýadadýan bolsa, mysal üçin: diňe project manager taslamany alyp barýan hem bolsa-da, daşary ýurt dilini bilmek hökmany ýaly talaplar ýa-da resepsiýada sekuntma-sekunt bellige durmadyk üçin jerime salynýan ýagdaýlar — onda geliň biziň toparymyza goşulyň 💪  
 Şu ýerde häzirki açyk wezipeler bilen tanyşyp bilersiňiz:",
 
-   'aboutTeamSub2' => "Biz işgärlerimize hormat bilen çemeleşýäris we ösüş üçin ähli mümkinçilikleri döredýäris.  
+    'aboutTeamSub2' => "Biz işgärlerimize hormat bilen çemeleşýäris we ösüş üçin ähli mümkinçilikleri döredýäris.  
 Biziň superwaýzerlerimiz işlerimizi mümkin boldugyça amatly ýagdaýda meýilleşdirýärler.  
 Ýöne öz rezumeňizi ibermezden öň, aşakdaky häsiýetleriň sizde bardygyna göz ýetiriň:",
 
-   'teamQ1' => 'Siz 100% hünärmen we belli bir derejä ýetdiňiz',
-'teamQ2' => 'Siz öz işiňize söýgi bilen çemeleşýärsiňiz',
-'teamQ3' => 'Siz düýn kursy tamamlan däl-de, eýsem tejribäňiz bar',
-'teamQ4' => 'Siz işiňizden lezzet alýarsyňyz, diňe aýlyk ýokarlanmagyna garaşmaýarsyňyz',
-'teamQ5' => 'Siz jikme-jikliklere ünsli çemeleşýärsiňiz',
- 'teamQ6' => 'Siz takyklygy we tertibi gowy görýän \n(hünärine jogapkärçilik bilen çemeleşýän) adam',
+    'teamQ1' => 'Siz 100% hünärmen we belli bir derejä ýetdiňiz',
+    'teamQ2' => 'Siz öz işiňize söýgi bilen çemeleşýärsiňiz',
+    'teamQ3' => 'Siz düýn kursy tamamlan däl-de, eýsem tejribäňiz bar',
+    'teamQ4' => 'Siz işiňizden lezzet alýarsyňyz, diňe aýlyk ýokarlanmagyna garaşmaýarsyňyz',
+    'teamQ5' => 'Siz jikme-jikliklere ünsli çemeleşýärsiňiz',
+    'teamQ6' => 'Siz takyklygy we tertibi gowy görýän \n(hünärine jogapkärçilik bilen çemeleşýän) adam',
 
-'teamQ7' => 'Sizi örän çylşyrymly wezipeler hem gorkuzmaýar',
-'teamQ8' => 'Siz her bir işi soňuna çenli ýerine ýetirýärsiňiz',
-'teamQ9' => 'Täze zatlary synag hökmünde görýärsiňiz we ýeňmäge taýynsyňyz',
-'teamQ10' => 'Bir iş şowsuz bolanda, siz “depresiýa” düşmeýärsiňiz',
-'teamQ11' => '“Tapmadym”, “düşünmedim”, “bilemok” diýen sözler size nätanyş',
-'teamQ12' => 'Siz öz ýalňyşlygyňyzda hiç haçan beýlekini günäkärlemeýärsiňiz',
+    'teamQ7' => 'Sizi örän çylşyrymly wezipeler hem gorkuzmaýar',
+    'teamQ8' => 'Siz her bir işi soňuna çenli ýerine ýetirýärsiňiz',
+    'teamQ9' => 'Täze zatlary synag hökmünde görýärsiňiz we ýeňmäge taýynsyňyz',
+    'teamQ10' => 'Bir iş şowsuz bolanda, siz “depresiýa” düşmeýärsiňiz',
+    'teamQ11' => '“Tapmadym”, “düşünmedim”, “bilemok” diýen sözler size nätanyş',
+    'teamQ12' => 'Siz öz ýalňyşlygyňyzda hiç haçan beýlekini günäkärlemeýärsiňiz',
     'teamQ13' => 'Siz ýeňil turýan adamlaryň biriňiz (takmynan sagat 10:00-dan başlap 😄)',
-'teamQ14' => 'Kofä bolan söýgiňiz we hormatyňyz ýokary',
-'teamQ15' => 'Siz hemişe aragatnaşykda — hatda “häzir Bali’de dynç alýan bolsaňyzam”',
-'teamQ16' => 'Siz wezipeler arasynda aňsatlyk bilen geçip bilýärsiňiz',
-'teamQ17' => 'Siz her sekunt täze bir zat öwrenmäge synanyşýarsyňyz',
-'teamQ18' => 'Sizde “Одноклассники” sahypasy ýok — hiç haçan bolan hem däldir (iň bolmanda onuň abraýa ýetirýän zyýanlaryny bilýärsiňiz)',
+    'teamQ14' => 'Kofä bolan söýgiňiz we hormatyňyz ýokary',
+    'teamQ15' => 'Siz hemişe aragatnaşykda — hatda “häzir Bali’de dynç alýan bolsaňyzam”',
+    'teamQ16' => 'Siz wezipeler arasynda aňsatlyk bilen geçip bilýärsiňiz',
+    'teamQ17' => 'Siz her sekunt täze bir zat öwrenmäge synanyşýarsyňyz',
+    'teamQ18' => 'Sizde “Одноклассники” sahypasy ýok — hiç haçan bolan hem däldir (iň bolmanda onuň abraýa ýetirýän zyýanlaryny bilýärsiňiz)',
 
     'aboutFooterSub' => 'Eger siz bu sanawdan azyndan 12 aýratynlyga laýyk gelýän bolsaňyz — onda bize öz rezumeňizi iberiň',
-'custom' => 'info@ltm.studio',
-'mailHr' => 'info@ltm.studio',
-'aboutFooterSubCont' => '– belki, siz biziň toparymyzyň täze agzasy bolarsyňyz.',
+    'custom' => 'info@ltm.studio',
+    'mailHr' => 'info@ltm.studio',
+    'aboutFooterSubCont' => '– belki, siz biziň toparymyzyň täze agzasy bolarsyňyz.',
 
-   'portfolioTitle' => 'LTM Studio-nyň taslamalary',
+    'portfolioTitle' => 'LTM Studio-nyň taslamalary',
     'portfolioSub' => 'Много интересных кейсов, за которые не стыдно)',
     'menuAll' => 'Hemmesi',
     'menu' => "МЕN\nÝU",
-   
+
 
     'contactsTitle' => 'Biziň bilen habarlaşyň',
     'contactsSub' => 'Biz bilen duşenbe-den şenbe çenli, sagat 10:00-dan 19:00-a çenli aragatnaşyk saklap bilersiňiz',
@@ -182,7 +184,7 @@ Biziň superwaýzerlerimiz işlerimizi mümkin boldugyça amatly ýagdaýda meý
     'formEmail' => 'Email salgyňyz',
     'formComment' => 'Teswiriňiz ýa-da belligiňiz',
 
-   'titleForm' => "Pikirleriňizi hakyky taslama öwrüliň:\n şu wagt biziň bilen habarlaşyň!",
+    'titleForm' => "Pikirleriňizi hakyky taslama öwrüliň:\n şu wagt biziň bilen habarlaşyň!",
 
     'descForm' => 'Her bir beýik syýahat ilkinji ädimden başlanýar.  
 Biznes dünýä­sinde şol ädim täze mümkinçilikleriň we üstünlikleriň gapysyny açyp bilýän ýönekeý bir habar bolup biler.  
@@ -190,11 +192,11 @@ LTM Studio-da biz her bir ýüzlenmäniň içinde ösüşe we täzeçillige müm
 
 
     'formModalTitle' => 'Başlaýarysmy?',
-   'formModalDesc' => 'Biziň bilen işlemek ýeňil we ýakymly. Geliň, tanyş bolalyň!',
+    'formModalDesc' => 'Biziň bilen işlemek ýeňil we ýakymly. Geliň, tanyş bolalyň!',
 
-   'weAreBest' => "Öz\n işimiziň ussatlary",
+    'weAreBest' => "Öz\n işimiziň ussatlary",
 
-   'formFunny' => "BIZ  HENIZEM  TANYŞ DÄLMI?!  \n ÝOK-LA..." 
+    'formFunny' => "BIZ  HENIZEM  TANYŞ DÄLMI?!  \n ÝOK-LA...",
 
     'lampText' => "Geldi,  aýlandy, \n arzasyny goýberdi",
 
@@ -204,18 +206,18 @@ LTM Studio-da biz her bir ýüzlenmäniň içinde ösüşe we täzeçillige müm
     'allServ' => 'Ähli hyzmatlar',
     'home_h1' => 'Türkmenistanda ýerleşýän IT kompaniýasy – tehnologiýany artykmaçlyga öwürýäris',
 
-   'servTitle1' => "Web sahypa \n taýýarlaýarys",
+    'servTitle1' => "Web sahypa \n taýýarlaýarys",
 
     'servSubTitle1' => "Islendik stilde we çylşyrymlylykda, özboluşly täsirli saýtlar",
 
-   'servDesc1' => "Web sahypalary döretmegiň toplumlaýyn çemeleşmesi: taslama taýýarlamak, dizaýn, programmirleme we synagdan geçirmek.  
+    'servDesc1' => "Web sahypalary döretmegiň toplumlaýyn çemeleşmesi: taslama taýýarlamak, dizaýn, programmirleme we synagdan geçirmek.  
 Biziň çözgütlerimiz siziň işiňize laýyklykda ýöriteleşdirilýär — ýokary funksiýany, ulanyjy üçin amatlylygy we döwrebap dizaýny üpjün edýär.  
 Hünär taýdan taýýarlanan web sahypa bilen internetde has görnükli boluň we işiňiziň artykmaçlyklaryny görkezmegiň ýoluny tapyň.",
 
-   'servTitle2' => "Mobil priloženiýalary \n taýýarlaýarys",
-'servSubTitle2' => "Siziň işiňiziň aýratynlyklaryna laýyk Android we iOS priloženiýalar",
+    'servTitle2' => "Mobil priloženiýalary \n taýýarlaýarys",
+    'servSubTitle2' => "Siziň işiňiziň aýratynlyklaryna laýyk Android we iOS priloženiýalar",
 
-   'servDesc2' => "Siziň işiňiz üçin ýöriteleşdirilen çözgütler.  
+    'servDesc2' => "Siziň işiňiz üçin ýöriteleşdirilen çözgütler.  
 Biz iOS we Android üçin işiňizi gowulandyrmaga hem-de anyk iş maksatly netijelere ýetmäge gönükdirilen mobil priloženiýalary taýýarlaýarys.  
 Amatly, çalt we ygtybarly — biziň gpriloženiýalarymyz iş gurallaryňyzyň arasynda ynamdar hyzmatdaş bolar.",
 
@@ -239,14 +241,14 @@ Platforma taslamalary meýilleşdirmäge we utgaşdyrmaga kömek edýär, netije
 Her bir pikiri çuňňur işläp taýýarlaýarys, onuň gymmatlyklaryny we filosofiýasyny giňeldýäris.  
 Netijede, işiňiziň ösmegine kömek edýän möhüm çözgütleri döredýäris.',
 
-   'aboutUsFooter2' => 'Biziň üçin esasy zat — netije.  
+    'aboutUsFooter2' => 'Biziň üçin esasy zat — netije.  
 "Işiň çylşyrymlylygyna garamazdan, biz täze pikirleri ýüze çykarýarys."
 LTM Studio — pikir bilen duýgyny baglanyşdyrýan studiýa. Biz muny başarýarys!',
 
-  'aboutUsFooter3' => 'LTM Studio — Türkmenistanda web sahypalary, mobil priloženiýalary taýýarlamak we Bitrix24 ulgamyny ornaşdyrmak boýunça IT çözgütleri hödürleýän kompaniýa.  
+    'aboutUsFooter3' => 'LTM Studio — Türkmenistanda web sahypalary, mobil priloženiýalary taýýarlamak we Bitrix24 ulgamyny ornaşdyrmak boýunça IT çözgütleri hödürleýän kompaniýa.  
 Biz orta we uly biznes üçin işläp, diňe sanly önüm döretmek bilen çäklenmän, eýsem IT arkaly iş prosesindäki kynçylyklary hem çözmäge kömek edýäris.',
 
-   'aboutUsFooter4' => '"Biz — professional topar" diýen söz her bir saýtda gabat gelýär.  
+    'aboutUsFooter4' => '"Biz — professional topar" diýen söz her bir saýtda gabat gelýär.  
 Emma biz başga ugurdan ýöremegi saýladyk.  
 LTM Studio — iri kompaniýalarda 4+ ýyl tejribesi bolan IT hünärmenleriň topary.  
 Biz  öz taslamalarymyzy döretmek we müşderilerimize täze, döredijilikli çözgütleri hödürlemek üçin birleşdik.  
@@ -264,19 +266,19 @@ Taslamaňyz diňe ownuk üýtgetmeleri talap edýän bolsa-da, ýa-da bar bolan 
 
     'our_serv_title' => 'Biziň hyzmatlarymyz',
 
-   'abtLtmstudio' => 'LTM Studio — işiňiz üçin toplumlaýyn IT çözgütleri hödürleýän hünärmenleriň topary.  
+    'abtLtmstudio' => 'LTM Studio — işiňiz üçin toplumlaýyn IT çözgütleri hödürleýän hünärmenleriň topary.  
 Biz diňe bir web sahypalaryny ýa-da mobil goşundylary däl-de, kompaniýanyň ösüşini çaltlandyrmaga we içerki iş proseslerini gowulandyrmaga mümkinçilik berýän strategik gurallary döredýäris.  
 Döwrüň häzirki tehnologiýalaryny ornaşdyrmak müşderilerimize öndürijiligi ýokarlandyrmaga we iş tertibini optimizirlemäge kömek edýär.',
 
-   'abtLtmstudio1' => 'Biziň iş ýörelgämiz müşderi bilen ýakyn hyzmatdaşlyga esaslanýar.  
+    'abtLtmstudio1' => 'Biziň iş ýörelgämiz müşderi bilen ýakyn hyzmatdaşlyga esaslanýar.  
 Biz işiň aýratynlyklaryny içgin öwrenýäris we iň laýyk hem-de netijeli çözgütleri teklip edýäris.  
 Taslamaňyz diňe ownuk üýtgetmeleri talap edýän ýagdaýda-da ýa-da bar bolan prosesleriň düýpli täzelenmegini zerur edýän ýagdaýynda-da, biz uzak möhletleýin netijeleri üpjün edip biljek iň oňat ýoluny hödürlemäge taýýar.',
 
-   'abtLtmstudio3' => 'Biz IT kompaniýalar, önümçilik toparlary, PR agentlikleri, arhitektura studiýalary we beýleki hyzmatdaşlyk mümkinçiliklerine açyk.  
+    'abtLtmstudio3' => 'Biz IT kompaniýalar, önümçilik toparlary, PR agentlikleri, arhitektura studiýalary we beýleki hyzmatdaşlyk mümkinçiliklerine açyk.  
     Eger teklibiňiz bar bolsa — biziň bilen habarlaşyp bilersiňiz.',
 
-   'viewAll' => 'Ählisini gör',
-'dzynDzyn' => 'Dzyn-dzyn!!!',
+    'viewAll' => 'Ählisini gör',
+    'dzynDzyn' => 'Dzyn-dzyn!!!',
 
 
     'timeline' => [
@@ -291,29 +293,146 @@ Bu bolsa proýekti üstünlikli ýerine ýetirmek üçin meýilnama düzmäge we
 
             ],
             [
-               'title' => 'Taslamalar we dizaýn',
-'description' => 'Web sahypanyň gurluşyny we konsepsiýasyny taýýarlaýarys, sahypalaryň maketlerini we prototiplerini düzýäris.  
+                'title' => 'Taslamalar we dizaýn',
+                'description' => 'Web sahypanyň gurluşyny we konsepsiýasyny taýýarlaýarys, sahypalaryň maketlerini we prototiplerini düzýäris.  
 Soňra dizaýn işlerine geçýäris — şriftleri, reňkleri we brendiňize hem-de maksatlaryňyza laýyk grafiki elementleri saýlaýarys.',
 
             ],
             [
-               'title' => 'Programmirleme we funksional',
-'description' => 'Web sahypanyň esasy funksiýalaryny işläp düzýäris — aragatnaşyk formalaryndan başlap, daşarky ulgamlara we mazmun dolandyryş platformalaryna çenli integrasiýalar.  
+                'title' => 'Programmirleme we funksional',
+                'description' => 'Web sahypanyň esasy funksiýalaryny işläp düzýäris — aragatnaşyk formalaryndan başlap, daşarky ulgamlara we mazmun dolandyryş platformalaryna çenli integrasiýalar.  
 Sahypanyň durnukly işlemegini üpjün etmek üçin ähli zerur gurallary ornaşdyrýarys.',
 
             ],
             [
-               'title' => 'Synag we sazlaýyş',
-'description' => 'Web sahypa işe girizilmezinden ozal dürli enjamlar we brauzerler arkaly doly synagdan geçirilýär.  
+                'title' => 'Synag we sazlaýyş',
+                'description' => 'Web sahypa işe girizilmezinden ozal dürli enjamlar we brauzerler arkaly doly synagdan geçirilýär.  
 Ýalňyşlyklar düzedilýär, tizligi we öndürijiligi optimizasiýa edilýär, ulanyjy üçin amatly tejribe üpjün edilýär.',
 
             ],
             [
-               'title' => 'Işe girizmek we goldaw',
-'description' => 'Ahyrky barlaglardan soň web sahypany hostinge ýerleşdirýäris we işe girizýäris.  
+                'title' => 'Işe girizmek we goldaw',
+                'description' => 'Ahyrky barlaglardan soň web sahypany hostinge ýerleşdirýäris we işe girizýäris.  
 Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem-de täzelenmegi üçin dowamly goldaw berýäris.',
 
             ],
         ],
     ],
+    'bitrix_title_crm'       => 'Bitrix24 CRM',
+    'bitrix_heading'         => 'Bitrix24 CRM',
+    'bitrix_intro'           => 'Işgärleriň bilelikde işlemegi, işewürlik proseslerini optimizirlemek üçin bitewi sanly giňişlik.',
+    'bitrix_certificate_alt' => 'Şahadatnama',
+    'bitrix_description_title'   => 'Düşündiriş',
+    'bitrix_description_text1'   => 'Bitrix24 ähli bölümleriň — buhgalteriýadan başlap işläp taýýarlamaga çenli — wezipeler we taslamalar bilen bilelikde işlemek üçin toplumlaýyn gural hödürleýär.',
+    'bitrix_description_text2'   => 'Işewürlik platformasy mümkin boldugyça amatly bolmaly we iş üçin zerur ähli funksiýalary öz içine almaly. Ähli işgärleri birleşdiriň we wezipeler we taslamalar boýunça bilelikde işläň, işi gözegçilikde saklaň, netijäni seljereň we CRM-iňizde işewürlik proseslerini gurnuň.',
+    'bitrix_cloud'           => 'Bulut çözgüdi',
+    'bitrix_box'             => 'Gutujyk çözgüdi',
+
+    // New translation variables for Bitrix (Cloud tab)
+    'bitrix_cloud_solution' => 'Bitrix24 Bulut Çözgüdi',
+    'bitrix_plan' => 'Meýilnama',
+    'bitrix_price' => 'Bahasy',
+    'bitrix_description' => 'Düşündiriş',
+    'bitrix_users' => 'Ulanyjylar',
+    'bitrix_cloud_space' => 'Bulut Ýerleşigi',
+
+    'bitrix_free' => 'Mugt',
+    'bitrix_price_free' => '0 RUB',
+    'bitrix_for_start' => 'Başlamak üçin',
+    'bitrix_unlimited' => 'Çäksiz',
+    'bitrix_space_5gb' => '5 GB',
+
+    'bitrix_basic' => 'Esasy',
+    'bitrix_price_basic_old' => '2,490 RUB',
+    'bitrix_price_basic_new' => '1,743 RUB',
+    'bitrix_for_small_teams' => 'Kiçi toparlar üçin',
+    'bitrix_users_5' => '5 Ulanyjy',
+    'bitrix_space_24gb' => '24 GB',
+
+    'bitrix_standard' => 'Standart',
+    'bitrix_price_standard_old' => '6,990 RUB',
+    'bitrix_price_standard_new' => '4,893 RUB',
+    'bitrix_for_large_teams' => 'Uly toparlar üçin',
+    'bitrix_users_50' => '50 Ulanyjy',
+    'bitrix_space_100gb' => '100 GB',
+
+    'bitrix_professional' => 'Professional',
+    'bitrix_price_professional_old' => '13,990 RUB',
+    'bitrix_price_professional_new' => '9,793 RUB',
+    'bitrix_for_companies' => 'Kompaniýalar üçin',
+    'bitrix_users_100' => '100 Ulanyjy',
+    'bitrix_space_1024gb' => '1 TB',
+
+    'bitrix_enterprise' => 'Enterprise',
+    'bitrix_price_on_request' => 'Sorag boýunça',
+    'bitrix_for_large_companies' => 'Uly kompaniýalar üçin',
+    'bitrix_users_250' => '250 Ulanyjy',
+    'bitrix_space_3tb' => '3 TB',
+
+    // Täze terjimeler Bitrix (Gutujyk taby)
+    'bitrix_box_solution' => 'Bitrix24 Gutujyk Çözgüdi',
+    'bitrix_editions' => 'Neşirler',
+    'bitrix_more_info' => 'Has giňişleýin maglumat',
+    'bitrix_additional' => 'Goşmaça',
+
+    'bitrix_store_crm' => 'Bitrix24 CRM Dükany üçin',
+    'bitrix_users_12' => '12 Ulanyjy',
+    'bitrix_price_store_crm' => '150 RUB',
+    'bitrix_license_12_months' => '12 Aýlyk Lisenziýa',
+
+    'bitrix_extranet' => 'Ekstranet',
+    'bitrix_ecommerce_platform' => 'Elektron Söwda Platformasy',
+    'bitrix_copilot' => 'Kopilot',
+    'bitrix_online_documents' => 'Onlaýn Resminamalar',
+    'bitrix_hr_document_flow' => 'HR Resminama Akymy',
+    'bitrix_multi_department' => 'Köp Bölüm',
+    'bitrix_web_cluster' => 'Web Klaster',
+    'bitrix_vip_support' => 'VIP Goldaw',
+
+    'bitrix_corporate_portal' => 'Korporatiw Portal',
+    'bitrix_users_500' => '500 Ulanyjy',
+    'bitrix_price_corporate_portal' => '250 RUB',
+
+    'bitrix_users_1000' => '1000 Ulanyjy',
+    'bitrix_price_enterprise' => 'Sorag boýunça',
+
+    // "Gutujyk Çözgüdi vs. Bulut" bölümi üçin üýtgeýänler
+    'bitrix_box_vs_cloud' => 'Gutujyk Çözgüdi vs. Bulut Çözgüdi',
+    'bitrix_box_vs_cloud_intro' => 'Esasy aýratynlyklaryň deňeşdirilmegi',
+    'bitrix_cloud_version' => 'Bulut Wersiýasy',
+    'bitrix_cloud_advantage1' => 'Ýokary Elýeterlilik',
+    'bitrix_cloud_advantage2' => 'Awtomatiki Täzelenmeler',
+    'bitrix_cloud_advantage3' => 'Masştablaşdyryş',
+    'bitrix_cloud_advantage4' => 'Minimal Tehniki Çykdajylar',
+    'bitrix_cloud_advantage5' => 'Çeýe Integrasiýa',
+    'bitrix_cloud_advantage6' => 'Çalt Gurmak',
+
+    'bitrix_max_features' => 'Iň Köp Aýratynlyklar',
+    'bitrix_box_advantage1' => 'Doly Awtonomiýa',
+    'bitrix_box_advantage2' => 'Ýokary Netijelilik',
+    'bitrix_box_advantage3' => 'Çuňňur Uýgunlaşdyryş',
+    'bitrix_box_advantage4' => 'Ýerli Serwer Goldawy',
+    'bitrix_box_advantage5' => 'Maglumat Howpsuzlygy',
+    'bitrix_box_advantage6' => 'Uýgunlaşdyrylan Çözgütler',
+    'bitrix_box_advantage7' => 'Kepillendirilen Goldaw',
+
+    // "Şahadatnamalar we Artykmaçlyklar" bölümi üçin üýtgeýänler
+    'bitrix_our_competencies' => 'Bitrix24 boýunça Biziň Ukybymyz',
+    'bitrix_advantages_title' => 'Bitrix24 CRM-iň Artykmaçlyklary',
+    'bitrix_advantage1_title' => 'Integrasiýa',
+    'bitrix_advantage1_description' => 'Bar bolan ulgamlara çalt integrasiýa.',
+    'bitrix_advantage2_title' => 'Ygtybarlylyk',
+    'bitrix_advantage2_description' => 'Ulgamyň ýokary durnuklylygy.',
+    'bitrix_advantage3_title' => 'Masştablaşdyryş',
+    'bitrix_advantage3_description' => 'Ulgam siziň işiňiz bilen bilelikde ösýär.',
+    'bitrix_advantage4_title' => 'Howpsuzlyk',
+    'bitrix_advantage4_description' => 'Maglumatlaryň we işiň ygtybarly goragy.',
+    'bitrix_advantage5_title' => 'Çeýelik',
+    'bitrix_advantage5_description' => 'Islendik zerurlyk üçin uýgunlaşdyrylan çözgütler.',
+    'bitrix_advantage6_title' => 'Goldaw',
+    'bitrix_advantage6_description' => '24/7 tehniki goldaw.',
+
+    // "Biziň Taslamalarymyz" bölümi üçin üýtgeýänler
+    'bitrix_our_cases' => 'Biziň Taslamalarymyz',
+    'bitrix_more' => 'Giňişleýin Maglumat',
 ];
