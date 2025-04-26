@@ -10,6 +10,7 @@ $(function () {
         useCSS: true,
         arrows: false,
         useTransform: true,
+        lazyLoad: 'ondemand',
         responsive: [
             {
                 breakpoint: 1460,

@@ -70,8 +70,8 @@
         
                                     <!-- Телефон -->
                                     <div class="mb-4">
-                                        <img src="{{ asset('/assets/images/phoneLightRed.png') }}" alt="phone icon"
-                                            class="w-16 h-16 mx-auto mb-2" />
+                                        <img data-src="{{ asset('/assets/images/phoneLightRed.png') }}" alt="phone icon"
+                                            class="w-16 h-16 mx-auto mb-2 lazyload" />
                                         <div class="font-bold text-3xl md:text-5xl text-center">
                                             <a href="tel:+99312753713">+993 12 75 37 13</a>
                                         </div>
@@ -89,8 +89,8 @@
                                     <!-- Голубь -->
                                     <div class="mt-10">
                                         <div class="mb-4">
-                                            <img src="{{ asset('/assets/images/doveLightRed.png') }}" alt="dove icon"
-                                                class="w-16 h-16 mx-auto" />
+                                            <img data-src="{{ asset('/assets/images/doveLightRed.png') }}" alt="dove icon"
+                                                class="w-16 h-16 mx-auto lazyload" />
                                         </div>
                                         <div class="text-center text-xl md:text-2xl">
                                             <a href="mailto:info@ltm.studio">

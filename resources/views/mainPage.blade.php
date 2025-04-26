@@ -33,9 +33,9 @@
                     <a class="slide-a" href="/{{ $lang }}/portfolio/{{ $p->id }}">{{ __('translate.readMore') }}</a>
                 </div>
                 @if($p->getFirstMediaUrl('portfolio-images', 'webp'))
-                    <img class="image-container" src="{{ $p->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="Image" loading="lazy">
+                    <img class="image-container lazyload" data-lazy="{{ $p->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="Image" loading="lazy" >
                 @else
-                    <img class="image-container" src="{{ asset('storage/' . $p['photo']) }}" alt="Image" loading="lazy">
+                    <img class="image-container lazyload" data-lazy="{{ asset('storage/' . $p['photo']) }}" alt="Image" loading="lazy">
                 @endif
             </a>
         </div>

@@ -235,7 +235,7 @@
     </div>
 
     <button class="w-full py-4 bg-[#e31e24] rounded flex items-center justify-center gap-3 text-xl">
-        <img src="{{ asset('/assets/images/doveLightRed.png') }}" class="w-6" alt="Dove">
+        <img data-src="{{ asset('/assets/images/doveLightRed.png') }}" class="w-6 lazy-load" alt="Dove">
         {{ __('translate.sugProject') }}
     </button>
 </div>

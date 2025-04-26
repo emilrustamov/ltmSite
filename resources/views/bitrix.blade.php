@@ -12,8 +12,8 @@
             </p>
             <div class="mt-6">
                 <!-- Здесь расположите картинку сертификата -->
-                <img src="{{ asset('webp/bitrix-certificate.webp') }}" alt="{{ __('translate.bitrix_certificate_alt') }}"
-                    class="mx-auto lazyload">
+                <img data-src="{{ asset('webp/bitrix-certificate.webp') }}" alt="{{ __('translate.bitrix_certificate_alt') }}"
+                    class="mx-auto lazyload lazyload">
             </div>
         </div>
     </section>
@@ -285,8 +285,8 @@
                 {{-- 🔖 Добавьте сюда все свои изображения (10 + шт.) --}}
                 @foreach (['cert1.webp', 'cert2.webp', 'cert3.webp', 'cert4.webp', 'cert5.webp', 'cert6.webp', 'cert7.webp', 'cert8.webp'] as $file)
                     <div class="swiper-slide">
-                        <img src="{{ asset('webp/' . $file) }}" alt="{{ __('translate.bitrix_certificate') }}"
-                            class="mx-auto object-contain drop-shadow-lg">
+                        <img data-src="{{ asset('webp/' . $file) }}" alt="{{ __('translate.bitrix_certificate') }}"
+                            class="mx-auto object-contain drop-shadow-lg lazyload">
                     </div>
                 @endforeach
             </div>
@@ -380,8 +380,8 @@
                     <div class="swiper-slide">
                         <div class="border rounded-xl overflow-hidden shadow-lg group bg-[#1c1b1b]">
                             <a href="{{ $case['link'] }}">
-                                <img src="{{ asset($case['image']) }}" alt="{{ $case['title'] }}"
-                                    class="w-full object-cover transition-transform duration-300 group-hover:scale-105">
+                                <img data-src="{{ asset($case['image']) }}" alt="{{ $case['title'] }}"
+                                    class="w-full object-cover transition-transform duration-300 group-hover:scale-105 lazyload">
                             </a>
 
                             <div class="p-4 text-center">

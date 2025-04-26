@@ -617,9 +617,8 @@ section {
 .send-p:after {
   content: "";
   display: block;
-  width: 50px;
-  height: 50px;
-  margin-top: 10px;
+  width: 30px;
+  height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("/assets/images/long-arrow-right.png");
