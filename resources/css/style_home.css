@@ -23,7 +23,7 @@ label {
 }
 
 .field-textarea {
-    margin: 3rem 0rem 1rem 0 !important;
+    margin: 3rem 5rem 1rem 0 !important;
 }
 
 .field-input {
@@ -273,6 +273,14 @@ label {
 
     .slide-text {
         bottom: -12px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .field {
+        margin: 3rem 0rem 1rem 0 !important;
+        width: 100%;
     }
 }
 
