@@ -109,7 +109,7 @@
 </div>
 
 <!-- Левое меню (десктоп) -->
-<div class="leftHeader hidden xl:flex left-[26px] lg:left-[86px]">
+<div class="leftHeader hidden 3xl:flex left-[26px] lg:left-[86px]">
     <div class="rowLeftHeader">
         <div class="followed-element">
             <a href="/{{ $lang }}/portfolio">
@@ -235,7 +235,7 @@
     </div>
 
     <button class="w-full py-4 bg-[#e31e24] rounded flex items-center justify-center gap-3 text-xl">
-        <img data-src="{{ asset('/assets/images/doveLightRed.png') }}" class="w-6 lazy-load" alt="Dove">
+        <span class="text-3xl">🕊️</span>
         {{ __('translate.sugProject') }}
     </button>
 </div>

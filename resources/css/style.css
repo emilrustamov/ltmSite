@@ -87,8 +87,13 @@ input {
   outline: none !important;
 }
 
+ul {
+  list-style-type: disc;
+}
+
 li {
   font-size: var(--font18);
+  margin-bottom: 20px;
 }
 
 hr {
