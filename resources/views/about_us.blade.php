@@ -40,14 +40,14 @@
                     <h1>{{ __('translate.aboutUsTitle') }}</h1>
 
 
-                    <p class="">{{ __('translate.abtLtmstudio') }}</p>
+                    <p class="">{{ __('translate.abtLtm') }}</p>
 
                     <blockquote class="relative text-center font-semibold  my-16 text-[24px] md:text-[36px] xl:text-[48px]">
                         {!! nl2br(__('translate.aboutPerfect')) !!}
                     </blockquote>
 
 
-                    <p class="">{!! nl2br(__('translate.abtLtmstudio1')) !!}
+                    <p class="">{!! nl2br(__('translate.abtLtm1')) !!}
                     </p>
 
                     <section>
@@ -181,7 +181,7 @@
                         <h2>{{ __('translate.aboutTeamTitle') }}</h2>
                         <p>{{ __('translate.aboutTeamSub') }} </p>
                         <p>{{ __('translate.aboutTeamSub2') }} </p>
-                        <ul class="criteria">
+                        <ul class="criteria list-none">
                             @for ($i = 1; $i <= 18; $i++)
                                 <li>
                                     <p>{!! nl2br(__('translate.teamQ' . $i)) !!}</p>

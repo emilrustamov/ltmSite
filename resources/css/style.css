@@ -87,13 +87,8 @@ input {
   outline: none !important;
 }
 
-ul {
-  list-style-type: none;
-}
-
 li {
   font-size: var(--font18);
-  font-weight: 600;
 }
 
 hr {
