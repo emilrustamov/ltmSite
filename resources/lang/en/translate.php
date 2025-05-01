@@ -3,7 +3,7 @@
 return [
     'services' => 'Services',
     'aboutUs' => 'About Us',
-    'aboutUsTitle' => 'LTM Studio:',
+    'aboutUsTitle' => 'LTM :',
     'portfolio' => 'Portfolio',
     'bitrix' => 'Bitrix24',
     'blog' => 'Blog',
@@ -76,11 +76,11 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'moreThan2' => 'an IT company',
 
     'history' => 'Company history',
-    'aboutHistory' => "📚 LTM Studio - an IT company offering modern solutions in website development, mobile applications and Bitrix24 platform implementation in Turkmenistan. We focus on large and medium businesses, helping them not just create digital products but eliminate 'pain points' in their business processes through IT solutions.\n\n
-👨‍💻 'We are a team of professionals' - this sounds like every other website, but we choose to move differently. LTM Studio is a team of IT specialists with 4+ years of experience in major companies. We united to create our own projects and offer clients something new and creative. At LTM Studio, we can implement ideas and approaches that previously remained in the shadows of corporate limitations, introducing bold and innovative solutions.\n\n
+    'aboutHistory' => "📚 LTM - an IT company offering modern solutions in website development, mobile applications and Bitrix24 platform implementation in Turkmenistan. We focus on large and medium businesses, helping them not just create digital products but eliminate 'pain points' in their business processes through IT solutions.\n\n
+👨‍💻 'We are a team of professionals' - this sounds like every other website, but we choose to move differently. LTM  is a team of IT specialists with 4+ years of experience in major companies. We united to create our own projects and offer clients something new and creative. At LTM , we can implement ideas and approaches that previously remained in the shadows of corporate limitations, introducing bold and innovative solutions.\n\n
 💡 Our principle is to always work for the client\'s results and offer what truly helps your business. We approach each project individually, selecting solutions for specific tasks, even if the optimal solution turns out to be a ready-made template (which isn\'t ideal).\n\n
 🚀 But if there\'s an opportunity to create a unique product that better serves your goals, we\'ll propose that path. In any case, our task is to provide clients with tools that will contribute to their development and competitiveness, without burdening you with technical issues and problems.\n\n
-🤝 LTM Studio - your reliable partner on the path to technological innovation and digital transformation. We don\'t just solve your tasks - we do it in a way that will make your competitors want to change professions.\n",
+🤝 LTM  - your reliable partner on the path to technological innovation and digital transformation. We don\'t just solve your tasks - we do it in a way that will make your competitors want to change professions.\n",
 
     'aboutStatistics' => 'Cold statistics',
     'years' => 'years in IT',
@@ -103,7 +103,7 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'valueSubCont' => 'Between projects, we studied, continue to learn, and keep improving',
     'exp' => 'Nothing beats experience, no matter how much you study😉',
     'valueJobs' => 'We\'ve excelled in graphic design: creating naming across Ashgabat, developing highly professional logos and corresponding brand identities, building sales websites, working on product packaging, conceptualizing retail and exhibition spaces.',
-    'aboutSpecTitle' => 'LTM Studio Specialization',
+    'aboutSpecTitle' => 'LTM  Specialization',
     'aboutSpecSub' => 'We don\'t aim to do what we can\'t, but we\'re not afraid to explore new solutions - we grow and improve our results',
     'spec1' => 'Website and online store development',
     'spec1Sub' => "Creating websites and online stores of any\ncomplexity using modern\ntechnologies",
@@ -138,11 +138,11 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'teamQ17' => 'You acquire new knowledge every second',
     'teamQ18' => 'You never had an account on "Odnoklassniki" (At least you understand the reputational damage)',
     'aboutFooterSub' => "Counted at least 12 matches? Then send your resume to",
-    'custom' => 'info@ltm.studio',
-    'mailHr' => 'info@ltm.studio',
+    'custom' => 'info@ltm.',
+    'mailHr' => 'info@ltm.',
     'aboutFooterSubCont' => '- you might become part of our team.',
 
-    'portfolioTitle' => 'LTM Studio Projects',
+    'portfolioTitle' => 'LTM  Projects',
     'portfolioSub' => 'Many interesting cases we\'re proud of)',
     'menuAll' => 'All',
     'menu' => "ME\nNU",
@@ -163,7 +163,7 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'formComment' => 'Your comment or description',
 
     'titleForm' => "Transform your ideas into action:\ncontact us right now!",
-    'descForm' => 'Every great journey begins with a first step. In business world, this step can be a simple message that opens doors to new opportunities and success. At "LTM Studio", we believe that behind every request lies potential for innovation and transformation.',
+    'descForm' => 'Every great journey begins with a first step. In business world, this step can be a simple message that opens doors to new opportunities and success. At "LTM ", we believe that behind every request lies potential for innovation and transformation.',
 
     'formModalTitle' => 'Shall we start?',
     'formModalDesc' => 'With us, projects go smoothly and effortlessly, let\'s get acquainted!',
@@ -188,17 +188,17 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'servSubTitle4' => "Control and management of employee workspace",
     'servDesc4' => "Bitrix24 provides employee work control through task and report systems. CRM component improves customer relations by recording interactions and deals. The platform also helps plan and coordinate projects for their successful completion.",
     'aboutUsFooter1' => 'We create "details and tools" that move your business forward. Developing each idea, we expand its values and philosophy, creating important solutions that help businesses achieve necessary growth.',
-    'aboutUsFooter2' => 'Our company puts "efficiency" first, and despite all business pragmatism, we find many creative ideas to implement solutions that can connect you with your audience for years to come. LTM Studio that can!',
-    'aboutUsFooter3' => 'LTM Studio - an IT company offering solutions in website development, mobile applications and Bitrix24 platform implementation in Turkmenistan. We focus on large and medium businesses, helping not just create digital products but eliminate "pain points" in business processes through IT solutions.',
-    'aboutUsFooter4' => '"We are a team of professionals" - this sounds like every other website, but we choose to move differently. LTM studio is a team of IT specialists with 4+ years of experience in major companies. We united to create our own projects and offer clients something new and creative. At LTM studio we can implement ideas and approaches that previously remained in the shadows of corporate limitations, introducing bold and innovative solutions.',
+    'aboutUsFooter2' => 'Our company puts "efficiency" first, and despite all business pragmatism, we find many creative ideas to implement solutions that can connect you with your audience for years to come. LTM  that can!',
+    'aboutUsFooter3' => 'LTM  - an IT company offering solutions in website development, mobile applications and Bitrix24 platform implementation in Turkmenistan. We focus on large and medium businesses, helping not just create digital products but eliminate "pain points" in business processes through IT solutions.',
+    'aboutUsFooter4' => '"We are a team of professionals" - this sounds like every other website, but we choose to move differently. LTM  is a team of IT specialists with 4+ years of experience in major companies. We united to create our own projects and offer clients something new and creative. At LTM  we can implement ideas and approaches that previously remained in the shadows of corporate limitations, introducing bold and innovative solutions.',
     'aboutUsFooter5' => 'Our principle is to always work for client results and offer what truly helps your business. We approach each project individually, selecting solutions for specific tasks, even if the optimal solution turns out to be a ready-made template, which isn\'t ideal(((. But if there\'s opportunity to create a unique product that better serves your goals, we\'ll propose that path. In any case our task is to provide clients with tools that will contribute to their development and competitiveness, without burdening you with technical issues and problems.',
-    'aboutUsFooter6' => 'LTM Studio - your reliable partner on the path to technological innovation and digital transformation. We don\'t just solve your tasks - we do it in a way that will make your competitors want to change professions.',
-    'abt1' => 'LTM Studio - a company offering comprehensive IT solutions for your business. We create not just websites or apps, but strategic tools capable of accelerating company development and improving internal processes. Implementing modern technologies helps our clients improve productivity and optimize workflows, adapting to new challenges.',
+    'aboutUsFooter6' => 'LTM  - your reliable partner on the path to technological innovation and digital transformation. We don\'t just solve your tasks - we do it in a way that will make your competitors want to change professions.',
+    'abt1' => 'LTM  - a company offering comprehensive IT solutions for your business. We create not just websites or apps, but strategic tools capable of accelerating company development and improving internal processes. Implementing modern technologies helps our clients improve productivity and optimize workflows, adapting to new challenges.',
     'abt2' => 'Our approach is based on close collaboration with clients. We thoroughly study business specifics to offer the most suitable and effective solutions. Even if your project requires minor adjustments or complete rethinking of existing processes, we\'re ready to propose the optimal option that will ensure long-term results.',
     'our_serv_title' => 'Our services',
-    'abtLtmstudio' => 'LTM Studio is a team of professionals offering comprehensive IT solutions for your business. We create not just websites or apps, but strategic tools capable of accelerating company development and improving internal processes. Implementing modern technologies helps our clients improve productivity and optimize workflows, adapting to new challenges.',
-    'abtLtmstudio1' => 'Our approach is based on close collaboration with clients. We thoroughly study business specifics to offer the most suitable and effective solutions. Even if your project requires minor adjustments or complete rethinking of existing processes, we\'re ready to propose the optimal option that will ensure long-term results.',
-    'abtLtmstudio3' => 'We\'re ready to cooperate with IT companies, production teams, PR agencies, architectural studios and others. If you have an offer, you can contact us.',
+    'abtLtm' => 'LTM  is a team of professionals offering comprehensive IT solutions for your business. We create not just websites or apps, but strategic tools capable of accelerating company development and improving internal processes. Implementing modern technologies helps our clients improve productivity and optimize workflows, adapting to new challenges.',
+    'abtLtm1' => 'Our approach is based on close collaboration with clients. We thoroughly study business specifics to offer the most suitable and effective solutions. Even if your project requires minor adjustments or complete rethinking of existing processes, we\'re ready to propose the optimal option that will ensure long-term results.',
+    'abtLtm3' => 'We\'re ready to cooperate with IT companies, production teams, PR agencies, architectural s and others. If you have an offer, you can contact us.',
     'viewAll' => 'View all',
     'dzynDzyn' => 'Ding-dong!!!',
 

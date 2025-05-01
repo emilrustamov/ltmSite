@@ -41,11 +41,11 @@
                             </div>
                             <div>
                                 <label for="target_{{ $lang }}" class="block text-sm font-medium text-gray-700">Target</label>
-                                <textarea class="border border-gray-300 rounded p-2 w-full" id="target_{{ $lang }}" name="target_{{ $lang }}" rows="3" placeholder="Target"></textarea>
+                                <textarea class="border border-gray-300 rounded p-2 w-full rich-editor" id="target_{{ $lang }}" name="target_{{ $lang }}" rows="3" placeholder="Target"></textarea>
                             </div>
                             <div>
                                 <label for="res_{{ $lang }}" class="block text-sm font-medium text-gray-700">Result</label>
-                                <textarea class="border border-gray-300 rounded p-2 w-full" id="res_{{ $lang }}" name="res_{{ $lang }}" rows="3" placeholder="Result"></textarea>
+                                <textarea class="border border-gray-300 rounded p-2 w-full rich-editor" id="res_{{ $lang }}" name="res_{{ $lang }}" rows="3" placeholder="Result"></textarea>
                             </div>
                         </div>
                     </div>
@@ -122,4 +122,15 @@
         });
     });
 </script>
+<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+<script>
+    document.querySelectorAll('.rich-editor').forEach(editor => {
+         CKEDITOR.replace(editor);
+    });
+</script>
 
+<style>
+    .cke_notification_warning {
+        display: none !important;
+    }
+</style>

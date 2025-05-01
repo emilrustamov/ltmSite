@@ -3,7 +3,7 @@
 return [
     'services' => 'Serwisler',
     'aboutUs' => 'Biz barada',
-    'aboutUsTitle' => 'LTM Studio：',
+    'aboutUsTitle' => 'LTM ：',
     'portfolio' => 'Portfolio',
     'bitrix' => 'Bitrix24',
     'blog' => 'Blog',
@@ -80,15 +80,15 @@ return [
     'moreThan2' => 'IT kompaniýasyndan hem giň',
 
     'history' => 'Kompaniýanyň taryhy',
-    'aboutHistory' => "📚 LTM Studio — Türkmenistanda web sahypalaryny, mobil goşundylary döretmek we Bitrix24 ulgamyny ornaşdyrmak boýunça döwrebap IT çözgütlerini hödürleýän kompaniýa. Biz uly we orta biznesler bilen işleýäris, diňe sanly önümleri döretmek däl-de, eýsem olaryň iş prosesindäki 'agry nokatlaryny' IT arkaly çözmegi maksat edinýäris.\n\n
+    'aboutHistory' => "📚 LTM  — Türkmenistanda web sahypalaryny, mobil goşundylary döretmek we Bitrix24 ulgamyny ornaşdyrmak boýunça döwrebap IT çözgütlerini hödürleýän kompaniýa. Biz uly we orta biznesler bilen işleýäris, diňe sanly önümleri döretmek däl-de, eýsem olaryň iş prosesindäki 'agry nokatlaryny' IT arkaly çözmegi maksat edinýäris.\n\n
 
-👨‍💻 'Biz — hünärmenler topary' diýen söz ähli saýtlarda bar, emma biz beýlekilerden tapawutly. LTM Studio — iri kompaniýalarda 4+ ýyllyk tejribesi bolan IT hünärmenlerinden ybarat topar. Biz öz proýektlerimizi döretmek we müşderilere täzeçe, döredijilikli çözgütleri hödürlemek üçin birleşdik. LTM Studio-da öň korporatiw çäklendirmeleriň kölegesinde galan pikirleri we çemeleşmeleri batyrgaý we innowasion görnüşde durmuşa geçirýäris.\n\n
+👨‍💻 'Biz — hünärmenler topary' diýen söz ähli saýtlarda bar, emma biz beýlekilerden tapawutly. LTM  — iri kompaniýalarda 4+ ýyllyk tejribesi bolan IT hünärmenlerinden ybarat topar. Biz öz proýektlerimizi döretmek we müşderilere täzeçe, döredijilikli çözgütleri hödürlemek üçin birleşdik. LTM -da öň korporatiw çäklendirmeleriň kölegesinde galan pikirleri we çemeleşmeleri batyrgaý we innowasion görnüşde durmuşa geçirýäris.\n\n
 
 💡 Biziň ýörelgämiz — müşderiniň netijesine gönükdirilen iş we onuň işine hakykatdan hem peýda berjek zatlary teklip etmek. Her bir proýekte aýratyn çemeleşýäris, käwagt iň amatly çözgüt taýýar şablon bolsa-da (bu elbetde gowy däldir((( ), biz ony hem saýlap bilýäris.\n\n
 
 🚀 Maksatlaryňyza has laýyk gelýän aýratyn önümi döretmek mümkinçiligi bar bolsa — biz şol ýoly hödürläris. Biz müşderilerimize ösüşe tarap ýol açýan netijeli çözgütleri teklip edýäris we tehniki kynçylyklaryň hemmesini özümize alýarys.\n\n
 
-🤝 LTM Studio — tehnologik innowasiýalara we sanly transformasiýa tarap ýolda siziň ygtybarly hyzmatdaşlaryňyz. Biz diňe bir meseläňizi çözüp goýbermeris — eýsem biziň hödürleýän çözgütlerimiz, bäsdeşleriňiz hünärini üýtgetmegine-de sebäp bolup biler.\n",
+🤝 LTM  — tehnologik innowasiýalara we sanly transformasiýa tarap ýolda siziň ygtybarly hyzmatdaşlaryňyz. Biz diňe bir meseläňizi çözüp goýbermeris — eýsem biziň hödürleýän çözgütlerimiz, bäsdeşleriňiz hünärini üýtgetmegine-de sebäp bolup biler.\n",
     'aboutStatistics' => 'Холодная статистика',
 
 
@@ -111,7 +111,7 @@ return [
     'valueSubCont' => 'Proýektleriň arasynda biz öwrenýärdik, öwrenýäris we ösüşi dowam etdirýäris',
     'exp' => 'Näçe öwrenseňem, tejribäniň ýerine geçjek zat ýok😉',
     'valueJobs' => 'Grafiki dizaýn babatda biz güýçli ösüş gazandyk: Aşgabat boýunça at dakmak (neýming) işleri bilen meşgullanýarys, ýokary derejede logotipleri we olara degişli korporatiw stil döredýäris, satylýan web sahypalaryny taýýarlaýarys, önümler üçin gaplama dizaýnlaryny işläp düzýäris hem-de söwda we sergi stendleriniň konsepsiýalaryny düzýäris.',
-    'aboutSpecTitle' => 'LTM Studio-nyň ýöriteleşen ugurlary',
+    'aboutSpecTitle' => 'LTM -nyň ýöriteleşen ugurlary',
     'aboutSpecSub' => 'Biz başarmaýan işimize baş goşmaýarys, ýöne täze çözgütleri öwrenmekdenem gorkmaýarys — biz yzygider ösýäris we netijämiz has-da  gowulaşýar.',
     'spec1' => 'Разработка веб-сайтов и интернет магазинов',
     'spec1Sub' => "Создание сайтов и интернет-магазинов любой\n сложности с использованием\n современных технологий",
@@ -158,11 +158,11 @@ Biziň superwaýzerlerimiz işlerimizi mümkin boldugyça amatly ýagdaýda meý
     'teamQ18' => 'Sizde “Одноклассники” sahypasy ýok — hiç haçan bolan hem däldir (iň bolmanda onuň abraýa ýetirýän zyýanlaryny bilýärsiňiz)',
 
     'aboutFooterSub' => 'Eger siz bu sanawdan azyndan 12 aýratynlyga laýyk gelýän bolsaňyz — onda bize öz rezumeňizi iberiň',
-    'custom' => 'info@ltm.studio',
-    'mailHr' => 'info@ltm.studio',
+    'custom' => 'info@ltm.',
+    'mailHr' => 'info@ltm.',
     'aboutFooterSubCont' => '– belki, siz biziň toparymyzyň täze agzasy bolarsyňyz.',
 
-    'portfolioTitle' => 'LTM Studio-nyň taslamalary',
+    'portfolioTitle' => 'LTM -nyň taslamalary',
     'portfolioSub' => 'Много интересных кейсов, за которые не стыдно)',
     'menuAll' => 'Hemmesi',
     'menu' => "МЕN\nÝU",
@@ -188,7 +188,7 @@ Biziň superwaýzerlerimiz işlerimizi mümkin boldugyça amatly ýagdaýda meý
 
     'descForm' => 'Her bir beýik syýahat ilkinji ädimden başlanýar.  
 Biznes dünýä­sinde şol ädim täze mümkinçilikleriň we üstünlikleriň gapysyny açyp bilýän ýönekeý bir habar bolup biler.  
-LTM Studio-da biz her bir ýüzlenmäniň içinde ösüşe we täzeçillige mümkinçilik bardygyna ynanýarys.',
+LTM -da biz her bir ýüzlenmäniň içinde ösüşe we täzeçillige mümkinçilik bardygyna ynanýarys.',
 
 
     'formModalTitle' => 'Başlaýarysmy?',
@@ -243,20 +243,20 @@ Netijede, işiňiziň ösmegine kömek edýän möhüm çözgütleri döredýär
 
     'aboutUsFooter2' => 'Biziň üçin esasy zat — netije.  
 "Işiň çylşyrymlylygyna garamazdan, biz täze pikirleri ýüze çykarýarys."
-LTM Studio — pikir bilen duýgyny baglanyşdyrýan studiýa. Biz muny başarýarys!',
+LTM  — pikir bilen duýgyny baglanyşdyrýan studiýa. Biz muny başarýarys!',
 
-    'aboutUsFooter3' => 'LTM Studio — Türkmenistanda web sahypalary, mobil priloženiýalary taýýarlamak we Bitrix24 ulgamyny ornaşdyrmak boýunça IT çözgütleri hödürleýän kompaniýa.  
+    'aboutUsFooter3' => 'LTM  — Türkmenistanda web sahypalary, mobil priloženiýalary taýýarlamak we Bitrix24 ulgamyny ornaşdyrmak boýunça IT çözgütleri hödürleýän kompaniýa.  
 Biz orta we uly biznes üçin işläp, diňe sanly önüm döretmek bilen çäklenmän, eýsem IT arkaly iş prosesindäki kynçylyklary hem çözmäge kömek edýäris.',
 
     'aboutUsFooter4' => '"Biz — professional topar" diýen söz her bir saýtda gabat gelýär.  
 Emma biz başga ugurdan ýöremegi saýladyk.  
-LTM Studio — iri kompaniýalarda 4+ ýyl tejribesi bolan IT hünärmenleriň topary.  
+LTM  — iri kompaniýalarda 4+ ýyl tejribesi bolan IT hünärmenleriň topary.  
 Biz  öz taslamalarymyzy döretmek we müşderilerimize täze, döredijilikli çözgütleri hödürlemek üçin birleşdik.  
-Biz LTM Studio-da  öň korporatiw çäklendirmeler sebäpli durmuşa geçirilmedik pikirleri amala aşyrmaga mümkinçilik aldyk — indi bolsa batyrgaý we innowasion çözgütleri hödürleýäris.',
+Biz LTM -da  öň korporatiw çäklendirmeler sebäpli durmuşa geçirilmedik pikirleri amala aşyrmaga mümkinçilik aldyk — indi bolsa batyrgaý we innowasion çözgütleri hödürleýäris.',
 
     'aboutUsFooter5' => 'Biziň ýörelgämiz — müşderiniň netijesine gönükdirilen iş we onuň işine hakykatdan hem peýda berjek zatlary teklip etmek. Her bir proýekte aýratyn çemeleşýäris, käwagt iň amatly çözgüt taýýar şablon bolsa-da (bu elbetde gowy däldir((( ), biz ony hem saýlap bilýäris.Maksatlaryňyza has laýyk gelýän aýratyn önümi döretmek mümkinçiligi bar bolsa — biz şol ýoly hödürläris. Biz müşderilerimize ösüşe tarap ýol açýan netijeli çözgütleri teklip edýäris we tehniki kynçylyklaryň hemmesini özümize alýarys.',
-    'aboutUsFooter6' => 'LTM Studio — tehnologik innowasiýalara we sanly transformasiýa tarap ýolda siziň ygtybarly hyzmatdaşlaryňyz. Biz diňe bir meseläňizi çözüp goýbermeris — eýsem biziň hödürleýän çözgütlerimiz, bäsdeşleriňiz hünärini üýtgetmegine-de sebäp bolup biler.',
-    'abt1' => 'LTM Studio — işiňiz üçin toplumlaýyn IT çözgütleri hödürleýän kompaniýa.  
+    'aboutUsFooter6' => 'LTM  — tehnologik innowasiýalara we sanly transformasiýa tarap ýolda siziň ygtybarly hyzmatdaşlaryňyz. Biz diňe bir meseläňizi çözüp goýbermeris — eýsem biziň hödürleýän çözgütlerimiz, bäsdeşleriňiz hünärini üýtgetmegine-de sebäp bolup biler.',
+    'abt1' => 'LTM  — işiňiz üçin toplumlaýyn IT çözgütleri hödürleýän kompaniýa.  
 Biz diňe bir web sahypalaryny ýa-da mobil goşundylary däl, eýsem kompaniýanyň ösüşini çaltlandyrmaga we içerki iş proseslerini gowulandyrmaga kömek edýän strategik gurallary döredýäris.  
 Döwrüň talaplaryna laýyk tehnologiýalary ornaşdyrmak müşderilerimiziň öndürijiligini ýokarlandyrmaga we iş tertibini optimizirlemäge ýardam berýär.',
 
@@ -266,15 +266,15 @@ Taslamaňyz diňe ownuk üýtgetmeleri talap edýän bolsa-da, ýa-da bar bolan 
 
     'our_serv_title' => 'Biziň hyzmatlarymyz',
 
-    'abtLtmstudio' => 'LTM Studio — işiňiz üçin toplumlaýyn IT çözgütleri hödürleýän hünärmenleriň topary.  
+    'abtLtm' => 'LTM  — işiňiz üçin toplumlaýyn IT çözgütleri hödürleýän hünärmenleriň topary.  
 Biz diňe bir web sahypalaryny ýa-da mobil goşundylary däl-de, kompaniýanyň ösüşini çaltlandyrmaga we içerki iş proseslerini gowulandyrmaga mümkinçilik berýän strategik gurallary döredýäris.  
 Döwrüň häzirki tehnologiýalaryny ornaşdyrmak müşderilerimize öndürijiligi ýokarlandyrmaga we iş tertibini optimizirlemäge kömek edýär.',
 
-    'abtLtmstudio1' => 'Biziň iş ýörelgämiz müşderi bilen ýakyn hyzmatdaşlyga esaslanýar.  
+    'abtLtm1' => 'Biziň iş ýörelgämiz müşderi bilen ýakyn hyzmatdaşlyga esaslanýar.  
 Biz işiň aýratynlyklaryny içgin öwrenýäris we iň laýyk hem-de netijeli çözgütleri teklip edýäris.  
 Taslamaňyz diňe ownuk üýtgetmeleri talap edýän ýagdaýda-da ýa-da bar bolan prosesleriň düýpli täzelenmegini zerur edýän ýagdaýynda-da, biz uzak möhletleýin netijeleri üpjün edip biljek iň oňat ýoluny hödürlemäge taýýar.',
 
-    'abtLtmstudio3' => 'Biz IT kompaniýalar, önümçilik toparlary, PR agentlikleri, arhitektura studiýalary we beýleki hyzmatdaşlyk mümkinçiliklerine açyk.  
+    'abtLtm3' => 'Biz IT kompaniýalar, önümçilik toparlary, PR agentlikleri, arhitektura studiýalary we beýleki hyzmatdaşlyk mümkinçiliklerine açyk.  
     Eger teklibiňiz bar bolsa — biziň bilen habarlaşyp bilersiňiz.',
 
     'viewAll' => 'Ählisini gör',

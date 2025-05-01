@@ -43,12 +43,12 @@
 
         <div class="section">
             <h2>{{ __('translate.target') }}</h2>
-            <p>{{ $portfolio->target[$lang] ?? '' }}</p>
+            <p>{!! $portfolio->target[$lang] ?? '' !!}</p>
         </div>
 
         <div class="section">
             <h2>{{ __('translate.result') }}</h2>
-            <p>{{ $portfolio->result[$lang] ?? '' }}</p>
+            <p>{!! $portfolio->result[$lang] ?? '' !!}</p>
             @if (!empty($portfolio->urlButton))
                 <a href="{{ $portfolio->urlButton }}">
                     <button class="custom-button">

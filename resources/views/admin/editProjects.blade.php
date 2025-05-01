@@ -47,11 +47,11 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Target</label>
-                                    <textarea class="border border-gray-300 rounded p-2 w-full" id="exampleFormControlTextarea1" name="target_tm" rows="3">{{ $portfolio->target['tm'] ?? '' }}</textarea>
+                                    <textarea class="border border-gray-300 rounded p-2 w-full rich-editor" id="exampleFormControlTextarea1" name="target_tm" rows="3">{{ $portfolio->target['tm'] ?? '' }}</textarea>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Result</label>
-                                    <textarea class="border border-gray-300 rounded p-2 w-full" id="exampleFormControlTextarea1" name="res_tm" rows="3">{{ $portfolio->result['tm'] ?? '' }}</textarea>
+                                    <textarea class="border border-gray-300 rounded p-2 w-full rich-editor" id="exampleFormControlTextarea1" name="res_tm" rows="3">{{ $portfolio->result['tm'] ?? '' }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -78,11 +78,11 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Target</label>
-                                    <textarea class="border border-gray-300 rounded p-2 w-full" id="exampleFormControlTextarea1" name="target_ru" rows="3">{{ $portfolio->target['ru'] ?? '' }}</textarea>
+                                    <textarea class="border border-gray-300 rounded p-2 w-full rich-editor" id="exampleFormControlTextarea1" name="target_ru" rows="3">{{ $portfolio->target['ru'] ?? '' }}</textarea>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Result</label>
-                                    <textarea class="border border-gray-300 rounded p-2 w-full" id="exampleFormControlTextarea1" name="res_ru" rows="3">{{ $portfolio->result['ru'] ?? '' }}</textarea>
+                                    <textarea class="border border-gray-300 rounded p-2 w-full rich-editor" id="exampleFormControlTextarea1" name="res_ru" rows="3">{{ $portfolio->result['ru'] ?? '' }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -109,11 +109,11 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Target</label>
-                                    <textarea class="border border-gray-300 rounded p-2 w-full" id="exampleFormControlTextarea1" name="target_en" rows="3">{{ $portfolio->target['en'] ?? '' }}</textarea>
+                                    <textarea class="border border-gray-300 rounded p-2 w-full rich-editor" id="exampleFormControlTextarea1" name="target_en" rows="3">{{ $portfolio->target['en'] ?? '' }}</textarea>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700">Result</label>
-                                    <textarea class="border border-gray-300 rounded p-2 w-full" id="exampleFormControlTextarea1" name="res_en" rows="3">{{ $portfolio->result['en'] ?? '' }}</textarea>
+                                    <textarea class="border border-gray-300 rounded p-2 w-full rich-editor" id="exampleFormControlTextarea1" name="res_en" rows="3">{{ $portfolio->result['en'] ?? '' }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -223,4 +223,17 @@
         });
     });
 </script>
+<script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+<script>
+    // Set your license key below:
+    CKEDITOR.config.licenseKey = 'YOUR_LICENSE_KEY';
+    document.querySelectorAll('.rich-editor').forEach(editor => {
+         CKEDITOR.replace(editor);
+    });
+</script>
 
+<style>
+    .cke_notification_warning {
+        display: none !important;
+    }
+</style>
