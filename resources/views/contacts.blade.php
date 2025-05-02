@@ -37,7 +37,7 @@
                                 ];
                             @endphp
 
-                            <ul class="mb-5 list-none">
+                            <ul class="mb-5 !list-none">
                                 @foreach ($contactsLinks as $link)
                                     <li>
                                         <div class="flex items-center space-x-2 my-2">

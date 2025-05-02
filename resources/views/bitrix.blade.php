@@ -152,7 +152,7 @@
                                         {{ __('translate.bitrix_license_12_months') }}
                                     </td>
                                     <td class="border p-2">
-                                        <ul class="list-none">
+                                        <ul class="!list-none">
                                             <li>{{ __('translate.bitrix_extranet') }}</li>
                                             <li>{{ __('translate.bitrix_ecommerce_platform') }}</li>
                                             <li>{{ __('translate.bitrix_copilot') }}</li>
@@ -177,7 +177,7 @@
                                         {{ __('translate.bitrix_license_12_months') }}
                                     </td>
                                     <td class="border p-2">
-                                        <ul class="list-none">
+                                        <ul class="!list-none">
                                             <li>{{ __('translate.bitrix_extranet') }}</li>
                                             <li>{{ __('translate.bitrix_ecommerce_platform') }}</li>
                                             <li>{{ __('translate.bitrix_copilot') }}</li>
@@ -200,7 +200,7 @@
                                         {{ __('translate.bitrix_license_12_months') }}
                                     </td>
                                     <td class="border p-2">
-                                        <ul class="list-none">
+                                        <ul class="!list-none">
                                             <li>{{ __('translate.bitrix_extranet') }}</li>
                                             <li>{{ __('translate.bitrix_ecommerce_platform') }}</li>
                                             <li>{{ __('translate.bitrix_copilot') }}</li>
@@ -258,7 +258,7 @@
                     </span>
                 </h3>
 
-                <ul class="space-y-3 flex-1 list-none">
+                <ul class="space-y-3 flex-1 !list-none">
                     <li>{{ __('translate.bitrix_box_advantage1') }}</li>
                     <li>{{ __('translate.bitrix_box_advantage2') }}</li>
                     <li>{{ __('translate.bitrix_box_advantage3') }}</li>

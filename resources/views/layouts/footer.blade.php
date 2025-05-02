@@ -10,7 +10,7 @@
                 {{ __('translate.leftRequest') }}
             </span>
         </div>
-        <ul class="hidden lg:flex justify-center items-center gap-4 w-full lg:w-1/3 list-none">
+        <ul class="hidden lg:flex justify-center items-center gap-4 w-full lg:w-1/3 !list-none">
             <li><a href="https://www.instagram.com/ltmstudio/" class="hover:underline">Inst</a></li>
             <li><a href="https://tm.linkedin.com/company/ltmstudio/" class="hover:underline">Ln</a></li>
         </ul>

@@ -72,7 +72,7 @@
                                 ];
                             @endphp
 
-                            <ul class="flex flex-wrap flex-row justify-start items-start text-left list-none">
+                            <ul class="flex flex-wrap flex-row justify-start items-start text-left !list-none">
                                 @foreach ($stats as $item)
                                     <li class="mb-16 w-1/2 sm:w-1/2 lg:w-1/3">
                                         <div class="stats_count text-7xl md:text-[135px] text-[#e31e24] font-bold leading-none tracking-wider"
@@ -95,7 +95,7 @@
                                 style="backface-visibility: hidden; transform: translate3d(0px, -187px, 0px);">
                             </div>
                             <div class="about-us-photo-5"></div>
-                            <ul class="flex flex-col md:flex-row gap-4 my-14 list-none">
+                            <ul class="flex flex-col md:flex-row gap-4 my-14 !list-none">
                                 @foreach ([['num' => '01', 'title' => __('translate.value1'), 'desc' => __('translate.value1Sub')], ['num' => '02', 'title' => __('translate.value2'), 'desc' => __('translate.value2Sub')], ['num' => '03', 'title' => __('translate.value3'), 'desc' => __('translate.value3Sub')]] as $item)
                                     <li class="w-full">
                                         <div>
@@ -151,7 +151,7 @@
                                     ];
                                 @endphp
 
-                                <ul class="flex flex-col md:flex-row md:gap-6 gap-4 list-none">
+                                <ul class="flex flex-col md:flex-row md:gap-6 gap-4 !list-none">
                                     @foreach ($specs as $spec)
                                         <li
                                             class="flex-1 group bg-[#3d1414] rounded-2xl shadow-xl p-6 transition duration-300 hover:shadow-2xl hover:-translate-y-1 hover:bg-[#e31f25]">
@@ -181,7 +181,7 @@
                         <h2>{{ __('translate.aboutTeamTitle') }}</h2>
                         <p>{{ __('translate.aboutTeamSub') }} </p>
                         <p>{{ __('translate.aboutTeamSub2') }} </p>
-                        <ul class="criteria list-none">
+                        <ul class="criteria !list-none">
                             @for ($i = 1; $i <= 18; $i++)
                                 <li>
                                     <p>{!! nl2br(__('translate.teamQ' . $i)) !!}</p>

@@ -57,7 +57,7 @@
         <h2 class="mb-5">{{ __('translate.qualityTitle') }}</h2>
         <div class="text-3xl my-10 md:my-20">{{ __('translate.qualitySub') }}</div>
 
-        <ul class="flex flex-wrap gap-6 list-none m-0 p-0">
+        <ul class="flex flex-wrap gap-6 !list-none m-0 p-0">
             @for ($i = 1; $i <= 7; $i++)
                 <li
                     class="relative flex-[1_1_100%] sm:flex-[1_1_48%] lg:flex-[1_1_30%] max-w-full sm:max-w-[48%] lg:max-w-[30%] pl-10 pr-8 pb-8 leading-[1.5]">

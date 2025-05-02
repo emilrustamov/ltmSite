@@ -79,7 +79,7 @@
                 <div id="langMenu"
                     class="hidden absolute left-0 top-full mt-2 bg-[#e31e24] text-white
                     rounded px-4 py-2 z-50 shadow">
-                    <ul class="text-center list-none">
+                    <ul class="text-center !list-none">
                         @foreach ($langs as $l)
                             @if ($lang !== $l)
                                 <li class="py-1 hover:underline">
