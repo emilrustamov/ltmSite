@@ -26,20 +26,24 @@
 
     <div class="carousel-custom ">
         @foreach ($projects as $p)
-        <div class="carousel-custom-item">
-            <a href="/{{ $lang }}/portfolio/{{ $p->id }}">
-                <div class="col flex-column slide-text">
-                    <p class="slide-title">{{ $p['title_' . $lang] }}</p>
-                    <a class="slide-a" href="/{{ $lang }}/portfolio/{{ $p->id }}">{{ __('translate.readMore') }}</a>
-                </div>
-                @if($p->getFirstMediaUrl('portfolio-images', 'webp'))
-                    <img class="image-container lazyload" data-lazy="{{ $p->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="Image" loading="lazy" >
-                @else
-                    <img class="image-container lazyload" data-lazy="{{ asset('storage/' . $p['photo']) }}" alt="Image" loading="lazy">
-                @endif
-            </a>
-        </div>
-    @endforeach
+            <div class="carousel-custom-item">
+                <a href="/{{ $lang }}/portfolio/{{ $p->id }}">
+                    <div class="col flex-column slide-text">
+                        <p class="slide-title">{{ $p['title_' . $lang] }}</p>
+                        <a class="slide-a"
+                            href="/{{ $lang }}/portfolio/{{ $p->id }}">{{ __('translate.readMore') }}</a>
+                    </div>
+                    @if ($p->getFirstMediaUrl('portfolio-images', 'webp'))
+                        <img class="image-container lazyload"
+                            data-lazy="{{ $p->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="Image"
+                            loading="lazy">
+                    @else
+                        <img class="image-container lazyload" data-lazy="{{ asset('storage/' . $p['photo']) }}"
+                            alt="Image" loading="lazy">
+                    @endif
+                </a>
+            </div>
+        @endforeach
     </div>
 </section>
 @endsection
@@ -51,11 +55,11 @@
 
 @section('content')
 
-<div class="feedback-section section container relative">
+<section>
     {{-- <div class="red-circle-feedback">
         <img src="{{ asset('/assets/images/pseudo-red.png') }}" alt="" loading="lazy">
     </div> --}}
-    <h2  itemprop="name">
+    <h2 itemprop="name">
         {!! nl2br(__('translate.titleForm')) !!}
     </h2>
     <div>
@@ -67,7 +71,7 @@
             <p>{{ __('translate.formError') }}</p>
         </div>
     @endif
-    <div >
+    <div>
         <form action="{{ route('contact.submit', ['lang' => $lang]) }}" method="post">
             @csrf
             <label class="field">
@@ -95,6 +99,6 @@
                 style="">{{ __('translate.sendText') }}</button>
         </form>
     </div>
-</div>
+</section>
 
 @endsection

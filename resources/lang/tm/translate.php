@@ -170,6 +170,7 @@ Biziň superwaýzerlerimiz işlerimizi mümkin boldugyça amatly ýagdaýda meý
 
     'contactsTitle' => 'Biziň bilen habarlaşyň',
     'contactsSub' => 'Biz bilen duşenbe-den şenbe çenli, sagat 10:00-dan 19:00-a çenli aragatnaşyk saklap bilersiňiz',
+    'address' => 'Aşgabat, 2127 köçe (G. Kuliýew), "Gökje" binasy 26A',
     'messenger' => 'şenbe',
 
     'contactsSubCont' => " \n Eger mesele gyssagly bolsa, iň gowusy — jaňlaşmak.\nDuşuşmak isleýän bolsaňyz — gelin ofisimize — ",

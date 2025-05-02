@@ -10,10 +10,11 @@
                         <div class="contacts_info">
                             <div class="contacts_desc">
                                 {{-- <h2>{{ __('translate.contactsTitle') }}</h2> --}}
-                                <p class="desc_p">{!! nl2br(__('translate.contactsSub')) !!}
-                                    {{-- <a href="" class="desc_p">{{ __('translate.messenger') }}</a> --}}
+                                <p class="desc_p">{!! nl2br(__('translate.contactsSub')) !!}</br>
+                                    г. Ашхабад, 2127 ул. (Г. Кулиева), здание "Gökje" 26A
                                     {!! nl2br(__('translate.contactsSubCont')) !!}<a href="https://www.google.com/maps?q=37.956556,58.426333"
                                         target="_blank" class="desc_p !text-[#e31e24] ">{{ __('translate.map') }}</a>
+                                </p>
                             </div>
 
                             @php
@@ -36,7 +37,7 @@
                                 ];
                             @endphp
 
-                            <ul class="mb-5">
+                            <ul class="mb-5 list-none">
                                 @foreach ($contactsLinks as $link)
                                     <li>
                                         <div class="flex items-center space-x-2 my-2">
@@ -58,7 +59,8 @@
                     <div class="w-full md:w-5/12">
                         <div class="flex flex-col justify-center items-center relative w-full">
                             <!-- Надпись ДЗЫНЬ-ДЗЫНЬ -->
-                            <h3 class="text-[#f8052d] font-bold text-xl md:text-2xl lg:text-3xl text-center mb-2 animate-pulse-slow">
+                            <h3
+                                class="text-[#f8052d] font-bold text-xl md:text-2xl lg:text-3xl text-center mb-2 animate-pulse-slow">
                                 {{ __('translate.dzynDzyn') }}!!!
                             </h3>
 

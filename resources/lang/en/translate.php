@@ -149,6 +149,7 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
 
     'contactsTitle' => 'Contact us',
     'contactsSub' => "We're available from 10:00 to 19:00 (Mon-Sat)",
+    'address' => 'Ashgabat, 2127 St. (G. Kuliyev), "Gökje" building 26A',
     'messenger' => 'Saturday',
     'contactsSubCont' => "\nIf urgent, better - call.\nMeeting - okay, come to our office - ",
     'map' => '🗺️ our address on map',
