@@ -229,7 +229,7 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
         ],
     ],
 
-    'bitrix_title_crm'       => 'Bitrix24 CRM',
+
     'bitrix_heading'         => 'Bitrix24 CRM',
     'bitrix_intro'           => 'A unified digital space for employee collaboration and business process optimization.',
     'bitrix_certificate_alt' => 'Certificate',

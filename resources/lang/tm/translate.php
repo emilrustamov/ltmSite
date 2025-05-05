@@ -319,7 +319,7 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
             ],
         ],
     ],
-    'bitrix_title_crm'       => 'Bitrix24 CRM',
+    'bitrix_title_crm'       => 'Bitrix24 CRM Turkmenistanda',
     'bitrix_heading'         => 'Bitrix24 CRM',
     'bitrix_intro'           => 'Işgärleriň bilelikde işlemegi, işewürlik proseslerini optimizirlemek üçin bitewi sanly giňişlik.',
     'bitrix_certificate_alt' => 'Şahadatnama',

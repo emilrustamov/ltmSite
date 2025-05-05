@@ -1,6 +1,11 @@
 @extends('layouts.base')
 
-@section('title', 'Услуги IT-компании LTM Studio в Туркменистане')
+@section('title', 'Услуги Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане')
+@section('ogTitle', 'Услуги Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане')
+@section('metaDesc', 
+    'Lebizli Tehnologiya Merkezi (LTM) – IT-компания в Туркменистане. Услуги по разработке веб-сайтов, мобильных приложений, интернет-магазинов и внедрению Bitrix24 для вашего бизнеса.')
+@section('metaKey', 
+    'Lebizli Tehnologiya Merkezi услуги, LTM IT-компания, разработка сайтов Туркменистан, мобильные приложения Туркменистан, внедрение Bitrix24 Туркменистан')
 @section('circles')
     <div class="circle-1">
         <img src="{{ '../assets/images/circle-1.png' }}" alt="" loading="lazy">

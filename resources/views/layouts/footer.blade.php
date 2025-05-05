@@ -2,7 +2,7 @@
     <div class="flex flex-wrap mx-auto max-w-full justify-around px-4 text-center">
         <div class="w-full lg:w-1/3">
             <h6>
-                <?php echo date('Y'); ?>. LTM Studio - {{ __('translate.copyright') }}
+                <?php echo date('Y'); ?>.  Lebizli Tehnologiya Merkezi (LTM) - {{ __('translate.copyright') }}
             </h6>
         </div>
         <div class="expand-text w-full lg:w-1/3 relative overflow-hidden group" id="openModalButton">

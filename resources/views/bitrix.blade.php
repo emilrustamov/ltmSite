@@ -1,6 +1,9 @@
 @extends('layouts.base')
 
-@section('title', __('translate.bitrix_title_crm'))
+@section('title', __('translate.titleBitrix'))
+@section('ogTitle', __('translate.titleBitrix'))
+@section('metaDesc', __('metaDescBitrix'))
+@section('metaKey', __('metaKeyBitrix'))
 
 @section('content')
     <!-- Block 1: CRM Битрикс24 -->
@@ -36,12 +39,12 @@
 
                     <button id="tab-cloud" class="tab-btn active" onclick="showTab('cloud')" role="tab">
                         ☁️ <span>{{ __('translate.bitrix_cloud') }}</span>
-                    
+
                     </button>
 
                     <button id="tab-box" class="tab-btn inactive" onclick="showTab('box')" role="tab">
                         📦 <span>{{ __('translate.bitrix_box') }}</span>
-                   
+
                     </button>
 
                 </div>

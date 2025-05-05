@@ -1,5 +1,13 @@
 @extends('layouts.base')
-@section('title', 'Контакты IT-консалтинговой компании LTM Studio в Туркменистане')
+@section('title', 'Контакты Lebizli Tehnologiya Merkezi (LTM) в Туркменистане')
+@section('ogTitle', 'Контакты Lebizli Tehnologiya Merkezi (LTM) в Туркменистане')
+@section('metaDesc', 
+    'Свяжитесь с Lebizli Tehnologiya Merkezi (LTM) в Туркменистане! IT-компания предлагает разработку сайтов, мобильных приложений и внедрение Bitrix24. Контакты для связи и консультаций.')
+@section('metaKey', 
+    'контакты Lebizli Tehnologiya Merkezi, LTM контакты, IT-компания в Туркменистане, консультация Bitrix24 Туркменистан, разработка сайтов Туркменистан')
+
+@section('metaDesc', __('metaDescContacts'))
+@section('metaKey', __('metaKeyContacts'))
 @section('content')
     <section>
         <div class="container mx-auto">

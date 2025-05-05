@@ -1,18 +1,18 @@
 @extends('layouts.base')
 
-@section('title', 'LTM Studio: IT-компания в Туркменистане')
-@section('ogTitle', 'LTM Studio: IT-компания в Туркменистане')
+@section('title', 'Lebizli Tehnologiya Merkezi (LTM): IT-компания в Туркменистане')
+@section('ogTitle', 'Lebizli Tehnologiya Merkezi (LTM): IT-компания в Туркменистане')
 @section('metaDesc',
-    'IT-компания LTM Studio в Туркменистане предлагает полный комплекс
+    'IT-компания  Lebizli Tehnologiya Merkezi (LTM) в Туркменистане предлагает полный комплекс
     профессиональных услуг, от дизайна до разработки веб-сайтов, мобильных приложений, интернер-магазинов и
     системы Битрикс24.')
 @section('metaKey',
     'разработка сайтов в Туркменистане, разработка мобильных приложений в Туркменистане, Bitrix CRM в
-    Туркменистане, компания разработчиков в Туркрменистане, IT компания в Туркменистане')
+    Туркменистане, компания разработчиков в Туркменистане, IT компания в Туркменистане')
 @section('custom-slider')
     @if (session('success'))
         <div class="alert alert-success">
-            <p style="font-size:18px">{{ session('success') }}</p>
+            <p>{{ session('success') }}</p>
         </div>
     @endif
 @section('ruLink', 'https://ltm.studio/ru/')

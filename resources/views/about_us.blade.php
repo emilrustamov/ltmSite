@@ -1,5 +1,10 @@
 @extends('layouts.base')
-<!-- Подключаем lazysizes через CDN -->
+@section('title', 'О нас - Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане')
+@section('ogTitle', 'О нас - Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане')
+@section('metaDesc', 
+    'Lebizli Tehnologiya Merkezi (LTM) – ведущая IT-компания в Туркменистане. Разработка веб-сайтов, мобильных приложений, интернет-магазинов и внедрение Bitrix24 для вашего бизнеса.')
+@section('metaKey', 
+    'Lebizli Tehnologiya Merkezi, LTM IT-компания, IT-компания Туркменистан, разработка сайтов Туркменистан, внедрение Bitrix24 Туркменистан')
 
 
 @section('title', 'Об IT-компании LTM Studio в Туркменистане')

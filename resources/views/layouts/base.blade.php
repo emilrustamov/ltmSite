@@ -9,7 +9,7 @@
     <meta property="og:description" content="@yield('metaDesc')">
     <meta property="og:url" content="{{ config('app.url') }}/{{ $lang }}">
     <meta property="og:image" content="{{ config('app.url') }}/assets/images/ltm.png">
-    <meta property="og:site_name" content="LTM Studio">
+    <meta property="og:site_name" content="Lebizli Tehnologiya Merkezi (LTM)">
     <meta property="og:locale" content="ru_RU">
     <title itemprop="headline">@yield('title')</title>
     <meta property="og:title" content="@yield('ogTitle')">
