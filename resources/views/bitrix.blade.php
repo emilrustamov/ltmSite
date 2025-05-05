@@ -2,8 +2,8 @@
 
 @section('title', __('translate.titleBitrix'))
 @section('ogTitle', __('translate.titleBitrix'))
-@section('metaDesc', __('metaDescBitrix'))
-@section('metaKey', __('metaKeyBitrix'))
+@section('metaDesc', __('translate.metaDescBitrix')) 
+@section('metaKey', __('translate.metaKeyBitrix'))
 
 @section('content')
     <!-- Block 1: CRM Битрикс24 -->
