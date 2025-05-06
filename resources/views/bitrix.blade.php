@@ -240,7 +240,7 @@
                     ☁️&nbsp; {{ __('translate.bitrix_cloud_version') }}
                 </h3>
 
-                <ul class="space-y-3 flex-1">
+                <ul class="space-y-3 flex-1 list-none">
                     <li>{{ __('translate.bitrix_cloud_advantage1') }}</li>
                     <li>{{ __('translate.bitrix_cloud_advantage2') }}</li>
                     <li>{{ __('translate.bitrix_cloud_advantage3') }}</li>
