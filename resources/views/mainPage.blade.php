@@ -1,14 +1,9 @@
 @extends('layouts.base')
 
-@section('title', 'Lebizli Tehnologiya Merkezi (LTM): IT-компания в Туркменистане')
-@section('ogTitle', 'Lebizli Tehnologiya Merkezi (LTM): IT-компания в Туркменистане')
-@section('metaDesc',
-    'IT-компания  Lebizli Tehnologiya Merkezi (LTM) в Туркменистане предлагает полный комплекс
-    профессиональных услуг, от дизайна до разработки веб-сайтов, мобильных приложений, интернер-магазинов и
-    системы Битрикс24.')
-@section('metaKey',
-    'разработка сайтов в Туркменистане, разработка мобильных приложений в Туркменистане, Bitrix CRM в
-    Туркменистане, компания разработчиков в Туркменистане, IT компания в Туркменистане')
+@section('title',  __('translate.titleMain'))
+@section('ogTitle', __('translate.titleMain'))
+@section('metaDesc', __('translate.metaDescMain'))
+@section('metaKey', __('translate.metaKeyMain'))
 @section('custom-slider')
     @if (session('success'))
         <div class="alert alert-success">
