@@ -1,11 +1,13 @@
 @extends('layouts.base')
 
 @section('title')
-    {{ $portfolio->who[$lang] ?? 'Проект' }} - Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане
+   {{ ($portfolio->who[$lang] ?? 'Проект') . ' ' . __('translate.titleProjectDetails') }}
+
 @endsection
 
 @section('ogTitle')
-    {{ $portfolio->who[$lang] ?? 'Проект' }} - Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане
+   {{ ($portfolio->who[$lang] ?? 'Проект') . ' ' . __('translate.titleProjectDetails') }}
+
 @endsection
 
 @section('metaDesc')
@@ -13,8 +15,9 @@
 @endsection
 
 @section('metaKey')
-    {{ $portfolio->who[$lang] ?? 'проект' }}, Lebizli Tehnologiya Merkezi, LTM IT-компания, разработка сайтов Туркменистан, Bitrix24 Туркменистан
+    {{ ($portfolio->who[$lang] ?? 'проект') . ', ' . __('translate.metaKeyProjectDetails') }}
 @endsection
+
 
 @section('content')
     <section class="container">
