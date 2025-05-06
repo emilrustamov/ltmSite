@@ -1,13 +1,11 @@
 @extends('layouts.base')
-@section('title', 'О нас - Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане')
-@section('ogTitle', 'О нас - Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане')
-@section('metaDesc', 
-    'Lebizli Tehnologiya Merkezi (LTM) – ведущая IT-компания в Туркменистане. Разработка веб-сайтов, мобильных приложений, интернет-магазинов и внедрение Bitrix24 для вашего бизнеса.')
-@section('metaKey', 
-    'Lebizli Tehnologiya Merkezi, LTM IT-компания, IT-компания Туркменистан, разработка сайтов Туркменистан, внедрение Bitrix24 Туркменистан')
+@section('title',  __('translate.titleAboutUs'))
+@section('ogTitle', __('translate.titleAboutUs'))
+@section('metaDesc', __('translate.metaDescAboutUs'))
+@section('metaKey', __('translate.metaKeyAboutUs'))
 
 
-@section('title', 'Об IT-компании LTM Studio в Туркменистане')
+
 @section('circles')
     <div class="circle-1">
         <img data-src="{{ asset('webp/circle-1.webp') }}" alt="Circle 1" class="lazyload">
