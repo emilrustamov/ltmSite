@@ -16,19 +16,39 @@
     <meta itemprop="description" name="description" content="@yield('metaDesc')">
     <meta itemprop="keywords" name="keywords" content="@yield('metaKey')">
     <meta name='freelancehunt' content='c02792cc8b8b525'>
-    <link rel="alternate" hreflang="ru" href="@yield('ruLink')">
-    <link rel="shortcut icon" href="{{ asset('/assets/images/ltm.svg') }}">
-    <link rel="alternate" hreflang="en" href="@yield('enLink')">
-    <link rel="alternate" hreflang="tk" href="@yield('tkLink')">
+    {{-- <link rel="alternate" hreflang="ru" href="@yield('ruLink')"> --}}
+    <link rel="shortcut icon" href="{{ asset('/assets/images/ltm.png') }}">
+    {{-- <link rel="alternate" hreflang="en" href="@yield('enLink')">
+    <link rel="alternate" hreflang="tk" href="@yield('tkLink')"> --}}
     <script type='application/ld+json'> </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TMJMPE0M9"></script>
     <script>
         var texts = @json(__('translate.texts'));
     </script>
-    <link rel="alternate" hreflang="x-default" href="{{ config('app.url') }}" />
+    {{-- <link rel="alternate" hreflang="x-default" href="{{ config('app.url') }}" />
     <link rel="alternate" hreflang="ru" href="{{ config('app.url') }}/ru/">
     <link rel="alternate" hreflang="en" href="{{ config('app.url') }}/en/">
-    <link rel="alternate" hreflang="tk" href="{{ config('app.url') }}/tk/">
+    <link rel="alternate" hreflang="tk" href="{{ config('app.url') }}/tk/"> --}}
+
+    @php
+        // Все поддерживаемые локали
+        $locales = ['ru', 'en', 'tk'];
+
+        $lang = $lang ?? app()->getLocale();
+        $segments = request()->segments();
+        $slug = implode('/', array_slice($segments, 1)); // '' для главной
+    @endphp
+
+    {{-- CANONICAL: всегда на текущую страницу текущего языка --}}
+    <link rel="canonical" href="{{ url($lang . ($slug ? '/' . $slug : '')) }}" />
+
+    {{-- HREFLANG: все языки + x‑default --}}
+    @foreach ($locales as $code)
+        <link rel="alternate" hreflang="{{ $code }}" href="{{ url($code . ($slug ? '/' . $slug : '')) }}" />
+    @endforeach
+    <link rel="alternate" hreflang="x-default" href="{{ url($slug) }}" /> {{-- без префикса языка --}}
+
+    
     <script src="{{ asset('assets/js/lenis.js') }}"></script>
     <script src="{{ asset('assets/js/swiper.js') }}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -81,7 +101,7 @@
     </div>
 
     @include('layouts.scripts')
-  
+
     <script>
         const lenis = new Lenis({
             duration: 1.5, // больше = более тягучий скролл
@@ -100,14 +120,15 @@
     </script>
 
 
-<button id="scrollBtn" 
-class="hidden fixed bottom-5 right-8 z-[999] border-0 outline-none bg-white cursor-pointer p-4 rounded-[10px] text-[18px] transition-all duration-300 ease-in-out hover:bg-[#e31e24] group">
-<i class="fa-solid fa-rocket text-[#1a1515] transition-all duration-300 ease-in-out group-hover:text-white"></i>
-</button>
+    <button id="scrollBtn"
+        class="hidden fixed bottom-5 right-8 z-[999] border-0 outline-none bg-white cursor-pointer p-4 rounded-[10px] text-[18px] transition-all duration-300 ease-in-out hover:bg-[#e31e24] group">
+        <i class="fa-solid fa-rocket text-[#1a1515] transition-all duration-300 ease-in-out group-hover:text-white"></i>
+    </button>
 
     <div class="crt-overlay" data-bg="../images/oEI9uBYSzLpBK.gif"></div>
 
 </body>
+
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
 
@@ -126,5 +147,4 @@ class="hidden fixed bottom-5 right-8 z-[999] border-0 outline-none bg-white curs
             }
         }, 5000);
     });
-    </script>
-    
+</script>

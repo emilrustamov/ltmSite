@@ -10,9 +10,6 @@
             <p>{{ session('success') }}</p>
         </div>
     @endif
-@section('ruLink', 'https://ltm.studio/ru/')
-@section('enLink', 'https://ltm.studio/en/')
-@section('tkLink', 'https://ltm.studio/tk/')
 
 <section class="mainSlider">
     <h1 class="text-center container">
