@@ -55,7 +55,7 @@
 
 @section('content')
 
-<section>
+<section class="container">
     {{-- <div class="red-circle-feedback">
         <img src="{{ asset('/assets/images/pseudo-red.png') }}" alt="" loading="lazy">
     </div> --}}

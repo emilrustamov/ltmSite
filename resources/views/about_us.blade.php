@@ -6,8 +6,6 @@
 @section('metaKey', 
     'Lebizli Tehnologiya Merkezi, LTM IT-компания, IT-компания Туркменистан, разработка сайтов Туркменистан, внедрение Bitrix24 Туркменистан')
 
-
-@section('title', 'Об IT-компании LTM Studio в Туркменистане')
 @section('circles')
     <div class="circle-1">
         <img data-src="{{ asset('webp/circle-1.webp') }}" alt="Circle 1" class="lazyload">
