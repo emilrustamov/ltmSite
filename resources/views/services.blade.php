@@ -1,11 +1,9 @@
 @extends('layouts.base')
 
-@section('title', 'Услуги Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане')
-@section('ogTitle', 'Услуги Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане')
-@section('metaDesc', 
-    'Lebizli Tehnologiya Merkezi (LTM) – IT-компания в Туркменистане. Услуги по разработке веб-сайтов, мобильных приложений, интернет-магазинов и внедрению Bitrix24 для вашего бизнеса.')
-@section('metaKey', 
-    'Lebizli Tehnologiya Merkezi услуги, LTM IT-компания, разработка сайтов Туркменистан, мобильные приложения Туркменистан, внедрение Bitrix24 Туркменистан')
+@section('title',  __('translate.titleServices'))
+@section('ogTitle', __('translate.titleServices'))
+@section('metaDesc', __('translate.metaDescServices'))
+@section('metaKey', __('translate.metaKeyServices'))
 @section('circles')
     <div class="circle-1">
         <img src="{{ '../assets/images/circle-1.png' }}" alt="" loading="lazy">
