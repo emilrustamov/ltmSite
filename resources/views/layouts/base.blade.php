@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="{{ $lang ?? app()->getLocale() }}">
 
 <head itemscope itemtype="http://schema.org/WPHeader">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +10,17 @@
     <meta property="og:url" content="{{ config('app.url') }}/{{ $lang }}">
     <meta property="og:image" content="{{ config('app.url') }}/assets/images/ltm.png">
     <meta property="og:site_name" content="Lebizli Tehnologiya Merkezi (LTM)">
-    <meta property="og:locale" content="ru_RU">
+    @php
+        // ② таблица соответствия для Open Graph
+        $ogLocales = ['ru' => 'ru_RU', 'en' => 'en_US', 'tk' => 'tk_TM'];
+        $ogLocale = $ogLocales[$lang ?? app()->getLocale()] ?? 'ru_RU';
+    @endphp
+
+    <meta property="og:locale" content="{{ $ogLocale }}"> {{-- ② OG‑локаль --}}
     <title itemprop="headline">@yield('title')</title>
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Lebizli Tehnologiya Merkezi (LTM)">
+    <meta name="publisher" content="Lebizli Tehnologiya Merkezi (LTM)">
     <meta property="og:title" content="@yield('ogTitle')">
     <meta itemprop="description" name="description" content="@yield('metaDesc')">
     <meta itemprop="keywords" name="keywords" content="@yield('metaKey')">
@@ -48,7 +57,7 @@
     @endforeach
     <link rel="alternate" hreflang="x-default" href="{{ url($slug) }}" /> {{-- без префикса языка --}}
 
-    
+
     <script src="{{ asset('assets/js/lenis.js') }}"></script>
     <script src="{{ asset('assets/js/swiper.js') }}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
