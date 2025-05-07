@@ -436,4 +436,37 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
     // "Biziň Taslamalarymyz" bölümi üçin üýtgeýänler
     'bitrix_our_cases' => 'Biziň Taslamalarymyz',
     'bitrix_more' => 'Giňişleýin Maglumat',
+
+
+    // Bölüm üçin üýtgeýänler: "Biziň taslamalarymyz"
+'bitrix_our_cases' => 'Biziň taslamalarymyz',
+'bitrix_more' => 'Giňişleýin',
+
+'metaDescBitrix' => 'LTM Türkmenistanyň çäginde Bitrix24 ulgamynyň ornaşdyrylmagyny we sazlamasyny hödürleýär. Biznesiň awtomatlaşdyrylmagy, CRM, taslamalaryň dolandyrylyşy we üstünlik üçin integrasiýa.',
+'metaKeyBitrix'  => 'Bitrix24 Türkmenistan, Bitrix24 ornaşdyrmak, CRM sazlamak Türkmenistan, biznesi awtomatlaşdyrmak Türkmenistan, Bitrix24 IT hyzmatlary',
+'titleBitrix'       => 'Bitrix24 Türkmenistan',
+
+'metaDescAboutUs' => 'Lebizli Tehnologiya Merkezi (LTM) — Türkmenistanyň öňdebaryjy IT kompaniýasy. Web sahypalaryň, mobil goşundylaryň, internet dükanlarynyň taýýarlanylmagy we Bitrix24 ornaşdyrylmagy.',
+'metaKeyAboutUs'  => 'Lebizli Tehnologiya Merkezi, LTM IT kompaniýasy, IT kompaniýasy Türkmenistan, web sahypa taýýarlamak Türkmenistan, Bitrix24 ornaşdyrmak Türkmenistan',
+'titleAboutUs'       => 'Biz barada - Lebizli Tehnologiya Merkezi (LTM) - IT kompaniýasy Türkmenistanda',
+
+'metaDescContacts' => 'Lebizli Tehnologiya Merkezi (LTM) bilen habarlaşyň! Web sahypa taýýarlamak, mobil goşundylar we Bitrix24 ornaşdyrmak boýunça hyzmatlary hödürleýäris. Habarlaşmak üçin maglumatlar.',
+'metaKeyContacts'  => 'Lebizli Tehnologiya Merkezi bilen habarlaşmak, LTM kontaktlary, IT kompaniýasy Türkmenistan, Bitrix24 maslahat Türkmenistan, web sahypa taýýarlamak Türkmenistan',
+'titleContacts'       => 'Lebizli Tehnologiya Merkezi (LTM) bilen habarlaşmak - Türkmenistan',
+
+'metaDescMain' => 'Lebizli Tehnologiya Merkezi (LTM) — Türkmenistanda IT kompaniýasy bolup, dizaýndan başlap web sahypalaryň, mobil goşundylaryň, internet dükanlaryň we Bitrix24 ulgamynyň taýýarlanylmagyny hödürleýär.',
+'metaKeyMain'  => 'Türkmenistanda web sahypa taýýarlamak, Türkmenistanda mobil goşundy taýýarlamak, Bitrix CRM Türkmenistan, programma üpjünçiligi kompaniýasy Türkmenistan, IT kompaniýasy Türkmenistan',
+'titleMain'       => 'Lebizli Tehnologiya Merkezi (LTM): Türkmenistanda IT kompaniýasy',
+
+'metaKeyProjectDetails'  => 'Lebizli Tehnologiya Merkezi, LTM IT kompaniýasy, web sahypa taýýarlamak Türkmenistan, Bitrix24 Türkmenistan',
+'titleProjectDetails'       => '- Lebizli Tehnologiya Merkezi (LTM) - Türkmenistanda IT kompaniýasy',
+
+'metaDescPortfolio' => 'Lebizli Tehnologiya Merkezi (LTM) — Türkmenistanda IT kompaniýasynyň ýerine ýetiren işlerine göz aýlaň. Web sahypalary, mobil goşundylar, internet dükanlary we Bitrix24 ornaşdyrylyşy boýunça mysallar.',
+'metaKeyPortfolio'  => 'Lebizli Tehnologiya Merkezi portfeli, LTM IT kompaniýasy, IT taslamalary Türkmenistan, web sahypa taýýarlamak Türkmenistan, Bitrix24 mysallary Türkmenistan',
+'titlePortfolio'       => 'Lebizli Tehnologiya Merkezi (LTM) portfeli - Türkmenistanda IT kompaniýasy',
+
+'metaDescServices' => 'Lebizli Tehnologiya Merkezi (LTM) — Türkmenistanda IT kompaniýasy. Web sahypalaryň, mobil goşundylaryň, internet dükanlaryň taýýarlanylmagy we Bitrix24 hyzmatlary.',
+'metaKeyServices'  => 'Lebizli Tehnologiya Merkezi hyzmatlary, LTM IT kompaniýasy, web sahypa taýýarlamak Türkmenistan, mobil goşundylar Türkmenistan, Bitrix24 hyzmatlary Türkmenistan',
+'titleServices'       => 'Lebizli Tehnologiya Merkezi (LTM) hyzmatlary - Türkmenistanda IT kompaniýasy',
+
 ];
