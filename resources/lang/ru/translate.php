@@ -375,4 +375,38 @@ return [
     'metaDescBitrix' => 'LTM предлагает внедрение и настройку системы Bitrix24 в Туркменистане. Автоматизация бизнеса, CRM, управление проектами и интеграция для вашего успеха.',
     'metaKeyBitrix'  => 'Bitrix24 в Туркменистане, внедрение Bitrix24, настройка CRM в Туркменистане, автоматизация бизнеса в Туркменистане, IT-услуги Bitrix24',
     'titleBitrix'       => 'Битрикс24 в Туркменистане',
+
+
+    
+    'metaDescAboutUs' =>  'Lebizli Tehnologiya Merkezi (LTM) – ведущая IT-компания в Туркменистане. Разработка веб-сайтов, мобильных приложений, интернет-магазинов и внедрение Bitrix24 для вашего бизнеса.',
+    'metaKeyAboutUs'  => 'Lebizli Tehnologiya Merkezi, LTM IT-компания, IT-компания Туркменистан, разработка сайтов Туркменистан, внедрение Bitrix24 Туркменистан',
+    'titleAboutUs'       => 'О нас - Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане',
+
+   
+    'metaDescContacts' => 'Свяжитесь с Lebizli Tehnologiya Merkezi (LTM) в Туркменистане! IT-компания предлагает разработку сайтов, мобильных приложений и внедрение Bitrix24. Контакты для связи и консультаций.',
+    'metaKeyContacts'  =>  'контакты Lebizli Tehnologiya Merkezi, LTM контакты, IT-компания в Туркменистане, консультация Bitrix24 Туркменистан, разработка сайтов Туркменистан',
+    'titleContacts'       => 'Контакты Lebizli Tehnologiya Merkezi (LTM) в Туркменистане',
+
+
+   
+    'metaDescMain' => 'IT-компания  Lebizli Tehnologiya Merkezi (LTM) в Туркменистане предлагает полный комплекс профессиональных услуг, от дизайна до разработки веб-сайтов, мобильных приложений, интернер-магазинов и системы Битрикс24.',
+    'metaKeyMain'  =>  'разработка сайтов в Туркменистане, разработка мобильных приложений в Туркменистане, Bitrix CRM в Туркменистане, компания разработчиков в Туркменистане, IT компания в Туркменистане',
+    'titleMain'       => 'Lebizli Tehnologiya Merkezi (LTM): IT-компания в Туркменистане',
+
+   
+   
+    'metaKeyProjectDetails'  =>  'Lebizli Tehnologiya Merkezi, LTM IT-компания, разработка сайтов Туркменистан, Bitrix24 Туркменистан',
+    'titleProjectDetails'       => '- Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане',
+
+  
+    'metaDescPortfolio' => 'Ознакомьтесь с портфолио Lebizli Tehnologiya Merkezi (LTM) – IT-компании в Туркменистане. Примеры веб-сайтов, мобильных приложений, интернет-магазинов и внедрения Bitrix24.',
+    'metaKeyPortfolio'  =>  'Lebizli Tehnologiya Merkezi портфолио, LTM IT-компания, портфолио IT Туркменистан, разработка сайтов Туркменистан, примеры Bitrix24 Туркменистан',
+    'titlePortfolio'       => 'Портфолио Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане',
+
+
+
+    'metaDescServices' => 'Lebizli Tehnologiya Merkezi (LTM) – IT-компания в Туркменистане. Услуги по разработке веб-сайтов, мобильных приложений, интернет-магазинов и внедрению Bitrix24 для вашего бизнеса.',
+    'metaKeyServices'  =>  'Lebizli Tehnologiya Merkezi услуги, LTM IT-компания, разработка сайтов Туркменистан, мобильные приложения Туркменистан, внедрение Bitrix24 Туркменистан',
+    'titleServices'       => 'Услуги Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане',
+
 ];
