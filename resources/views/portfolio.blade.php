@@ -1,11 +1,9 @@
 @extends('layouts.base')
 
-@section('title', 'Портфолио Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане')
-@section('ogTitle', 'Портфолио Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане')
-@section('metaDesc', 
-    'Ознакомьтесь с портфолио Lebizli Tehnologiya Merkezi (LTM) – IT-компании в Туркменистане. Примеры веб-сайтов, мобильных приложений, интернет-магазинов и внедрения Bitrix24.')
-@section('metaKey', 
-    'Lebizli Tehnologiya Merkezi портфолио, LTM IT-компания, портфолио IT Туркменистан, разработка сайтов Туркменистан, примеры Bitrix24 Туркменистан')
+@section('title',  __('translate.titlePortfolio'))
+@section('ogTitle', __('translate.titlePortfolio'))
+@section('metaDesc', __('translate.metaDescPortfolio'))
+@section('metaKey', __('translate.metaKeyPortfolio'))
 
 @section('content')
     <section class="container">
