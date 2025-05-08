@@ -55,13 +55,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (instLink) {
             instLink.addEventListener("mouseenter", () => {
-                linkAddress.textContent = "https://www.instagram.com/";
+                linkAddress.textContent = "https://www.instagram.com/lebizli_tehnologiya/";
             });
         }
 
         if (linkedLink) {
             linkedLink.addEventListener("mouseenter", () => {
-                linkAddress.textContent = "https://www.linkedin.com/";
+                linkAddress.textContent = "https://www.linkedin.com/company/ltm-studio/";
             });
         }
 

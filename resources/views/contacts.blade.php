@@ -32,12 +32,12 @@
                                     ],
                                     [
                                         'icon' => 'fa-brands fa-linkedin',
-                                        'href' => 'http://linkedin.com/company/ltmstudio',
+                                        'href' => 'http://linkedin.com/company/ltm-studio',
                                         'text' => 'linkedin.com/company/ltmstudio',
                                     ],
                                     [
                                         'icon' => 'fa-brands fa-instagram',
-                                        'href' => 'http://instagram.com/ltmstudio',
+                                        'href' => 'https://www.instagram.com/lebizli_tehnologiya/',
                                         'text' => 'instagram.com/ltmstudio',
                                     ],
                                 ];

@@ -157,7 +157,7 @@
                         <a href="mailto:info@ltm.studio" class="text-6xl">info@ltm.studio</a>
                         <div class="flex media-links">
                             <!-- Временно закомментированы иконки Instagram и LinkedIn
-                            <a class="menu-a" href="instagram.com/ltmstudio" id="instLink">In</a>
+                            <a class="menu-a" href="https://www.instagram.com/lebizli_tehnologiya/" id="instLink">In</a>
                             <a class="menu-a" href="linkedin.com/company/ltmstudio" id="linkedLink">Ln</a>
                             -->
                         </div>
@@ -210,8 +210,8 @@
 
     <div class="flex gap-4 mb-6">
         <!-- Временно закомментированы иконки Instagram и LinkedIn
-        <a href="https://www.instagram.com/ltmstudio_dev"><i class="fa-brands fa-instagram text-3xl"></i></a>
-        <a href="https://www.linkedin.com/company/104843040"><i class="fa-brands fa-linkedin text-3xl"></i></a>
+        <a href="https://www.instagram.com/lebizli_tehnologiya/"><i class="fa-brands fa-instagram text-3xl"></i></a>
+        <a href="https://www.linkedin.com/company/ltm-studio/"><i class="fa-brands fa-linkedin text-3xl"></i></a>
         -->
     </div>
 

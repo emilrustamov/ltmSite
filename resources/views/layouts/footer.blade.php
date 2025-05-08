@@ -10,10 +10,30 @@
                 {{ __('translate.leftRequest') }}
             </span>
         </div>
-        <ul class="hidden lg:flex justify-center items-center gap-4 w-full lg:w-1/3 !list-none">
-            <li><a href="https://www.instagram.com/ltmstudio/" class="hover:underline">Inst</a></li>
-            <li><a href="https://tm.linkedin.com/company/ltmstudio/" class="hover:underline">Ln</a></li>
+        <ul class="hidden lg:flex justify-center items-center gap-4 w-full lg:w-1/3 !list-none ">
+            <li>
+                {{-- <a href="https://www.instagram.com/lebizli_tehnologiya/" class="hover:underline !text-[24px]">
+                    <i class="fab fa-instagram"></i>
+                </a> --}}
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/company/ltm-studio/" class="hover:underline !text-[24px]">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </li>
+            <script type="text/javascript">
+                (function(){
+                    var WORKSPACE_VERIFICATION_CODE = 'f351680ba07e89ec449d67ed85310867';
+                })();
+            </script>
+              <li>
+            <a href="https://workspace.ru/contractors/ltm/" target="_blank">
+                <img src="https://workspace.ru/local/tools/verification.php?code=f351680ba07e89ec449d67ed85310867&type=ver1" alt="Мы на Workspace" width="100" />
+            </a>
+        </li>
         </ul>
+        <!-- Workspace verefication code -->
+     
         <div id="modal" class="modal" style="height:100%">
             <div class="modal-overlay">
                 <div class="modal-content">
@@ -106,4 +126,5 @@
             </div>
         </div>
     </div>
+    
 </footer>
