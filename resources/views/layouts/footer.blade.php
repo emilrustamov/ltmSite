@@ -12,9 +12,9 @@
         </div>
         <ul class="hidden lg:flex justify-center items-center gap-4 w-full lg:w-1/3 !list-none ">
             <li>
-                {{-- <a href="https://www.instagram.com/lebizli_tehnologiya/" class="hover:underline !text-[24px]">
+                <a href="https://www.instagram.com/lebizli_tehnologiya/" class="hover:underline !text-[24px]">
                     <i class="fab fa-instagram"></i>
-                </a> --}}
+                </a>
             </li>
             <li>
                 <a href="https://www.linkedin.com/company/ltm-studio/" class="hover:underline !text-[24px]">
@@ -126,5 +126,5 @@
             </div>
         </div>
     </div>
-    
+
 </footer>
