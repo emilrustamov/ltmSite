@@ -26,7 +26,12 @@
     <meta itemprop="keywords" name="keywords" content="@yield('metaKey')">
     <meta name='freelancehunt' content='c02792cc8b8b525'>
     {{-- <link rel="alternate" hreflang="ru" href="@yield('ruLink')"> --}}
-    <link rel="shortcut icon" href="{{ asset('/assets/images/ltm.png') }}">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="LTM" />
+    <link rel="manifest" href="/site.webmanifest" />
     {{-- <link rel="alternate" hreflang="en" href="@yield('enLink')">
     <link rel="alternate" hreflang="tk" href="@yield('tkLink')"> --}}
     <script type='application/ld+json'> </script>
