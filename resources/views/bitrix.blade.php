@@ -15,7 +15,7 @@
             </p>
             <div class="mt-6">
                 <!-- Здесь расположите картинку сертификата -->
-                <img data-src="{{ asset('webp/bitrix-certificate.webp') }}" alt="{{ __('translate.bitrix_certificate_alt') }}"
+                <img data-src="{{ asset('webp/bitrix-certificate-gold.webp') }}" alt="{{ __('translate.bitrix_certificate_alt') }}"
                     class="mx-auto lazyload lazyload">
             </div>
         </div>
@@ -240,7 +240,7 @@
                     ☁️&nbsp; {{ __('translate.bitrix_cloud_version') }}
                 </h3>
 
-                <ul class="space-y-3 flex-1 list-none">
+                <ul class="space-y-3 flex-1 !list-none">
                     <li>{{ __('translate.bitrix_cloud_advantage1') }}</li>
                     <li>{{ __('translate.bitrix_cloud_advantage2') }}</li>
                     <li>{{ __('translate.bitrix_cloud_advantage3') }}</li>
