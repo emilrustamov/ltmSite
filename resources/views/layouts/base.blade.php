@@ -12,7 +12,7 @@
     <meta property="og:site_name" content="Lebizli Tehnologiya Merkezi (LTM)">
     @php
         // ② таблица соответствия для Open Graph
-        $ogLocales = ['ru' => 'ru_RU', 'en' => 'en_US', 'tk' => 'tk_TM'];
+        $ogLocales = ['ru' => 'ru_RU', 'en' => 'en_US', 'tm' => 'tk_TM'];
         $ogLocale = $ogLocales[$lang ?? app()->getLocale()] ?? 'ru_RU';
     @endphp
 
@@ -25,28 +25,22 @@
     <meta itemprop="description" name="description" content="@yield('metaDesc')">
     <meta itemprop="keywords" name="keywords" content="@yield('metaKey')">
     <meta name='freelancehunt' content='c02792cc8b8b525'>
-    {{-- <link rel="alternate" hreflang="ru" href="@yield('ruLink')"> --}}
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="LTM" />
     <link rel="manifest" href="/site.webmanifest" />
-    {{-- <link rel="alternate" hreflang="en" href="@yield('enLink')">
-    <link rel="alternate" hreflang="tk" href="@yield('tkLink')"> --}}
+
     <script type='application/ld+json'> </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TMJMPE0M9"></script>
     <script>
         var texts = @json(__('translate.texts'));
     </script>
-    {{-- <link rel="alternate" hreflang="x-default" href="{{ config('app.url') }}" />
-    <link rel="alternate" hreflang="ru" href="{{ config('app.url') }}/ru/">
-    <link rel="alternate" hreflang="en" href="{{ config('app.url') }}/en/">
-    <link rel="alternate" hreflang="tk" href="{{ config('app.url') }}/tk/"> --}}
 
     @php
         // Все поддерживаемые локали
-        $locales = ['ru', 'en', 'tk'];
+        $locales = ['ru', 'en', 'tm'];
 
         $lang = $lang ?? app()->getLocale();
         $segments = request()->segments();

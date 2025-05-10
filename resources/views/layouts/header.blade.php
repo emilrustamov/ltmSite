@@ -184,7 +184,7 @@
                                             class="!text-5xl font-bold">{{ __('translate.aboutUs') }}</a></span>
                                 </div>
                                 <div class="sub-block-50 text-center reveal-item" id="reveal-1">
-                                    <div class="button-close" id="closeDesktopModal"><i class="fa fa-close"></i>
+                                    <div class="button-close" id="closeDesktopModal" data-bs-dismiss="modal"><i class="fa fa-close"></i>
                                     </div>
                                 </div>
                             </div>
