@@ -60,7 +60,11 @@
         <!-- Языки (только десктоп) -->
         <!-- Языки (десктоп) -->
         <div class="hidden md:flex gap-5">
-            @php $langs = ['ru', 'en', 'tm']; @endphp
+            @php
+                $current = Route::currentRouteName();
+                $params = request()->route()->parameters();
+                $langs = ['ru', 'en', 'tm'];
+            @endphp
 
             <!-- ▸ триггер и меню в одном .relative блоке  -->
             <div class="relative flex items-center">
@@ -70,20 +74,22 @@
                     aria-expanded="false">
                     <span>{{ strtoupper($lang) }}</span>
                     <i id="langArrow"
-                    class="fa-solid fa-arrow-down-long text-[#e31e24] text-xl
+                        class="fa-solid fa-arrow-down-long text-[#e31e24] text-xl
                            transition-transform duration-300 ease-in-out"></i>
-                 
+
                 </button>
 
                 <!-- выпадающий список -->
                 <div id="langMenu"
-                    class="hidden absolute left-0 top-full mt-2 bg-[#e31e24] text-white
-                    rounded px-4 py-2 z-50 shadow">
+                    class="hidden absolute left-0 top-full mt-2 bg-[#e31e24] text-white rounded px-4 py-2 z-50 shadow">
                     <ul class="text-center !list-none">
                         @foreach ($langs as $l)
-                            @if ($lang !== $l)
+                            @if (($params['lang'] ?? app()->getLocale()) !== $l)
                                 <li class="py-1 hover:underline">
-                                    <a href="/{{ $l }}">{{ strtoupper($l) }}</a>
+                                    <a
+                                        href="{{ route($current, array_merge($params, ['lang' => $l])) }}{{ request()->getQueryString() ? '?' . request()->getQueryString() : '' }}">
+                                        {{ strtoupper($l) }}
+                                    </a>
                                 </li>
                             @endif
                         @endforeach
@@ -299,10 +305,10 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const toggle = document.getElementById('langToggle');   // кнопка
-        const menu   = document.getElementById('langMenu');     // список
-        const arrow  = document.getElementById('langArrow');    // иконка-стрелка
-    
+        const toggle = document.getElementById('langToggle'); // кнопка
+        const menu = document.getElementById('langMenu'); // список
+        const arrow = document.getElementById('langArrow'); // иконка-стрелка
+
         // открываем/закрываем меню по клику на кнопку
         toggle.addEventListener('click', () => {
             menu.classList.toggle('hidden');
@@ -312,7 +318,7 @@
                 menu.classList.contains('hidden') ? 'false' : 'true'
             );
         });
-    
+
         // закрываем при клике вне меню
         document.addEventListener('click', (e) => {
             if (!toggle.contains(e.target) && !menu.contains(e.target)) {
@@ -323,7 +329,7 @@
                 }
             }
         });
-    
+
         // закрываем по Esc
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
@@ -333,5 +339,4 @@
             }
         });
     });
-    </script>
-    
+</script>

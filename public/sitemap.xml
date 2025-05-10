@@ -1,233 +1,192 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     <url>
-        <loc>https://ltm.studio/</loc>
-            <changefreq>daily</changefreq>
+        <loc>http://ltm.local/ru/</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+            </url>
+    <url>
+        <loc>http://ltm.local/en/</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+            </url>
+    <url>
+        <loc>http://ltm.local/tm/</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+            </url>
+    <url>
+        <loc>http://ltm.local/ru/portfolio/</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/portfolio/" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/portfolio/" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/portfolio/" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+            </url>
+    <url>
+        <loc>http://ltm.local/en/portfolio/</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/portfolio/" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/portfolio/" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/portfolio/" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+            </url>
+    <url>
+        <loc>http://ltm.local/tm/portfolio/</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/portfolio/" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/portfolio/" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/portfolio/" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+            </url>
+    <url>
+        <loc>http://ltm.local/ru/portfolio/123123213</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/portfolio/123123213" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/portfolio/123123213" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/portfolio/123123213" />
+        <lastmod>2025-05-09T14:02:57+00:00</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/ru</loc>
-            <changefreq>daily</changefreq>
+        <loc>http://ltm.local/en/portfolio/123123213</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/portfolio/123123213" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/portfolio/123123213" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/portfolio/123123213" />
+        <lastmod>2025-05-09T14:02:57+00:00</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/en/</loc>
-            <changefreq>daily</changefreq>
+        <loc>http://ltm.local/tm/portfolio/123123213</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/portfolio/123123213" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/portfolio/123123213" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/portfolio/123123213" />
+        <lastmod>2025-05-09T14:02:57+00:00</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/tm/</loc>
-            <changefreq>daily</changefreq>
+        <loc>http://ltm.local/ru/services</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/services" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/services" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/services" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/ru/</loc>
-            <changefreq>daily</changefreq>
+        <loc>http://ltm.local/en/services</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/services" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/services" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/services" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/ru/services</loc>
-            <changefreq>daily</changefreq>
+        <loc>http://ltm.local/tm/services</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/services" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/services" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/services" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/ru/contacts</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <loc>http://ltm.local/ru/bitrix24</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/bitrix24" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/bitrix24" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/bitrix24" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/ru/about_us</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <loc>http://ltm.local/en/bitrix24</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/bitrix24" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/bitrix24" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/bitrix24" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/ru/portfolio</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <loc>http://ltm.local/tm/bitrix24</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/bitrix24" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/bitrix24" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/bitrix24" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/ru/blog</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <loc>http://ltm.local/ru/about_us</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/about_us" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/about_us" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/about_us" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/ru/portfolio/105</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <loc>http://ltm.local/en/about_us</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/about_us" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/about_us" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/about_us" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/ru/portfolio/106</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <loc>http://ltm.local/tm/about_us</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/about_us" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/about_us" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/about_us" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/en</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <loc>http://ltm.local/ru/contacts</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/contacts" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/contacts" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/contacts" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/ru/portfolio/108</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <loc>http://ltm.local/en/contacts</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/contacts" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/contacts" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/contacts" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
             </url>
     <url>
-        <loc>https://ltm.studio/en/services</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm/services</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/en/contacts</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm/contacts</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/en/about_us</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm/about_us</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/en/portfolio</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm/portfolio</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/ru/portfolio/103</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/ru/portfolio/104</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/en/blog</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/ru/portfolio/102</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/ru/blog/8</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm/blog</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm/portfolio/105</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/ru/portfolio/107</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/en/portfolio/105</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/en/portfolio/106</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm/portfolio/106</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm/portfolio/108</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/en/portfolio/108</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/en/portfolio/103</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/en/portfolio/107</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/en/portfolio/104</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm/portfolio/103</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/en/blog/8</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm/portfolio/102</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm/portfolio/104</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm/portfolio/107</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/tm/blog/8</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>https://ltm.studio/en/portfolio/102</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <loc>http://ltm.local/tm/contacts</loc>
+        <xhtml:link rel="alternate" hreflang="ru" href="http://ltm.local/ru/contacts" />
+        <xhtml:link rel="alternate" hreflang="en" href="http://ltm.local/en/contacts" />
+        <xhtml:link rel="alternate" hreflang="tm" href="http://ltm.local/tm/contacts" />
+        <lastmod>2025-05-10T07:29:13+00:00</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
             </url>
 </urlset>

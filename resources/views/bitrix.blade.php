@@ -364,17 +364,17 @@
                         [
                             'title' => 'Takyk Abzal',
                             'image' => 'webp/takyk.webp',
-                            'link' => '/ru/portfolio/128',
+                            'link' => '/' . $lang . '/portfolio/takyk-abzal',
                         ],
                         [
                             'title' => 'Colife Invest',
                             'image' => 'webp/colife.webp',
-                            'link' => '/ru/portfolio/127',
+                            'link' => '/' . $lang . '/portfolio/colife-invest',
                         ],
                         [
                             'title' => 'Nurana Bedew',
                             'image' => 'webp/nurana.webp',
-                            'link' => '/ru/portfolio/124',
+                            'link' => '/' . $lang . '/portfolio/nurana-bedew',
                         ],
                     ];
                 @endphp
