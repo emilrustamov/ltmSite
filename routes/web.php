@@ -124,6 +124,19 @@ Route::prefix('{lang}')
             return view('about_us', compact('leftMenu', 'currentPage', 'lang'));
         })->name('about_us');
 
+        Route::get('/portfolio/{id}', function($lang, $id){
+            $item = \App\Models\Portfolio::find($id);
+            if (! $item) {
+                abort(404);
+            }
+            return redirect()->route('lang.portfolio.show', [
+                'lang'      => $lang,
+                'portfolio' => $item->slug,
+            ], 301);
+        })
+        ->where('id', '[0-9]+')
+        ->name('portfolio.redirect');
+
         // Portfolio
         Route::get('/portfolio', [CPortfolio::class, 'index'])
             ->name('portfolio.index');
