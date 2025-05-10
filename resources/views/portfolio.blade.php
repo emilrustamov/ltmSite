@@ -14,7 +14,7 @@
 
         <div class="grid_portfolio section" data-lang="{{ $lang }}">
             @foreach($portfolio as $portf)
-                <a href="/{{ $lang }}/portfolio/{{ $portf->id }}" class="grid-item relative project-link" data-id="{{ $portf->id }}">
+            <a href="/{{ $lang }}/portfolio/{{ $portf->slug }}" class="grid-item relative project-link" data-id="{{ $portf->id }}">
                     <div class="columnPort relative content">
                         @if ($portf->getFirstMediaUrl('portfolio-images', 'webp'))
                             <img data-src="{{ $portf->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="Image" loading="lazy" class="lazyload">

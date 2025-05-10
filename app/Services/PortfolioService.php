@@ -6,6 +6,7 @@ use App\Models\Portfolio;
 use App\Models\Categories;
 use App\Models\Category_One_Project;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PortfolioService
 {
@@ -66,7 +67,7 @@ class PortfolioService
             'ru' => $data['res_ru'],
             'en' => $data['res_en'],
         ];
-      
+        $portfolio->slug = Str::slug($data['title_en']);
         $portfolio->status = $data['status'] ?? true;
         $portfolio->ordering = $data['ordering'] ?? 0;
         $portfolio->save();
@@ -111,6 +112,7 @@ class PortfolioService
             'en' => $data['res_en'],
         ];
         // New fields update:
+        $portfolio->slug = Str::slug($data['title_en']);
         $portfolio->status = $data['status'];
         $portfolio->ordering = $data['ordering'];
 

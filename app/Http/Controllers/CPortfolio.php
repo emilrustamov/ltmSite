@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use App\Services\PortfolioService;
+use Illuminate\Support\Str;
 
 class CPortfolio extends Controller
 {
@@ -42,25 +43,28 @@ class CPortfolio extends Controller
         ]);
     }
 
-    public function showOnePortf($lang, $id)
+    public function showOnePortf($lang, Portfolio $portfolio)
     {
         App::setLocale($lang);
 
-        $portfolio = Cache::remember("portfolio_{$lang}_{$id}", now()->addMinutes(10), function () use ($id) {
-            return Portfolio::findOrFail($id);
+        // кешируем по slug
+        $key = "portfolio_{$lang}_{$portfolio->slug}";
+        $portfolio = Cache::remember($key, now()->addMinutes(10), function () use ($portfolio) {
+            return $portfolio;
         });
 
-        $categories = $this->portfolioService->getCategoriesForProject($id);
+        // категории по реальному id
+        $categories = $this->portfolioService->getCategoriesForProject($portfolio->id);
 
         return view('oneProjectDetails', [
-            'portfolio' => $portfolio,
-            'categories' => $categories,
-            'leftMenu' => true,
+            'portfolio'   => $portfolio,
+            'categories'  => $categories,
+            'leftMenu'    => true,
             'currentPage' => 'Проекты',
-            'lang' => $lang,
-            'id' => $id,
+            'lang'        => $lang,
         ]);
     }
+
 
     public function addProject($lang)
     {
@@ -126,6 +130,8 @@ class CPortfolio extends Controller
             'ru' => $data['res_ru'],
             'en' => $data['res_en'],
         ];
+
+        $portfolio->slug = Str::slug($data['title_en']);
         $portfolio->status     = $data['status'] ?? true;
         $portfolio->ordering   = $data['ordering'] ?? 0;
 
@@ -189,6 +195,7 @@ class CPortfolio extends Controller
         ]);
 
         $portfolio = Portfolio::findOrFail($id);
+        $portfolio->slug = Str::slug($data['title_en']);
         $portfolio->urlButton  = $data['urlButton'];
         $portfolio->isMainPage = $data['isMainPage'];
         $portfolio->when       = $data['when'];

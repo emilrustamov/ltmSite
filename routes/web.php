@@ -32,7 +32,7 @@ Route::get('/sitemap.xml', function () {
         // Добавляем страницы портфолио для каждого языка
         $portfolios = Portfolio::all();
         foreach ($portfolios as $portfolio) {
-            $sitemap->add(Url::create("/{$lang}/portfolio/{$portfolio->id}")
+            $sitemap->add(Url::create("/{$lang}/portfolio/{$portfolio->slug}")
                 ->setPriority(0.8)
                 ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
                 ->setLastModificationDate($portfolio->updated_at));
@@ -109,7 +109,7 @@ Route::get('/{lang}/services', function ($lang) {
 })->middleware('redirect');
 
 
-Route::get('/{lang}/services-webpages', [ProjSliderController::class, 'index'])->middleware('redirect');
+Route::get('/{lang}/services-webpages/{portfolio}', [ProjSliderController::class, 'showOnePortf'])->middleware('redirect');
 
 
 
@@ -123,7 +123,7 @@ Route::get('/{lang}/about_us', function ($lang) {
 
 //portfolio
 Route::get('/{lang}/portfolio', [CPortfolio::class, 'index'])->middleware('redirect');
-Route::get('/{lang}/portfolio/{id}', [CPortfolio::class, 'showOnePortf'])->middleware('redirect');
+Route::get('/{lang}/portfolio/{portfolio}', [CPortfolio::class, 'showOnePortf'])->middleware('redirect');
 
 
 

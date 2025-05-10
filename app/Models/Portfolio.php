@@ -24,20 +24,26 @@ class Portfolio extends Model implements HasMedia
         'status'      => 'boolean',
         'ordering'    => 'integer',
         'photo'       => 'string',
+        'slug'        => 'string',
     ];
 
     // Пример связи с категориями
     public function categories()
     {
         return $this->belongsToMany(Categories::class, 'category_portfolio', 'portfolio_id', 'category_id')
-                    ->withTimestamps();
+            ->withTimestamps();
     }
 
     // Регистрация конверсий Medialibrary
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('webp')
-             ->format('webp')    // конвертирует в формат WebP
-             ->quality(90);      // можно указать качество конверсии
+            ->format('webp')    // конвертирует в формат WebP
+            ->quality(90);      // можно указать качество конверсии
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

@@ -1,13 +1,11 @@
 @extends('layouts.base')
 
 @section('title')
-   {{ ($portfolio->who[$lang] ?? 'Проект') . ' ' . __('translate.titleProjectDetails') }}
-
+    {{ ($portfolio->who[$lang] ?? 'Проект') . ' ' . __('translate.titleProjectDetails') }}
 @endsection
 
 @section('ogTitle')
-   {{ ($portfolio->who[$lang] ?? 'Проект') . ' ' . __('translate.titleProjectDetails') }}
-
+    {{ ($portfolio->who[$lang] ?? 'Проект') . ' ' . __('translate.titleProjectDetails') }}
 @endsection
 
 @section('metaDesc')
@@ -30,7 +28,7 @@
 
         <div class="project-details">
             <div class="mt-10">
-                <h1 class="mb-15">{{ __('translate.projectDetails') }}</h1>
+                <h1 class="mb-15">{{ __('translate.projectDetails') }}  {{ $portfolio->who[$lang] ?? '' }}</h1>
                 <div class="flex flex-col md:flex-row justify-between gap-8 text-2xl">
                     <div class="flex-1">
                         <h4 class="text-white font-semibold mb-2">{{ __('translate.who') }}</h4>
@@ -77,7 +75,8 @@
     </section>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const projectId = {{ $id }};
+            // numeric id нужен только для localStorage
+            const projectId = {{ $portfolio->id }};
             let viewedProjects = JSON.parse(localStorage.getItem("viewedProjects") || "[]");
             if (!viewedProjects.includes(projectId)) {
                 viewedProjects.push(projectId);

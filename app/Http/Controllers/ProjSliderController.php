@@ -42,41 +42,34 @@ class ProjSliderController extends Controller
         ]);
     }
 
-    public function showOnePortf($lang, $id)
+    public function showOnePortf($lang, Portfolio $portfolio)
     {
         App::setLocale($lang);
 
-        // Кэширование портфолио по ID
-        $portfolio = Cache::remember("portfolio_{$lang}_{$id}", now()->addMinutes(10), function () use ($id) {
-            return Portfolio::where('id', $id)->get();
+        // кеш по слагу
+        $portfolio = Cache::remember("portfolio_{$lang}_{$portfolio->slug}", now()->addMinutes(10), function () use ($portfolio) {
+            return $portfolio;
         });
 
-        // Кэширование изображений
-        $images_add = Cache::remember("images_add_{$id}", now()->addMinutes(10), function () use ($id) {
-            return Images_Add::where('portfolio_id', $id)->get();
+        $images_add = Cache::remember("images_add_{$portfolio->id}", now()->addMinutes(10), function () use ($portfolio) {
+            return Images_Add::where('portfolio_id', $portfolio->id)->get();
         });
 
-        // Кэширование всех категорий
-        $categories = Cache::remember("categories_all_{$lang}", now()->addMinutes(10), function () {
-            return Categories::all();
-        });
-
-        $catPortf = Category_One_Project::where('portfolio_id', $id)->get();
+        // категории
+        $catPortf = Category_One_Project::where('portfolio_id', $portfolio->id)->get();
         $projectCategories = [];
         foreach ($catPortf as $item) {
-            $catData = Categories::where('id', $item->category_id)->get();
-            if (!$catData->isEmpty()) {
-                $projectCategories[] = $catData;
+            if ($cat = Categories::find($item->category_id)) {
+                $projectCategories[] = $cat;
             }
         }
 
         return view('oneProjectDetails', [
-            'portfolio' => $portfolio[0],
+            'portfolio'  => $portfolio,
             'categories' => $projectCategories,
-            'leftMenu' => true,
+            'leftMenu'   => true,
             'currentPage' => 'Проекты',
-            'lang' => $lang,
-            'id' => $id,
+            'lang'       => $lang,
             'images_add' => $images_add,
         ]);
     }
