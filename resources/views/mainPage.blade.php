@@ -27,11 +27,14 @@
                         </div>
                         @if ($p->getFirstMediaUrl('portfolio-images', 'webp'))
                             <img class="image-container lazyload"
-                                data-lazy="{{ $p->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="Image"
-                                loading="lazy">
+                                 data-lazy="{{ $p->getFirstMediaUrl('portfolio-images', 'webp') }}"
+                                 alt="{{ $p['title_'.$lang] }}"
+                                 loading="lazy">
                         @else
-                            <img class="image-container lazyload" data-lazy="{{ asset('storage/' . $p['photo']) }}"
-                                alt="Image" loading="lazy">
+                            <img class="image-container lazyload"
+                                 data-lazy="{{ asset('storage/' . $p['photo']) }}"
+                                 alt="{{ $p['title_'.$lang] }}"
+                                 loading="lazy">
                         @endif
                     </a>
                 </div>

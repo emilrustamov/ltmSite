@@ -2,7 +2,7 @@
 
 @section('title', __('translate.titleBitrix'))
 @section('ogTitle', __('translate.titleBitrix'))
-@section('metaDesc', __('translate.metaDescBitrix')) 
+@section('metaDesc', __('translate.metaDescBitrix'))
 @section('metaKey', __('translate.metaKeyBitrix'))
 
 @section('content')
@@ -15,8 +15,8 @@
             </p>
             <div class="mt-6">
                 <!-- Здесь расположите картинку сертификата -->
-                <img data-src="{{ asset('webp/bitrix-certificate-gold.webp') }}" alt="{{ __('translate.bitrix_certificate_alt') }}"
-                    class="mx-auto lazyload lazyload">
+                <img data-src="{{ asset('webp/bitrix-certificate-gold.webp') }}"
+                    alt="{{ __('translate.bitrix_certificate_alt') }}" class="mx-auto lazyload lazyload">
             </div>
         </div>
     </section>
@@ -52,6 +52,10 @@
                 <!-- Tab content: Облачное решение -->
                 <div id="content-cloud" class="tab-content">
                     <h3 class="text-xl font-bold mb-2">{{ __('translate.bitrix_cloud_solution') }}</h3>
+                    <p class="mb-4 text-sm text-gray-400">
+                        Все цены указаны в тенге. Актуальные цены на сайте Битрикс24 по <a href="https://www.bitrix24.kz/prices/">ссылке</a>
+                    </p>
+
                     <div class="overflow-x-auto">
                         <table
                             class="min-w-[42rem]      {{-- ~ 672 px: 5 колонок × 130–140 px --}}
@@ -132,18 +136,18 @@
                 <!-- Tab content: Коробочное решение -->
                 <div id="content-box" class="tab-content hidden">
                     <h3 class="text-xl font-bold mb-2">{{ __('translate.bitrix_box_solution') }}</h3>
+                    <p class="mb-4 text-sm text-gray-400">
+                        Все цены указаны в тенге. Актуальные цены на сайте Битрикс24 по <a href="https://www.bitrix24.kz/prices/self-hosted.php">ссылке</a>
+                    </p>
                     <div class="overflow-x-auto">
                         <table
-                            class="min-w-[36rem]      {{-- 4 колонки – хватит ~ 576 px     --}}
-                               sm:min-w-full
-                               bg-[#1c1b1b] divide-y divide-gray-700
-                               shadow-md rounded-lg text-sm">
+                            class="min-w-[36rem] sm:min-w-full bg-[#1c1b1b] divide-y divide-gray-700 shadow-md rounded-lg text-sm">
                             <thead class="bg-[#e31e24]">
                                 <tr>
                                     <th class="border p-2 text-white">{{ __('translate.bitrix_editions') }}</th>
                                     <th class="border p-2 text-white">{{ __('translate.bitrix_users') }}</th>
                                     <th class="border p-2 text-white">{{ __('translate.bitrix_more_info') }}</th>
-                                    <th class="border p-2 text-white">{{ __('translate.bitrix_additional') }}</th>
+                                    {{-- <th class="border p-2 text-white">{{ __('translate.bitrix_additional') }}</th> --}}
                                 </tr>
                             </thead>
                             <tbody class="bg-[#1c1b1b] divide-y divide-gray-700 text-white">
@@ -154,7 +158,7 @@
                                         {{ __('translate.bitrix_price_store_crm') }}<br>
                                         {{ __('translate.bitrix_license_12_months') }}
                                     </td>
-                                    <td class="border p-2">
+                                    {{-- <td class="border p-2">
                                         <ul class="!list-none">
                                             <li>{{ __('translate.bitrix_extranet') }}</li>
                                             <li>{{ __('translate.bitrix_ecommerce_platform') }}</li>
@@ -170,16 +174,41 @@
                                             <li class="line-through text-gray-400">{{ __('translate.bitrix_vip_support') }}
                                             </li>
                                         </ul>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                                 <tr>
                                     <td class="border p-2">{{ __('translate.bitrix_corporate_portal') }}</td>
-                                    <td class="border p-2">{{ __('translate.bitrix_users_500') }}</td>
+                                    <td class="border p-2">{{ __('translate.bitrix_users_50') }}</td>
                                     <td class="border p-2">
-                                        {{ __('translate.bitrix_price_corporate_portal') }}<br>
+                                        {{ __('translate.bitrix_price_50_users') }}<br>
                                         {{ __('translate.bitrix_license_12_months') }}
                                     </td>
+                                    {{-- <td class="border p-2">
+                                        <ul class="!list-none">
+                                            <li>{{ __('translate.bitrix_extranet') }}</li>
+                                            <li>{{ __('translate.bitrix_ecommerce_platform') }}</li>
+                                            <li>{{ __('translate.bitrix_copilot') }}</li>
+                                            <li class="line-through text-gray-400">
+                                                {{ __('translate.bitrix_online_documents') }}</li>
+                                            <li class="line-through text-gray-400">
+                                                {{ __('translate.bitrix_hr_document_flow') }}</li>
+                                            <li class="line-through text-gray-400">
+                                                {{ __('translate.bitrix_multi_department') }}</li>
+                                            <li class="line-through text-gray-400">{{ __('translate.bitrix_web_cluster') }}
+                                            </li>
+                                            <li class="line-through text-gray-400">{{ __('translate.bitrix_vip_support') }}
+                                            </li>
+                                        </ul>
+                                    </td> --}}
+                                </tr>
+                                <tr>
+                                    <td class="border p-2">{{ __('translate.bitrix_corporate_portal') }}</td>
+                                    <td class="border p-2">{{ __('translate.bitrix_users_100') }}</td>
                                     <td class="border p-2">
+                                        {{ __('translate.bitrix_price_100_users') }}<br>
+                                        {{ __('translate.bitrix_license_12_months') }}
+                                    </td>
+                                    {{-- <td class="border p-2">
                                         <ul class="!list-none">
                                             <li>{{ __('translate.bitrix_extranet') }}</li>
                                             <li>{{ __('translate.bitrix_ecommerce_platform') }}</li>
@@ -193,7 +222,52 @@
                                             <li class="line-through text-gray-400">
                                                 {{ __('translate.bitrix_vip_support') }}</li>
                                         </ul>
+                                    </td> --}}
+                                </tr>
+                                <tr>
+                                    <td class="border p-2">{{ __('translate.bitrix_corporate_portal') }}</td>
+                                    <td class="border p-2">{{ __('translate.bitrix_users_250') }}</td>
+                                    <td class="border p-2">
+                                        {{ __('translate.bitrix_price_250_users') }}<br>
+                                        {{ __('translate.bitrix_license_12_months') }}
                                     </td>
+                                    {{-- <td class="border p-2">
+                                        <ul class="!list-none">
+                                            <li>{{ __('translate.bitrix_extranet') }}</li>
+                                            <li>{{ __('translate.bitrix_ecommerce_platform') }}</li>
+                                            <li>{{ __('translate.bitrix_copilot') }}</li>
+                                            <li>{{ __('translate.bitrix_online_documents') }}</li>
+                                            <li>{{ __('translate.bitrix_hr_document_flow') }}</li>
+                                            <li>{{ __('translate.bitrix_multi_department') }}</li>
+                                            <li class="line-through text-gray-400">
+                                                {{ __('translate.bitrix_web_cluster') }}</li>
+                                            <li class="line-through text-gray-400">
+                                                {{ __('translate.bitrix_vip_support') }}</li>
+                                        </ul>
+                                    </td> --}}
+                                </tr>
+                                <tr>
+                                    <td class="border p-2">{{ __('translate.bitrix_corporate_portal') }}</td>
+                                    <td class="border p-2">{{ __('translate.bitrix_users_500') }}</td>
+                                    <td class="border p-2">
+                                        {{ __('translate.bitrix_price_corporate_portal') }}<br>
+                                        {{ __('translate.bitrix_license_12_months') }}
+                                    </td>
+                                    {{-- <td class="border p-2">
+                                        <ul class="!list-none">
+                                            <li>{{ __('translate.bitrix_extranet') }}</li>
+                                            <li>{{ __('translate.bitrix_ecommerce_platform') }}</li>
+                                            <li>{{ __('translate.bitrix_copilot') }}</li>
+                                            <li>{{ __('translate.bitrix_online_documents') }}</li>
+                                            <li>{{ __('translate.bitrix_hr_document_flow') }}</li>
+                                            <li class="line-through text-gray-400">
+                                                {{ __('translate.bitrix_multi_department') }}</li>
+                                            <li class="line-through text-gray-400">
+                                                {{ __('translate.bitrix_web_cluster') }}</li>
+                                            <li class="line-through text-gray-400">
+                                                {{ __('translate.bitrix_vip_support') }}</li>
+                                        </ul>
+                                    </td> --}}
                                 </tr>
                                 <tr>
                                     <td class="border p-2">{{ __('translate.bitrix_enterprise') }}</td>
@@ -202,7 +276,7 @@
                                         {{ __('translate.bitrix_price_enterprise') }}<br>
                                         {{ __('translate.bitrix_license_12_months') }}
                                     </td>
-                                    <td class="border p-2">
+                                    {{-- <td class="border p-2">
                                         <ul class="!list-none">
                                             <li>{{ __('translate.bitrix_extranet') }}</li>
                                             <li>{{ __('translate.bitrix_ecommerce_platform') }}</li>
@@ -213,12 +287,13 @@
                                             <li>{{ __('translate.bitrix_web_cluster') }}</li>
                                             <li>{{ __('translate.bitrix_vip_support') }}</li>
                                         </ul>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>

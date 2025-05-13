@@ -17,9 +17,9 @@
             <a href="/{{ $lang }}/portfolio/{{ $portf->slug }}" class="grid-item relative project-link" data-id="{{ $portf->id }}">
                     <div class="columnPort relative content">
                         @if ($portf->getFirstMediaUrl('portfolio-images', 'webp'))
-                            <img data-src="{{ $portf->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="Image" loading="lazy" class="lazyload">
+                            <img data-src="{{ $portf->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="{{ $portf->title[$lang] ?? 'Image' }}" loading="lazy" class="lazyload">
                         @else
-                            <img src="{{ asset('assets/images/proformat.png') }}" alt="Image" loading="lazy">
+                            <img src="{{ asset('assets/images/proformat.png') }}" alt="{{ $portf->title[$lang] ?? 'Placeholder image' }}" loading="lazy">
                         @endif
                         <div class="content">
                             <div>

@@ -274,28 +274,28 @@ return [
     'bitrix_cloud_space' => 'Облачное пространство',
 
     'bitrix_free' => 'Бесплатно',
-    'bitrix_price_free' => '0 руб.',
+    'bitrix_price_free' => '0.',
     'bitrix_for_start' => 'Для старта',
     'bitrix_unlimited' => 'Безлимит',
     'bitrix_space_5gb' => '5 ГБ',
 
     'bitrix_basic' => 'Базовый',
-    'bitrix_price_basic_old' => '2 490 руб.',
-    'bitrix_price_basic_new' => '1 743 руб.',
+    'bitrix_price_basic_old' => '2 490 ₸.',
+    'bitrix_price_basic_new' => '9 600 ₸.',
     'bitrix_for_small_teams' => 'Для малых команд',
     'bitrix_users_5' => '5 пользователей',
     'bitrix_space_24gb' => '24 ГБ',
 
     'bitrix_standard' => 'Стандартный',
-    'bitrix_price_standard_old' => '6 990 руб.',
-    'bitrix_price_standard_new' => '4 893 руб.',
+    'bitrix_price_standard_old' => '34 000 ₸.',
+    'bitrix_price_standard_new' => '27 200 ₸.',
     'bitrix_for_large_teams' => 'Для больших команд',
     'bitrix_users_50' => '50 пользователей',
     'bitrix_space_100gb' => '100 ГБ',
 
     'bitrix_professional' => 'Профессиональный',
-    'bitrix_price_professional_old' => '13 990 руб.',
-    'bitrix_price_professional_new' => '9 793 руб.',
+    'bitrix_price_professional_old' => '68 000 ₸.',
+    'bitrix_price_professional_new' => '54 400 ₸.',
     'bitrix_for_companies' => 'Для компаний',
     'bitrix_users_100' => '100 пользователей',
     'bitrix_space_1024gb' => '1 ТБ',
@@ -314,7 +314,7 @@ return [
 
     'bitrix_store_crm' => 'Битрикс24 CRM для магазинов',
     'bitrix_users_12' => '12 пользователей',
-    'bitrix_price_store_crm' => '150 руб.',
+    'bitrix_price_store_crm' => '524 000 ₸.',
     'bitrix_license_12_months' => 'Лицензия на 12 месяцев',
 
     'bitrix_extranet' => 'Экстранет',
@@ -326,10 +326,18 @@ return [
     'bitrix_web_cluster' => 'Веб-кластер',
     'bitrix_vip_support' => 'VIP поддержка',
 
+    'bitrix_users_50' => '50 пользователей',
+    'bitrix_price_50_users' => '764 000 ₸.',
+    'bitrix_users_100' => '100 пользователей',
+    'bitrix_price_100_users' => '1 100 000 ₸.',
+    'bitrix_users_250' => '250 пользователей',
+    'bitrix_price_250_users' => '1 676 000 ₸.',
+
+
     'bitrix_corporate_portal' => 'Корпоративный портал',
     'bitrix_users_500' => '500 пользователей',
-    'bitrix_price_corporate_portal' => '250 руб.',
-    
+    'bitrix_price_corporate_portal' => '2 876 000 ₸.',
+
     'bitrix_users_1000' => '1000 пользователей',
     'bitrix_price_enterprise' => 'По запросу',
 
@@ -377,28 +385,28 @@ return [
     'titleBitrix'       => 'Битрикс24 в Туркменистане',
 
 
-    
+
     'metaDescAboutUs' =>  'Lebizli Tehnologiya Merkezi (LTM) – ведущая IT-компания в Туркменистане. Разработка веб-сайтов, мобильных приложений, интернет-магазинов и внедрение Bitrix24 для вашего бизнеса.',
     'metaKeyAboutUs'  => 'Lebizli Tehnologiya Merkezi, LTM IT-компания, IT-компания Туркменистан, разработка сайтов Туркменистан, внедрение Bitrix24 Туркменистан',
     'titleAboutUs'       => 'О нас - Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане',
 
-   
+
     'metaDescContacts' => 'Свяжитесь с Lebizli Tehnologiya Merkezi (LTM) в Туркменистане! IT-компания предлагает разработку сайтов, мобильных приложений и внедрение Bitrix24. Контакты для связи и консультаций.',
     'metaKeyContacts'  =>  'контакты Lebizli Tehnologiya Merkezi, LTM контакты, IT-компания в Туркменистане, консультация Bitrix24 Туркменистан, разработка сайтов Туркменистан',
     'titleContacts'       => 'Контакты Lebizli Tehnologiya Merkezi (LTM) в Туркменистане',
 
 
-   
+
     'metaDescMain' => 'IT-компания  Lebizli Tehnologiya Merkezi (LTM) в Туркменистане предлагает полный комплекс профессиональных услуг, от дизайна до разработки веб-сайтов, мобильных приложений, интернер-магазинов и системы Битрикс24.',
     'metaKeyMain'  =>  'разработка сайтов в Туркменистане, разработка мобильных приложений в Туркменистане, Bitrix CRM в Туркменистане, компания разработчиков в Туркменистане, IT компания в Туркменистане',
     'titleMain'       => 'Lebizli Tehnologiya Merkezi (LTM): IT-компания в Туркменистане',
 
-   
-   
+
+
     'metaKeyProjectDetails'  =>  'Lebizli Tehnologiya Merkezi, LTM IT-компания, разработка сайтов Туркменистан, Bitrix24 Туркменистан',
     'titleProjectDetails'       => '- Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане',
 
-  
+
     'metaDescPortfolio' => 'Ознакомьтесь с портфолио Lebizli Tehnologiya Merkezi (LTM) – IT-компании в Туркменистане. Примеры веб-сайтов, мобильных приложений, интернет-магазинов и внедрения Bitrix24.',
     'metaKeyPortfolio'  =>  'Lebizli Tehnologiya Merkezi портфолио, LTM IT-компания, портфолио IT Туркменистан, разработка сайтов Туркменистан, примеры Bitrix24 Туркменистан',
     'titlePortfolio'       => 'Портфолио Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане',

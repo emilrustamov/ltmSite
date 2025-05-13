@@ -6,10 +6,10 @@
         <a href="/{{ $lang }}/">
             <div class="circle-container" id="logoMain">
                 <div class="scrolling-image">
-                    <img src="{{ asset('/assets/images/circled-text.png') }}?v={{ time() }}" alt="Scrolling Image">
+                    <img src="{{ asset('/assets/images/circled-text.png') }}?v={{ time() }}" alt="Логотип с декором LTMSite">
                 </div>
                 <div class="center-image">
-                    <img src="{{ asset('/assets/images/ltm-white.png') }}" alt="Center Image">
+                    <img src="{{ asset('/assets/images/ltm-white.png') }}" alt="Основной логотип LTM Studio">
                 </div>
             </div>
         </a>
@@ -142,11 +142,12 @@
                     <div class="flex mt-3">
                         <div class="flex">
                             <div class="circle-container" id="logoMain">
-                                <div class="scrolling-image"><img
-                                        src="{{ asset('/assets/images/circled-text.png') }}?v={{ time() }}"
-                                        alt="Scrolling Image"></div>
-                                <div class="center-image"><img src="{{ asset('/assets/images/ltm-white.png') }}"
-                                        alt="Center Image"></div>
+                                <div class="scrolling-image">
+                                    <img src="{{ asset('/assets/images/circled-text.png') }}?v={{ time() }}" alt="Логотип с декором LTMSite">
+                                </div>
+                                <div class="center-image">
+                                    <img src="{{ asset('/assets/images/ltm-white.png') }}" alt="Основной логотип LTM Studio">
+                                </div>
                             </div>
                         </div>
                         <div class="flex ml-3 lang-flex my-auto">
@@ -237,7 +238,7 @@
     </div>
 
     <div class="mb-6">
-        <img src="{{ asset('/assets/images/ltm-white.png') }}" alt="Logo" class="w-20 mx-auto">
+        <img src="{{ asset('/assets/images/ltm-white.png') }}" alt="Логотип LTM Studio" class="w-20 mx-auto">
     </div>
 
     <button class="w-full py-4 bg-[#e31e24] rounded flex items-center justify-center gap-3 text-xl">

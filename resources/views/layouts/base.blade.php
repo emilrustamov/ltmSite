@@ -68,10 +68,10 @@
         style="background-color: #1c1b1b; z-index: 999999; display: flex;">
         <div class="circle-container" style="top: 0%; left:0%; width:70rem; height: 70rem ">
             <div class="scrolling-image" style="width:20rem; height:auto">
-                <img src="{{ asset('/assets/images/circled-text.png') }}" alt="Scrolling Image">
+                <img src="{{ asset('/assets/images/circled-text.png') }}" alt="Scrolling decorative text image">
             </div>
             <div class="center-image" style="width:10%; height:auto">
-                <img src="{{ asset('/assets/images/ltm-white.png') }}" alt="Center Image">
+                <img src="{{ asset('/assets/images/ltm-white.png') }}" alt="Center LTM logo">
             </div>
         </div>
     </div>

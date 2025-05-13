@@ -20,10 +20,9 @@
 @section('content')
     <section class="container">
         @if ($portfolio->getFirstMediaUrl('portfolio-images', 'webp'))
-            <img src="{{ $portfolio->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="Image" loading="lazy"
-                class="w-full">
+            <img src="{{ $portfolio->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="{{ $portfolio->who[$lang] ?? 'Проект' }}" loading="lazy" class="w-full">
         @else
-            <img src="{{ asset('assets/images/proformat.png') }}" alt="Image" loading="lazy" class="w-full">
+            <img src="{{ asset('assets/images/proformat.png') }}" alt="{{ __('translate.defaultImageAlt') }}" loading="lazy" class="w-full">
         @endif
 
         <div class="project-details">

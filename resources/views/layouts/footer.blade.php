@@ -28,7 +28,7 @@
             </script>
               <li>
             <a href="https://workspace.ru/contractors/ltm/" target="_blank">
-                <img src="https://workspace.ru/local/tools/verification.php?code=f351680ba07e89ec449d67ed85310867&type=ver1" alt="Мы на Workspace" width="100" />
+                <img src="https://workspace.ru/local/tools/verification.php?code=f351680ba07e89ec449d67ed85310867&type=ver1" alt="LTM на Workspace" width="100" />
             </a>
         </li>
         </ul>

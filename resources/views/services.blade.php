@@ -6,22 +6,22 @@
 @section('metaKey', __('translate.metaKeyServices'))
 @section('circles')
     <div class="circle-1">
-        <img src="{{ '../assets/images/circle-1.png' }}" alt="" loading="lazy">
+        <img src="{{ '../assets/images/circle-1.png' }}" alt="Circle 1" loading="lazy">
     </div>
     <div class="circle-3">
-        <img src="{{ '../assets/images/circle-3.png' }}" alt="" loading="lazy">
+        <img src="{{ '../assets/images/circle-3.png' }}" alt="Circle 3" loading="lazy">
     </div>
     <div class="circle-4">
-        <img src="{{ '../assets/images/circle-4.png' }}" alt="" loading="lazy">
+        <img src="{{ '../assets/images/circle-4.png' }}" alt="Circle 4" loading="lazy">
     </div>
     <div class="circle-5">
-        <img src="{{ '../assets/images/circle-5.png' }}" alt="" loading="lazy">
+        <img src="{{ '../assets/images/circle-5.png' }}" alt="Circle 5" loading="lazy">
     </div>
     <div class="circle-7">
-        <img src="{{ '../assets/images/circle-6.png' }}" alt="" loading="lazy">
+        <img src="{{ '../assets/images/circle-6.png' }}" alt="Circle 6" loading="lazy">
     </div>
     <div class="circle-6">
-        <img src="{{ '../assets/images/radialCircle.png' }}" width="707px" loading="lazy">
+        <img src="{{ '../assets/images/radialCircle.png' }}" alt="Radial Circle" width="707px" loading="lazy">
     </div>
 @endsection
 

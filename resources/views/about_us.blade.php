@@ -11,25 +11,25 @@
         <img data-src="{{ asset('webp/circle-1.webp') }}" alt="Circle 1" class="lazyload">
     </div>
     <div class="circle-3">
-        <img data-src="{{ asset('webp/circle-3.webp') }}" alt="" class="lazyload">
+        <img data-src="{{ asset('webp/circle-3.webp') }}" alt="Circle 3" class="lazyload">
     </div>
     <div class="circle-4">
-        <img data-src="{{ asset('webp/circle-4.webp') }}" alt="" class="lazyload">
+        <img data-src="{{ asset('webp/circle-4.webp') }}" alt="Circle 4" class="lazyload">
     </div>
     <div class="circle-5">
-        <img data-src="{{ asset('webp/circle-5.webp') }}" alt="" class="lazyload">
+        <img data-src="{{ asset('webp/circle-5.webp') }}" alt="Circle 5" class="lazyload">
     </div>
     <div class="circle-6">
-        <img data-src="{{ asset('webp/circle-6.webp') }}" alt="" class="lazyload">
+        <img data-src="{{ asset('webp/circle-6.webp') }}" alt="Circle 6" class="lazyload">
     </div>
     <div class="circle-7">
-        <img data-src="{{ asset('webp/radialCircle.webp') }}" alt="" class="lazyload">
+        <img data-src="{{ asset('webp/radialCircle.webp') }}" alt="Radial Circle" class="lazyload">
     </div>
     <div class="circle-3">
-        <img data-src="{{ asset('webp/circle-3.webp') }}" alt="" class="lazyload">
+        <img data-src="{{ asset('webp/circle-3.webp') }}" alt="Circle 3" class="lazyload">
     </div>
     <div class="circle-5">
-        <img data-src="{{ asset('webp/circle-5.webp') }}" alt="" class="lazyload">
+        <img data-src="{{ asset('webp/circle-5.webp') }}" alt="Circle 5" class="lazyload">
     </div>
 @endsection
 @section('content')
