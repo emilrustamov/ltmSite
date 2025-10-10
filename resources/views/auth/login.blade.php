@@ -1,9 +1,16 @@
 
 
 
+
 <div class="container d-flex align-items-center justify-content-center">
     <form method="POST" action="{{ route('login') }}" class="w-75">
         @csrf
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
 
         <div class="row mb-3">
             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email') }}</label>

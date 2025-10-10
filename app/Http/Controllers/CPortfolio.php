@@ -3,31 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
-use App\Models\Category_One_Project;
 use Illuminate\Http\Request;
 use App\Models\Portfolio;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
-use App\Services\PortfolioService;
 use Illuminate\Support\Str;
 
 class CPortfolio extends Controller
 {
-    protected $portfolioService;
-
-    public function __construct(PortfolioService $portfolioService)
-    {
-        $this->portfolioService = $portfolioService;
-    }
-
 
     public function index($lang)
     {
         App::setLocale($lang);
 
         $portfolio = Cache::remember("portfolio_{$lang}", now()->addMinutes(10), function () {
-            return $this->portfolioService->getPortfolioList();
+            return Portfolio::with('categories')->orderBy('ordering')->get();
         });
 
         $categories = Cache::remember("categories_{$lang}", now()->addMinutes(10), function () {
@@ -47,24 +37,17 @@ class CPortfolio extends Controller
     {
         App::setLocale($lang);
 
-        // кешируем по slug
-        $key = "portfolio_{$lang}_{$portfolio->slug}";
-        $portfolio = Cache::remember($key, now()->addMinutes(10), function () use ($portfolio) {
-            return $portfolio;
-        });
-
-        // категории по реальному id
-        $categories = $this->portfolioService->getCategoriesForProject($portfolio->id);
+        // Загружаем категории проекта
+        $portfolio->load('categories');
 
         return view('oneProjectDetails', [
             'portfolio'   => $portfolio,
-            'categories'  => $categories,
+            'categories'  => $portfolio->categories,
             'leftMenu'    => true,
             'currentPage' => 'Проекты',
             'lang'        => $lang,
         ]);
     }
-
 
     public function addProject($lang)
     {
@@ -77,70 +60,51 @@ class CPortfolio extends Controller
 
     public function addPortfolio(Request $req, $lang)
     {
-        $data = $req->only([
-            'urlButton',
-            'isMainPage',
-            'when',
-            'title_tm',
-            'title_ru',
-            'title_en',
-            'who_tm',
-            'who_ru',
-            'who_en',
-            'desc_tm',
-            'desc_ru',
-            'desc_en',
-            'target_tm',
-            'target_ru',
-            'target_en',
-            'res_tm',
-            'res_ru',
-            'res_en',
-            'status',
-            'ordering'
+        $req->validate([
+            'title_ru' => 'required|string|max:255',
+            'title_en' => 'required|string|max:255',
+            'title_tm' => 'required|string|max:255',
+            'when' => 'nullable|date',
+            'image' => 'nullable|image|max:10240',
         ]);
 
-        // Создаём запись портфолио без фото
-        $portfolio = new Portfolio;
-        $portfolio->urlButton  = $data['urlButton'];
-        $portfolio->isMainPage = $data['isMainPage'] ?? 0;
-        $portfolio->when       = $data['when'];
-        $portfolio->title      = [
-            'tm' => $data['title_tm'],
-            'ru' => $data['title_ru'],
-            'en' => $data['title_en'],
-        ];
-        $portfolio->who        = [
-            'tm' => $data['who_tm'],
-            'ru' => $data['who_ru'],
-            'en' => $data['who_en'],
-        ];
-        $portfolio->description = [
-            'tm' => $data['desc_tm'],
-            'ru' => $data['desc_ru'],
-            'en' => $data['desc_en'],
-        ];
-        $portfolio->target     = [
-            'tm' => $data['target_tm'],
-            'ru' => $data['target_ru'],
-            'en' => $data['target_en'],
-        ];
-        $portfolio->result     = [
-            'tm' => $data['res_tm'],
-            'ru' => $data['res_ru'],
-            'en' => $data['res_en'],
-        ];
+        $data = $req->only([
+            'url_button', 'is_main_page', 'when',
+            'title_tm', 'title_ru', 'title_en',
+            'who_tm', 'who_ru', 'who_en',
+            'desc_tm', 'desc_ru', 'desc_en',
+            'target_tm', 'target_ru', 'target_en',
+            'res_tm', 'res_ru', 'res_en',
+            'status', 'ordering', 'what'
+        ]);
 
-        $portfolio->slug = Str::slug($data['title_en']);
-        $portfolio->status     = $data['status'] ?? true;
-        $portfolio->ordering   = $data['ordering'] ?? 0;
+        // Создаём запись портфолио
+        $portfolio = Portfolio::create([
+            'slug' => Str::slug($data['title_en'] ?? '') . '-' . time(),
+            'url_button' => $data['url_button'] ?? null,
+            'is_main_page' => $data['is_main_page'] ?? false,
+            'when' => $data['when'] ?? null,
+            'title_ru' => $data['title_ru'],
+            'title_en' => $data['title_en'],
+            'title_tm' => $data['title_tm'],
+            'who_ru' => $data['who_ru'] ?? null,
+            'who_en' => $data['who_en'] ?? null,
+            'who_tm' => $data['who_tm'] ?? null,
+            'description_ru' => $data['desc_ru'] ?? null,
+            'description_en' => $data['desc_en'] ?? null,
+            'description_tm' => $data['desc_tm'] ?? null,
+            'target_ru' => $data['target_ru'] ?? null,
+            'target_en' => $data['target_en'] ?? null,
+            'target_tm' => $data['target_tm'] ?? null,
+            'result_ru' => $data['res_ru'] ?? null,
+            'result_en' => $data['res_en'] ?? null,
+            'result_tm' => $data['res_tm'] ?? null,
+            'status' => $data['status'] ?? true,
+            'ordering' => $data['ordering'] ?? 0,
+            'photo' => '',
+        ]);
 
-        // Если файл не передан, устанавливаем photo как пустую строку
-        $portfolio->photo = '';
-
-        $portfolio->save();
-
-        // Если файл загружен, сохраняем его через Medialibrary и записываем URL в поле photo
+        // Если файл загружен, сохраняем его через Medialibrary
         if ($req->hasFile('image')) {
             $media = $portfolio->addMediaFromRequest('image')
                 ->toMediaCollection('portfolio-images');
@@ -148,9 +112,16 @@ class CPortfolio extends Controller
             $portfolio->save();
         }
 
-        return redirect('/' . $lang . '/admin/all-projects');
-    }
+        // Привязываем категории
+        if (isset($data['what'])) {
+            $portfolio->categories()->sync($data['what']);
+        }
 
+        // Очищаем кэш
+        Cache::forget("portfolio_{$lang}");
+
+        return redirect('/' . $lang . '/admin/all-projects')->with('success', 'Проект успешно создан!');
+    }
 
     public function editProject($lang, $id)
     {
@@ -169,100 +140,81 @@ class CPortfolio extends Controller
 
     public function editPortfolio(Request $req, $lang, $id)
     {
+        $req->validate([
+            'title_ru' => 'required|string|max:255',
+            'title_en' => 'required|string|max:255',
+            'title_tm' => 'required|string|max:255',
+            'when' => 'nullable|date',
+            'image' => 'nullable|image|max:10240',
+        ]);
+
         $data = $req->only([
-            'urlButton',
-            'isMainPage',
-            'when',
-            'title_tm',
-            'title_ru',
-            'title_en',
-            'who_tm',
-            'who_ru',
-            'who_en',
-            'desc_tm',
-            'desc_ru',
-            'desc_en',
-            'target_tm',
-            'target_ru',
-            'target_en',
-            'res_tm',
-            'res_ru',
-            'res_en',
-            'what',
-            'deleteImages',
-            'status',
-            'ordering'
+            'url_button', 'is_main_page', 'when',
+            'title_tm', 'title_ru', 'title_en',
+            'who_tm', 'who_ru', 'who_en',
+            'desc_tm', 'desc_ru', 'desc_en',
+            'target_tm', 'target_ru', 'target_en',
+            'res_tm', 'res_ru', 'res_en',
+            'status', 'ordering', 'what'
         ]);
 
         $portfolio = Portfolio::findOrFail($id);
-        $portfolio->slug = Str::slug($data['title_en']);
-        $portfolio->urlButton  = $data['urlButton'];
-        $portfolio->isMainPage = $data['isMainPage'];
-        $portfolio->when       = $data['when'];
 
-        // Если загружен новый файл, добавляем его в Medialibrary
+        // Обновляем данные
+        $portfolio->update([
+            'slug' => Str::slug($data['title_en']) . '-' . $portfolio->id,
+            'url_button' => $data['url_button'] ?? null,
+            'is_main_page' => $data['is_main_page'] ?? false,
+            'when' => $data['when'] ?? null,
+            'title_ru' => $data['title_ru'],
+            'title_en' => $data['title_en'],
+            'title_tm' => $data['title_tm'],
+            'who_ru' => $data['who_ru'] ?? null,
+            'who_en' => $data['who_en'] ?? null,
+            'who_tm' => $data['who_tm'] ?? null,
+            'description_ru' => $data['desc_ru'] ?? null,
+            'description_en' => $data['desc_en'] ?? null,
+            'description_tm' => $data['desc_tm'] ?? null,
+            'target_ru' => $data['target_ru'] ?? null,
+            'target_en' => $data['target_en'] ?? null,
+            'target_tm' => $data['target_tm'] ?? null,
+            'result_ru' => $data['res_ru'] ?? null,
+            'result_en' => $data['res_en'] ?? null,
+            'result_tm' => $data['res_tm'] ?? null,
+            'status' => $data['status'] ?? true,
+            'ordering' => $data['ordering'] ?? 0,
+        ]);
+
+        // Обновляем изображение если загружено
         if ($req->hasFile('image')) {
-            // При необходимости можно удалить старые медиа-файлы
             $portfolio->clearMediaCollection('portfolio-images');
-
-            $portfolio->addMediaFromRequest('image')
+            $media = $portfolio->addMediaFromRequest('image')
                 ->toMediaCollection('portfolio-images');
+            $portfolio->photo = $media->getUrl();
+            $portfolio->save();
         }
 
-        $portfolio->title = [
-            'tm' => $data['title_tm'],
-            'ru' => $data['title_ru'],
-            'en' => $data['title_en'],
-        ];
-        $portfolio->who = [
-            'tm' => $data['who_tm'],
-            'ru' => $data['who_ru'],
-            'en' => $data['who_en'],
-        ];
-        $portfolio->description = [
-            'tm' => $data['desc_tm'],
-            'ru' => $data['desc_ru'],
-            'en' => $data['desc_en'],
-        ];
-        $portfolio->target = [
-            'tm' => $data['target_tm'],
-            'ru' => $data['target_ru'],
-            'en' => $data['target_en'],
-        ];
-        $portfolio->result = [
-            'tm' => $data['res_tm'],
-            'ru' => $data['res_ru'],
-            'en' => $data['res_en'],
-        ];
-        $portfolio->status   = $data['status'];
-        $portfolio->ordering = $data['ordering'];
-
+        // Обновляем категории
         if (isset($data['what'])) {
             $portfolio->categories()->sync($data['what']);
         }
 
-        $portfolio->save();
+        // Очищаем кэш
+        Cache::forget("portfolio_{$lang}");
+        Cache::forget("portfolio_{$lang}_{$portfolio->slug}");
 
-        return redirect('/' . $lang . '/admin/all-projects');
+        return redirect('/' . $lang . '/admin/all-projects')->with('success', 'Проект успешно обновлен!');
     }
-
 
     public function destroy($lang, Request $req)
     {
-        $this->portfolioService->deletePortfolio($req->id);
-        // Redirect after deletion instead of returning JSON response.
-        return redirect("/{$lang}/admin/all-projects")->with('message', 'Portfolio deleted successfully.');
-    }
+        $portfolio = Portfolio::findOrFail($req->id);
+        $portfolio->clearMediaCollection('portfolio-images');
+        $portfolio->delete();
 
+        // Очищаем кэш
+        Cache::forget("portfolio_{$lang}");
 
-
-    public function ajaxTmp(Request $req, string $lang)
-    {
-        return response()->json([]);
-    }
-    public function getPortfolioCount($lang)
-    {
-        $total = \App\Models\Portfolio::count();
-        return response()->json(['total' => $total]);
+        return redirect("/{$lang}/admin/all-projects")->with('success', 'Проект успешно удален!');
     }
 }

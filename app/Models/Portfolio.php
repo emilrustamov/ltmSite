@@ -14,34 +14,38 @@ class Portfolio extends Model implements HasMedia
 
     public $table = "portfolio";
 
-    // Преобразование JSON-полей в массивы + добавлено поле photo
-    protected $casts = [
-        'title'       => 'array',
-        'who'         => 'array',
-        'description' => 'array',
-        'target'      => 'array',
-        'result'      => 'array',
-        'status'      => 'boolean',
-        'ordering'    => 'integer',
-        'photo'       => 'string',
-        'slug'        => 'string',
+    protected $fillable = [
+        'slug', 'photo', 'url_button', 'when', 'status', 'is_main_page', 'ordering',
+        'title_ru', 'title_en', 'title_tm',
+        'who_ru', 'who_en', 'who_tm',
+        'description_ru', 'description_en', 'description_tm',
+        'target_ru', 'target_en', 'target_tm',
+        'result_ru', 'result_en', 'result_tm',
     ];
 
-    // Пример связи с категориями
+    protected $casts = [
+        'status' => 'boolean',
+        'is_main_page' => 'boolean',
+        'ordering' => 'integer',
+        'when' => 'date',
+    ];
+
+    // Связь с категориями
     public function categories()
     {
         return $this->belongsToMany(Categories::class, 'category_portfolio', 'portfolio_id', 'category_id')
             ->withTimestamps();
     }
 
-    // Регистрация конверсий Medialibrary
+    // Регистрация конверсий Medialibrary для WebP
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('webp')
-            ->format('webp')    // конвертирует в формат WebP
-            ->quality(90);      // можно указать качество конверсии
+            ->format('webp')
+            ->quality(90);
     }
 
+    // Использовать slug как ключ маршрута
     public function getRouteKeyName()
     {
         return 'slug';

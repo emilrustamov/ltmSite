@@ -151,10 +151,6 @@ Route::prefix('{lang}')
             return view('contacts', compact('leftMenu', 'currentPage', 'lang'));
         })->name('contacts');
 
-        // No Access page
-        Route::get('/no-access', fn() => view('noAccess'))
-            ->name('noaccess');
-
         // -----------------------------------
         // Admin routes (подгруппа)
         // -----------------------------------
