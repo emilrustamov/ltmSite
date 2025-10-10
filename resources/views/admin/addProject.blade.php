@@ -67,26 +67,26 @@
                         </div>
                         <div>
                             <label for="what" class="block text-sm font-medium text-gray-700">What?</label>
-                            <select class="border border-gray-300 rounded p-2 w-full" name="what[]" multiple onchange="handleSelectChange(this)">
+                                <select class="border border-gray-300 rounded p-2 w-full" name="what[]" multiple onchange="handleSelectChange(this)">
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category['id'] }}">{{ $category['category_' . $lang] }}</option>
+                                    <option value="{{ $category->id }}">{{ $category->{'name_' . $lang} }}</option>
                                 @endforeach
                             </select>
                             <div id="otherInputContainer"></div>
                         </div>
                         <div>
-                            <label for="urlButton" class="block text-sm font-medium text-gray-700">Button Link</label>
-                            <input class="border border-gray-300 rounded p-2 w-full" type="text" id="urlButton" name="urlButton" placeholder="URL" autofocus />
+                            <label for="url_button" class="block text-sm font-medium text-gray-700">Button Link</label>
+                            <input class="border border-gray-300 rounded p-2 w-full" type="text" id="url_button" name="url_button" placeholder="URL" autofocus />
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700">Должен ли этот проект отображаться на главной странице?</label>
                             <div class="flex items-center space-x-4">
                                 <div class="flex items-center">
-                                    <input class="form-radio text-blue-600" type="radio" name="isMainPage" id="yes" value="1">
+                                    <input class="form-radio text-blue-600" type="radio" name="is_main_page" id="yes" value="1">
                                     <label class="ml-2 text-sm text-gray-700" for="yes">Да</label>
                                 </div>
                                 <div class="flex items-center">
-                                    <input class="form-radio text-blue-600" type="radio" name="isMainPage" id="no" value="0" checked>
+                                    <input class="form-radio text-blue-600" type="radio" name="is_main_page" id="no" value="0" checked>
                                     <label class="ml-2 text-sm text-gray-700" for="no">Нет</label>
                                 </div>
                             </div>

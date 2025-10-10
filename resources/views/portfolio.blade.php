@@ -17,15 +17,15 @@
             <a href="/{{ $lang }}/portfolio/{{ $portf->slug }}" class="grid-item relative project-link" data-id="{{ $portf->id }}">
                     <div class="columnPort relative content">
                         @if ($portf->getFirstMediaUrl('portfolio-images', 'webp'))
-                            <img data-src="{{ $portf->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="{{ $portf->title[$lang] ?? 'Image' }}" loading="lazy" class="lazyload">
+                            <img data-src="{{ $portf->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="{{ $portf->{'title_' . $lang} ?? 'Image' }}" loading="lazy" class="lazyload">
                         @else
-                            <img src="{{ asset('assets/images/proformat.png') }}" alt="{{ $portf->title[$lang] ?? 'Placeholder image' }}" loading="lazy">
+                            <img src="{{ asset('assets/images/proformat.png') }}" alt="{{ $portf->{'title_' . $lang} ?? 'Placeholder image' }}" loading="lazy">
                         @endif
                         <div class="content">
                             <div>
                                 <div class="line"></div>
                                 <h2>
-                                    {!! $portf->title[$lang] ?? 'No title' !!}
+                                    {!! $portf->{'title_' . $lang} ?? 'No title' !!}
                                     <!-- Метка по умолчанию для непросмотренного проекта -->
                                     <span class="not-viewed-label" style="display: inline-block; font-size: 0.7rem; color: white; background: #e31e24; margin-left: 0.5rem; border-radius: 0.25rem; padding: 2px 6px;">Не просмотрено</span>
                                     <!-- Метка для просмотренного проекта, скрыта по умолчанию -->

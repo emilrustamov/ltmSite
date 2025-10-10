@@ -10,10 +10,24 @@ class Categories extends Model
     use HasFactory;
 
     public $table = "categories";
-    
 
-    public function portfolios() {
-        return $this->belongsToMany(Portfolio::class);
+    protected $fillable = [
+        'slug',
+        'name_ru',
+        'name_en',
+        'name_tm',
+    ];
+
+    // Связь с портфолио
+    public function portfolios()
+    {
+        return $this->belongsToMany(Portfolio::class, 'category_portfolio', 'category_id', 'portfolio_id')
+            ->withTimestamps();
     }
-    
+
+    // Использовать slug как ключ маршрута
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

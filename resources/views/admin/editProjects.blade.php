@@ -136,7 +136,7 @@
                             <div>
                                 <label for="firstName" class="block text-sm font-medium text-gray-700">When?</label>
                                 <input class="border border-gray-300 rounded p-2 w-full" type="date" id="firstName" name="when"
-                                    value="{{ $portfolio['when'] }}" autofocus />
+                                    value="{{ $portfolio->when ? $portfolio->when->format('Y-m-d') : '' }}" autofocus />
                             </div>
                             <div>
                                 <label for="firstName" class="block text-sm font-medium text-gray-700">What?</label>
@@ -144,7 +144,7 @@
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"
                                             {{ in_array($category->id, $selectedCategoryIds) ? 'selected' : '' }}>
-                                            {{ $category['category_' . $lang] }}
+                                            {{ $category->{'name_' . $lang} }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -152,20 +152,20 @@
                             </div>
                             <div>
                                 <label for="firstName" class="block text-sm font-medium text-gray-700">Button Link</label>
-                                <input class="border border-gray-300 rounded p-2 w-full" type="text" id="firstName" name="urlButton"
-                                    value="{{ $portfolio['urlButton'] ?? '' }}" autofocus>
+                                <input class="border border-gray-300 rounded p-2 w-full" type="text" id="firstName" name="url_button"
+                                    value="{{ $portfolio->url_button ?? '' }}" autofocus>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Должен ли этот проект отображаться на главной странице?</label>
                                 <div class="flex items-center space-x-4">
                                     <div class="flex items-center">
-                                        <input class="form-radio text-blue-600" type="radio" name="isMainPage" id="yes"
-                                            value="1" {{ $portfolio['isMainPage'] == 1 ? 'checked' : '' }}>
+                                        <input class="form-radio text-blue-600" type="radio" name="is_main_page" id="yes"
+                                            value="1" {{ $portfolio->is_main_page == 1 ? 'checked' : '' }}>
                                         <label class="ml-2 text-sm text-gray-700" for="yes">Да</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input class="form-radio text-blue-600" type="radio" name="isMainPage" id="no"
-                                            value="0" {{ $portfolio['isMainPage'] == 0 ? 'checked' : '' }}>
+                                        <input class="form-radio text-blue-600" type="radio" name="is_main_page" id="no"
+                                            value="0" {{ $portfolio->is_main_page == 0 ? 'checked' : '' }}>
                                         <label class="ml-2 text-sm text-gray-700" for="no">Нет</label>
                                     </div>
                                 </div>
