@@ -13,15 +13,25 @@ class News extends Model
 
     protected $fillable = [
         'slug', 'image', 'status', 'published_at',
-        'title_ru', 'title_en', 'title_tm',
-        'content_ru', 'content_en', 'content_tm',
-        'excerpt_ru', 'excerpt_en', 'excerpt_tm',
     ];
 
     protected $casts = [
         'status' => 'boolean',
         'published_at' => 'date',
     ];
+
+    // Связь с переводами
+    public function translations()
+    {
+        return $this->hasMany(NewsTranslation::class);
+    }
+
+    // Получить перевод для конкретного языка
+    public function translation($locale = null)
+    {
+        $locale = $locale ?? app()->getLocale();
+        return $this->translations()->where('locale', $locale)->first();
+    }
 
     public function getRouteKeyName()
     {

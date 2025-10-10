@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProjSliderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use App\Models\Portfolio;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\CPortfolio;
+use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Pagination\Paginator;
 use Spatie\Sitemap\Sitemap;
@@ -84,7 +84,7 @@ Route::get('/sitemap.xml', function () {
     return $sitemap->toResponse(request());
 });
 
-Route::get('/api/portfolio-count/{lang}', [CPortfolio::class, 'getPortfolioCount']);
+Route::get('/api/portfolio-count/{lang}', [PortfolioController::class, 'getPortfolioCount']);
 Route::get('/', fn() => redirect('/ru')); // Корень -> /ru по умолчанию
 
 // ---------------------------------------
@@ -113,8 +113,6 @@ Route::prefix('{lang}')
             $currentPage = '';
             return view('services', compact('leftMenu', 'currentPage', 'lang'));
         })->name('services');
-        Route::get('/services-webpages/{portfolio}', [ProjSliderController::class, 'showOnePortf'])
-            ->name('services.webpage');
 
         // About Us
         Route::get('/about_us', function ($lang) {
@@ -138,9 +136,9 @@ Route::prefix('{lang}')
         ->name('portfolio.redirect');
 
         // Portfolio
-        Route::get('/portfolio', [CPortfolio::class, 'index'])
+        Route::get('/portfolio', [PortfolioController::class, 'index'])
             ->name('portfolio.index');
-        Route::get('/portfolio/{portfolio}', [CPortfolio::class, 'showOnePortf'])
+        Route::get('/portfolio/{portfolio}', [PortfolioController::class, 'showOnePortf'])
             ->name('portfolio.show');
 
         // Contacts
@@ -160,16 +158,30 @@ Route::prefix('{lang}')
 
                 Route::get('/admin/all-projects', fn($lang) => Paginator::useTailwind() ?: view('admin.allProjects', ['lang' => $lang, 'portfolio' => Portfolio::paginate(30)]))
                     ->name('all_projects');
-                Route::get('/admin/add-project', [CPortfolio::class, 'addProject'])
+                Route::get('/admin/add-project', [PortfolioController::class, 'addProject'])
                     ->name('add_project.form');
-                Route::post('/admin/add-project', [CPortfolio::class, 'addPortfolio'])
+                Route::post('/admin/add-project', [PortfolioController::class, 'addPortfolio'])
                     ->name('add_project.submit');
-                Route::get('/admin/edit-project/{id}', [CPortfolio::class, 'editProject'])
+                Route::get('/admin/edit-project/{id}', [PortfolioController::class, 'editProject'])
                     ->name('edit_project.form');
-                Route::post('/admin/edit-project/{id}', [CPortfolio::class, 'editPortfolio'])
+                Route::post('/admin/edit-project/{id}', [PortfolioController::class, 'editPortfolio'])
                     ->name('edit_project.submit');
-                Route::delete('/admin/destroy/{id}', [CPortfolio::class, 'destroy'])
+                Route::delete('/admin/destroy/{id}', [PortfolioController::class, 'destroy'])
                     ->name('destroy_project');
+
+                // Categories management
+                Route::get('/admin/categories', [CategoryController::class, 'index'])
+                    ->name('categories.index');
+                Route::get('/admin/categories/create', [CategoryController::class, 'create'])
+                    ->name('categories.create');
+                Route::post('/admin/categories', [CategoryController::class, 'store'])
+                    ->name('categories.store');
+                Route::get('/admin/categories/{id}/edit', [CategoryController::class, 'edit'])
+                    ->name('categories.edit');
+                Route::post('/admin/categories/{id}', [CategoryController::class, 'update'])
+                    ->name('categories.update');
+                Route::delete('/admin/categories/{id}', [CategoryController::class, 'destroy'])
+                    ->name('categories.destroy');
             });
     });
 

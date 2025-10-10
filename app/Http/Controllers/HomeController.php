@@ -14,7 +14,8 @@ class HomeController extends Controller
         $leftMenu = false;
         $currentPage = "Главная";
 
-        $projects = Portfolio::where('is_main_page', 1)
+        $projects = Portfolio::with('translations')
+                      ->where('is_main_page', 1)
                       ->where('status', 1)
                       ->orderBy('ordering')
                       ->get();

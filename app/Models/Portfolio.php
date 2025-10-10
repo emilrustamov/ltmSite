@@ -16,11 +16,6 @@ class Portfolio extends Model implements HasMedia
 
     protected $fillable = [
         'slug', 'photo', 'url_button', 'when', 'status', 'is_main_page', 'ordering',
-        'title_ru', 'title_en', 'title_tm',
-        'who_ru', 'who_en', 'who_tm',
-        'description_ru', 'description_en', 'description_tm',
-        'target_ru', 'target_en', 'target_tm',
-        'result_ru', 'result_en', 'result_tm',
     ];
 
     protected $casts = [
@@ -29,6 +24,19 @@ class Portfolio extends Model implements HasMedia
         'ordering' => 'integer',
         'when' => 'date',
     ];
+
+    // Связь с переводами
+    public function translations()
+    {
+        return $this->hasMany(PortfolioTranslation::class);
+    }
+
+    // Получить перевод для конкретного языка
+    public function translation($locale = null)
+    {
+        $locale = $locale ?? app()->getLocale();
+        return $this->translations()->where('locale', $locale)->first();
+    }
 
     // Связь с категориями
     public function categories()

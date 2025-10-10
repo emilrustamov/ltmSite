@@ -13,10 +13,20 @@ class Categories extends Model
 
     protected $fillable = [
         'slug',
-        'name_ru',
-        'name_en',
-        'name_tm',
     ];
+
+    // Связь с переводами
+    public function translations()
+    {
+        return $this->hasMany(CategoryTranslation::class, 'category_id');
+    }
+
+    // Получить перевод для конкретного языка
+    public function translation($locale = null)
+    {
+        $locale = $locale ?? app()->getLocale();
+        return $this->translations()->where('locale', $locale)->first();
+    }
 
     // Связь с портфолио
     public function portfolios()

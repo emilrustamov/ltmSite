@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Models\Portfolio;
+use App\Models\PortfolioTranslation;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
-class CPortfolio extends Controller
+class PortfolioController extends Controller
 {
 
     public function index($lang)
@@ -17,11 +18,11 @@ class CPortfolio extends Controller
         App::setLocale($lang);
 
         $portfolio = Cache::remember("portfolio_{$lang}", now()->addMinutes(10), function () {
-            return Portfolio::with('categories')->orderBy('ordering')->get();
+            return Portfolio::with(['categories.translations', 'translations'])->orderBy('ordering')->get();
         });
 
         $categories = Cache::remember("categories_{$lang}", now()->addMinutes(10), function () {
-            return Categories::all();
+            return Categories::with('translations')->get();
         });
 
         return view('portfolio', [
@@ -37,8 +38,8 @@ class CPortfolio extends Controller
     {
         App::setLocale($lang);
 
-        // Загружаем категории проекта
-        $portfolio->load('categories');
+        // Загружаем категории и переводы проекта
+        $portfolio->load(['categories.translations', 'translations']);
 
         return view('oneProjectDetails', [
             'portfolio'   => $portfolio,
@@ -51,7 +52,7 @@ class CPortfolio extends Controller
 
     public function addProject($lang)
     {
-        $categories = Categories::all();
+        $categories = Categories::with('translations')->get();
         return view('admin/addProject', [
             'lang' => $lang,
             'categories' => $categories,
@@ -78,31 +79,29 @@ class CPortfolio extends Controller
             'status', 'ordering', 'what'
         ]);
 
-        // Создаём запись портфолио
+        // Создаём запись портфолио (только основные поля)
         $portfolio = Portfolio::create([
             'slug' => Str::slug($data['title_en'] ?? '') . '-' . time(),
             'url_button' => $data['url_button'] ?? null,
             'is_main_page' => $data['is_main_page'] ?? false,
             'when' => $data['when'] ?? null,
-            'title_ru' => $data['title_ru'],
-            'title_en' => $data['title_en'],
-            'title_tm' => $data['title_tm'],
-            'who_ru' => $data['who_ru'] ?? null,
-            'who_en' => $data['who_en'] ?? null,
-            'who_tm' => $data['who_tm'] ?? null,
-            'description_ru' => $data['desc_ru'] ?? null,
-            'description_en' => $data['desc_en'] ?? null,
-            'description_tm' => $data['desc_tm'] ?? null,
-            'target_ru' => $data['target_ru'] ?? null,
-            'target_en' => $data['target_en'] ?? null,
-            'target_tm' => $data['target_tm'] ?? null,
-            'result_ru' => $data['res_ru'] ?? null,
-            'result_en' => $data['res_en'] ?? null,
-            'result_tm' => $data['res_tm'] ?? null,
             'status' => $data['status'] ?? true,
             'ordering' => $data['ordering'] ?? 0,
             'photo' => '',
         ]);
+
+        // Создаём переводы для всех языков
+        foreach (['ru', 'en', 'tm'] as $locale) {
+            PortfolioTranslation::create([
+                'portfolio_id' => $portfolio->id,
+                'locale' => $locale,
+                'title' => $data["title_{$locale}"],
+                'who' => $data["who_{$locale}"] ?? null,
+                'description' => $data["desc_{$locale}"] ?? null,
+                'target' => $data["target_{$locale}"] ?? null,
+                'result' => $data["res_{$locale}"] ?? null,
+            ]);
+        }
 
         // Если файл загружен, сохраняем его через Medialibrary
         if ($req->hasFile('image')) {
@@ -125,8 +124,8 @@ class CPortfolio extends Controller
 
     public function editProject($lang, $id)
     {
-        $portfolio = Portfolio::with('categories')->findOrFail($id);
-        $categories = Categories::all();
+        $portfolio = Portfolio::with(['categories.translations', 'translations'])->findOrFail($id);
+        $categories = Categories::with('translations')->get();
         $selectedCategoryIds = $portfolio->categories->pluck('id')->toArray();
 
         return view('admin/editProjects', [
@@ -160,30 +159,29 @@ class CPortfolio extends Controller
 
         $portfolio = Portfolio::findOrFail($id);
 
-        // Обновляем данные
+        // Обновляем основные данные
         $portfolio->update([
             'slug' => Str::slug($data['title_en']) . '-' . $portfolio->id,
             'url_button' => $data['url_button'] ?? null,
             'is_main_page' => $data['is_main_page'] ?? false,
             'when' => $data['when'] ?? null,
-            'title_ru' => $data['title_ru'],
-            'title_en' => $data['title_en'],
-            'title_tm' => $data['title_tm'],
-            'who_ru' => $data['who_ru'] ?? null,
-            'who_en' => $data['who_en'] ?? null,
-            'who_tm' => $data['who_tm'] ?? null,
-            'description_ru' => $data['desc_ru'] ?? null,
-            'description_en' => $data['desc_en'] ?? null,
-            'description_tm' => $data['desc_tm'] ?? null,
-            'target_ru' => $data['target_ru'] ?? null,
-            'target_en' => $data['target_en'] ?? null,
-            'target_tm' => $data['target_tm'] ?? null,
-            'result_ru' => $data['res_ru'] ?? null,
-            'result_en' => $data['res_en'] ?? null,
-            'result_tm' => $data['res_tm'] ?? null,
             'status' => $data['status'] ?? true,
             'ordering' => $data['ordering'] ?? 0,
         ]);
+
+        // Обновляем переводы для всех языков
+        foreach (['ru', 'en', 'tm'] as $locale) {
+            $portfolio->translations()->updateOrCreate(
+                ['locale' => $locale],
+                [
+                    'title' => $data["title_{$locale}"],
+                    'who' => $data["who_{$locale}"] ?? null,
+                    'description' => $data["desc_{$locale}"] ?? null,
+                    'target' => $data["target_{$locale}"] ?? null,
+                    'result' => $data["res_{$locale}"] ?? null,
+                ]
+            );
+        }
 
         // Обновляем изображение если загружено
         if ($req->hasFile('image')) {

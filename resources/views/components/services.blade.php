@@ -15,7 +15,7 @@
                     <p class="text-3xl flex-grow mb-4" itemprop="description">
                         {{ __('translate.servDesc1') }}
                     </p>
-                    <a href="/{{ $lang }}/services-webpages"
+                    <a href="/{{ $lang }}/portfolio"
                         class="inline-block !px-10 !py-6 bg-[#bc2c2c] hover:bg-[#e31e24] rounded font-bold text-white text-2xl">
                         {{ __('translate.readMore') }}
                     </a>

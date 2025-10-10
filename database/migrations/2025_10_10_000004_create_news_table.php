@@ -15,21 +15,6 @@ return new class extends Migration
             $table->boolean('status')->default(true);
             $table->date('published_at')->nullable();
             
-            // Мультиязычные поля - Русский
-            $table->string('title_ru');
-            $table->text('content_ru')->nullable();
-            $table->text('excerpt_ru')->nullable();
-            
-            // Мультиязычные поля - Английский
-            $table->string('title_en');
-            $table->text('content_en')->nullable();
-            $table->text('excerpt_en')->nullable();
-            
-            // Мультиязычные поля - Туркменский
-            $table->string('title_tm');
-            $table->text('content_tm')->nullable();
-            $table->text('excerpt_tm')->nullable();
-            
             $table->timestamps();
         });
     }

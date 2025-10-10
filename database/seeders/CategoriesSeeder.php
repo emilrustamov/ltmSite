@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Categories;
+use App\Models\CategoryTranslation;
 
 class CategoriesSeeder extends Seeder
 {
@@ -12,38 +13,60 @@ class CategoriesSeeder extends Seeder
         $categories = [
             [
                 'slug' => 'web-development',
-                'name_ru' => 'Веб-разработка',
-                'name_en' => 'Web Development',
-                'name_tm' => 'Web ösdürmek',
+                'translations' => [
+                    'ru' => 'Веб-разработка',
+                    'en' => 'Web Development',
+                    'tm' => 'Web ösdürmek',
+                ],
             ],
             [
                 'slug' => 'mobile-app',
-                'name_ru' => 'Мобильное приложение',
-                'name_en' => 'Mobile Application',
-                'name_tm' => 'Ykjam programma',
+                'translations' => [
+                    'ru' => 'Мобильное приложение',
+                    'en' => 'Mobile Application',
+                    'tm' => 'Ykjam programma',
+                ],
             ],
             [
                 'slug' => 'design',
-                'name_ru' => 'Дизайн',
-                'name_en' => 'Design',
-                'name_tm' => 'Dizaýn',
+                'translations' => [
+                    'ru' => 'Дизайн',
+                    'en' => 'Design',
+                    'tm' => 'Dizaýn',
+                ],
             ],
             [
                 'slug' => 'crm-system',
-                'name_ru' => 'CRM система',
-                'name_en' => 'CRM System',
-                'name_tm' => 'CRM ulgamy',
+                'translations' => [
+                    'ru' => 'CRM система',
+                    'en' => 'CRM System',
+                    'tm' => 'CRM ulgamy',
+                ],
             ],
             [
                 'slug' => 'e-commerce',
-                'name_ru' => 'Интернет-магазин',
-                'name_en' => 'E-Commerce',
-                'name_tm' => 'Internet dükany',
+                'translations' => [
+                    'ru' => 'Интернет-магазин',
+                    'en' => 'E-Commerce',
+                    'tm' => 'Internet dükany',
+                ],
             ],
         ];
 
-        foreach ($categories as $category) {
-            Categories::create($category);
+        foreach ($categories as $categoryData) {
+            // Создаем категорию
+            $category = Categories::create([
+                'slug' => $categoryData['slug'],
+            ]);
+
+            // Создаем переводы для каждого языка
+            foreach ($categoryData['translations'] as $locale => $name) {
+                CategoryTranslation::create([
+                    'category_id' => $category->id,
+                    'locale' => $locale,
+                    'name' => $name,
+                ]);
+            }
         }
     }
 }

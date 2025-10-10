@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\NewsTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
@@ -74,20 +75,23 @@ class NewsController extends Controller
             'status', 'published_at'
         ]);
 
+        // Создаём новость (только основные поля)
         $news = News::create([
             'slug' => Str::slug($data['title_en']) . '-' . time(),
-            'title_ru' => $data['title_ru'],
-            'title_en' => $data['title_en'],
-            'title_tm' => $data['title_tm'],
-            'content_ru' => $data['content_ru'] ?? null,
-            'content_en' => $data['content_en'] ?? null,
-            'content_tm' => $data['content_tm'] ?? null,
-            'excerpt_ru' => $data['excerpt_ru'] ?? null,
-            'excerpt_en' => $data['excerpt_en'] ?? null,
-            'excerpt_tm' => $data['excerpt_tm'] ?? null,
             'status' => $data['status'] ?? true,
             'published_at' => $data['published_at'] ?? now(),
         ]);
+
+        // Создаём переводы для всех языков
+        foreach (['ru', 'en', 'tm'] as $locale) {
+            NewsTranslation::create([
+                'news_id' => $news->id,
+                'locale' => $locale,
+                'title' => $data["title_{$locale}"],
+                'content' => $data["content_{$locale}"] ?? null,
+                'excerpt' => $data["excerpt_{$locale}"] ?? null,
+            ]);
+        }
 
         // Загрузка изображения
         if ($req->hasFile('image')) {
@@ -129,20 +133,24 @@ class NewsController extends Controller
             'status', 'published_at'
         ]);
 
+        // Обновляем основные поля
         $news->update([
             'slug' => Str::slug($data['title_en']) . '-' . $news->id,
-            'title_ru' => $data['title_ru'],
-            'title_en' => $data['title_en'],
-            'title_tm' => $data['title_tm'],
-            'content_ru' => $data['content_ru'] ?? null,
-            'content_en' => $data['content_en'] ?? null,
-            'content_tm' => $data['content_tm'] ?? null,
-            'excerpt_ru' => $data['excerpt_ru'] ?? null,
-            'excerpt_en' => $data['excerpt_en'] ?? null,
-            'excerpt_tm' => $data['excerpt_tm'] ?? null,
             'status' => $data['status'] ?? true,
             'published_at' => $data['published_at'] ?? $news->published_at,
         ]);
+
+        // Обновляем переводы для всех языков
+        foreach (['ru', 'en', 'tm'] as $locale) {
+            $news->translations()->updateOrCreate(
+                ['locale' => $locale],
+                [
+                    'title' => $data["title_{$locale}"],
+                    'content' => $data["content_{$locale}"] ?? null,
+                    'excerpt' => $data["excerpt_{$locale}"] ?? null,
+                ]
+            );
+        }
 
         // Обновление изображения
         if ($req->hasFile('image')) {
