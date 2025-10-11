@@ -1,11 +1,16 @@
 @extends('layouts.admin')
 
-    <span class="cursor-pointer text-3xl" onclick="openNav()">&#9776;</span>
-    <h4 class="font-bold py-3 mb-4 text-lg">
-        <span class="text-gray-500">Projects / </span> Add Projects
-    </h4>
+@section('page-title', 'Редактировать проект')
 
-    <form method="POST" enctype="multipart/form-data">
+@section('content')
+<div class="bg-white rounded-lg shadow-sm p-6">
+    <div class="mb-6">
+        <h4 class="text-2xl font-bold text-gray-800">
+            <span class="text-gray-500">Проекты / </span> Редактировать проект
+        </h4>
+    </div>
+
+    <form method="POST" action="{{ route('lang.admin.edit_project.submit', ['lang' => $lang, 'id' => $id]) }}" enctype="multipart/form-data">
         @csrf
         <div class="flex flex-wrap -mx-4">
             <div class="w-full px-4">
@@ -144,7 +149,7 @@
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"
                                             {{ in_array($category->id, $selectedCategoryIds) ? 'selected' : '' }}>
-                                            {{ $category->{'name_' . $lang} }}
+                                            {{ $category->translation($lang)?->name ?? '' }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -195,13 +200,18 @@
                 </div>
                 <!-- End New Fields -->
 
-                <div class="mt-5 flex space-x-4 px-4">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded">Save</button>
-                    <button type="button" class="border border-gray-300 hover:bg-gray-100 text-gray-700 font-medium py-2 px-4 rounded">Cancel</button>
+                <div class="mt-6 flex items-center space-x-3 px-4">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 shadow-sm hover:shadow-md">
+                        <i class="fas fa-save mr-2"></i> Сохранить изменения
+                    </button>
+                    <a href="{{ route('lang.admin.all_projects', ['lang' => $lang]) }}" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-6 rounded-lg transition duration-200">
+                        <i class="fas fa-times mr-2"></i> Отмена
+                    </a>
                 </div>
             </div>
         </div>
     </form>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -237,3 +247,4 @@
         display: none !important;
     }
 </style>
+@endsection

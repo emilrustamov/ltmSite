@@ -643,7 +643,7 @@
         /* ── АКТИВНЫЙ ───────────────────────────────────────────── */
         .tab-btn.active {
             color: #fff;
-            ы background: #e31e24;
+            background: #e31e24;
             border: 1px solid transparent;
             box-shadow: 0 6px 8px rgb(227 30 36 / .35);
             cursor: default;

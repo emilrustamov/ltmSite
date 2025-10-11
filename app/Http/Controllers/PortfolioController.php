@@ -215,4 +215,10 @@ class PortfolioController extends Controller
 
         return redirect("/{$lang}/admin/all-projects")->with('success', 'Проект успешно удален!');
     }
+
+    public function getPortfolioCount($lang)
+    {
+        $total = Portfolio::count();
+        return response()->json(['total' => $total]);
+    }
 }

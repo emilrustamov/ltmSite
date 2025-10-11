@@ -21,19 +21,19 @@
                 <div class="carousel-custom-item">
                     <a href="/{{ $lang }}/portfolio/{{ $p->slug }}">
                         <div class="col flex-column slide-text">
-                            <p class="slide-title">{{ $p['title_' . $lang] }}</p>
+                            <p class="slide-title">{{ $p->translation($lang)?->title ?? '' }}</p>
                             <a class="slide-a"
                                 href="/{{ $lang }}/portfolio/{{ $p->slug }}">{{ __('translate.readMore') }}</a>
                         </div>
                         @if ($p->getFirstMediaUrl('portfolio-images', 'webp'))
                             <img class="image-container lazyload"
                                  data-lazy="{{ $p->getFirstMediaUrl('portfolio-images', 'webp') }}"
-                                 alt="{{ $p['title_'.$lang] }}"
+                                 alt="{{ $p->translation($lang)?->title ?? 'Image' }}"
                                  loading="lazy">
                         @else
                             <img class="image-container lazyload"
-                                 data-lazy="{{ asset('storage/' . $p['photo']) }}"
-                                 alt="{{ $p['title_'.$lang] }}"
+                                 data-lazy="{{ asset('storage/' . $p->photo) }}"
+                                 alt="{{ $p->translation($lang)?->title ?? 'Image' }}"
                                  loading="lazy">
                         @endif
                     </a>

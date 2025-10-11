@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 
-<div class="flex flex-wrap items-center justify-between mb-4">
+@section('page-title', 'Все проекты')
+
+@section('content')
+<div class="bg-white rounded-lg shadow-sm p-6">
+    <div class="flex flex-wrap items-center justify-between mb-6">
     <a href="/{{ $lang }}/admin/add-project" class="bg-blue-500 text-white px-4 py-2 rounded inline-flex items-center">
         <span class="mr-2">+</span> Add
     </a>
@@ -27,21 +31,21 @@
     <tbody class="bg-white divide-y divide-gray-200">
         @foreach ($portfolio as $i)
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap">{{ $i['title'][$lang] ?? 'No title' }}</td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ $i['when'] }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ $i->translation($lang)?->title ?? 'No title' }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ $i->when ? $i->when->format('Y-m-d') : '' }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    {{ $i['status'] ? 'Включено' : 'Выключено' }}
+                    {{ $i->status ? 'Включено' : 'Выключено' }}
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ $i['ordering'] }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ $i->ordering }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <a href="/{{ $lang }}/admin/edit-project/{{ $i['id'] }}" class="bg-blue-500 text-white px-2 py-1 rounded inline-flex items-center">
+                    <a href="/{{ $lang }}/admin/edit-project/{{ $i->id }}" class="bg-blue-500 text-white px-2 py-1 rounded inline-flex items-center">
                         <i class="fa-regular fa-pen-to-square"></i>
                     </a>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ $i['id'] }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ $i->id }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <!-- Delete form -->
-                    <form method="POST" action="/{{ $lang }}/admin/destroy/{{ $i['id'] }}" onsubmit="return confirm('Are you sure you want to delete this project?');">
+                    <form method="POST" action="/{{ $lang }}/admin/destroy/{{ $i->id }}" onsubmit="return confirm('Are you sure you want to delete this project?');">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded inline-flex items-center">
@@ -53,3 +57,10 @@
         @endforeach
     </tbody>
 </table>
+
+<!-- Pagination -->
+<div class="mt-6">
+    {{ $portfolio->links() }}
+</div>
+</div>
+@endsection

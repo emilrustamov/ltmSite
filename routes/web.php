@@ -156,7 +156,7 @@ Route::prefix('{lang}')
             ->name('admin.')
             ->group(function () {
 
-                Route::get('/admin/all-projects', fn($lang) => Paginator::useTailwind() ?: view('admin.allProjects', ['lang' => $lang, 'portfolio' => Portfolio::paginate(30)]))
+                Route::get('/admin/all-projects', fn($lang) => Paginator::useTailwind() ?: view('admin.allProjects', ['lang' => $lang, 'portfolio' => Portfolio::with('translations')->paginate(30)]))
                     ->name('all_projects');
                 Route::get('/admin/add-project', [PortfolioController::class, 'addProject'])
                     ->name('add_project.form');

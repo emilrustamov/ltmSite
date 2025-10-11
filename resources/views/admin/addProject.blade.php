@@ -1,10 +1,16 @@
 @extends('layouts.admin')
-<!-- ...existing header code... -->
-<h4 class="font-bold py-3 mb-4 text-lg">
-    <span class="text-gray-500">Projects / </span> Add Projects
-</h4>
 
-<form method="POST" enctype="multipart/form-data">
+@section('page-title', 'Добавить проект')
+
+@section('content')
+<div class="bg-white rounded-lg shadow-sm p-6">
+    <div class="mb-6">
+        <h4 class="text-2xl font-bold text-gray-800">
+            <span class="text-gray-500">Проекты / </span> Добавить проект
+        </h4>
+    </div>
+
+<form method="POST" action="{{ route('lang.admin.add_project.submit', ['lang' => $lang]) }}" enctype="multipart/form-data">
     @csrf
     <div class="flex flex-wrap -mx-4">
         <div class="w-full px-4">
@@ -69,7 +75,7 @@
                             <label for="what" class="block text-sm font-medium text-gray-700">What?</label>
                                 <select class="border border-gray-300 rounded p-2 w-full" name="what[]" multiple onchange="handleSelectChange(this)">
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->{'name_' . $lang} }}</option>
+                                    <option value="{{ $category->id }}">{{ $category->translation($lang)?->name ?? '' }}</option>
                                 @endforeach
                             </select>
                             <div id="otherInputContainer"></div>
@@ -97,10 +103,16 @@
         </div>
     </div>
 
-    <div class="mt-5">
-        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded me-2">Save</button>
+    <div class="mt-6 flex items-center space-x-3">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-200 shadow-sm hover:shadow-md">
+            <i class="fas fa-save mr-2"></i> Сохранить
+        </button>
+        <a href="{{ route('lang.admin.all_projects', ['lang' => $lang]) }}" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-6 rounded-lg transition duration-200">
+            <i class="fas fa-times mr-2"></i> Отмена
+        </a>
     </div>
 </form>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -134,3 +146,4 @@
         display: none !important;
     }
 </style>
+@endsection
