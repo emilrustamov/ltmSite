@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\App;
 use App\Models\Portfolio;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\PublicPortfolioController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
@@ -89,6 +90,35 @@ Route::get('/sitemap.xml', function () {
 Route::get('/api/portfolio-count/{lang}', [PortfolioController::class, 'getPortfolioCount']);
 Route::get('/', fn() => redirect('/ru')); // Корень -> /ru по умолчанию
 
+
+// ---------------------------------------
+// Admin routes (MUST be before lang routes!)
+// ---------------------------------------
+Route::middleware([])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        
+        Route::get('/', function () {
+            return redirect()->route('admin.portfolios.index');
+        })->name('dashboard');
+        
+        Route::resource('portfolios', PortfolioController::class);
+        
+        Route::resource('categories', CategoryController::class);
+        
+        Route::resource('news', NewsController::class)->except(['show']);
+        
+        Route::resource('users', UserController::class);
+        
+        Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);
+    });
+
+Route::get('/contact', [ContactController::class, 'showForm'])
+    ->name('contact.show');
+Route::post('/contact', [ContactController::class, 'submitForm'])
+    ->name('contact.submit');
+
 // ---------------------------------------
 // Lang-prefixed routes (public)
 // ---------------------------------------
@@ -137,10 +167,10 @@ Route::prefix('{lang}')
         ->where('id', '[0-9]+')
         ->name('portfolio.redirect');
 
-        // Portfolio
-        Route::get('/portfolio', [PortfolioController::class, 'index'])
+        // Portfolio (public)
+        Route::get('/portfolio', [PublicPortfolioController::class, 'index'])
             ->name('portfolio.index');
-        Route::get('/portfolio/{portfolio}', [PortfolioController::class, 'showOnePortf'])
+        Route::get('/portfolio/{portfolio}', [PublicPortfolioController::class, 'show'])
             ->name('portfolio.show');
 
         // Contacts
@@ -151,32 +181,4 @@ Route::prefix('{lang}')
             return view('contacts', compact('leftMenu', 'currentPage', 'lang'));
         })->name('contacts');
 
-    });
-
-Route::get('/contact', [ContactController::class, 'showForm'])
-    ->name('contact.show');
-Route::post('/contact', [ContactController::class, 'submitForm'])
-    ->name('contact.submit');
-
-Route::middleware(['auth', 'admin.access'])
-    ->prefix('admin')
-    ->name('admin.')
-    ->group(function () {
-        
-        Route::get('/', function () {
-            return redirect()->route('admin.portfolios.index');
-        })->name('dashboard');
-        
-        Route::resource('portfolios', PortfolioController::class);
-        
-        Route::resource('categories', CategoryController::class);
-        
-        Route::get('news', [NewsController::class, 'adminIndex'])->name('news.index');
-        Route::get('news/create', [NewsController::class, 'adminCreate'])->name('news.create');
-        Route::post('news', [NewsController::class, 'adminStore'])->name('news.store');
-        Route::get('news/{news}/edit', [NewsController::class, 'adminEdit'])->name('news.edit');
-        Route::put('news/{news}', [NewsController::class, 'adminUpdate'])->name('news.update');
-        Route::delete('news/{news}', [NewsController::class, 'adminDestroy'])->name('news.destroy');
-        
-        Route::resource('users', UserController::class);
     });

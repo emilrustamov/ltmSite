@@ -14,16 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Создаем администратора
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@ltm.com',
-            'password' => Hash::make('admin123'),
-            'is_admin' => true,
-            'email_verified_at' => now(),
+        // Запускаем все сидеры в правильном порядке
+        $this->call([
+            UsersSeeder::class,           // Сначала пользователи
+            CategoriesSeeder::class,      // Затем категории
+            PortfolioSeeder::class,       // Потом портфолио
+            CategoryPortfolioSeeder::class, // И связи между ними
         ]);
-
-        // Создаем категории
-        $this->call(CategoriesSeeder::class);
     }
 }

@@ -37,14 +37,12 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'is_admin' => 'boolean',
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'is_admin' => $request->has('is_admin') ? 1 : 0,
             'email_verified_at' => now(),
         ]);
 
@@ -81,13 +79,11 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
-            'is_admin' => 'boolean',
         ]);
 
         $data = [
             'name' => $request->name,
             'email' => $request->email,
-            'is_admin' => $request->has('is_admin') ? 1 : 0,
         ];
 
         if ($request->filled('password')) {

@@ -137,6 +137,16 @@
                             Пользователи
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.contacts.*') ? 'bg-primary' : '' }}" 
+                           href="{{ route('admin.contacts.index') }}"
+                           style="border: none; transition: all 0.2s;"
+                           onmouseover="{{ Request::routeIs('admin.contacts.*') ? '' : 'this.style.backgroundColor=\'#34495e\'' }}"
+                           onmouseout="{{ Request::routeIs('admin.contacts.*') ? '' : 'this.style.backgroundColor=\'\'' }}">
+                            <i class="fas fa-envelope me-2"></i>
+                            Заявки
+                        </a>
+                    </li>
                 </ul>
             </div>
             

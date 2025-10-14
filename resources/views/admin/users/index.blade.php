@@ -18,7 +18,7 @@
                 <th>ID</th>
                 <th>Имя</th>
                 <th>Email</th>
-                <th>Роль</th>
+                <th>Статус</th>
                 <th>Создан</th>
             </tr>
         </thead>
@@ -29,11 +29,7 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        @if($user->is_admin)
-                            <span class="badge bg-danger">Админ</span>
-                        @else
-                            <span class="badge bg-secondary">Пользователь</span>
-                        @endif
+                        <span class="badge bg-secondary">Пользователь</span>
                     </td>
                     <td>{{ $user->created_at->format('d.m.Y') }}</td>
                 </tr>

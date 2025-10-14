@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ANMail;
-use App\Http\Controllers\ContactMail;
-// use App\Mail\ANMail;
+use App\Models\Contact;
 class ContactController extends Controller
 {
     /**
@@ -34,12 +31,39 @@ class ContactController extends Controller
         ]);
 
         try {
-            Mail::to('erustamow2@gmail.com')->send(new ANMail($fields));
+            // Сохраняем заявку в БД (письмо отправится автоматически через boot() метод)
+            Contact::create($fields);
+            
             return redirect()->back()->with('success', 'Форма отправлена успешно. Мы скоро с Вами свяжемся.');
         } catch (\Exception $e) {
             // Выводим ошибку в логи Laravel
-            \Log::error('Ошибка отправки почты: ' . $e->getMessage());
+            \Log::error('Ошибка сохранения контакта: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Ошибка при отправке формы. Попробуйте позже.');
         }
+    }
+
+    // Админ методы
+    public function index()
+    {
+        $contacts = Contact::orderBy('created_at', 'desc')->paginate(20);
+        
+        return view('admin.contacts.index', [
+            'contacts' => $contacts,
+        ]);
+    }
+
+    public function show(Contact $contact)
+    {
+        return view('admin.contacts.show', [
+            'contact' => $contact,
+        ]);
+    }
+
+    public function destroy(Contact $contact)
+    {
+        $contact->delete();
+
+        return redirect()->route('admin.contacts.index')
+            ->with('success', 'Заявка успешно удалена!');
     }
 }

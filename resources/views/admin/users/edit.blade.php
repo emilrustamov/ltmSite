@@ -68,23 +68,7 @@
                     
                     <!-- Боковая панель -->
                     <div class="col-lg-4">
-                        <!-- Настройки -->
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h6 class="mb-0">Настройки</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="is_admin" name="is_admin" 
-                                               value="1" {{ old('is_admin', $user->is_admin) ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="is_admin">
-                                            Администратор
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
 

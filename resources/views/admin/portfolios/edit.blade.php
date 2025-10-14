@@ -315,7 +315,7 @@
                                         <i class="fas fa-save me-2"></i>
                                         Сохранить изменения
                                     </button>
-                                    <button type="button" class="btn btn-danger" onclick="confirmDelete()">
+<button type="button" class="btn btn-danger" onclick="confirmDelete()">
                                         <i class="fas fa-trash me-2"></i>
                                         Удалить
                                     </button>
@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Функция удаления без подтверждения
+// Мгновенное удаление без подтверждения
 function confirmDelete() {
     document.getElementById('delete-form').submit();
 }

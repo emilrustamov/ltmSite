@@ -12,37 +12,8 @@ use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
-    // Публичные методы для фронтенда
-    public function index($lang)
-    {
-        App::setLocale($lang);
-
-        $news = Cache::remember("news_{$lang}", now()->addMinutes(10), function () {
-            return News::where('status', true)
-                ->orderBy('published_at', 'desc')
-                ->paginate(12);
-        });
-
-        return view('news.index', [
-            'news' => $news,
-            'leftMenu' => true,
-            'lang' => $lang,
-        ]);
-    }
-
-    public function show($lang, News $news)
-    {
-        App::setLocale($lang);
-
-        return view('news.show', [
-            'news' => $news,
-            'leftMenu' => true,
-            'lang' => $lang,
-        ]);
-    }
-
-    // Админ методы - используем стандартные имена для Resource routes
-    public function adminIndex()
+    // Админ методы - resourceful
+    public function index()
     {
         $news = News::orderBy('created_at', 'desc')->paginate(20);
         return view('admin.news.index', [
@@ -50,12 +21,12 @@ class NewsController extends Controller
         ]);
     }
 
-    public function adminCreate()
+    public function create()
     {
         return view('admin.news.create');
     }
 
-    public function adminStore(Request $request)
+    public function store(Request $request)
     {
         try {
             $request->validate([
@@ -99,14 +70,14 @@ class NewsController extends Controller
         return redirect()->route('admin.news.index')->with('success', 'Новость успешно создана!');
     }
 
-    public function adminEdit(News $news)
+    public function edit(News $news)
     {
         return view('admin.news.edit', [
             'news' => $news,
         ]);
     }
 
-    public function adminUpdate(Request $request, News $news)
+    public function update(Request $request, News $news)
     {
         try {
             $request->validate([
@@ -152,8 +123,10 @@ class NewsController extends Controller
         return redirect()->route('admin.news.index')->with('success', 'Новость успешно обновлена!');
     }
 
-    public function adminDestroy(News $news)
+    public function destroy(News $news)
     {
+        // Удаляем медиафайлы перед удалением записи
+        $news->clearMediaCollection('news-images');
         $news->delete();
 
         return redirect()->route('admin.news.index')->with('success', 'Новость успешно удалена!');
