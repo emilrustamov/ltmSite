@@ -6,25 +6,28 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class CheckAnyPermission
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     * @param  string  ...$permissions
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, string ...$permissions)
     {
         // Проверяем, авторизован ли пользователь
-        if (!$request->user()) {
+        if (!Auth::check()) {
             return redirect()->route('login')->with('error', 'Пожалуйста, войдите в систему');
         }
 
-        // Проверяем, является ли пользователь администратором через систему разрешений
-        if (!$request->user()->isAdmin()) {
-            abort(403, 'У вас нет прав доступа к административной панели');
+        $user = Auth::user();
+
+        // Проверяем, имеет ли пользователь хотя бы одно из указанных разрешений
+        if (!$user->hasAnyPermission($permissions)) {
+            abort(403, 'У вас нет прав для выполнения этого действия');
         }
 
         return $next($request);

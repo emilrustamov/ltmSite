@@ -50,6 +50,14 @@
             </li>
             
             <li>
+                <a href="{{ route('admin.vacancies.index') }}" 
+                   class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ Request::is('admin/vacancies*') ? 'active' : '' }}">
+                    <i class="fas fa-briefcase mr-3 w-5"></i>
+                    <span>Вакансии</span>
+                </a>
+            </li>
+            
+            <li>
                 <a href="{{ route('admin.users.index') }}" 
                    class="sidebar-link flex items-center px-4 py-3 rounded-lg {{ Request::is('admin/users*') ? 'active' : '' }}">
                     <i class="fas fa-users mr-3 w-5"></i>

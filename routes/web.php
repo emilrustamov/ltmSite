@@ -8,7 +8,9 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PublicPortfolioController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserPermissionController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Pagination\Paginator;
 use Spatie\Sitemap\Sitemap;
@@ -94,7 +96,7 @@ Route::get('/', fn() => redirect('/ru')); // Корень -> /ru по умолч
 // ---------------------------------------
 // Admin routes (MUST be before lang routes!)
 // ---------------------------------------
-Route::middleware([])
+Route::middleware(['auth', 'admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
@@ -109,7 +111,19 @@ Route::middleware([])
         
         Route::resource('news', NewsController::class)->except(['show']);
         
+        Route::resource('vacancies', VacancyController::class);
+        
         Route::resource('users', UserController::class);
+        
+        // Маршруты для управления правами пользователей
+        Route::get('/users/{user}/permissions/edit', [UserPermissionController::class, 'edit'])
+            ->name('users.permissions.edit');
+        Route::put('/users/{user}/permissions', [UserPermissionController::class, 'update'])
+            ->name('users.permissions.update');
+        Route::post('/users/{user}/permissions/{permission}/give', [UserPermissionController::class, 'givePermission'])
+            ->name('users.permissions.give');
+        Route::delete('/users/{user}/permissions/{permission}/revoke', [UserPermissionController::class, 'revokePermission'])
+            ->name('users.permissions.revoke');
         
         Route::resource('contacts', ContactController::class)->only(['index', 'show', 'destroy']);
     });

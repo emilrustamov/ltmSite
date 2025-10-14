@@ -112,6 +112,12 @@ class CategoryController extends Controller
                 ->with('error', 'Невозможно удалить категорию! Есть проекты, использующие её.');
         }
 
+        // Проверяем, есть ли новости с этой категорией
+        if ($category->news()->count() > 0) {
+            return redirect()->route('admin.categories.index')
+                ->with('error', 'Невозможно удалить категорию! Есть новости, использующие её.');
+        }
+
         $category->delete();
 
         return redirect()->route('admin.categories.index')->with('success', 'Категория успешно удалена!');

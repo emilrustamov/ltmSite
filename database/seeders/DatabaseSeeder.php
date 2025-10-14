@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         // Запускаем все сидеры в правильном порядке
         $this->call([
-            UsersSeeder::class,           // Сначала пользователи
+            PermissionSeeder::class,      // Сначала создаем разрешения
+            AdminUserSeeder::class,       // Затем создаем администратора с правами
+            UsersSeeder::class,           // Потом пользователи
             CategoriesSeeder::class,      // Затем категории
             PortfolioSeeder::class,       // Потом портфолио
             CategoryPortfolioSeeder::class, // И связи между ними

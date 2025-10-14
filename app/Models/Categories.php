@@ -36,6 +36,13 @@ class Categories extends Model
             ->withTimestamps();
     }
 
+    // Связь с новостями
+    public function news()
+    {
+        return $this->belongsToMany(News::class, 'category_news', 'category_id', 'news_id')
+            ->withTimestamps();
+    }
+
     // Использовать slug как ключ маршрута
     public function getRouteKeyName()
     {

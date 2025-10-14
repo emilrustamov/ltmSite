@@ -44,6 +44,13 @@ class News extends Model implements HasMedia
         return $this->translations()->where('locale', $locale)->first();
     }
 
+    // Связь с категориями
+    public function categories()
+    {
+        return $this->belongsToMany(Categories::class, 'category_news', 'news_id', 'category_id')
+            ->withTimestamps();
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

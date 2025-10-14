@@ -2,79 +2,104 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Permissions;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Показать список пользователей
      */
     public function index()
     {
-        $users = User::orderBy('created_at', 'desc')->paginate(20);
+        // Проверяем права на просмотр пользователей
+        if (!Auth::user()->hasPermission(Permissions::USERS_VIEW)) {
+            abort(403, 'У вас нет прав для просмотра пользователей');
+        }
+
+        $users = User::with('permissions')->paginate(20);
         
-        return view('admin.users.index', [
-            'users' => $users,
-        ]);
+        return view('admin.users.index', compact('users'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Показать форму создания пользователя
      */
     public function create()
     {
+        // Проверяем права на создание пользователей
+        if (!Auth::user()->hasPermission(Permissions::USERS_CREATE)) {
+            abort(403, 'У вас нет прав для создания пользователей');
+        }
+
         return view('admin.users.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Создать нового пользователя
      */
     public function store(Request $request)
     {
+        // Проверяем права на создание пользователей
+        if (!Auth::user()->hasPermission(Permissions::USERS_CREATE)) {
+            abort(403, 'У вас нет прав для создания пользователей');
+        }
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'email_verified_at' => now(),
         ]);
 
         return redirect()->route('admin.users.index')
-            ->with('success', 'Пользователь успешно создан!');
+            ->with('success', 'Пользователь успешно создан');
     }
 
     /**
-     * Display the specified resource.
+     * Показать информацию о пользователе
      */
     public function show(User $user)
     {
-        return view('admin.users.show', [
-            'user' => $user,
-        ]);
+        // Проверяем права на просмотр пользователей
+        if (!Auth::user()->hasPermission(Permissions::USERS_VIEW)) {
+            abort(403, 'У вас нет прав для просмотра пользователей');
+        }
+
+        return view('admin.users.show', compact('user'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Показать форму редактирования пользователя
      */
     public function edit(User $user)
     {
-        return view('admin.users.edit', [
-            'user' => $user,
-        ]);
+        // Проверяем права на редактирование пользователей
+        if (!Auth::user()->hasPermission(Permissions::USERS_EDIT)) {
+            abort(403, 'У вас нет прав для редактирования пользователей');
+        }
+
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Обновить пользователя
      */
     public function update(Request $request, User $user)
     {
+        // Проверяем права на редактирование пользователей
+        if (!Auth::user()->hasPermission(Permissions::USERS_EDIT)) {
+            abort(403, 'У вас нет прав для редактирования пользователей');
+        }
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
@@ -93,23 +118,28 @@ class UserController extends Controller
         $user->update($data);
 
         return redirect()->route('admin.users.index')
-            ->with('success', 'Пользователь успешно обновлен!');
+            ->with('success', 'Пользователь успешно обновлен');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Удалить пользователя
      */
     public function destroy(User $user)
     {
+        // Проверяем права на удаление пользователей
+        if (!Auth::user()->hasPermission(Permissions::USERS_DELETE)) {
+            abort(403, 'У вас нет прав для удаления пользователей');
+        }
+
         // Нельзя удалить самого себя
-        if ($user->id === auth()->id()) {
+        if ($user->id === Auth::id()) {
             return redirect()->route('admin.users.index')
-                ->with('error', 'Вы не можете удалить самого себя!');
+                ->with('error', 'Вы не можете удалить самого себя');
         }
 
         $user->delete();
 
         return redirect()->route('admin.users.index')
-            ->with('success', 'Пользователь успешно удален!');
+            ->with('success', 'Пользователь успешно удален');
     }
 }

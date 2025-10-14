@@ -117,6 +117,33 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Категории -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h6 class="mb-0">Категории</h6>
+                            </div>
+                            <div class="card-body">
+                                @if($categories->count() > 0)
+                                    @foreach($categories as $category)
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" 
+                                                   id="category_{{ $category->id }}" name="categories[]" 
+                                                   value="{{ $category->id }}"
+                                                   {{ in_array($category->id, old('categories', [])) ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="category_{{ $category->id }}">
+                                                {{ $category->translation('ru')->name ?? 'Категория' }}
+                                            </label>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <p class="text-muted">Нет доступных категорий</p>
+                                @endif
+                                @error('categories')
+                                    <div class="text-danger small">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
                 </div>
 

@@ -18,6 +18,7 @@
                 <th>ID</th>
                 <th>Изображение</th>
                 <th>Название</th>
+                <th>Категории</th>
                 <th>Статус</th>
                 <th>Создан</th>
             </tr>
@@ -44,6 +45,15 @@
                         <small class="text-muted">{{ $article->translation('en')?->title ?? '' }}</small>
                     </td>
                     <td>
+                        @if($article->categories->count() > 0)
+                            @foreach($article->categories as $category)
+                                <span class="badge bg-primary me-1 mb-1">{{ $category->translation('ru')->name ?? 'Категория' }}</span>
+                            @endforeach
+                        @else
+                            <span class="text-muted">Без категорий</span>
+                        @endif
+                    </td>
+                    <td>
                         @if($article->status)
                             <span class="badge bg-success">Активна</span>
                         @else
@@ -54,7 +64,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="text-center py-5">
+                    <td colspan="6" class="text-center py-5">
                         <p class="text-muted mb-0">Нет новостей</p>
                     </td>
                 </tr>

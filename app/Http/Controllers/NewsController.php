@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Permissions;
 use App\Models\News;
 use App\Models\NewsTranslation;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -15,7 +18,12 @@ class NewsController extends Controller
     // Админ методы - resourceful
     public function index()
     {
-        $news = News::orderBy('created_at', 'desc')->paginate(20);
+        // Проверяем права на просмотр новостей
+        if (!Auth::user()->hasPermission(Permissions::NEWS_VIEW)) {
+            abort(403, 'У вас нет прав для просмотра новостей');
+        }
+
+        $news = News::with('categories.translations')->orderBy('created_at', 'desc')->paginate(20);
         return view('admin.news.index', [
             'news' => $news,
         ]);
@@ -23,7 +31,15 @@ class NewsController extends Controller
 
     public function create()
     {
-        return view('admin.news.create');
+        // Проверяем права на создание новостей
+        if (!Auth::user()->hasPermission(Permissions::NEWS_CREATE)) {
+            abort(403, 'У вас нет прав для создания новостей');
+        }
+
+        $categories = Categories::with('translations')->where('status', 1)->get();
+        return view('admin.news.create', [
+            'categories' => $categories,
+        ]);
     }
 
     public function store(Request $request)
@@ -67,13 +83,20 @@ class NewsController extends Controller
                  ->toMediaCollection('news-images');
         }
 
+        // Связываем новость с категориями
+        if ($request->has('categories')) {
+            $news->categories()->sync($request->categories);
+        }
+
         return redirect()->route('admin.news.index')->with('success', 'Новость успешно создана!');
     }
 
     public function edit(News $news)
     {
+        $categories = Categories::with('translations')->where('status', 1)->get();
         return view('admin.news.edit', [
             'news' => $news,
+            'categories' => $categories,
         ]);
     }
 
@@ -118,6 +141,13 @@ class NewsController extends Controller
             $news->clearMediaCollection('news-images');
             $news->addMediaFromRequest('image')
                  ->toMediaCollection('news-images');
+        }
+
+        // Обновляем связи с категориями
+        if ($request->has('categories')) {
+            $news->categories()->sync($request->categories);
+        } else {
+            $news->categories()->detach();
         }
 
         return redirect()->route('admin.news.index')->with('success', 'Новость успешно обновлена!');
