@@ -6,6 +6,8 @@ use App\Models\Portfolio;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Pagination\Paginator;
 use Spatie\Sitemap\Sitemap;
@@ -149,46 +151,32 @@ Route::prefix('{lang}')
             return view('contacts', compact('leftMenu', 'currentPage', 'lang'));
         })->name('contacts');
 
-        // -----------------------------------
-        // Admin routes (подгруппа)
-        // -----------------------------------
-        Route::middleware('admin.access')
-            ->name('admin.')
-            ->group(function () {
-
-                Route::get('/admin/all-projects', fn($lang) => Paginator::useTailwind() ?: view('admin.allProjects', ['lang' => $lang, 'portfolio' => Portfolio::with('translations')->paginate(30)]))
-                    ->name('all_projects');
-                Route::get('/admin/add-project', [PortfolioController::class, 'addProject'])
-                    ->name('add_project.form');
-                Route::post('/admin/add-project', [PortfolioController::class, 'addPortfolio'])
-                    ->name('add_project.submit');
-                Route::get('/admin/edit-project/{id}', [PortfolioController::class, 'editProject'])
-                    ->name('edit_project.form');
-                Route::post('/admin/edit-project/{id}', [PortfolioController::class, 'editPortfolio'])
-                    ->name('edit_project.submit');
-                Route::delete('/admin/destroy/{id}', [PortfolioController::class, 'destroy'])
-                    ->name('destroy_project');
-
-                // Categories management
-                Route::get('/admin/categories', [CategoryController::class, 'index'])
-                    ->name('categories.index');
-                Route::get('/admin/categories/create', [CategoryController::class, 'create'])
-                    ->name('categories.create');
-                Route::post('/admin/categories', [CategoryController::class, 'store'])
-                    ->name('categories.store');
-                Route::get('/admin/categories/{id}/edit', [CategoryController::class, 'edit'])
-                    ->name('categories.edit');
-                Route::post('/admin/categories/{id}', [CategoryController::class, 'update'])
-                    ->name('categories.update');
-                Route::delete('/admin/categories/{id}', [CategoryController::class, 'destroy'])
-                    ->name('categories.destroy');
-            });
     });
 
-// ---------------------------------------
-// Contact form (no lang prefix)
-// ---------------------------------------
 Route::get('/contact', [ContactController::class, 'showForm'])
     ->name('contact.show');
 Route::post('/contact', [ContactController::class, 'submitForm'])
     ->name('contact.submit');
+
+Route::middleware(['auth', 'admin.access'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        
+        Route::get('/', function () {
+            return redirect()->route('admin.portfolios.index');
+        })->name('dashboard');
+        
+        Route::resource('portfolios', PortfolioController::class);
+        
+        Route::resource('categories', CategoryController::class);
+        
+        Route::get('news', [NewsController::class, 'adminIndex'])->name('news.index');
+        Route::get('news/create', [NewsController::class, 'adminCreate'])->name('news.create');
+        Route::post('news', [NewsController::class, 'adminStore'])->name('news.store');
+        Route::get('news/{news}/edit', [NewsController::class, 'adminEdit'])->name('news.edit');
+        Route::put('news/{news}', [NewsController::class, 'adminUpdate'])->name('news.update');
+        Route::delete('news/{news}', [NewsController::class, 'adminDestroy'])->name('news.destroy');
+        
+        Route::resource('users', UserController::class);
+    });

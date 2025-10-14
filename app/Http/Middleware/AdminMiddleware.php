@@ -23,7 +23,7 @@ class AdminMiddleware
         }
 
         // Проверяем, является ли пользователь администратором
-        if (!$request->user()->admin) {
+        if (!$request->user()->is_admin) {
             abort(403, 'У вас нет прав доступа к административной панели');
         }
 

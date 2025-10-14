@@ -41,45 +41,43 @@ class NewsController extends Controller
         ]);
     }
 
-    // Админ методы
-    public function adminIndex($lang)
+    // Админ методы - используем стандартные имена для Resource routes
+    public function adminIndex()
     {
-        $news = News::orderBy('published_at', 'desc')->paginate(20);
+        $news = News::orderBy('created_at', 'desc')->paginate(20);
         return view('admin.news.index', [
-            'lang' => $lang,
             'news' => $news,
         ]);
     }
 
-    public function create($lang)
+    public function adminCreate()
     {
-        return view('admin.news.create', [
-            'lang' => $lang,
-        ]);
+        return view('admin.news.create');
     }
 
-    public function store(Request $req, $lang)
+    public function adminStore(Request $request)
     {
-        $req->validate([
-            'title_ru' => 'required|string|max:255',
-            'title_en' => 'required|string|max:255',
-            'title_tm' => 'required|string|max:255',
-            'published_at' => 'nullable|date',
-            'image' => 'nullable|image|max:10240',
-        ]);
+        try {
+            $request->validate([
+                'title_ru' => 'required|string|max:255',
+                'image' => 'nullable|image|max:10240',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('admin.news.create')
+                ->withErrors($e->validator)
+                ->withInput();
+        }
 
-        $data = $req->only([
+        $data = $request->only([
             'title_ru', 'title_en', 'title_tm',
             'content_ru', 'content_en', 'content_tm',
-            'excerpt_ru', 'excerpt_en', 'excerpt_tm',
-            'status', 'published_at'
+            'status'
         ]);
 
-        // Создаём новость (только основные поля)
+        // Создаём новость
         $news = News::create([
-            'slug' => Str::slug($data['title_en']) . '-' . time(),
-            'status' => $data['status'] ?? true,
-            'published_at' => $data['published_at'] ?? now(),
+            'slug' => Str::slug($data['title_ru']) . '-' . time(),
+            'status' => $request->has('status') ? 1 : 0,
         ]);
 
         // Создаём переводы для всех языков
@@ -87,57 +85,50 @@ class NewsController extends Controller
             NewsTranslation::create([
                 'news_id' => $news->id,
                 'locale' => $locale,
-                'title' => $data["title_{$locale}"],
-                'content' => $data["content_{$locale}"] ?? null,
-                'excerpt' => $data["excerpt_{$locale}"] ?? null,
+                'title' => $data["title_{$locale}"] ?? '',
+                'content' => $data["content_{$locale}"] ?? '',
             ]);
         }
 
-        // Загрузка изображения
-        if ($req->hasFile('image')) {
-            $path = $req->file('image')->store('news', 'public');
-            $news->image = $path;
-            $news->save();
+        // Загрузка изображения через Spatie Media Library
+        if ($request->hasFile('image')) {
+            $news->addMediaFromRequest('image')
+                 ->toMediaCollection('news-images');
         }
 
-        Cache::forget("news_{$lang}");
-
-        return redirect("/{$lang}/admin/news")->with('success', 'Новость успешно создана!');
+        return redirect()->route('admin.news.index')->with('success', 'Новость успешно создана!');
     }
 
-    public function edit($lang, $id)
+    public function adminEdit(News $news)
     {
-        $news = News::findOrFail($id);
         return view('admin.news.edit', [
-            'lang' => $lang,
             'news' => $news,
         ]);
     }
 
-    public function update(Request $req, $lang, $id)
+    public function adminUpdate(Request $request, News $news)
     {
-        $req->validate([
-            'title_ru' => 'required|string|max:255',
-            'title_en' => 'required|string|max:255',
-            'title_tm' => 'required|string|max:255',
-            'published_at' => 'nullable|date',
-            'image' => 'nullable|image|max:10240',
-        ]);
+        try {
+            $request->validate([
+                'title_ru' => 'required|string|max:255',
+                'image' => 'nullable|image|max:10240',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('admin.news.edit', $news->slug)
+                ->withErrors($e->validator)
+                ->withInput();
+        }
 
-        $news = News::findOrFail($id);
-
-        $data = $req->only([
+        $data = $request->only([
             'title_ru', 'title_en', 'title_tm',
             'content_ru', 'content_en', 'content_tm',
-            'excerpt_ru', 'excerpt_en', 'excerpt_tm',
-            'status', 'published_at'
+            'status'
         ]);
 
         // Обновляем основные поля
         $news->update([
-            'slug' => Str::slug($data['title_en']) . '-' . $news->id,
-            'status' => $data['status'] ?? true,
-            'published_at' => $data['published_at'] ?? $news->published_at,
+            'slug' => Str::slug($data['title_ru']) . '-' . $news->id,
+            'status' => $request->has('status') ? 1 : 0,
         ]);
 
         // Обновляем переводы для всех языков
@@ -145,41 +136,27 @@ class NewsController extends Controller
             $news->translations()->updateOrCreate(
                 ['locale' => $locale],
                 [
-                    'title' => $data["title_{$locale}"],
-                    'content' => $data["content_{$locale}"] ?? null,
-                    'excerpt' => $data["excerpt_{$locale}"] ?? null,
+                    'title' => $data["title_{$locale}"] ?? '',
+                    'content' => $data["content_{$locale}"] ?? '',
                 ]
             );
         }
 
         // Обновление изображения
-        if ($req->hasFile('image')) {
-            if ($news->image) {
-                Storage::disk('public')->delete($news->image);
-            }
-            $path = $req->file('image')->store('news', 'public');
-            $news->image = $path;
-            $news->save();
+        if ($request->hasFile('image')) {
+            $news->clearMediaCollection('news-images');
+            $news->addMediaFromRequest('image')
+                 ->toMediaCollection('news-images');
         }
 
-        Cache::forget("news_{$lang}");
-
-        return redirect("/{$lang}/admin/news")->with('success', 'Новость успешно обновлена!');
+        return redirect()->route('admin.news.index')->with('success', 'Новость успешно обновлена!');
     }
 
-    public function destroy($lang, Request $req)
+    public function adminDestroy(News $news)
     {
-        $news = News::findOrFail($req->id);
-        
-        if ($news->image) {
-            Storage::disk('public')->delete($news->image);
-        }
-        
         $news->delete();
 
-        Cache::forget("news_{$lang}");
-
-        return redirect("/{$lang}/admin/news")->with('success', 'Новость успешно удалена!');
+        return redirect()->route('admin.news.index')->with('success', 'Новость успешно удалена!');
     }
 }
 

@@ -11,38 +11,40 @@ use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
     // Список всех категорий
-    public function index($lang)
+    public function index()
     {
         $categories = Categories::with('translations')->orderBy('created_at', 'desc')->paginate(20);
         
         return view('admin.categories.index', [
-            'lang' => $lang,
             'categories' => $categories,
         ]);
     }
 
     // Форма создания новой категории
-    public function create($lang)
+    public function create()
     {
-        return view('admin.categories.create', [
-            'lang' => $lang,
-        ]);
+        return view('admin.categories.create');
     }
 
     // Сохранение новой категории
-    public function store(Request $req, $lang)
+    public function store(Request $request)
     {
-        $req->validate([
-            'name_ru' => 'required|string|max:255',
-            'name_en' => 'required|string|max:255',
-            'name_tm' => 'required|string|max:255',
-        ]);
+        try {
+            $request->validate([
+                'name_ru' => 'required|string|max:255',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('admin.categories.create')
+                ->withErrors($e->validator)
+                ->withInput();
+        }
 
-        $data = $req->only(['name_ru', 'name_en', 'name_tm']);
+        $data = $request->only(['name_ru', 'name_en', 'name_tm', 'description_ru', 'description_en', 'description_tm', 'status']);
 
         // Создаём категорию
         $category = Categories::create([
-            'slug' => Str::slug($data['name_en']) . '-' . time(),
+            'slug' => Str::slug($data['name_ru'] ?? 'category') . '-' . time(),
+            'status' => $request->has('status') ? 1 : 0,
         ]);
 
         // Создаём переводы для всех языков
@@ -50,74 +52,68 @@ class CategoryController extends Controller
             CategoryTranslation::create([
                 'category_id' => $category->id,
                 'locale' => $locale,
-                'name' => $data["name_{$locale}"],
+                'name' => $data["name_{$locale}"] ?? '',
+                'description' => $data["description_{$locale}"] ?? '',
             ]);
         }
 
-        // Очищаем кэш
-        Cache::forget("categories_{$lang}");
-
-        return redirect("/{$lang}/admin/categories")->with('success', 'Категория успешно создана!');
+        return redirect()->route('admin.categories.index')->with('success', 'Категория успешно создана!');
     }
 
     // Форма редактирования категории
-    public function edit($lang, $id)
+    public function edit(Categories $category)
     {
-        $category = Categories::with('translations')->findOrFail($id);
-        
         return view('admin.categories.edit', [
-            'lang' => $lang,
             'category' => $category,
         ]);
     }
 
     // Обновление категории
-    public function update(Request $req, $lang, $id)
+    public function update(Request $request, Categories $category)
     {
-        $req->validate([
-            'name_ru' => 'required|string|max:255',
-            'name_en' => 'required|string|max:255',
-            'name_tm' => 'required|string|max:255',
-        ]);
+        try {
+            $request->validate([
+                'name_ru' => 'required|string|max:255',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('admin.categories.edit', $category->slug)
+                ->withErrors($e->validator)
+                ->withInput();
+        }
 
-        $category = Categories::findOrFail($id);
-        $data = $req->only(['name_ru', 'name_en', 'name_tm']);
+        $data = $request->only(['name_ru', 'name_en', 'name_tm', 'description_ru', 'description_en', 'description_tm', 'status']);
 
         // Обновляем slug
         $category->update([
-            'slug' => Str::slug($data['name_en']) . '-' . $category->id,
+            'slug' => Str::slug($data['name_ru']) . '-' . $category->id,
+            'status' => $request->has('status') ? 1 : 0,
         ]);
 
         // Обновляем переводы для всех языков
         foreach (['ru', 'en', 'tm'] as $locale) {
             $category->translations()->updateOrCreate(
                 ['locale' => $locale],
-                ['name' => $data["name_{$locale}"]]
+                [
+                    'name' => $data["name_{$locale}"] ?? '',
+                    'description' => $data["description_{$locale}"] ?? '',
+                ]
             );
         }
 
-        // Очищаем кэш
-        Cache::forget("categories_{$lang}");
-
-        return redirect("/{$lang}/admin/categories")->with('success', 'Категория успешно обновлена!');
+        return redirect()->route('admin.categories.index')->with('success', 'Категория успешно обновлена!');
     }
 
     // Удаление категории
-    public function destroy($lang, Request $req)
+    public function destroy(Categories $category)
     {
-        $category = Categories::findOrFail($req->id);
-        
         // Проверяем, есть ли проекты с этой категорией
         if ($category->portfolios()->count() > 0) {
-            return redirect("/{$lang}/admin/categories")
+            return redirect()->route('admin.categories.index')
                 ->with('error', 'Невозможно удалить категорию! Есть проекты, использующие её.');
         }
 
         $category->delete();
 
-        // Очищаем кэш
-        Cache::forget("categories_{$lang}");
-
-        return redirect("/{$lang}/admin/categories")->with('success', 'Категория успешно удалена!');
+        return redirect()->route('admin.categories.index')->with('success', 'Категория успешно удалена!');
     }
 }

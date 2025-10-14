@@ -46,7 +46,7 @@ class Portfolio extends Model implements HasMedia
     }
 
     // Регистрация конверсий Medialibrary для WebP
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('webp')
             ->format('webp')

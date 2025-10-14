@@ -13,75 +13,63 @@ use Illuminate\Support\Str;
 class PortfolioController extends Controller
 {
 
-    public function index($lang)
+    public function index()
     {
-        App::setLocale($lang);
-
-        $portfolio = Cache::remember("portfolio_{$lang}", now()->addMinutes(10), function () {
-            return Portfolio::with(['categories.translations', 'translations'])->orderBy('ordering')->get();
-        });
-
-        $categories = Cache::remember("categories_{$lang}", now()->addMinutes(10), function () {
-            return Categories::with('translations')->get();
-        });
-
-        return view('portfolio', [
-            'portfolio' => $portfolio,
-            'categories' => $categories,
-            'leftMenu' => true,
-            'currentPage' => '',
-            'lang' => $lang,
+        $portfolios = Portfolio::with(['categories.translations', 'translations'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
+        
+        return view('admin.portfolios.index', [
+            'portfolios' => $portfolios,
         ]);
     }
 
-    public function showOnePortf($lang, Portfolio $portfolio)
+    public function show(Portfolio $portfolio)
     {
-        App::setLocale($lang);
-
-        // Загружаем категории и переводы проекта
         $portfolio->load(['categories.translations', 'translations']);
-
-        return view('oneProjectDetails', [
-            'portfolio'   => $portfolio,
-            'categories'  => $portfolio->categories,
-            'leftMenu'    => true,
-            'currentPage' => 'Проекты',
-            'lang'        => $lang,
+        
+        return view('admin.portfolios.show', [
+            'portfolio' => $portfolio,
         ]);
     }
 
-    public function addProject($lang)
+    public function create()
     {
         $categories = Categories::with('translations')->get();
-        return view('admin/addProject', [
-            'lang' => $lang,
+        
+        return view('admin.portfolios.create', [
             'categories' => $categories,
         ]);
     }
 
-    public function addPortfolio(Request $req, $lang)
+    public function store(Request $request)
     {
-        $req->validate([
-            'title_ru' => 'required|string|max:255',
-            'title_en' => 'required|string|max:255',
-            'title_tm' => 'required|string|max:255',
-            'when' => 'nullable|date',
-            'image' => 'nullable|image|max:10240',
-        ]);
+        try {
+            $request->validate([
+                'title_ru' => 'required|string|max:255',
+                'when' => 'nullable|date',
+                'image' => 'nullable|image|max:10240',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Если валидация не прошла, возвращаемся на страницу создания с ошибками
+            return redirect()->route('admin.portfolios.create')
+                ->withErrors($e->validator)
+                ->withInput();
+        }
 
-        $data = $req->only([
+        $data = $request->only([
             'url_button', 'is_main_page', 'when',
             'title_tm', 'title_ru', 'title_en',
             'who_tm', 'who_ru', 'who_en',
             'desc_tm', 'desc_ru', 'desc_en',
             'target_tm', 'target_ru', 'target_en',
             'res_tm', 'res_ru', 'res_en',
-            'status', 'ordering', 'what'
+            'status', 'ordering', 'categories'
         ]);
 
-        // Создаём запись портфолио (только основные поля)
+        // Создаём запись портфолио
         $portfolio = Portfolio::create([
-            'slug' => Str::slug($data['title_en'] ?? '') . '-' . time(),
+            'slug' => Str::slug($data['title_ru'] ?? '') . '-' . time(),
             'url_button' => $data['url_button'] ?? null,
             'is_main_page' => $data['is_main_page'] ?? false,
             'when' => $data['when'] ?? null,
@@ -95,7 +83,7 @@ class PortfolioController extends Controller
             PortfolioTranslation::create([
                 'portfolio_id' => $portfolio->id,
                 'locale' => $locale,
-                'title' => $data["title_{$locale}"],
+                'title' => $data["title_{$locale}"] ?? '',
                 'who' => $data["who_{$locale}"] ?? null,
                 'description' => $data["desc_{$locale}"] ?? null,
                 'target' => $data["target_{$locale}"] ?? null,
@@ -103,65 +91,58 @@ class PortfolioController extends Controller
             ]);
         }
 
-        // Если файл загружен, сохраняем его через Medialibrary
-        if ($req->hasFile('image')) {
-            $media = $portfolio->addMediaFromRequest('image')
-                ->toMediaCollection('portfolio-images');
-            $portfolio->photo = $media->getUrl();
-            $portfolio->save();
-        }
-
         // Привязываем категории
-        if (isset($data['what'])) {
-            $portfolio->categories()->sync($data['what']);
+        if (!empty($data['categories'])) {
+            $portfolio->categories()->sync($data['categories']);
         }
 
-        // Очищаем кэш
-        Cache::forget("portfolio_{$lang}");
+        // Обработка изображения
+        if ($request->hasFile('image')) {
+            $portfolio->addMediaFromRequest('image')
+                ->toMediaCollection('portfolio-images');
+        }
 
-        return redirect('/' . $lang . '/admin/all-projects')->with('success', 'Проект успешно создан!');
+        return redirect()->route('admin.portfolios.index')
+            ->with('success', 'Портфолио успешно создано!');
     }
 
-    public function editProject($lang, $id)
+    public function edit(Portfolio $portfolio)
     {
-        $portfolio = Portfolio::with(['categories.translations', 'translations'])->findOrFail($id);
         $categories = Categories::with('translations')->get();
-        $selectedCategoryIds = $portfolio->categories->pluck('id')->toArray();
-
-        return view('admin/editProjects', [
-            'lang' => $lang,
-            'id' => $id,
+        $portfolio->load(['categories', 'translations']);
+        
+        return view('admin.portfolios.edit', [
             'portfolio' => $portfolio,
             'categories' => $categories,
-            'selectedCategoryIds' => $selectedCategoryIds,
         ]);
     }
 
-    public function editPortfolio(Request $req, $lang, $id)
+    public function update(Request $request, Portfolio $portfolio)
     {
-        $req->validate([
-            'title_ru' => 'required|string|max:255',
-            'title_en' => 'required|string|max:255',
-            'title_tm' => 'required|string|max:255',
-            'when' => 'nullable|date',
-            'image' => 'nullable|image|max:10240',
-        ]);
+        try {
+            $request->validate([
+                'title_ru' => 'required|string|max:255',
+                'when' => 'nullable|date',
+                'image' => 'nullable|image|max:10240',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->route('admin.portfolios.edit', $portfolio->slug)
+                ->withErrors($e->validator)
+                ->withInput();
+        }
 
-        $data = $req->only([
+        $data = $request->only([
             'url_button', 'is_main_page', 'when',
             'title_tm', 'title_ru', 'title_en',
             'who_tm', 'who_ru', 'who_en',
             'desc_tm', 'desc_ru', 'desc_en',
             'target_tm', 'target_ru', 'target_en',
             'res_tm', 'res_ru', 'res_en',
-            'status', 'ordering', 'what'
+            'status', 'ordering', 'categories'
         ]);
 
-        $portfolio = Portfolio::findOrFail($id);
-
-        // Обновляем основные данные
+        // Обновляем основную запись
         $portfolio->update([
-            'slug' => Str::slug($data['title_en']) . '-' . $portfolio->id,
             'url_button' => $data['url_button'] ?? null,
             'is_main_page' => $data['is_main_page'] ?? false,
             'when' => $data['when'] ?? null,
@@ -169,51 +150,53 @@ class PortfolioController extends Controller
             'ordering' => $data['ordering'] ?? 0,
         ]);
 
-        // Обновляем переводы для всех языков
+        // Обновляем переводы
         foreach (['ru', 'en', 'tm'] as $locale) {
-            $portfolio->translations()->updateOrCreate(
-                ['locale' => $locale],
-                [
-                    'title' => $data["title_{$locale}"],
+            $translation = $portfolio->translations()->where('locale', $locale)->first();
+            if ($translation) {
+                $translation->update([
+                    'title' => $data["title_{$locale}"] ?? '',
                     'who' => $data["who_{$locale}"] ?? null,
                     'description' => $data["desc_{$locale}"] ?? null,
                     'target' => $data["target_{$locale}"] ?? null,
                     'result' => $data["res_{$locale}"] ?? null,
-                ]
-            );
-        }
-
-        // Обновляем изображение если загружено
-        if ($req->hasFile('image')) {
-            $portfolio->clearMediaCollection('portfolio-images');
-            $media = $portfolio->addMediaFromRequest('image')
-                ->toMediaCollection('portfolio-images');
-            $portfolio->photo = $media->getUrl();
-            $portfolio->save();
+                ]);
+            } else {
+                PortfolioTranslation::create([
+                    'portfolio_id' => $portfolio->id,
+                    'locale' => $locale,
+                    'title' => $data["title_{$locale}"] ?? '',
+                    'who' => $data["who_{$locale}"] ?? null,
+                    'description' => $data["desc_{$locale}"] ?? null,
+                    'target' => $data["target_{$locale}"] ?? null,
+                    'result' => $data["res_{$locale}"] ?? null,
+                ]);
+            }
         }
 
         // Обновляем категории
-        if (isset($data['what'])) {
-            $portfolio->categories()->sync($data['what']);
+        if (!empty($data['categories'])) {
+            $portfolio->categories()->sync($data['categories']);
         }
 
-        // Очищаем кэш
-        Cache::forget("portfolio_{$lang}");
-        Cache::forget("portfolio_{$lang}_{$portfolio->slug}");
+        // Обработка нового изображения
+        if ($request->hasFile('image')) {
+            $portfolio->clearMediaCollection('portfolio-images');
+            $portfolio->addMediaFromRequest('image')
+                ->toMediaCollection('portfolio-images');
+        }
 
-        return redirect('/' . $lang . '/admin/all-projects')->with('success', 'Проект успешно обновлен!');
+        return redirect()->route('admin.portfolios.index')
+            ->with('success', 'Портфолио успешно обновлено!');
     }
 
-    public function destroy($lang, Request $req)
+    public function destroy(Portfolio $portfolio)
     {
-        $portfolio = Portfolio::findOrFail($req->id);
         $portfolio->clearMediaCollection('portfolio-images');
         $portfolio->delete();
 
-        // Очищаем кэш
-        Cache::forget("portfolio_{$lang}");
-
-        return redirect("/{$lang}/admin/all-projects")->with('success', 'Проект успешно удален!');
+        return redirect()->route('admin.portfolios.index')
+            ->with('success', 'Портфолио успешно удалено!');
     }
 
     public function getPortfolioCount($lang)

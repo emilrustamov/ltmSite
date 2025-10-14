@@ -13,6 +13,7 @@ class Categories extends Model
 
     protected $fillable = [
         'slug',
+        'status',
     ];
 
     // Связь с переводами

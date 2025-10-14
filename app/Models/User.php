@@ -20,7 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'admin', // Добавляем колонку admin
+        'is_admin',
     ];
 
     /**
