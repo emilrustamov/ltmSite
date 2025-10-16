@@ -11,16 +11,12 @@ return new class extends Migration
         Schema::create('vacancies', function (Blueprint $table) {
             $table->id();
             $table->string('slug')->unique();
-            $table->string('image')->nullable();
             $table->boolean('status')->default(true);
-            $table->boolean('is_featured')->default(false); // Рекомендуемая вакансия
             $table->string('location')->nullable(); // Местоположение
             $table->string('employment_type')->nullable(); // Тип занятости (полная, частичная, удаленная)
             $table->decimal('salary_from', 10, 2)->nullable(); // Зарплата от
             $table->decimal('salary_to', 10, 2)->nullable(); // Зарплата до
             $table->string('experience_level')->nullable(); // Уровень опыта
-            $table->date('application_deadline')->nullable(); // Дедлайн подачи заявки
-            $table->date('published_at')->nullable();
             
             $table->timestamps();
         });

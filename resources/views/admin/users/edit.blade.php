@@ -66,10 +66,10 @@
                                     <i class="fas fa-save me-2"></i>
                                     Сохранить изменения
                                 </button>
-                                <a href="{{ route('admin.users.index') }}" class="btn btn-secondary w-100 mb-2">
-                                    <i class="fas fa-arrow-left me-2"></i>
-                                    Отмена
-                                </a>
+                                <button type="button" class="btn btn-danger w-100 mb-2" onclick="deleteUser()">
+                                    <i class="fas fa-trash me-2"></i>
+                                    Удалить
+                                </button>
                                 <a href="{{ route('admin.users.permissions.edit', $user) }}" class="btn btn-warning w-100">
                                     <i class="fas fa-key me-2"></i>
                                     Управление правами
@@ -99,7 +99,19 @@
                     </div>
                 </div>
             </form>
+            
+            <!-- Скрытая форма для удаления -->
+            <form id="delete-form" action="{{ route('admin.users.destroy', $user) }}" method="POST" style="display: none;">
+                @csrf
+                @method('DELETE')
+            </form>
         </div>
     </div>
 </div>
+
+<script>
+function deleteUser() {
+    document.getElementById('delete-form').submit();
+}
+</script>
 @endsection

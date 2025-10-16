@@ -81,6 +81,8 @@
             font-weight: 500;
         }
     </style>
+    
+    @yield('styles')
 </head>
 <body class="bg-light">
     <div class="container-fluid">
@@ -127,6 +129,68 @@
                             Новости
                         </a>
                     </li>
+        <li class="nav-item">
+            <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.vacancies.*') ? 'bg-primary' : '' }}" 
+               href="{{ route('admin.vacancies.index') }}"
+               style="border: none; transition: all 0.2s;"
+               onmouseover="{{ Request::routeIs('admin.vacancies.*') ? '' : 'this.style.backgroundColor=\'#34495e\'' }}"
+               onmouseout="{{ Request::routeIs('admin.vacancies.*') ? '' : 'this.style.backgroundColor=\'\'' }}">
+                <i class="fas fa-user-tie me-2"></i>
+                Вакансии
+            </a>
+        </li>
+        
+        <!-- Справочники для вакансий -->
+        <li class="nav-item">
+            <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.job-positions.*') ? 'bg-primary' : '' }}" 
+               href="{{ route('admin.job-positions.index') }}"
+               style="border: none; transition: all 0.2s;"
+               onmouseover="{{ Request::routeIs('admin.job-positions.*') ? '' : 'this.style.backgroundColor=\'#34495e\'' }}"
+               onmouseout="{{ Request::routeIs('admin.job-positions.*') ? '' : 'this.style.backgroundColor=\'\'' }}">
+                <i class="fas fa-briefcase me-2"></i>
+                Должности
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.technical-skills.*') ? 'bg-primary' : '' }}" 
+               href="{{ route('admin.technical-skills.index') }}"
+               style="border: none; transition: all 0.2s;"
+               onmouseover="{{ Request::routeIs('admin.technical-skills.*') ? '' : 'this.style.backgroundColor=\'#34495e\'' }}"
+               onmouseout="{{ Request::routeIs('admin.technical-skills.*') ? '' : 'this.style.backgroundColor=\'\'' }}">
+                <i class="fas fa-code me-2"></i>
+                Навыки
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.work-formats.*') ? 'bg-primary' : '' }}" 
+               href="{{ route('admin.work-formats.index') }}"
+               style="border: none; transition: all 0.2s;"
+               onmouseover="{{ Request::routeIs('admin.work-formats.*') ? '' : 'this.style.backgroundColor=\'#34495e\'' }}"
+               onmouseout="{{ Request::routeIs('admin.work-formats.*') ? '' : 'this.style.backgroundColor=\'\'' }}">
+                <i class="fas fa-laptop me-2"></i>
+                Форматы работы
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.languages.*') ? 'bg-primary' : '' }}" 
+               href="{{ route('admin.languages.index') }}"
+               style="border: none; transition: all 0.2s;"
+               onmouseover="{{ Request::routeIs('admin.languages.*') ? '' : 'this.style.backgroundColor=\'#34495e\'' }}"
+               onmouseout="{{ Request::routeIs('admin.languages.*') ? '' : 'this.style.backgroundColor=\'\'' }}">
+                <i class="fas fa-language me-2"></i>
+                Языки
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.cities.*') ? 'bg-primary' : '' }}" 
+               href="{{ route('admin.cities.index') }}"
+               style="border: none; transition: all 0.2s;"
+               onmouseover="{{ Request::routeIs('admin.cities.*') ? '' : 'this.style.backgroundColor=\'#34495e\'' }}"
+               onmouseout="{{ Request::routeIs('admin.cities.*') ? '' : 'this.style.backgroundColor=\'\'' }}">
+                <i class="fas fa-map-marker-alt me-2"></i>
+                Города
+            </a>
+        </li>
                     <li class="nav-item">
                         <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.users.*') ? 'bg-primary' : '' }}" 
                            href="{{ route('admin.users.index') }}"
@@ -261,5 +325,7 @@
             });
         });
     </script>
+    
+    @yield('scripts')
 </body>
 </html>

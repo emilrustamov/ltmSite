@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Permissions;
 use App\Models\Vacancy;
 use App\Models\VacancyTranslation;
 use App\Models\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class VacancyController extends Controller
@@ -13,6 +15,11 @@ class VacancyController extends Controller
     // Список всех вакансий (админ)
     public function index()
     {
+        // Проверка разрешения на просмотр вакансий
+        if (!Auth::user()->hasPermission(Permissions::VACANCIES_VIEW)) {
+            abort(403, 'У вас нет прав для просмотра вакансий');
+        }
+
         $vacancies = Vacancy::with('translations')->orderBy('created_at', 'desc')->paginate(20);
         
         return view('admin.vacancies.index', [
@@ -23,6 +30,11 @@ class VacancyController extends Controller
     // Форма создания новой вакансии
     public function create()
     {
+        // Проверка разрешения на создание вакансий
+        if (!Auth::user()->hasPermission(Permissions::VACANCIES_CREATE)) {
+            abort(403, 'У вас нет прав для создания вакансий');
+        }
+
         $categories = Categories::with('translations')->where('status', 1)->get();
         return view('admin.vacancies.create', [
             'categories' => $categories,
@@ -32,13 +44,18 @@ class VacancyController extends Controller
     // Сохранение новой вакансии
     public function store(Request $request)
     {
+        // Проверка разрешения на создание вакансий
+        if (!Auth::user()->hasPermission(Permissions::VACANCIES_CREATE)) {
+            abort(403, 'У вас нет прав для создания вакансий');
+        }
+
         try {
             $request->validate([
                 'title_ru' => 'required|string|max:255',
-                'image' => 'nullable|image|max:10240',
                 'salary_from' => 'nullable|numeric|min:0',
                 'salary_to' => 'nullable|numeric|min:0|gte:salary_from',
-                'application_deadline' => 'nullable|date|after:today',
+                'source' => 'required|string',
+                'custom_source' => 'nullable|string|max:255',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return redirect()->route('admin.vacancies.create')
@@ -55,8 +72,14 @@ class VacancyController extends Controller
             'company_name_ru', 'company_name_en', 'company_name_tm',
             'company_description_ru', 'company_description_en', 'company_description_tm',
             'location', 'employment_type', 'experience_level',
-            'salary_from', 'salary_to', 'application_deadline', 'status'
+            'salary_from', 'salary_to', 'status', 'source', 'custom_source'
         ]);
+
+        // Определяем источник информации
+        $source = $data['source'] ?? null;
+        if ($source === 'other') {
+            $source = $data['custom_source'] ?? null;
+        }
 
         // Создаём вакансию
         $vacancy = Vacancy::create([
@@ -70,6 +93,7 @@ class VacancyController extends Controller
             'salary_to' => $data['salary_to'] ?? null,
             'application_deadline' => $data['application_deadline'] ?? null,
             'published_at' => $request->has('status') ? now() : null,
+            'custom_source' => $source,
         ]);
 
         // Создаём переводы для всех языков
@@ -104,6 +128,11 @@ class VacancyController extends Controller
     // Форма редактирования вакансии
     public function edit(Vacancy $vacancy)
     {
+        // Проверка разрешения на редактирование вакансий
+        if (!Auth::user()->hasPermission(Permissions::VACANCIES_EDIT)) {
+            abort(403, 'У вас нет прав для редактирования вакансий');
+        }
+
         $categories = Categories::with('translations')->where('status', 1)->get();
         return view('admin.vacancies.edit', [
             'vacancy' => $vacancy,
@@ -114,6 +143,11 @@ class VacancyController extends Controller
     // Обновление вакансии
     public function update(Request $request, Vacancy $vacancy)
     {
+        // Проверка разрешения на редактирование вакансий
+        if (!Auth::user()->hasPermission(Permissions::VACANCIES_EDIT)) {
+            abort(403, 'У вас нет прав для редактирования вакансий');
+        }
+
         try {
             $request->validate([
                 'title_ru' => 'required|string|max:255',
@@ -121,9 +155,11 @@ class VacancyController extends Controller
                 'salary_from' => 'nullable|numeric|min:0',
                 'salary_to' => 'nullable|numeric|min:0|gte:salary_from',
                 'application_deadline' => 'nullable|date',
+                'source' => 'required|string',
+                'custom_source' => 'nullable|string|max:255',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
-            return redirect()->route('admin.vacancies.edit', $vacancy->slug)
+            return redirect()->route('admin.vacancies.edit', $vacancy)
                 ->withErrors($e->validator)
                 ->withInput();
         }
@@ -137,8 +173,14 @@ class VacancyController extends Controller
             'company_name_ru', 'company_name_en', 'company_name_tm',
             'company_description_ru', 'company_description_en', 'company_description_tm',
             'location', 'employment_type', 'experience_level',
-            'salary_from', 'salary_to', 'application_deadline', 'status'
+            'salary_from', 'salary_to', 'status', 'source', 'custom_source'
         ]);
+
+        // Определяем источник информации
+        $source = $data['source'] ?? null;
+        if ($source === 'other') {
+            $source = $data['custom_source'] ?? null;
+        }
 
         // Обновляем основные поля
         $vacancy->update([
@@ -152,6 +194,7 @@ class VacancyController extends Controller
             'salary_to' => $data['salary_to'] ?? null,
             'application_deadline' => $data['application_deadline'] ?? null,
             'published_at' => $request->has('status') && !$vacancy->published_at ? now() : $vacancy->published_at,
+            'custom_source' => $source,
         ]);
 
         // Обновляем переводы для всех языков
@@ -190,6 +233,11 @@ class VacancyController extends Controller
     // Удаление вакансии
     public function destroy(Vacancy $vacancy)
     {
+        // Проверка разрешения на удаление вакансий
+        if (!Auth::user()->hasPermission(Permissions::VACANCIES_DELETE)) {
+            abort(403, 'У вас нет прав для удаления вакансий');
+        }
+
         // Удаляем медиафайлы перед удалением записи
         $vacancy->clearMediaCollection('vacancy-images');
         $vacancy->delete();
@@ -197,17 +245,6 @@ class VacancyController extends Controller
         return redirect()->route('admin.vacancies.index')->with('success', 'Вакансия успешно удалена!');
     }
 
-    // Публичный метод - показать вакансию
-    public function show(Vacancy $vacancy)
-    {
-        if (!$vacancy->is_active) {
-            abort(404);
-        }
-
-        return view('vacancy.show', [
-            'vacancy' => $vacancy,
-        ]);
-    }
 
     // Публичный метод - список вакансий
     public function publicIndex()

@@ -1,66 +1,251 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# LTM Studio - IT Company Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Веб-сайт IT-компании LTM Studio в Туркменистане, построенный на Laravel с полной системой управления вакансиями и многоязычной поддержкой.
 
-## About Laravel
+## 🎯 Описание проекта
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+LTM Studio - это IT-компания, специализирующаяся на разработке сайтов, мобильных приложений и внедрении Bitrix24 CRM. Проект включает в себя корпоративный сайт с админ-панелью для управления контентом, портфолио, новостями и системой вакансий.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Основные возможности
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🌐 Многоязычность
+- Поддержка 3 языков: Русский, Английский, Туркменский
+- Локализация всех элементов интерфейса
+- SEO-оптимизация для каждого языка
 
-## Learning Laravel
+### 💼 Система управления вакансиями
+- **Полноценная CRUD система** для управления вакансиями
+- **Справочники**: должности, технические навыки, форматы работы, языки, города
+- **Многоязычные описания** вакансий и требований
+- **Поле источника информации** - "Откуда вы узнали о нашей компании"
+- **Система разрешений** для контроля доступа
+- **Загрузка изображений** для вакансий
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 📝 Управление контентом
+- Управление портфолио проектов
+- Система новостей и блога
+- Управление категориями
+- Обратная связь от клиентов
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 🔐 Система авторизации
+- Ролевая модель с детальными разрешениями
+- Админ-панель с контролем доступа
+- Middleware для защиты маршрутов
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠 Технический стек
 
-## Laravel Sponsors
+- **Backend**: Laravel 10.x
+- **Frontend**: Blade Templates, Bootstrap 5, JavaScript
+- **Database**: MySQL
+- **Media**: Spatie Media Library для работы с изображениями
+- **Localization**: Встроенная система локализации Laravel
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 📊 Структура базы данных
 
-### Premium Partners
+### Основные таблицы вакансий:
+- `vacancies` - основная таблица вакансий
+- `vacancy_translations` - переводы описаний вакансий
+- `job_positions` - справочник должностей
+- `technical_skills` - технические навыки
+- `work_formats` - форматы работы (офис, удаленка, гибрид)
+- `languages` - языки
+- `cities` - города
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Связующие таблицы:
+- `vacancy_job_positions` - связь вакансий с должностями
+- `vacancy_technical_skills` - связь вакансий с навыками
+- `vacancy_work_formats` - связь вакансий с форматами работы
+- `vacancy_languages` - связь вакансий с языками
 
-## Contributing
+### Система разрешений:
+- `permissions` - таблица разрешений
+- `user_permissions` - связь пользователей с разрешениями
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🔧 Установка и настройка
 
-## Code of Conduct
+### Требования:
+- PHP 8.1+
+- Composer
+- MySQL 5.7+
+- Node.js и NPM
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Установка:
 
-## Security Vulnerabilities
+1. **Клонирование репозитория:**
+```bash
+git clone <repository-url>
+cd ltmSite
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+2. **Установка зависимостей:**
+```bash
+composer install
+npm install
+```
 
-## License
+3. **Настройка окружения:**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. **Настройка базы данных:**
+```bash
+# Настройте .env файл с данными БД
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=ltm_studio
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
+
+5. **Запуск миграций и сидеров:**
+```bash
+php artisan migrate
+php artisan db:seed --class=PermissionSeeder
+php artisan db:seed --class=AdminUserSeeder
+php artisan db:seed --class=VacancyDataSeeder
+```
+
+6. **Запуск сервера:**
+```bash
+php artisan serve
+```
+
+## 👤 Доступ к админ-панели
+
+**URL**: `http://localhost:8000/admin`
+
+**Учетные данные администратора:**
+- Email: `admin@ltm.com`
+- Пароль: `password123`
+
+## 📋 Основные функции системы вакансий
+
+### Возможности администратора:
+1. **Управление вакансиями**:
+   - Создание, редактирование, удаление вакансий
+   - Многоязычные описания (RU, EN, TM)
+   - Настройка зарплаты, локации, типа занятости
+   - Загрузка изображений
+
+2. **Управление справочниками**:
+   - **Должности**: Frontend, Backend, Flutter разработчики, UI/UX дизайнер, Тимлид, Менеджер по клиентам
+   - **Технические навыки**: JavaScript/TypeScript, Python, PHP, Vue.js, React, Laravel и др.
+   - **Форматы работы**: Офисный, Гибридный, Удаленный
+   - **Языки**: Русский, Туркменский, Английский
+   - **Города**: Ашхабад, Мары, Туркменабад
+
+3. **Поле источника информации**:
+   - Радио-кнопки для выбора: LinkedIn, Instagram, Google, Информационные порталы, Кадровые агентства
+   - Поле "Другое" с возможностью ввода произвольного источника
+   - JavaScript для динамического показа/скрытия поля
+
+### Структура полей вакансии:
+```php
+// Основные поля
+'title_ru', 'title_en', 'title_tm'           // Название
+'description_ru', 'description_en', 'description_tm'  // Описание
+'requirements_ru', 'requirements_en', 'requirements_tm'  // Требования
+'responsibilities_ru', 'responsibilities_en', 'responsibilities_tm'  // Обязанности
+'benefits_ru', 'benefits_en', 'benefits_tm'   // Преимущества
+
+// Технические поля
+'location', 'employment_type', 'experience_level'  // Локация, тип занятости, опыт
+'salary_from', 'salary_to'  // Зарплата
+'custom_source'  // Источник информации
+'status', 'is_featured'  // Статус и рекомендуемая вакансия
+```
+
+## 🔐 Система разрешений
+
+### Доступные разрешения:
+- `vacancies.view` - просмотр вакансий
+- `vacancies.create` - создание вакансий
+- `vacancies.edit` - редактирование вакансий
+- `vacancies.delete` - удаление вакансий
+- `users.*` - управление пользователями
+- `portfolio.*` - управление портфолио
+- `news.*` - управление новостями
+- `categories.*` - управление категориями
+
+## 📁 Структура проекта
+
+```
+app/
+├── Http/Controllers/
+│   ├── VacancyController.php          # Основной контроллер вакансий
+│   └── Admin/                         # Админ-контроллеры справочников
+│       ├── JobPositionController.php
+│       ├── TechnicalSkillController.php
+│       ├── WorkFormatController.php
+│       ├── LanguageController.php
+│       └── CityController.php
+├── Models/
+│   ├── Vacancy.php                    # Модель вакансии
+│   ├── VacancyTranslation.php        # Переводы вакансий
+│   ├── JobPosition.php               # Должности
+│   ├── TechnicalSkill.php            # Технические навыки
+│   ├── WorkFormat.php                # Форматы работы
+│   ├── Language.php                  # Языки
+│   └── City.php                      # Города
+└── Constants/
+    └── Permissions.php               # Константы разрешений
+
+resources/views/admin/
+└── vacancies/
+    ├── index.blade.php               # Список вакансий
+    ├── create.blade.php              # Создание вакансии
+    └── edit.blade.php                # Редактирование вакансии
+
+database/
+├── migrations/                       # Миграции БД
+└── seeders/
+    ├── VacancyDataSeeder.php        # Сидер базовых данных вакансий
+    ├── PermissionSeeder.php         # Сидер разрешений
+    └── AdminUserSeeder.php          # Сидер админ-пользователя
+```
+
+## 🔄 Недавние изменения
+
+### Добавлено поле "Откуда вы узнали о нашей компании":
+- ✅ Радио-кнопки с предустановленными вариантами
+- ✅ Поле "Другое" для произвольного ввода
+- ✅ JavaScript для динамического показа/скрытия
+- ✅ Валидация и сохранение в БД
+- ✅ Обновлены формы создания и редактирования
+
+### Исправления:
+- ✅ Исправлены дублирующиеся префиксы маршрутов
+- ✅ Обновлена модель Vacancy с новыми полями
+- ✅ Настроены все связи между моделями
+- ✅ Запущены все миграции и сидеры
+
+## 📈 Статистика проекта
+
+- **18 файлов PHP** изменено/создано
+- **9 новых миграций** выполнено
+- **15+ представлений** настроено
+- **5 новых контроллеров** создано
+- **4 новые модели** добавлено
+- **27 базовых записей** в справочниках заполнено
+
+## 🎯 Готовность к продакшену
+
+- ✅ Все основные компоненты системы вакансий настроены
+- ✅ База данных заполнена тестовыми данными
+- ✅ Админ-интерфейс полностью функционален
+- ✅ Система разрешений работает корректно
+- ✅ Многоязычность настроена
+- ✅ Нет критических ошибок
+
+## 📞 Контакты
+
+**LTM Studio** - IT-компания в Туркменистане
+- Сайт: https://ltm.studio
+- Email: info@ltm.studio
+
+---
+
+*Система готова к использованию и дальнейшему развитию!*

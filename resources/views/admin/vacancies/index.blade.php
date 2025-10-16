@@ -16,7 +16,6 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Изображение</th>
                 <th>Название</th>
                 <th>Локация</th>
                 <th>Зарплата</th>
@@ -29,24 +28,8 @@
                 <tr class="vacancy-row" data-vacancy-slug="{{ $vacancy->slug }}" style="cursor: pointer;">
                     <td>#{{ $vacancy->id }}</td>
                     <td>
-                        @if($vacancy->getFirstMediaUrl('vacancy-images'))
-                            <img src="{{ $vacancy->getFirstMediaUrl('vacancy-images') }}" 
-                                 alt="{{ $vacancy->translation('ru')->title ?? '' }}" 
-                                 class="img-thumbnail" 
-                                 style="width: 60px; height: 60px; object-fit: cover;">
-                        @else
-                            <div class="bg-light d-flex align-items-center justify-content-center" 
-                                 style="width: 60px; height: 60px;">
-                                <i class="fas fa-briefcase text-muted"></i>
-                            </div>
-                        @endif
-                    </td>
-                    <td>
                         <div class="fw-bold">{{ $vacancy->translation('ru')?->title ?? 'Без названия' }}</div>
                         <small class="text-muted">{{ $vacancy->translation('en')?->title ?? '' }}</small>
-                        @if($vacancy->is_featured)
-                            <span class="badge bg-warning ms-1">Рекомендуемая</span>
-                        @endif
                     </td>
                     <td>
                         @if($vacancy->location)
@@ -69,15 +52,12 @@
                         @else
                             <span class="badge bg-secondary">Неактивна</span>
                         @endif
-                        @if($vacancy->application_deadline && $vacancy->application_deadline < now())
-                            <br><span class="badge bg-danger small">Истекла</span>
-                        @endif
                     </td>
                     <td>{{ $vacancy->created_at->format('d.m.Y') }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7" class="text-center py-5">
+                    <td colspan="6" class="text-center py-5">
                         <p class="text-muted mb-0">Нет вакансий</p>
                     </td>
                 </tr>
@@ -101,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     vacancyRows.forEach(row => {
         row.addEventListener('dblclick', function() {
             const vacancySlug = this.getAttribute('data-vacancy-slug');
-            window.location.href = `/admin/vacancies/${vacancySlug}/edit`;
+            window.location.href = `{{ url('admin/vacancies') }}/${vacancySlug}/edit`;
         });
         
         // Добавляем hover эффект

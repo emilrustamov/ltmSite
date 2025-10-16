@@ -29,6 +29,7 @@ class NewsController extends Controller
         ]);
     }
 
+
     public function create()
     {
         // Проверяем права на создание новостей

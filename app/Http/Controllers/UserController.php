@@ -64,18 +64,6 @@ class UserController extends Controller
             ->with('success', 'Пользователь успешно создан');
     }
 
-    /**
-     * Показать информацию о пользователе
-     */
-    public function show(User $user)
-    {
-        // Проверяем права на просмотр пользователей
-        if (!Auth::user()->hasPermission(Permissions::USERS_VIEW)) {
-            abort(403, 'У вас нет прав для просмотра пользователей');
-        }
-
-        return view('admin.users.show', compact('user'));
-    }
 
     /**
      * Показать форму редактирования пользователя

@@ -20,14 +20,13 @@ class FullDataSeeder extends Seeder
         DB::table('category_translations')->truncate();
         DB::table('portfolio')->truncate();
         DB::table('categories')->truncate();
-        DB::table('users')->truncate();
+        // Не очищаем таблицу users, так как админ уже создан
         
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
         // Запускаем все сидеры в правильном порядке
         $this->call([
-            UsersSeeder::class,                    // Сначала пользователи
-            CategoriesSeeder::class,               // Затем категории
+            CategoriesSeeder::class,               // Сначала категории
             FullPortfolioSeeder::class,            // Потом все портфолио
             FullCategoryPortfolioSeeder::class,    // И все связи между ними
         ]);

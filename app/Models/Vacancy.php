@@ -23,17 +23,17 @@ class Vacancy extends Model implements HasMedia
     protected $table = 'vacancies';
 
     protected $fillable = [
-        'slug', 'image', 'status', 'is_featured', 'location', 'employment_type',
-        'salary_from', 'salary_to', 'experience_level', 'application_deadline', 'published_at'
+        'slug', 'status', 'location', 'employment_type',
+        'salary_from', 'salary_to', 'experience_level',
+        'custom_work_format', 'custom_language', 'custom_education', 'custom_source',
+        'city_id', 'custom_city', 'work_experience_requirements', 'education_requirements',
+        'professional_plans', 'additional_info'
     ];
 
     protected $casts = [
         'status' => 'boolean',
-        'is_featured' => 'boolean',
         'salary_from' => 'decimal:2',
         'salary_to' => 'decimal:2',
-        'application_deadline' => 'date',
-        'published_at' => 'date',
     ];
 
     // Связь с переводами
@@ -49,18 +49,41 @@ class Vacancy extends Model implements HasMedia
         return $this->translations()->where('locale', $locale)->first();
     }
 
-    // Связь с категориями (если понадобится в будущем)
-    public function categories()
+    // Связь с должностями (Many-to-Many)
+    public function jobPositions()
     {
-        return $this->belongsToMany(Categories::class, 'category_vacancy', 'vacancy_id', 'category_id')
-            ->withTimestamps();
+        return $this->belongsToMany(JobPosition::class, 'vacancy_job_positions');
+    }
+
+    // Связь с техническими навыками (Many-to-Many)
+    public function technicalSkills()
+    {
+        return $this->belongsToMany(TechnicalSkill::class, 'vacancy_technical_skills');
+    }
+
+    // Связь с форматами работы (Many-to-Many)
+    public function workFormats()
+    {
+        return $this->belongsToMany(WorkFormat::class, 'vacancy_work_formats');
+    }
+
+    // Связь с языками (Many-to-Many)
+    public function languages()
+    {
+        return $this->belongsToMany(Language::class, 'vacancy_languages');
+    }
+
+    // Связь с городом (Many-to-One)
+    public function city()
+    {
+        return $this->belongsTo(City::class);
     }
 
     // Связь с заявками (если понадобится в будущем)
-    public function applications()
-    {
-        return $this->hasMany(VacancyApplication::class);
-    }
+    // public function applications()
+    // {
+    //     return $this->hasMany(VacancyApplication::class);
+    // }
 
     // Использовать slug как ключ маршрута
     public function getRouteKeyName()
@@ -74,15 +97,6 @@ class Vacancy extends Model implements HasMedia
         return $query->where('status', true);
     }
 
-    public function scopeFeatured($query)
-    {
-        return $query->where('is_featured', true);
-    }
-
-    public function scopePublished($query)
-    {
-        return $query->where('published_at', '<=', now());
-    }
 
     // Аксессоры
     public function getFormattedSalaryAttribute()
@@ -99,7 +113,6 @@ class Vacancy extends Model implements HasMedia
 
     public function getIsActiveAttribute()
     {
-        return $this->status && 
-               ($this->application_deadline === null || $this->application_deadline >= now());
+        return $this->status;
     }
 }

@@ -342,6 +342,72 @@
                             </div>
                         </div>
 
+                        <!-- Источник информации -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h6 class="mb-0">Откуда узнали о компании</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Выберите источник *</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="source" id="source_linkedin" 
+                                               value="LinkedIn" {{ old('source') == 'LinkedIn' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="source_linkedin">
+                                            LinkedIn
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="source" id="source_instagram" 
+                                               value="Instagram" {{ old('source') == 'Instagram' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="source_instagram">
+                                            Instagram
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="source" id="source_google" 
+                                               value="Google" {{ old('source') == 'Google' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="source_google">
+                                            Google
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="source" id="source_portal" 
+                                               value="Информационный портал (turkmenportal, business.tm)" {{ old('source') == 'Информационный портал (turkmenportal, business.tm)' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="source_portal">
+                                            Информационный портал (turkmenportal, business.tm)
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="source" id="source_agency" 
+                                               value="Кадровое агентство" {{ old('source') == 'Кадровое агентство' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="source_agency">
+                                            Кадровое агентство
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="source" id="source_other" 
+                                               value="other" {{ old('source') == 'other' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="source_other">
+                                            Другое:
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3" id="custom_source_field" style="display: none;">
+                                    <input type="text" class="form-control @error('custom_source') is-invalid @enderror" 
+                                           id="custom_source" name="custom_source" value="{{ old('custom_source') }}"
+                                           placeholder="Укажите источник">
+                                    @error('custom_source')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                @error('source')
+                                    <div class="text-danger small">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
                         <!-- Категории -->
                         <div class="card mb-4">
                             <div class="card-header">
@@ -410,6 +476,29 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             imagePreview.style.display = 'none';
         }
+    });
+
+    // Управление полем "Другое" для источника
+    const sourceOther = document.getElementById('source_other');
+    const customSourceField = document.getElementById('custom_source_field');
+    
+    function toggleCustomSourceField() {
+        if (sourceOther.checked) {
+            customSourceField.style.display = 'block';
+            document.getElementById('custom_source').required = true;
+        } else {
+            customSourceField.style.display = 'none';
+            document.getElementById('custom_source').required = false;
+        }
+    }
+    
+    // Проверяем при загрузке страницы
+    toggleCustomSourceField();
+    
+    // Добавляем обработчики для всех радио-кнопок источника
+    const sourceRadios = document.querySelectorAll('input[name="source"]');
+    sourceRadios.forEach(radio => {
+        radio.addEventListener('change', toggleCustomSourceField);
     });
 });
 </script>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Permissions;
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use Illuminate\Support\Facades\Auth;
 class ContactController extends Controller
 {
     /**
@@ -45,6 +47,11 @@ class ContactController extends Controller
     // Админ методы
     public function index()
     {
+        // Проверка разрешения на просмотр контактов
+        if (!Auth::user()->hasPermission(Permissions::CONTACTS_VIEW)) {
+            abort(403, 'У вас нет прав для просмотра контактов');
+        }
+
         $contacts = Contact::orderBy('created_at', 'desc')->paginate(20);
         
         return view('admin.contacts.index', [
@@ -54,6 +61,11 @@ class ContactController extends Controller
 
     public function show(Contact $contact)
     {
+        // Проверка разрешения на просмотр контактов
+        if (!Auth::user()->hasPermission(Permissions::CONTACTS_VIEW)) {
+            abort(403, 'У вас нет прав для просмотра контактов');
+        }
+
         return view('admin.contacts.show', [
             'contact' => $contact,
         ]);
@@ -61,6 +73,11 @@ class ContactController extends Controller
 
     public function destroy(Contact $contact)
     {
+        // Проверка разрешения на редактирование контактов
+        if (!Auth::user()->hasPermission(Permissions::CONTACTS_EDIT)) {
+            abort(403, 'У вас нет прав для удаления контактов');
+        }
+
         $contact->delete();
 
         return redirect()->route('admin.contacts.index')
