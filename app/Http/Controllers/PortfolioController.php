@@ -11,9 +11,11 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use App\Traits\LogsUserActivity;
 
 class PortfolioController extends Controller
 {
+    use LogsUserActivity;
 
     public function index()
     {
@@ -22,7 +24,14 @@ class PortfolioController extends Controller
             abort(403, 'У вас нет прав для просмотра портфолио');
         }
 
-        $portfolios = Portfolio::with(['categories.translations', 'translations'])
+        $portfolios = Portfolio::with([
+                'categories.translations' => function($query) {
+                    $query->where('locale', 'ru');
+                },
+                'translations' => function($query) {
+                    $query->where('locale', 'ru');
+                }
+            ])
             ->orderBy('created_at', 'desc')
             ->paginate(20);
         
@@ -53,18 +62,30 @@ class PortfolioController extends Controller
             abort(403, 'У вас нет прав для создания портфолио');
         }
 
-        try {
-            $request->validate([
-                'title_ru' => 'required|string|max:255',
-                'when' => 'nullable|date',
-                'image' => 'nullable|image|max:10240',
-            ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            // Если валидация не прошла, возвращаемся на страницу создания с ошибками
-            return redirect()->route('admin.portfolios.create')
-                ->withErrors($e->validator)
-                ->withInput();
-        }
+        $validated = $request->validate([
+            'title_ru' => 'required|string|max:255',
+            'title_en' => 'nullable|string|max:255',
+            'title_tm' => 'nullable|string|max:255',
+            'when' => 'nullable|date',
+            'image' => 'nullable|image|max:10240|mimes:jpeg,png,jpg,gif,webp',
+            'url_button' => 'nullable|url|max:500',
+            'ordering' => 'nullable|integer|min:0|max:9999',
+            'status' => 'boolean',
+            'is_main_page' => 'boolean',
+            'categories' => 'nullable|array',
+            'categories.*' => 'exists:categories,id',
+        ], [
+            'title_ru.required' => 'Название на русском языке обязательно',
+            'title_ru.max' => 'Название не должно превышать 255 символов',
+            'image.image' => 'Файл должен быть изображением',
+            'image.max' => 'Размер изображения не должен превышать 10MB',
+            'image.mimes' => 'Поддерживаются только форматы: jpeg, png, jpg, gif, webp',
+            'url_button.url' => 'Введите корректный URL',
+            'ordering.integer' => 'Порядок должен быть числом',
+            'ordering.min' => 'Порядок не может быть отрицательным',
+            'ordering.max' => 'Порядок не может превышать 9999',
+            'categories.*.exists' => 'Выбранная категория не существует',
+        ]);
 
         $data = $request->only([
             'url_button', 'is_main_page', 'when',
@@ -111,6 +132,12 @@ class PortfolioController extends Controller
                 ->toMediaCollection('portfolio-images');
         }
 
+        // Логируем создание
+        $this->logCreate('Portfolio', $portfolio->id, [
+            'title' => $portfolio->translation('ru')?->title,
+            'slug' => $portfolio->slug,
+        ]);
+
         return redirect()->route('admin.portfolios.index')
             ->with('success', 'Портфолио успешно создано!');
     }
@@ -141,8 +168,16 @@ class PortfolioController extends Controller
         try {
             $request->validate([
                 'title_ru' => 'required|string|max:255',
+                'title_en' => 'nullable|string|max:255',
+                'title_tm' => 'nullable|string|max:255',
                 'when' => 'nullable|date',
                 'image' => 'nullable|image|max:10240',
+                'url_button' => 'nullable|url',
+                'ordering' => 'nullable|integer|min:0',
+                'status' => 'boolean',
+                'is_main_page' => 'boolean',
+                'categories' => 'nullable|array',
+                'categories.*' => 'exists:categories,id',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return redirect()->route('admin.portfolios.edit', $portfolio->slug)

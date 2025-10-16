@@ -13,10 +13,10 @@ class CheckAnyPermission
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string  ...$permissions
+     * @param  string  $permissions
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, string ...$permissions)
+    public function handle(Request $request, Closure $next, string $permissions)
     {
         // Проверяем, авторизован ли пользователь
         if (!Auth::check()) {
@@ -24,9 +24,10 @@ class CheckAnyPermission
         }
 
         $user = Auth::user();
+        $permissionArray = explode('|', $permissions);
 
         // Проверяем, имеет ли пользователь хотя бы одно из указанных разрешений
-        if (!$user->hasAnyPermission($permissions)) {
+        if (!$user->hasAnyPermission($permissionArray)) {
             abort(403, 'У вас нет прав для выполнения этого действия');
         }
 

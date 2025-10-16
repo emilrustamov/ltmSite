@@ -20,7 +20,14 @@ trait HasPermissions
      */
     public function hasPermission(string $permission): bool
     {
-        return $this->permissions()->where('name', $permission)->exists();
+        // Кэшируем разрешения пользователя на 5 минут
+        $cacheKey = "user_permissions_{$this->id}";
+        
+        $permissions = cache()->remember($cacheKey, 300, function () {
+            return $this->permissions()->pluck('name')->toArray();
+        });
+        
+        return in_array($permission, $permissions);
     }
 
     /**
@@ -91,6 +98,18 @@ trait HasPermissions
     {
         $permissionIds = Permission::whereIn('name', $permissions)->pluck('id')->toArray();
         $this->permissions()->sync($permissionIds);
+        
+        // Очищаем кэш разрешений после изменения
+        $this->clearPermissionsCache();
+    }
+    
+    /**
+     * Очистить кэш разрешений пользователя
+     */
+    public function clearPermissionsCache(): void
+    {
+        $cacheKey = "user_permissions_{$this->id}";
+        cache()->forget($cacheKey);
     }
 
     /**

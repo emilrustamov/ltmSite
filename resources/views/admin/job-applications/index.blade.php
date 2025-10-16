@@ -4,17 +4,11 @@
 @section('page-title', 'Вакансии')
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <div>
-        <h5 class="mb-0">Управление вакансиями</h5>
-        <small class="text-muted">Всего вакансий: {{ $vacancies->total() }}</small>
-    </div>
-    @if(Auth::user()->hasPermission('vacancies.create'))
+<div class="d-flex justify-content-end mb-3">
     <a href="{{ route('admin.vacancies.create') }}" class="btn btn-primary">
         <i class="fas fa-plus me-2"></i>
         Создать вакансию
     </a>
-    @endif
 </div>
 
 <div class="table-responsive">
@@ -27,7 +21,6 @@
                 <th>Зарплата</th>
                 <th>Статус</th>
                 <th>Создан</th>
-                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -61,30 +54,10 @@
                         @endif
                     </td>
                     <td>{{ $vacancy->created_at->format('d.m.Y') }}</td>
-                    <td>
-                        <div class="btn-group" role="group">
-                            @if(Auth::user()->hasPermission('vacancies.edit'))
-                            <a href="{{ route('admin.vacancies.edit', $vacancy->slug) }}" 
-                               class="btn btn-sm btn-outline-primary" 
-                               title="Редактировать">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            @endif
-                            @if(Auth::user()->hasPermission('vacancies.delete'))
-                            <button type="button" 
-                                    class="btn btn-sm btn-outline-danger delete-vacancy" 
-                                    data-vacancy-id="{{ $vacancy->id }}"
-                                    data-vacancy-title="{{ $vacancy->translation('ru')?->title ?? 'Без названия' }}"
-                                    title="Удалить">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            @endif
-                        </div>
-                    </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7" class="text-center py-5">
+                    <td colspan="6" class="text-center py-5">
                         <p class="text-muted mb-0">Нет вакансий</p>
                     </td>
                 </tr>
@@ -118,41 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         row.addEventListener('mouseleave', function() {
             this.style.backgroundColor = '';
-        });
-    });
-
-    // Подтверждение удаления
-    document.querySelectorAll('.delete-vacancy').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.stopPropagation(); // Предотвращаем срабатывание dblclick на строке
-            
-            const vacancyId = this.getAttribute('data-vacancy-id');
-            const vacancyTitle = this.getAttribute('data-vacancy-title');
-            
-            if (confirm(`Вы уверены, что хотите удалить вакансию "${vacancyTitle}"?\n\nЭто действие нельзя отменить.`)) {
-                // Создаем форму для отправки DELETE запроса
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = `{{ url('admin/vacancies') }}/${vacancyId}`;
-                
-                // Добавляем CSRF токен
-                const csrfToken = document.createElement('input');
-                csrfToken.type = 'hidden';
-                csrfToken.name = '_token';
-                csrfToken.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                form.appendChild(csrfToken);
-                
-                // Добавляем метод DELETE
-                const methodField = document.createElement('input');
-                methodField.type = 'hidden';
-                methodField.name = '_method';
-                methodField.value = 'DELETE';
-                form.appendChild(methodField);
-                
-                // Отправляем форму
-                document.body.appendChild(form);
-                form.submit();
-            }
         });
     });
 });

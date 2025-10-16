@@ -101,7 +101,7 @@ Route::get('/', fn() => redirect('/ru')); // Корень -> /ru по умолч
 // ---------------------------------------
 // Admin routes (MUST be before lang routes!)
 // ---------------------------------------
-Route::middleware(['auth', 'admin'])
+Route::middleware(['auth', 'admin', 'throttle:60,1'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {

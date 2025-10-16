@@ -99,6 +99,7 @@
                 
                 <!-- Navigation -->
                 <ul class="nav flex-column">
+                    @if(Auth::user()->hasPermission('portfolio.view'))
                     <li class="nav-item">
                         <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.portfolios.*') ? 'bg-primary' : '' }}" 
                            href="{{ route('admin.portfolios.index') }}"
@@ -109,6 +110,8 @@
                             Портфолио
                         </a>
                     </li>
+                    @endif
+                    @if(Auth::user()->hasPermission('categories.view'))
                     <li class="nav-item">
                         <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.categories.*') ? 'bg-primary' : '' }}" 
                            href="{{ route('admin.categories.index') }}"
@@ -119,6 +122,8 @@
                             Категории
                         </a>
                     </li>
+                    @endif
+                    @if(Auth::user()->hasPermission('news.view'))
                     <li class="nav-item">
                         <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.news.*') ? 'bg-primary' : '' }}" 
                            href="{{ route('admin.news.index') }}"
@@ -129,6 +134,8 @@
                             Новости
                         </a>
                     </li>
+                    @endif
+        @if(Auth::user()->hasPermission('vacancies.view'))
         <li class="nav-item">
             <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.vacancies.*') ? 'bg-primary' : '' }}" 
                href="{{ route('admin.vacancies.index') }}"
@@ -139,8 +146,10 @@
                 Вакансии
             </a>
         </li>
+        @endif
         
         <!-- Справочники для вакансий -->
+        @if(Auth::user()->hasPermission('vacancies.view'))
         <li class="nav-item">
             <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.job-positions.*') ? 'bg-primary' : '' }}" 
                href="{{ route('admin.job-positions.index') }}"
@@ -191,6 +200,8 @@
                 Города
             </a>
         </li>
+        @endif
+                    @if(Auth::user()->hasPermission('users.view'))
                     <li class="nav-item">
                         <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.users.*') ? 'bg-primary' : '' }}" 
                            href="{{ route('admin.users.index') }}"
@@ -201,6 +212,8 @@
                             Пользователи
                         </a>
                     </li>
+                    @endif
+                    @if(Auth::user()->hasPermission('contacts.view'))
                     <li class="nav-item">
                         <a class="nav-link text-white py-3 px-3 {{ Request::routeIs('admin.contacts.*') ? 'bg-primary' : '' }}" 
                            href="{{ route('admin.contacts.index') }}"
@@ -211,6 +224,7 @@
                             Заявки
                         </a>
                     </li>
+                    @endif
                 </ul>
             </div>
             
@@ -318,13 +332,37 @@
                 form.addEventListener('submit', function() {
                     const submitBtn = form.querySelector('button[type="submit"]');
                     if (submitBtn) {
-                        submitBtn.innerHTML = 'Сохранение...';
+                        const originalText = submitBtn.innerHTML;
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Сохранение...';
                         submitBtn.disabled = true;
+                        
+                        // Восстанавливаем кнопку через 10 секунд на случай ошибки
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.disabled = false;
+                        }, 10000);
                     }
+                });
+            });
+            
+            // Add loading states to delete buttons
+            document.querySelectorAll('.delete-portfolio, .delete-user, .delete-category').forEach(button => {
+                button.addEventListener('click', function() {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                    this.disabled = true;
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                    }, 5000);
                 });
             });
         });
     </script>
+    
+    <!-- Admin Validation Script -->
+    <script src="{{ asset('js/admin-validation.js') }}"></script>
     
     @yield('scripts')
 </body>

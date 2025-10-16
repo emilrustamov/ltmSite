@@ -27,13 +27,17 @@ class Vacancy extends Model implements HasMedia
         'salary_from', 'salary_to', 'experience_level',
         'custom_work_format', 'custom_language', 'custom_education', 'custom_source',
         'city_id', 'custom_city', 'work_experience_requirements', 'education_requirements',
-        'professional_plans', 'additional_info'
+        'professional_plans', 'additional_info', 'is_featured', 'application_deadline',
+        'published_at'
     ];
 
     protected $casts = [
         'status' => 'boolean',
+        'is_featured' => 'boolean',
         'salary_from' => 'decimal:2',
         'salary_to' => 'decimal:2',
+        'application_deadline' => 'date',
+        'published_at' => 'datetime',
     ];
 
     // Связь с переводами
@@ -95,6 +99,16 @@ class Vacancy extends Model implements HasMedia
     public function scopeActive($query)
     {
         return $query->where('status', true);
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at');
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
     }
 
 

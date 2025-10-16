@@ -43,6 +43,9 @@ class UserPermissionController extends Controller
 
         // Синхронизируем права пользователя
         $user->syncPermissions($request->input('permissions', []));
+        
+        // Очищаем кэш разрешений пользователя
+        $user->clearPermissionsCache();
 
         return redirect()->route('admin.users.index')
             ->with('success', 'Права пользователя успешно обновлены');
