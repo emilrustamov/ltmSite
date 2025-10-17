@@ -14,13 +14,11 @@ class TechnicalSkill extends Model
         'name_en', 
         'name_tm',
         'slug',
-        'sort_order',
         'is_active'
     ];
 
     protected $casts = [
-        'is_active' => 'boolean',
-        'sort_order' => 'integer'
+        'is_active' => 'boolean'
     ];
 
     // Скоуп для активных навыков
@@ -32,13 +30,23 @@ class TechnicalSkill extends Model
     // Скоуп для сортировки
     public function scopeOrdered($query)
     {
-        return $query->orderBy('sort_order')->orderBy('name_ru');
+        return $query->orderBy('name_ru');
     }
 
-    // Связь с вакансиями
-    public function vacancies()
+    // Связь с должностями
+    public function jobPositions()
     {
-        return $this->belongsToMany(Vacancy::class, 'vacancy_technical_skills');
+        return $this->belongsToMany(JobPosition::class, 'job_position_technical_skills')
+                    ->withPivot('importance')
+                    ->withTimestamps();
+    }
+
+    // Связь с заявками кандидатов
+    public function applications()
+    {
+        return $this->belongsToMany(Application::class, 'application_technical_skills')
+                    ->withPivot('level', 'experience_years', 'notes')
+                    ->withTimestamps();
     }
 
     // Использовать slug как ключ маршрута

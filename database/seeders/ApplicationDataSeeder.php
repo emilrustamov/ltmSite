@@ -9,7 +9,7 @@ use App\Models\WorkFormat;
 use App\Models\Language;
 use App\Models\City;
 
-class VacancyDataSeeder extends Seeder
+class ApplicationDataSeeder extends Seeder
 {
     public function run(): void
     {
@@ -41,17 +41,29 @@ class VacancyDataSeeder extends Seeder
             ['name_ru' => 'Laravel (PHP)', 'name_en' => 'Laravel (PHP)', 'slug' => 'laravel-php', 'sort_order' => 10],
             ['name_ru' => 'Node.js / Express', 'name_en' => 'Node.js / Express', 'slug' => 'nodejs-express', 'sort_order' => 11],
             ['name_ru' => 'AdonisJS', 'name_en' => 'AdonisJS', 'slug' => 'adonisjs', 'sort_order' => 12],
+            ['name_ru' => 'Django / FastAPI', 'name_en' => 'Django / FastAPI', 'slug' => 'django-fastapi', 'sort_order' => 13],
+            ['name_ru' => 'MySQL', 'name_en' => 'MySQL', 'slug' => 'mysql', 'sort_order' => 14],
+            ['name_ru' => 'PostgreSQL', 'name_en' => 'PostgreSQL', 'slug' => 'postgresql', 'sort_order' => 15],
+            ['name_ru' => 'MongoDB', 'name_en' => 'MongoDB', 'slug' => 'mongodb', 'sort_order' => 16],
+            ['name_ru' => 'Redis', 'name_en' => 'Redis', 'slug' => 'redis', 'sort_order' => 17],
+            ['name_ru' => 'Docker', 'name_en' => 'Docker', 'slug' => 'docker', 'sort_order' => 18],
+            ['name_ru' => 'Nginx', 'name_en' => 'Nginx', 'slug' => 'nginx', 'sort_order' => 19],
+            ['name_ru' => 'Git / GitHub', 'name_en' => 'Git / GitHub', 'slug' => 'git-github', 'sort_order' => 20],
+            ['name_ru' => 'Linux', 'name_en' => 'Linux', 'slug' => 'linux', 'sort_order' => 21],
         ];
 
         foreach ($technicalSkills as $skill) {
+            // Убираем category если есть
+            unset($skill['category']);
             TechnicalSkill::firstOrCreate(['slug' => $skill['slug']], $skill);
         }
 
         // Заполняем форматы работы
         $workFormats = [
-            ['name_ru' => 'Офисный', 'name_en' => 'Office', 'sort_order' => 1],
-            ['name_ru' => 'Гибридный', 'name_en' => 'Hybrid', 'sort_order' => 2],
-            ['name_ru' => 'Удаленный', 'name_en' => 'Remote', 'sort_order' => 3],
+            ['name_ru' => 'Офисный', 'name_en' => 'Office', 'name_tm' => 'Ofis', 'sort_order' => 1],
+            ['name_ru' => 'Гибридный', 'name_en' => 'Hybrid', 'name_tm' => 'Gibrid', 'sort_order' => 2],
+            ['name_ru' => 'Удаленный', 'name_en' => 'Remote', 'name_tm' => 'Uzak', 'sort_order' => 3],
+            ['name_ru' => 'Другое', 'name_en' => 'Other', 'name_tm' => 'Başga', 'sort_order' => 4],
         ];
 
         foreach ($workFormats as $format) {
@@ -74,6 +86,8 @@ class VacancyDataSeeder extends Seeder
             ['name_ru' => 'Ашхабад', 'name_en' => 'Ashgabat', 'name_tm' => 'Aşgabat', 'sort_order' => 1],
             ['name_ru' => 'Мары', 'name_en' => 'Mary', 'name_tm' => 'Mary', 'sort_order' => 2],
             ['name_ru' => 'Туркменабад', 'name_en' => 'Turkmenabat', 'name_tm' => 'Türkmenabat', 'sort_order' => 3],
+            ['name_ru' => 'Балканабад', 'name_en' => 'Balkanabat', 'name_tm' => 'Balkanabat', 'sort_order' => 4],
+            ['name_ru' => 'Дашогуз', 'name_en' => 'Dashoguz', 'name_tm' => 'Daşoguz', 'sort_order' => 5],
         ];
 
         foreach ($cities as $city) {

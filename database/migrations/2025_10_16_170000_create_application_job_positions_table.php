@@ -8,18 +8,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('vacancy_job_positions', function (Blueprint $table) {
+        Schema::create('application_job_positions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('vacancy_id')->constrained('vacancies')->onDelete('cascade');
+            $table->foreignId('application_id')->constrained('applications')->onDelete('cascade');
             $table->foreignId('job_position_id')->constrained('job_positions')->onDelete('cascade');
             $table->timestamps();
             
-            $table->unique(['vacancy_id', 'job_position_id']);
+            $table->unique(['application_id', 'job_position_id'], 'app_job_pos_unique');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('vacancy_job_positions');
+        Schema::dropIfExists('application_job_positions');
     }
 };

@@ -13,7 +13,7 @@ class CityController extends Controller
     public function index()
     {
         // Проверка разрешения на просмотр городов
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_VIEW)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_VIEW)) {
             abort(403, 'У вас нет прав для просмотра городов');
         }
 
@@ -27,7 +27,7 @@ class CityController extends Controller
     public function create()
     {
         // Проверка разрешения на создание городов
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
             abort(403, 'У вас нет прав для создания городов');
         }
 
@@ -37,7 +37,7 @@ class CityController extends Controller
     public function store(Request $request)
     {
         // Проверка разрешения на создание городов
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
             abort(403, 'У вас нет прав для создания городов');
         }
 
@@ -59,7 +59,7 @@ class CityController extends Controller
     public function edit(City $city)
     {
         // Проверка разрешения на редактирование городов
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
             abort(403, 'У вас нет прав для редактирования городов');
         }
 
@@ -71,7 +71,7 @@ class CityController extends Controller
     public function update(Request $request, City $city)
     {
         // Проверка разрешения на редактирование городов
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
             abort(403, 'У вас нет прав для редактирования городов');
         }
 
@@ -94,7 +94,7 @@ class CityController extends Controller
     public function destroy(City $city)
     {
         // Проверка разрешения на удаление городов
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_DELETE)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_DELETE)) {
             abort(403, 'У вас нет прав для удаления городов');
         }
 

@@ -14,6 +14,7 @@ class Language extends Model
         'name_en', 
         'name_tm',
         'slug',
+        'code',
         'sort_order',
         'is_active'
     ];
@@ -35,10 +36,10 @@ class Language extends Model
         return $query->orderBy('sort_order')->orderBy('name_ru');
     }
 
-    // Связь с вакансиями
-    public function vacancies()
+    // Связь с заявками кандидатов
+    public function applications()
     {
-        return $this->belongsToMany(Vacancy::class, 'vacancy_languages');
+        return $this->belongsToMany(Application::class, 'application_languages');
     }
 
     // Использовать slug как ключ маршрута

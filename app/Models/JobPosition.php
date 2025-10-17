@@ -35,10 +35,18 @@ class JobPosition extends Model
         return $query->orderBy('sort_order')->orderBy('name_ru');
     }
 
-    // Связь с вакансиями
-    public function vacancies()
+    // Связь с заявками кандидатов
+    public function applications()
     {
-        return $this->belongsToMany(Vacancy::class, 'vacancy_job_positions');
+        return $this->belongsToMany(Application::class, 'application_job_positions');
+    }
+
+    // Связь с техническими навыками
+    public function technicalSkills()
+    {
+        return $this->belongsToMany(TechnicalSkill::class, 'job_position_technical_skills')
+                    ->withPivot('importance')
+                    ->withTimestamps();
     }
 
     // Использовать slug как ключ маршрута

@@ -26,7 +26,6 @@ class FullDataSeeder extends Seeder
         
         // Запускаем все сидеры в правильном порядке
         $this->call([
-            CategoriesSeeder::class,               // Сначала категории
             FullPortfolioSeeder::class,            // Потом все портфолио
             FullCategoryPortfolioSeeder::class,    // И все связи между ними
         ]);

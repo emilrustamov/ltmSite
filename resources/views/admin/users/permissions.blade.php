@@ -140,7 +140,7 @@ function getGroupIcon($group) {
         'news' => 'newspaper',
         'portfolio' => 'briefcase',
         'categories' => 'tags',
-        'vacancies' => 'user-tie',
+        'applications' => 'user-tie',
         'users' => 'users',
         'contacts' => 'address-book'
     ];
@@ -153,7 +153,7 @@ function getGroupTitle($group) {
         'news' => 'Новости',
         'portfolio' => 'Портфолио',
         'categories' => 'Категории',
-        'vacancies' => 'Вакансии',
+        'applications' => 'Заявки кандидатов',
         'users' => 'Пользователи',
         'contacts' => 'Контакты'
     ];

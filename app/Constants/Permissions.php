@@ -25,11 +25,9 @@ class Permissions
     public const CATEGORIES_EDIT = 'categories.edit';
     public const CATEGORIES_DELETE = 'categories.delete';
     
-    // Права для вакансий
-    public const VACANCIES_VIEW = 'vacancies.view';
-    public const VACANCIES_CREATE = 'vacancies.create';
-    public const VACANCIES_EDIT = 'vacancies.edit';
-    public const VACANCIES_DELETE = 'vacancies.delete';
+    // Права для заявок кандидатов
+    public const APPLICATIONS_VIEW = 'applications.view';
+    public const APPLICATIONS_DELETE = 'applications.delete';
     
     // Права для пользователей
     public const USERS_VIEW = 'users.view';
@@ -69,11 +67,9 @@ class Permissions
                 self::CATEGORIES_EDIT => 'Редактирование категорий',
                 self::CATEGORIES_DELETE => 'Удаление категорий'
             ],
-            'vacancies' => [
-                self::VACANCIES_VIEW => 'Просмотр вакансий',
-                self::VACANCIES_CREATE => 'Создание вакансий',
-                self::VACANCIES_EDIT => 'Редактирование вакансий',
-                self::VACANCIES_DELETE => 'Удаление вакансий'
+            'applications' => [
+                self::APPLICATIONS_VIEW => 'Просмотр заявок кандидатов',
+                self::APPLICATIONS_DELETE => 'Удаление заявок кандидатов'
             ],
             'users' => [
                 self::USERS_VIEW => 'Просмотр пользователей',

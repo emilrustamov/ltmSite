@@ -55,7 +55,7 @@
                     <td>{{ $language->created_at->format('d.m.Y') }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a href="{{ route('admin.languages.edit', $language) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('admin.languages.edit', ['language' => $language->id]) }}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete({{ $language->id }})">
@@ -79,7 +79,7 @@
 
 <!-- Скрытые формы для удаления -->
 @foreach($languages as $language)
-    <form id="delete-form-{{ $language->id }}" action="{{ route('admin.languages.destroy', $language) }}" method="POST" style="display: none;">
+    <form id="delete-form-{{ $language->id }}" action="{{ route('admin.languages.destroy', ['language' => $language->id]) }}" method="POST" style="display: none;">
         @csrf
         @method('DELETE')
     </form>

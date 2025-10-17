@@ -80,7 +80,6 @@
 - applicant_email (string)
 - applicant_phone (string)
 - resume_file (string) - путь к резюме
-- cover_letter (text) - сопроводительное письмо
 - created_at, updated_at
 ```
 

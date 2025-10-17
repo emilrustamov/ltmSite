@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Заявки')
-@section('page-title', 'Заявки')
+@section('title', 'Контакты')
+@section('page-title', 'Контакты')
 
 @section('content')
 <div class="table-responsive">

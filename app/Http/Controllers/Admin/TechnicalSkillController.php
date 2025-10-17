@@ -13,7 +13,7 @@ class TechnicalSkillController extends Controller
     public function index()
     {
         // Проверка разрешения на просмотр навыков
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_VIEW)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_VIEW)) {
             abort(403, 'У вас нет прав для просмотра навыков');
         }
 
@@ -27,7 +27,7 @@ class TechnicalSkillController extends Controller
     public function create()
     {
         // Проверка разрешения на создание навыков
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
             abort(403, 'У вас нет прав для создания навыков');
         }
 
@@ -37,7 +37,7 @@ class TechnicalSkillController extends Controller
     public function store(Request $request)
     {
         // Проверка разрешения на создание навыков
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
             abort(403, 'У вас нет прав для создания навыков');
         }
 
@@ -60,7 +60,7 @@ class TechnicalSkillController extends Controller
     public function edit(TechnicalSkill $technicalSkill)
     {
         // Проверка разрешения на редактирование навыков
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
             abort(403, 'У вас нет прав для редактирования навыков');
         }
 
@@ -72,7 +72,7 @@ class TechnicalSkillController extends Controller
     public function update(Request $request, TechnicalSkill $technicalSkill)
     {
         // Проверка разрешения на редактирование навыков
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
             abort(403, 'У вас нет прав для редактирования навыков');
         }
 
@@ -95,7 +95,7 @@ class TechnicalSkillController extends Controller
     public function destroy(TechnicalSkill $technicalSkill)
     {
         // Проверка разрешения на удаление навыков
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_DELETE)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_DELETE)) {
             abort(403, 'У вас нет прав для удаления навыков');
         }
 

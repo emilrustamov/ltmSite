@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Portfolio;
 use App\Models\PortfolioTranslation;
+use App\Models\Categories;
+use App\Models\CategoryTranslation;
 
 class FullPortfolioSeeder extends Seeder
 {
@@ -13,6 +15,87 @@ class FullPortfolioSeeder extends Seeder
      */
     public function run(): void
     {
+        // Сначала создаем категории
+        $categories = [
+            [
+                'id' => 1,
+                'slug' => 'bitrix',
+                'translations' => [
+                    'en' => ['name' => 'Bitrix'],
+                    'ru' => ['name' => 'Bitrix'],
+                    'tm' => ['name' => 'Bitrix'],
+                ],
+            ],
+            [
+                'id' => 2,
+                'slug' => 'landing',
+                'translations' => [
+                    'en' => ['name' => 'Landing'],
+                    'ru' => ['name' => 'Лендинг'],
+                    'tm' => ['name' => 'Landing'],
+                ],
+            ],
+            [
+                'id' => 3,
+                'slug' => 'multipage',
+                'translations' => [
+                    'en' => ['name' => 'MultiPage Website'],
+                    'ru' => ['name' => 'Многостраничник'],
+                    'tm' => ['name' => 'MultiPage Website'],
+                ],
+            ],
+            [
+                'id' => 4,
+                'slug' => 'mobile-apps',
+                'translations' => [
+                    'en' => ['name' => 'Mobile Applications'],
+                    'ru' => ['name' => 'Мобильные Приложения'],
+                    'tm' => ['name' => 'Mobile Applications'],
+                ],
+            ],
+            [
+                'id' => 5,
+                'slug' => 'online-shop',
+                'translations' => [
+                    'en' => ['name' => 'Online Shop'],
+                    'ru' => ['name' => 'Интернет Магазин'],
+                    'tm' => ['name' => 'Online Shop'],
+                ],
+            ],
+            [
+                'id' => 6,
+                'slug' => 'web-catalog',
+                'translations' => [
+                    'en' => ['name' => 'WebCatalog'],
+                    'ru' => ['name' => 'Сайт каталог'],
+                    'tm' => ['name' => 'WebCatalog'],
+                ],
+            ],
+            [
+                'id' => 7,
+                'slug' => 'web-catalog-2',
+                'translations' => [
+                    'en' => ['name' => 'WebCatalog'],
+                    'ru' => ['name' => 'Сайт каталог'],
+                    'tm' => ['name' => 'WebCatalog'],
+                ],
+            ],
+        ];
+
+        foreach ($categories as $categoryData) {
+            $translations = $categoryData['translations'];
+            unset($categoryData['translations']);
+            
+            $category = Categories::updateOrCreate(['id' => $categoryData['id']], $categoryData);
+            
+            foreach ($translations as $locale => $translation) {
+                CategoryTranslation::updateOrCreate(
+                    ['category_id' => $category->id, 'locale' => $locale],
+                    $translation
+                );
+            }
+        }
+
         $portfolios = [
             [
                 'id' => 95,

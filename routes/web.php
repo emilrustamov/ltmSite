@@ -8,7 +8,7 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PublicPortfolioController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
-use App\Http\Controllers\VacancyController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPermissionController;
 use App\Http\Controllers\HomeController;
@@ -176,26 +176,22 @@ Route::middleware(['auth', 'admin', 'throttle:60,1'])
             Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
         });
         
-        // Вакансии - требует права vacancies.view для просмотра
-        Route::middleware(['permission:vacancies.view'])->group(function () {
-            Route::get('/vacancies', [VacancyController::class, 'index'])->name('vacancies.index');
+        // Заявки кандидатов - требует права applications.view для просмотра
+        Route::middleware(['permission:applications.view'])->group(function () {
+            Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
+            Route::get('/applications/{application}', [ApplicationController::class, 'show'])->name('applications.show');
         });
         
-        // Вакансии - требует права vacancies.create для создания
-        Route::middleware(['permission:vacancies.create'])->group(function () {
-            Route::get('/vacancies/create', [VacancyController::class, 'create'])->name('vacancies.create');
-            Route::post('/vacancies', [VacancyController::class, 'store'])->name('vacancies.store');
+        
+        
+        // Заявки кандидатов - требует права applications.delete для удаления
+        Route::middleware(['permission:applications.delete'])->group(function () {
+            Route::delete('/applications/{application}', [ApplicationController::class, 'destroy'])->name('applications.destroy');
         });
         
-        // Вакансии - требует права vacancies.edit для редактирования
-        Route::middleware(['permission:vacancies.edit'])->group(function () {
-            Route::get('/vacancies/{vacancy}/edit', [VacancyController::class, 'edit'])->name('vacancies.edit');
-            Route::put('/vacancies/{vacancy}', [VacancyController::class, 'update'])->name('vacancies.update');
-        });
-        
-        // Вакансии - требует права vacancies.delete для удаления
-        Route::middleware(['permission:vacancies.delete'])->group(function () {
-            Route::delete('/vacancies/{vacancy}', [VacancyController::class, 'destroy'])->name('vacancies.destroy');
+        // Заявки кандидатов - скачивание CV файла
+        Route::middleware(['permission:applications.view'])->group(function () {
+            Route::get('/applications/{application}/download-cv', [ApplicationController::class, 'downloadCv'])->name('applications.download-cv');
         });
         
         // Пользователи - требует права users.view для просмотра
@@ -243,83 +239,83 @@ Route::middleware(['auth', 'admin', 'throttle:60,1'])
             Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
         });
         
-        // Справочники для вакансий - должности
-        Route::middleware(['permission:vacancies.view'])->group(function () {
+        // Справочники для заявок - должности
+        Route::middleware(['permission:applications.view'])->group(function () {
             Route::get('/job-positions', [JobPositionController::class, 'index'])->name('job-positions.index');
         });
-        Route::middleware(['permission:vacancies.create'])->group(function () {
+        Route::middleware(['permission:applications.create'])->group(function () {
             Route::get('/job-positions/create', [JobPositionController::class, 'create'])->name('job-positions.create');
             Route::post('/job-positions', [JobPositionController::class, 'store'])->name('job-positions.store');
         });
-        Route::middleware(['permission:vacancies.edit'])->group(function () {
+        Route::middleware(['permission:applications.edit'])->group(function () {
             Route::get('/job-positions/{jobPosition}/edit', [JobPositionController::class, 'edit'])->name('job-positions.edit');
             Route::put('/job-positions/{jobPosition}', [JobPositionController::class, 'update'])->name('job-positions.update');
         });
-        Route::middleware(['permission:vacancies.delete'])->group(function () {
+        Route::middleware(['permission:applications.delete'])->group(function () {
             Route::delete('/job-positions/{jobPosition}', [JobPositionController::class, 'destroy'])->name('job-positions.destroy');
         });
         
-        // Справочники для вакансий - технические навыки
-        Route::middleware(['permission:vacancies.view'])->group(function () {
+        // Справочники для заявок - технические навыки
+        Route::middleware(['permission:applications.view'])->group(function () {
             Route::get('/technical-skills', [TechnicalSkillController::class, 'index'])->name('technical-skills.index');
         });
-        Route::middleware(['permission:vacancies.create'])->group(function () {
+        Route::middleware(['permission:applications.create'])->group(function () {
             Route::get('/technical-skills/create', [TechnicalSkillController::class, 'create'])->name('technical-skills.create');
             Route::post('/technical-skills', [TechnicalSkillController::class, 'store'])->name('technical-skills.store');
         });
-        Route::middleware(['permission:vacancies.edit'])->group(function () {
+        Route::middleware(['permission:applications.edit'])->group(function () {
             Route::get('/technical-skills/{technicalSkill}/edit', [TechnicalSkillController::class, 'edit'])->name('technical-skills.edit');
             Route::put('/technical-skills/{technicalSkill}', [TechnicalSkillController::class, 'update'])->name('technical-skills.update');
         });
-        Route::middleware(['permission:vacancies.delete'])->group(function () {
+        Route::middleware(['permission:applications.delete'])->group(function () {
             Route::delete('/technical-skills/{technicalSkill}', [TechnicalSkillController::class, 'destroy'])->name('technical-skills.destroy');
         });
         
-        // Справочники для вакансий - форматы работы
-        Route::middleware(['permission:vacancies.view'])->group(function () {
+        // Справочники для заявок - форматы работы
+        Route::middleware(['permission:applications.view'])->group(function () {
             Route::get('/work-formats', [WorkFormatController::class, 'index'])->name('work-formats.index');
         });
-        Route::middleware(['permission:vacancies.create'])->group(function () {
+        Route::middleware(['permission:applications.create'])->group(function () {
             Route::get('/work-formats/create', [WorkFormatController::class, 'create'])->name('work-formats.create');
             Route::post('/work-formats', [WorkFormatController::class, 'store'])->name('work-formats.store');
         });
-        Route::middleware(['permission:vacancies.edit'])->group(function () {
+        Route::middleware(['permission:applications.edit'])->group(function () {
             Route::get('/work-formats/{workFormat}/edit', [WorkFormatController::class, 'edit'])->name('work-formats.edit');
             Route::put('/work-formats/{workFormat}', [WorkFormatController::class, 'update'])->name('work-formats.update');
         });
-        Route::middleware(['permission:vacancies.delete'])->group(function () {
+        Route::middleware(['permission:applications.delete'])->group(function () {
             Route::delete('/work-formats/{workFormat}', [WorkFormatController::class, 'destroy'])->name('work-formats.destroy');
         });
         
-        // Справочники для вакансий - языки
-        Route::middleware(['permission:vacancies.view'])->group(function () {
+        // Справочники для заявок - языки
+        Route::middleware(['permission:applications.view'])->group(function () {
             Route::get('/languages', [LanguageController::class, 'index'])->name('languages.index');
         });
-        Route::middleware(['permission:vacancies.create'])->group(function () {
+        Route::middleware(['permission:applications.create'])->group(function () {
             Route::get('/languages/create', [LanguageController::class, 'create'])->name('languages.create');
             Route::post('/languages', [LanguageController::class, 'store'])->name('languages.store');
         });
-        Route::middleware(['permission:vacancies.edit'])->group(function () {
+        Route::middleware(['permission:applications.edit'])->group(function () {
             Route::get('/languages/{language}/edit', [LanguageController::class, 'edit'])->name('languages.edit');
             Route::put('/languages/{language}', [LanguageController::class, 'update'])->name('languages.update');
         });
-        Route::middleware(['permission:vacancies.delete'])->group(function () {
+        Route::middleware(['permission:applications.delete'])->group(function () {
             Route::delete('/languages/{language}', [LanguageController::class, 'destroy'])->name('languages.destroy');
         });
         
-        // Справочники для вакансий - города
-        Route::middleware(['permission:vacancies.view'])->group(function () {
+        // Справочники для заявок - города
+        Route::middleware(['permission:applications.view'])->group(function () {
             Route::get('/cities', [CityController::class, 'index'])->name('cities.index');
         });
-        Route::middleware(['permission:vacancies.create'])->group(function () {
+        Route::middleware(['permission:applications.create'])->group(function () {
             Route::get('/cities/create', [CityController::class, 'create'])->name('cities.create');
             Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
         });
-        Route::middleware(['permission:vacancies.edit'])->group(function () {
+        Route::middleware(['permission:applications.edit'])->group(function () {
             Route::get('/cities/{city}/edit', [CityController::class, 'edit'])->name('cities.edit');
             Route::put('/cities/{city}', [CityController::class, 'update'])->name('cities.update');
         });
-        Route::middleware(['permission:vacancies.delete'])->group(function () {
+        Route::middleware(['permission:applications.delete'])->group(function () {
             Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('cities.destroy');
         });
     });
@@ -392,3 +388,9 @@ Route::prefix('{lang}')
         })->name('contacts');
 
     });
+
+// ---------------------------------------
+// Public Application Routes (без префикса admin)
+// ---------------------------------------
+Route::get('/applications/create', [ApplicationController::class, 'create'])->name('applications.create');
+Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');

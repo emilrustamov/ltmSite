@@ -14,7 +14,7 @@ class WorkFormatController extends Controller
     public function index()
     {
         // Проверка разрешения на просмотр форматов работы
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_VIEW)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_VIEW)) {
             abort(403, 'У вас нет прав для просмотра форматов работы');
         }
 
@@ -28,7 +28,7 @@ class WorkFormatController extends Controller
     public function create()
     {
         // Проверка разрешения на создание форматов работы
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
             abort(403, 'У вас нет прав для создания форматов работы');
         }
 
@@ -38,7 +38,7 @@ class WorkFormatController extends Controller
     public function store(Request $request)
     {
         // Проверка разрешения на создание форматов работы
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
             abort(403, 'У вас нет прав для создания форматов работы');
         }
 
@@ -60,7 +60,7 @@ class WorkFormatController extends Controller
     public function edit(WorkFormat $workFormat)
     {
         // Проверка разрешения на редактирование форматов работы
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
             abort(403, 'У вас нет прав для редактирования форматов работы');
         }
 
@@ -72,7 +72,7 @@ class WorkFormatController extends Controller
     public function update(Request $request, WorkFormat $workFormat)
     {
         // Проверка разрешения на редактирование форматов работы
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
             abort(403, 'У вас нет прав для редактирования форматов работы');
         }
 
@@ -95,7 +95,7 @@ class WorkFormatController extends Controller
     public function destroy(WorkFormat $workFormat)
     {
         // Проверка разрешения на удаление форматов работы
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_DELETE)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_DELETE)) {
             abort(403, 'У вас нет прав для удаления форматов работы');
         }
 

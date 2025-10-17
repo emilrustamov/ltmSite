@@ -35,10 +35,10 @@ class WorkFormat extends Model
         return $query->orderBy('sort_order')->orderBy('name_ru');
     }
 
-    // Связь с вакансиями
-    public function vacancies()
+    // Связь с заявками кандидатов
+    public function applications()
     {
-        return $this->belongsToMany(Vacancy::class, 'vacancy_work_formats');
+        return $this->belongsToMany(Application::class, 'application_work_formats');
     }
 
     // Использовать slug как ключ маршрута

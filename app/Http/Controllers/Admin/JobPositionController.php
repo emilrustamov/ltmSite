@@ -14,7 +14,7 @@ class JobPositionController extends Controller
     public function index()
     {
         // Проверка разрешения на просмотр должностей
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_VIEW)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_VIEW)) {
             abort(403, 'У вас нет прав для просмотра должностей');
         }
 
@@ -28,7 +28,7 @@ class JobPositionController extends Controller
     public function create()
     {
         // Проверка разрешения на создание должностей
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
             abort(403, 'У вас нет прав для создания должностей');
         }
 
@@ -38,7 +38,7 @@ class JobPositionController extends Controller
     public function store(Request $request)
     {
         // Проверка разрешения на создание должностей
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
             abort(403, 'У вас нет прав для создания должностей');
         }
 
@@ -61,7 +61,7 @@ class JobPositionController extends Controller
     public function edit(JobPosition $jobPosition)
     {
         // Проверка разрешения на редактирование должностей
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
             abort(403, 'У вас нет прав для редактирования должностей');
         }
 
@@ -73,7 +73,7 @@ class JobPositionController extends Controller
     public function update(Request $request, JobPosition $jobPosition)
     {
         // Проверка разрешения на редактирование должностей
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
             abort(403, 'У вас нет прав для редактирования должностей');
         }
 
@@ -96,7 +96,7 @@ class JobPositionController extends Controller
     public function destroy(JobPosition $jobPosition)
     {
         // Проверка разрешения на удаление должностей
-        if (!Auth::user()->hasPermission(Permissions::VACANCIES_DELETE)) {
+        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_DELETE)) {
             abort(403, 'У вас нет прав для удаления должностей');
         }
 

@@ -28,7 +28,6 @@
                 <th>Статус</th>
                 <th>На главной</th>
                 <th>Создан</th>
-                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -78,30 +77,10 @@
                         @endif
                     </td>
                     <td>{{ $portfolio->created_at->format('d.m.Y') }}</td>
-                    <td>
-                        <div class="btn-group" role="group">
-                            @if(Auth::user()->hasPermission('portfolio.edit'))
-                            <a href="{{ route('admin.portfolios.edit', $portfolio->slug) }}" 
-                               class="btn btn-sm btn-outline-primary" 
-                               title="Редактировать">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            @endif
-                            @if(Auth::user()->hasPermission('portfolio.delete'))
-                            <button type="button" 
-                                    class="btn btn-sm btn-outline-danger delete-portfolio" 
-                                    data-portfolio-id="{{ $portfolio->id }}"
-                                    data-portfolio-title="{{ $portfolio->translation('ru')?->title ?? 'Без названия' }}"
-                                    title="Удалить">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            @endif
-                        </div>
-                    </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" class="text-center py-5">
+                    <td colspan="7" class="text-center py-5">
                         <p class="text-muted mb-0">Нет проектов</p>
                     </td>
                 </tr>
@@ -138,40 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Подтверждение удаления
-    document.querySelectorAll('.delete-portfolio').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.stopPropagation(); // Предотвращаем срабатывание dblclick на строке
-            
-            const portfolioId = this.getAttribute('data-portfolio-id');
-            const portfolioTitle = this.getAttribute('data-portfolio-title');
-            
-            if (confirm(`Вы уверены, что хотите удалить проект "${portfolioTitle}"?\n\nЭто действие нельзя отменить.`)) {
-                // Создаем форму для отправки DELETE запроса
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = `/admin/portfolios/${portfolioId}`;
-                
-                // Добавляем CSRF токен
-                const csrfToken = document.createElement('input');
-                csrfToken.type = 'hidden';
-                csrfToken.name = '_token';
-                csrfToken.value = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                form.appendChild(csrfToken);
-                
-                // Добавляем метод DELETE
-                const methodField = document.createElement('input');
-                methodField.type = 'hidden';
-                methodField.name = '_method';
-                methodField.value = 'DELETE';
-                form.appendChild(methodField);
-                
-                // Отправляем форму
-                document.body.appendChild(form);
-                form.submit();
-            }
-        });
-    });
 });
 </script>
 @endsection

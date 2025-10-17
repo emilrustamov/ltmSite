@@ -52,10 +52,8 @@ class PermissionSeeder extends Seeder
             Permissions::CATEGORIES_EDIT => 'Право редактировать существующие категории',
             Permissions::CATEGORIES_DELETE => 'Право удалять категории',
             
-            Permissions::VACANCIES_VIEW => 'Право просматривать список вакансий',
-            Permissions::VACANCIES_CREATE => 'Право создавать новые вакансии',
-            Permissions::VACANCIES_EDIT => 'Право редактировать существующие вакансии',
-            Permissions::VACANCIES_DELETE => 'Право удалять вакансии',
+            Permissions::APPLICATIONS_VIEW => 'Право просматривать список заявок кандидатов',
+            Permissions::APPLICATIONS_DELETE => 'Право удалять заявки кандидатов',
             
             Permissions::USERS_VIEW => 'Право просматривать список пользователей',
             Permissions::USERS_CREATE => 'Право создавать новых пользователей',

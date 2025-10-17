@@ -51,7 +51,7 @@
                     <td>{{ $city->created_at->format('d.m.Y') }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a href="{{ route('admin.cities.edit', $city) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('admin.cities.edit', ['city' => $city->id]) }}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete({{ $city->id }})">
@@ -75,7 +75,7 @@
 
 <!-- Скрытые формы для удаления -->
 @foreach($cities as $city)
-    <form id="delete-form-{{ $city->id }}" action="{{ route('admin.cities.destroy', $city) }}" method="POST" style="display: none;">
+    <form id="delete-form-{{ $city->id }}" action="{{ route('admin.cities.destroy', ['city' => $city->id]) }}" method="POST" style="display: none;">
         @csrf
         @method('DELETE')
     </form>
