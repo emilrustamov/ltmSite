@@ -87,6 +87,33 @@
 </form>
 @endsection
 
+@section('styles')
+<style>
+.permission-group-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.permission-group-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.card-header.bg-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+}
+
+.form-check-input:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.form-check-input:indeterminate {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+</style>
+@endsection
+
 @section('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -142,7 +169,17 @@ function getGroupIcon($group) {
         'categories' => 'tags',
         'applications' => 'user-tie',
         'users' => 'users',
-        'contacts' => 'address-book'
+        'contacts' => 'address-book',
+        'positions' => 'user-tag',
+        'languages' => 'language',
+        'work_formats' => 'clock',
+        'cities' => 'map-marker-alt',
+        'skills' => 'tools',
+        'technical_skills' => 'code',
+        'job_positions' => 'briefcase',
+        'work_formats' => 'clock',
+        'educational' => 'graduation-cap',
+        'sources' => 'info-circle'
     ];
     return $icons[$group] ?? 'cog';
 }
@@ -155,8 +192,17 @@ function getGroupTitle($group) {
         'categories' => 'Категории',
         'applications' => 'Заявки кандидатов',
         'users' => 'Пользователи',
-        'contacts' => 'Контакты'
+        'contacts' => 'Контакты',
+        'positions' => 'Должности',
+        'languages' => 'Языки',
+        'work_formats' => 'Форматы работы',
+        'cities' => 'Города',
+        'skills' => 'Навыки',
+        'technical_skills' => 'Технические навыки',
+        'job_positions' => 'Должности',
+        'educational' => 'Образование',
+        'sources' => 'Источники'
     ];
-    return $titles[$group] ?? ucfirst($group);
+    return $titles[$group] ?? ucfirst(str_replace('_', ' ', $group));
 }
 @endphp

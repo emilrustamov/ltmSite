@@ -44,14 +44,12 @@ class JobPosition extends Model
     // Связь с техническими навыками
     public function technicalSkills()
     {
-        return $this->belongsToMany(TechnicalSkill::class, 'job_position_technical_skills')
-                    ->withPivot('importance')
-                    ->withTimestamps();
+        return $this->belongsToMany(TechnicalSkill::class, 'job_position_technical_skills');
     }
 
-    // Использовать slug как ключ маршрута
+    // Использовать id как ключ маршрута
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'id';
     }
 }

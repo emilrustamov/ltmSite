@@ -41,9 +41,9 @@ class City extends Model
         return $this->hasMany(Application::class);
     }
 
-    // Использовать slug как ключ маршрута
+    // Использовать id как ключ маршрута
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'id';
     }
 }

@@ -13,7 +13,7 @@ class LanguageController extends Controller
     public function index()
     {
         // Проверка разрешения на просмотр языков
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_VIEW)) {
+        if (!Auth::user()->hasPermission(Permissions::LANGUAGES_VIEW)) {
             abort(403, 'У вас нет прав для просмотра языков');
         }
 
@@ -27,7 +27,7 @@ class LanguageController extends Controller
     public function create()
     {
         // Проверка разрешения на создание языков
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::LANGUAGES_CREATE)) {
             abort(403, 'У вас нет прав для создания языков');
         }
 
@@ -37,7 +37,7 @@ class LanguageController extends Controller
     public function store(Request $request)
     {
         // Проверка разрешения на создание языков
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::LANGUAGES_CREATE)) {
             abort(403, 'У вас нет прав для создания языков');
         }
 
@@ -60,7 +60,7 @@ class LanguageController extends Controller
     public function edit(Language $language)
     {
         // Проверка разрешения на редактирование языков
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::LANGUAGES_EDIT)) {
             abort(403, 'У вас нет прав для редактирования языков');
         }
 
@@ -72,7 +72,7 @@ class LanguageController extends Controller
     public function update(Request $request, Language $language)
     {
         // Проверка разрешения на редактирование языков
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::LANGUAGES_EDIT)) {
             abort(403, 'У вас нет прав для редактирования языков');
         }
 
@@ -96,7 +96,7 @@ class LanguageController extends Controller
     public function destroy(Language $language)
     {
         // Проверка разрешения на удаление языков
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_DELETE)) {
+        if (!Auth::user()->hasPermission(Permissions::LANGUAGES_DELETE)) {
             abort(403, 'У вас нет прав для удаления языков');
         }
 

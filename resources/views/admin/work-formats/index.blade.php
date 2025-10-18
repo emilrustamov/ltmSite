@@ -27,7 +27,7 @@
         </thead>
         <tbody>
             @forelse($workFormats as $workFormat)
-                <tr>
+                <tr class="work-format-row clickable-row" data-id="{{ $workFormat->id }}">
                     <td>#{{ $workFormat->id }}</td>
                     <td>
                         <div class="fw-bold">{{ $workFormat->name_ru }}</div>
@@ -51,10 +51,10 @@
                     <td>{{ $workFormat->created_at->format('d.m.Y') }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a href="{{ route('admin.work-formats.edit', ['workFormat' => $workFormat->id]) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('admin.work-formats.edit', $workFormat) }}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete({{ $workFormat->id }})">
+                            <button type="button" class="btn btn-sm btn-danger delete-btn delete-work-format" data-id="{{ $workFormat->id }}" data-name="{{ $workFormat->name_ru }}">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -75,7 +75,7 @@
 
 <!-- Скрытые формы для удаления -->
 @foreach($workFormats as $workFormat)
-    <form id="delete-form-{{ $workFormat->id }}" action="{{ route('admin.work-formats.destroy', ['workFormat' => $workFormat->id]) }}" method="POST" style="display: none;">
+    <form id="delete-form-{{ $workFormat->id }}" action="{{ route('admin.work-formats.destroy', $workFormat) }}" method="POST" style="display: none;">
         @csrf
         @method('DELETE')
     </form>

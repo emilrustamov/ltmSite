@@ -14,11 +14,11 @@ class JobPositionController extends Controller
     public function index()
     {
         // Проверка разрешения на просмотр должностей
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_VIEW)) {
+        if (!Auth::user()->hasPermission(Permissions::POSITIONS_VIEW)) {
             abort(403, 'У вас нет прав для просмотра должностей');
         }
 
-        $jobPositions = JobPosition::ordered()->paginate(20);
+        $jobPositions = JobPosition::with('technicalSkills')->ordered()->paginate(20);
         
         return view('admin.job-positions.index', [
             'jobPositions' => $jobPositions,
@@ -28,7 +28,7 @@ class JobPositionController extends Controller
     public function create()
     {
         // Проверка разрешения на создание должностей
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::POSITIONS_CREATE)) {
             abort(403, 'У вас нет прав для создания должностей');
         }
 
@@ -38,7 +38,7 @@ class JobPositionController extends Controller
     public function store(Request $request)
     {
         // Проверка разрешения на создание должностей
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::POSITIONS_CREATE)) {
             abort(403, 'У вас нет прав для создания должностей');
         }
 
@@ -47,12 +47,17 @@ class JobPositionController extends Controller
             'name_en' => 'nullable|string|max:255',
             'name_tm' => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
+            'technical_skills' => 'nullable|array',
+            'technical_skills.*' => 'exists:technical_skills,id',
         ]);
 
         $data = $request->only(['name_ru', 'name_en', 'name_tm', 'sort_order']);
         $data['slug'] = Str::slug($data['name_ru']) . '-' . time();
 
-        JobPosition::create($data);
+        $jobPosition = JobPosition::create($data);
+
+        // Синхронизация навыков
+        $jobPosition->technicalSkills()->sync($request->technical_skills ?? []);
 
         return redirect()->route('admin.job-positions.index')
             ->with('success', 'Должность успешно создана');
@@ -61,10 +66,12 @@ class JobPositionController extends Controller
     public function edit(JobPosition $jobPosition)
     {
         // Проверка разрешения на редактирование должностей
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::POSITIONS_EDIT)) {
             abort(403, 'У вас нет прав для редактирования должностей');
         }
 
+        $jobPosition->load('technicalSkills');
+        
         return view('admin.job-positions.edit', [
             'jobPosition' => $jobPosition,
         ]);
@@ -73,7 +80,7 @@ class JobPositionController extends Controller
     public function update(Request $request, JobPosition $jobPosition)
     {
         // Проверка разрешения на редактирование должностей
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::POSITIONS_EDIT)) {
             abort(403, 'У вас нет прав для редактирования должностей');
         }
 
@@ -83,11 +90,16 @@ class JobPositionController extends Controller
             'name_tm' => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
             'is_active' => 'boolean',
+            'technical_skills' => 'nullable|array',
+            'technical_skills.*' => 'exists:technical_skills,id',
         ]);
 
         $data = $request->only(['name_ru', 'name_en', 'name_tm', 'sort_order', 'is_active']);
         
         $jobPosition->update($data);
+
+        // Синхронизация навыков
+        $jobPosition->technicalSkills()->sync($request->technical_skills ?? []);
 
         return redirect()->route('admin.job-positions.index')
             ->with('success', 'Должность успешно обновлена');
@@ -96,7 +108,7 @@ class JobPositionController extends Controller
     public function destroy(JobPosition $jobPosition)
     {
         // Проверка разрешения на удаление должностей
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_DELETE)) {
+        if (!Auth::user()->hasPermission(Permissions::POSITIONS_DELETE)) {
             abort(403, 'У вас нет прав для удаления должностей');
         }
 

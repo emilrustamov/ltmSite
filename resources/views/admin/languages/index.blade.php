@@ -28,7 +28,7 @@
         </thead>
         <tbody>
             @forelse($languages as $language)
-                <tr>
+                <tr class="language-row clickable-row" data-id="{{ $language->id }}">
                     <td>#{{ $language->id }}</td>
                     <td>
                         <div class="fw-bold">{{ $language->name_ru }}</div>
@@ -55,10 +55,10 @@
                     <td>{{ $language->created_at->format('d.m.Y') }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a href="{{ route('admin.languages.edit', ['language' => $language->id]) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('admin.languages.edit', $language) }}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete({{ $language->id }})">
+                            <button type="button" class="btn btn-sm btn-danger delete-btn delete-language" data-id="{{ $language->id }}" data-name="{{ $language->name_ru }}">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -79,7 +79,7 @@
 
 <!-- Скрытые формы для удаления -->
 @foreach($languages as $language)
-    <form id="delete-form-{{ $language->id }}" action="{{ route('admin.languages.destroy', ['language' => $language->id]) }}" method="POST" style="display: none;">
+    <form id="delete-form-{{ $language->id }}" action="{{ route('admin.languages.destroy', $language) }}" method="POST" style="display: none;">
         @csrf
         @method('DELETE')
     </form>

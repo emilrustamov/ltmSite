@@ -27,7 +27,7 @@
         </thead>
         <tbody>
             @forelse($technicalSkills as $skill)
-                <tr>
+                <tr class="skill-row clickable-row" data-id="{{ $skill->id }}">
                     <td>#{{ $skill->id }}</td>
                     <td>
                         <div class="fw-bold">{{ $skill->name_ru }}</div>
@@ -54,7 +54,7 @@
                             <a href="{{ route('admin.technical-skills.edit', $skill) }}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete({{ $skill->id }})">
+                            <button type="button" class="btn btn-sm btn-danger delete-btn delete-skill" data-id="{{ $skill->id }}" data-name="{{ $skill->name_ru }}">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -71,7 +71,97 @@
     </table>
 </div>
 
-{{ $technicalSkills->links() }}
+<!-- Красивая пагинация -->
+@if($technicalSkills->hasPages())
+<div class="pagination-wrapper mt-4">
+    <div class="pagination-container">
+        <!-- Информация о результатах -->
+        <div class="pagination-info">
+            <span class="text-muted">
+                <i class="fas fa-list me-1"></i>
+                Показано {{ $technicalSkills->firstItem() ?? 0 }} - {{ $technicalSkills->lastItem() ?? 0 }} 
+                из {{ $technicalSkills->total() }} результатов
+            </span>
+        </div>
+        
+        <!-- Навигация по страницам -->
+        <nav class="pagination-nav">
+            <ul class="pagination pagination-modern">
+                {{-- Previous Page Link --}}
+                @if ($technicalSkills->onFirstPage())
+                    <li class="page-item disabled">
+                        <span class="page-link">
+                            <i class="fas fa-chevron-left"></i>
+                            <span class="ms-1">Предыдущая</span>
+                        </span>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $technicalSkills->previousPageUrl() }}" rel="prev">
+                            <i class="fas fa-chevron-left"></i>
+                            <span class="ms-1">Предыдущая</span>
+                        </a>
+                    </li>
+                @endif
+
+                {{-- Pagination Elements --}}
+                @foreach ($technicalSkills->getUrlRange(1, $technicalSkills->lastPage()) as $page => $url)
+                    @if ($page == $technicalSkills->currentPage())
+                        <li class="page-item active">
+                            <span class="page-link">{{ $page }}</span>
+                        </li>
+                    @elseif (($page <= 3) || 
+                             ($page >= $technicalSkills->lastPage() - 2) || 
+                             (abs($page - $technicalSkills->currentPage()) <= 2))
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                        </li>
+                    @elseif (($page == 4 && $technicalSkills->currentPage() > 6) || 
+                             ($page == $technicalSkills->lastPage() - 3 && $technicalSkills->currentPage() < $technicalSkills->lastPage() - 5))
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                    @endif
+                @endforeach
+
+                {{-- Next Page Link --}}
+                @if ($technicalSkills->hasMorePages())
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $technicalSkills->nextPageUrl() }}" rel="next">
+                            <span class="me-1">Следующая</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                @else
+                    <li class="page-item disabled">
+                        <span class="page-link">
+                            <span class="me-1">Следующая</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    </li>
+                @endif
+            </ul>
+        </nav>
+        
+        <!-- Быстрый переход -->
+        <div class="pagination-quick-jump">
+            <form method="GET" class="d-flex align-items-center">
+                <span class="text-muted me-2">Перейти на:</span>
+                <input type="number" 
+                       name="page" 
+                       min="1" 
+                       max="{{ $technicalSkills->lastPage() }}" 
+                       value="{{ $technicalSkills->currentPage() }}"
+                       class="form-control form-control-sm me-2" 
+                       style="width: 60px;">
+                <button type="submit" class="btn btn-outline-primary btn-sm">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+@endif
 
 <!-- Скрытые формы для удаления -->
 @foreach($technicalSkills as $skill)

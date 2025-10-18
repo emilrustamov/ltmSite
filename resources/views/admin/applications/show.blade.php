@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Создаем форму для отправки DELETE запроса
                 const form = document.createElement('form');
                 form.method = 'POST';
-                form.action = `{{ url('admin/applications') }}/${applicationId}`;
+                form.action = `{{ route('admin.applications.destroy', '') }}/${applicationId}`;
                 
                 // Добавляем CSRF токен
                 const csrfToken = document.createElement('input');

@@ -9,6 +9,7 @@ use App\Http\Controllers\PublicPortfolioController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\PublicApplicationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPermissionController;
 use App\Http\Controllers\HomeController;
@@ -240,82 +241,82 @@ Route::middleware(['auth', 'admin', 'throttle:60,1'])
         });
         
         // Справочники для заявок - должности
-        Route::middleware(['permission:applications.view'])->group(function () {
+        Route::middleware(['permission:positions.view'])->group(function () {
             Route::get('/job-positions', [JobPositionController::class, 'index'])->name('job-positions.index');
         });
-        Route::middleware(['permission:applications.create'])->group(function () {
+        Route::middleware(['permission:positions.create'])->group(function () {
             Route::get('/job-positions/create', [JobPositionController::class, 'create'])->name('job-positions.create');
             Route::post('/job-positions', [JobPositionController::class, 'store'])->name('job-positions.store');
         });
-        Route::middleware(['permission:applications.edit'])->group(function () {
+        Route::middleware(['permission:positions.edit'])->group(function () {
             Route::get('/job-positions/{jobPosition}/edit', [JobPositionController::class, 'edit'])->name('job-positions.edit');
             Route::put('/job-positions/{jobPosition}', [JobPositionController::class, 'update'])->name('job-positions.update');
         });
-        Route::middleware(['permission:applications.delete'])->group(function () {
+        Route::middleware(['permission:positions.delete'])->group(function () {
             Route::delete('/job-positions/{jobPosition}', [JobPositionController::class, 'destroy'])->name('job-positions.destroy');
         });
         
         // Справочники для заявок - технические навыки
-        Route::middleware(['permission:applications.view'])->group(function () {
+        Route::middleware(['permission:skills.view'])->group(function () {
             Route::get('/technical-skills', [TechnicalSkillController::class, 'index'])->name('technical-skills.index');
         });
-        Route::middleware(['permission:applications.create'])->group(function () {
+        Route::middleware(['permission:skills.create'])->group(function () {
             Route::get('/technical-skills/create', [TechnicalSkillController::class, 'create'])->name('technical-skills.create');
             Route::post('/technical-skills', [TechnicalSkillController::class, 'store'])->name('technical-skills.store');
         });
-        Route::middleware(['permission:applications.edit'])->group(function () {
+        Route::middleware(['permission:skills.edit'])->group(function () {
             Route::get('/technical-skills/{technicalSkill}/edit', [TechnicalSkillController::class, 'edit'])->name('technical-skills.edit');
             Route::put('/technical-skills/{technicalSkill}', [TechnicalSkillController::class, 'update'])->name('technical-skills.update');
         });
-        Route::middleware(['permission:applications.delete'])->group(function () {
+        Route::middleware(['permission:skills.delete'])->group(function () {
             Route::delete('/technical-skills/{technicalSkill}', [TechnicalSkillController::class, 'destroy'])->name('technical-skills.destroy');
         });
         
         // Справочники для заявок - форматы работы
-        Route::middleware(['permission:applications.view'])->group(function () {
+        Route::middleware(['permission:work_formats.view'])->group(function () {
             Route::get('/work-formats', [WorkFormatController::class, 'index'])->name('work-formats.index');
         });
-        Route::middleware(['permission:applications.create'])->group(function () {
+        Route::middleware(['permission:work_formats.create'])->group(function () {
             Route::get('/work-formats/create', [WorkFormatController::class, 'create'])->name('work-formats.create');
             Route::post('/work-formats', [WorkFormatController::class, 'store'])->name('work-formats.store');
         });
-        Route::middleware(['permission:applications.edit'])->group(function () {
+        Route::middleware(['permission:work_formats.edit'])->group(function () {
             Route::get('/work-formats/{workFormat}/edit', [WorkFormatController::class, 'edit'])->name('work-formats.edit');
             Route::put('/work-formats/{workFormat}', [WorkFormatController::class, 'update'])->name('work-formats.update');
         });
-        Route::middleware(['permission:applications.delete'])->group(function () {
+        Route::middleware(['permission:work_formats.delete'])->group(function () {
             Route::delete('/work-formats/{workFormat}', [WorkFormatController::class, 'destroy'])->name('work-formats.destroy');
         });
         
         // Справочники для заявок - языки
-        Route::middleware(['permission:applications.view'])->group(function () {
+        Route::middleware(['permission:languages.view'])->group(function () {
             Route::get('/languages', [LanguageController::class, 'index'])->name('languages.index');
         });
-        Route::middleware(['permission:applications.create'])->group(function () {
+        Route::middleware(['permission:languages.create'])->group(function () {
             Route::get('/languages/create', [LanguageController::class, 'create'])->name('languages.create');
             Route::post('/languages', [LanguageController::class, 'store'])->name('languages.store');
         });
-        Route::middleware(['permission:applications.edit'])->group(function () {
+        Route::middleware(['permission:languages.edit'])->group(function () {
             Route::get('/languages/{language}/edit', [LanguageController::class, 'edit'])->name('languages.edit');
             Route::put('/languages/{language}', [LanguageController::class, 'update'])->name('languages.update');
         });
-        Route::middleware(['permission:applications.delete'])->group(function () {
+        Route::middleware(['permission:languages.delete'])->group(function () {
             Route::delete('/languages/{language}', [LanguageController::class, 'destroy'])->name('languages.destroy');
         });
         
         // Справочники для заявок - города
-        Route::middleware(['permission:applications.view'])->group(function () {
+        Route::middleware(['permission:cities.view'])->group(function () {
             Route::get('/cities', [CityController::class, 'index'])->name('cities.index');
         });
-        Route::middleware(['permission:applications.create'])->group(function () {
+        Route::middleware(['permission:cities.create'])->group(function () {
             Route::get('/cities/create', [CityController::class, 'create'])->name('cities.create');
             Route::post('/cities', [CityController::class, 'store'])->name('cities.store');
         });
-        Route::middleware(['permission:applications.edit'])->group(function () {
+        Route::middleware(['permission:cities.edit'])->group(function () {
             Route::get('/cities/{city}/edit', [CityController::class, 'edit'])->name('cities.edit');
             Route::put('/cities/{city}', [CityController::class, 'update'])->name('cities.update');
         });
-        Route::middleware(['permission:applications.delete'])->group(function () {
+        Route::middleware(['permission:cities.delete'])->group(function () {
             Route::delete('/cities/{city}', [CityController::class, 'destroy'])->name('cities.destroy');
         });
     });
@@ -392,5 +393,8 @@ Route::prefix('{lang}')
 // ---------------------------------------
 // Public Application Routes (без префикса admin)
 // ---------------------------------------
-Route::get('/applications/create', [ApplicationController::class, 'create'])->name('applications.create');
-Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');
+Route::get('/applications/create', [PublicApplicationController::class, 'create'])->name('applications.create');
+Route::post('/applications', [PublicApplicationController::class, 'store'])->name('applications.store');
+
+// API маршрут для получения навыков по должностям
+Route::post('/api/positions/skills', [PublicApplicationController::class, 'getSkillsByPositions'])->name('api.positions.skills');

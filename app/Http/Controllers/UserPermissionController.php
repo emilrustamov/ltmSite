@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Constants\Permissions;
 use App\Models\Permission;
 use App\Models\User;
+use App\Traits\AutoSyncPermissions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserPermissionController extends Controller
 {
+    use AutoSyncPermissions;
     /**
      * Показать страницу управления правами пользователя
      */
@@ -20,7 +22,10 @@ class UserPermissionController extends Controller
             abort(403, 'У вас нет прав для управления правами пользователей');
         }
 
-        $permissions = Permission::all();
+        // Автоматически синхронизируем разрешения
+        $this->ensurePermissionsSynced();
+
+        $permissions = Permission::orderBy('name')->get();
         $userPermissions = $user->permissions->pluck('name')->toArray();
 
         return view('admin.users.permissions', compact('user', 'permissions', 'userPermissions'));

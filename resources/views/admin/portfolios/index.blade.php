@@ -32,7 +32,7 @@
         </thead>
         <tbody>
             @forelse($portfolios as $portfolio)
-                <tr class="portfolio-row" data-portfolio-slug="{{ $portfolio->slug }}" style="cursor: pointer;">
+                <tr class="portfolio-row clickable-row" data-portfolio-slug="{{ $portfolio->slug }}" data-id="{{ $portfolio->id }}">
                     <td>#{{ $portfolio->id }}</td>
                     <td>
                         @if($portfolio->getFirstMediaUrl('portfolio-images'))

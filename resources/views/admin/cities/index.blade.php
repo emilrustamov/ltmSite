@@ -27,7 +27,7 @@
         </thead>
         <tbody>
             @forelse($cities as $city)
-                <tr>
+                <tr class="city-row clickable-row" data-id="{{ $city->id }}">
                     <td>#{{ $city->id }}</td>
                     <td>
                         <div class="fw-bold">{{ $city->name_ru }}</div>
@@ -51,10 +51,10 @@
                     <td>{{ $city->created_at->format('d.m.Y') }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a href="{{ route('admin.cities.edit', ['city' => $city->id]) }}" class="btn btn-sm btn-warning">
+                            <a href="{{ route('admin.cities.edit', $city) }}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete({{ $city->id }})">
+                            <button type="button" class="btn btn-sm btn-danger delete-btn delete-city" data-id="{{ $city->id }}" data-name="{{ $city->name_ru }}">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -75,17 +75,10 @@
 
 <!-- Скрытые формы для удаления -->
 @foreach($cities as $city)
-    <form id="delete-form-{{ $city->id }}" action="{{ route('admin.cities.destroy', ['city' => $city->id]) }}" method="POST" style="display: none;">
+    <form id="delete-form-{{ $city->id }}" action="{{ route('admin.cities.destroy', $city) }}" method="POST" style="display: none;">
         @csrf
         @method('DELETE')
     </form>
 @endforeach
 
-<script>
-function confirmDelete(id) {
-    if (confirm('Вы уверены, что хотите удалить этот город? Это действие нельзя отменить.')) {
-        document.getElementById('delete-form-' + id).submit();
-    }
-}
-</script>
 @endsection

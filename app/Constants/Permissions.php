@@ -29,6 +29,32 @@ class Permissions
     public const APPLICATIONS_VIEW = 'applications.view';
     public const APPLICATIONS_DELETE = 'applications.delete';
     
+    // Права для справочников
+    public const POSITIONS_VIEW = 'positions.view';
+    public const POSITIONS_CREATE = 'positions.create';
+    public const POSITIONS_EDIT = 'positions.edit';
+    public const POSITIONS_DELETE = 'positions.delete';
+    
+    public const LANGUAGES_VIEW = 'languages.view';
+    public const LANGUAGES_CREATE = 'languages.create';
+    public const LANGUAGES_EDIT = 'languages.edit';
+    public const LANGUAGES_DELETE = 'languages.delete';
+    
+    public const WORK_FORMATS_VIEW = 'work_formats.view';
+    public const WORK_FORMATS_CREATE = 'work_formats.create';
+    public const WORK_FORMATS_EDIT = 'work_formats.edit';
+    public const WORK_FORMATS_DELETE = 'work_formats.delete';
+    
+    public const CITIES_VIEW = 'cities.view';
+    public const CITIES_CREATE = 'cities.create';
+    public const CITIES_EDIT = 'cities.edit';
+    public const CITIES_DELETE = 'cities.delete';
+    
+    public const SKILLS_VIEW = 'skills.view';
+    public const SKILLS_CREATE = 'skills.create';
+    public const SKILLS_EDIT = 'skills.edit';
+    public const SKILLS_DELETE = 'skills.delete';
+    
     // Права для пользователей
     public const USERS_VIEW = 'users.view';
     public const USERS_CREATE = 'users.create';
@@ -70,6 +96,36 @@ class Permissions
             'applications' => [
                 self::APPLICATIONS_VIEW => 'Просмотр заявок кандидатов',
                 self::APPLICATIONS_DELETE => 'Удаление заявок кандидатов'
+            ],
+            'positions' => [
+                self::POSITIONS_VIEW => 'Просмотр должностей',
+                self::POSITIONS_CREATE => 'Создание должностей',
+                self::POSITIONS_EDIT => 'Редактирование должностей',
+                self::POSITIONS_DELETE => 'Удаление должностей'
+            ],
+            'languages' => [
+                self::LANGUAGES_VIEW => 'Просмотр языков',
+                self::LANGUAGES_CREATE => 'Создание языков',
+                self::LANGUAGES_EDIT => 'Редактирование языков',
+                self::LANGUAGES_DELETE => 'Удаление языков'
+            ],
+            'work_formats' => [
+                self::WORK_FORMATS_VIEW => 'Просмотр форматов работы',
+                self::WORK_FORMATS_CREATE => 'Создание форматов работы',
+                self::WORK_FORMATS_EDIT => 'Редактирование форматов работы',
+                self::WORK_FORMATS_DELETE => 'Удаление форматов работы'
+            ],
+            'cities' => [
+                self::CITIES_VIEW => 'Просмотр городов',
+                self::CITIES_CREATE => 'Создание городов',
+                self::CITIES_EDIT => 'Редактирование городов',
+                self::CITIES_DELETE => 'Удаление городов'
+            ],
+            'skills' => [
+                self::SKILLS_VIEW => 'Просмотр навыков',
+                self::SKILLS_CREATE => 'Создание навыков',
+                self::SKILLS_EDIT => 'Редактирование навыков',
+                self::SKILLS_DELETE => 'Удаление навыков'
             ],
             'users' => [
                 self::USERS_VIEW => 'Просмотр пользователей',

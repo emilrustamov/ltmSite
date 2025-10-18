@@ -27,7 +27,7 @@
         </thead>
         <tbody>
             @forelse($applications as $application)
-                <tr class="application-row" data-application-id="{{ $application->id }}" style="cursor: pointer;">
+                <tr class="application-row clickable-row" data-application-id="{{ $application->id }}" data-id="{{ $application->id }}">
                     <td>#{{ $application->id }}</td>
                     <td>
                         <div class="fw-bold">{{ $application->name ?? '' }} {{ $application->surname }}</div>
@@ -60,9 +60,9 @@
                         <div class="btn-group" role="group">
                             @if(Auth::user()->hasPermission('applications.delete'))
                             <button type="button" 
-                                    class="btn btn-sm btn-outline-danger delete-application" 
-                                    data-application-id="{{ $application->id }}"
-                                    data-application-name="{{ $application->name ?? '' }} {{ $application->surname }}"
+                                    class="btn btn-sm btn-outline-danger delete-btn delete-application" 
+                                    data-id="{{ $application->id }}"
+                                    data-name="{{ $application->name ?? '' }} {{ $application->surname }}"
                                     title="Удалить">
                                 <i class="fas fa-trash"></i>
                             </button>
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
     applicationRows.forEach(row => {
         row.addEventListener('dblclick', function() {
             const applicationId = this.getAttribute('data-application-id');
-            window.location.href = `{{ url('admin/applications') }}/${applicationId}`;
+            window.location.href = `{{ route('admin.applications.show', '') }}/${applicationId}`;
         });
         
         // Добавляем hover эффект
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Создаем форму для отправки DELETE запроса
                 const form = document.createElement('form');
                 form.method = 'POST';
-                form.action = `{{ url('admin/applications') }}/${applicationId}`;
+                form.action = `{{ route('admin.applications.destroy', '') }}/${applicationId}`;
                 
                 // Добавляем CSRF токен
                 const csrfToken = document.createElement('input');

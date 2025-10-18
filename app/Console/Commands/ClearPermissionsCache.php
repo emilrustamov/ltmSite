@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Cache;
+use App\Models\User;
 
 class ClearPermissionsCache extends Command
 {
@@ -19,28 +19,27 @@ class ClearPermissionsCache extends Command
      *
      * @var string
      */
-    protected $description = 'Clear all user permissions cache';
+    protected $description = 'Очистить кэш разрешений всех пользователей';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $this->info('Clearing permissions cache...');
-        
-        // Очищаем все кэши разрешений пользователей
-        $pattern = 'user_permissions_*';
-        $keys = Cache::getRedis()->keys($pattern);
-        
-        if (!empty($keys)) {
-            Cache::getRedis()->del($keys);
-            $this->info('Cleared ' . count($keys) . ' permission cache entries.');
-        } else {
-            $this->info('No permission cache entries found.');
+        $this->info('Очистка кэша разрешений...');
+
+        $users = User::all();
+        $cleared = 0;
+
+        foreach ($users as $user) {
+            if (method_exists($user, 'clearPermissionsCache')) {
+                $user->clearPermissionsCache();
+                $cleared++;
+            }
         }
+
+        $this->info("Кэш разрешений очищен для {$cleared} пользователей");
         
-        $this->info('Permissions cache cleared successfully!');
-        
-        return 0;
+        return Command::SUCCESS;
     }
 }

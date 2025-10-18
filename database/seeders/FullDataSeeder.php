@@ -12,17 +12,9 @@ class FullDataSeeder extends Seeder
      */
     public function run(): void
     {
-        // Очищаем таблицы в правильном порядке (с учетом внешних ключей)
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        
-        DB::table('category_portfolio')->truncate();
-        DB::table('portfolio_translations')->truncate();
-        DB::table('category_translations')->truncate();
-        DB::table('portfolio')->truncate();
-        DB::table('categories')->truncate();
-        // Не очищаем таблицу users, так как админ уже создан
-        
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // БЕЗОПАСНАЯ версия - НЕ очищаем существующие данные
+        // Только добавляем недостающие записи
+        $this->command->info('🔄 Добавляем недостающие данные портфолио...');
         
         // Запускаем все сидеры в правильном порядке
         $this->call([

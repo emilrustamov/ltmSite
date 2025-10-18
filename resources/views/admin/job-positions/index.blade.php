@@ -17,9 +17,7 @@
             <tr>
                 <th>ID</th>
                 <th>Название (RU)</th>
-                <th>Название (EN)</th>
-                <th>Название (TM)</th>
-                <th>Slug</th>
+                <th>Навыки</th>
                 <th>Порядок</th>
                 <th>Статус</th>
                 <th>Создан</th>
@@ -28,19 +26,27 @@
         </thead>
         <tbody>
             @forelse($jobPositions as $jobPosition)
-                <tr>
+                <tr class="position-row clickable-row" data-id="{{ $jobPosition->id }}">
                     <td>#{{ $jobPosition->id }}</td>
                     <td>
                         <div class="fw-bold">{{ $jobPosition->name_ru }}</div>
+                        @if($jobPosition->name_en)
+                            <small class="text-muted">{{ $jobPosition->name_en }}</small>
+                        @endif
                     </td>
                     <td>
-                        <div class="text-muted">{{ $jobPosition->name_en ?? 'Не указано' }}</div>
-                    </td>
-                    <td>
-                        <div class="text-muted">{{ $jobPosition->name_tm ?? 'Не указано' }}</div>
-                    </td>
-                    <td>
-                        <code>{{ $jobPosition->slug }}</code>
+                        @if($jobPosition->technicalSkills->count() > 0)
+                            <div class="d-flex flex-wrap gap-1">
+                                @foreach($jobPosition->technicalSkills->take(3) as $skill)
+                                    <span class="badge bg-primary">{{ $skill->name_ru }}</span>
+                                @endforeach
+                                @if($jobPosition->technicalSkills->count() > 3)
+                                    <span class="badge bg-secondary">+{{ $jobPosition->technicalSkills->count() - 3 }}</span>
+                                @endif
+                            </div>
+                        @else
+                            <span class="text-muted">Навыки не назначены</span>
+                        @endif
                     </td>
                     <td>
                         <span class="badge bg-info">{{ $jobPosition->sort_order }}</span>
@@ -58,7 +64,7 @@
                             <a href="{{ route('admin.job-positions.edit', $jobPosition) }}" class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete({{ $jobPosition->id }})">
+                            <button type="button" class="btn btn-sm btn-danger delete-btn delete-position" data-id="{{ $jobPosition->id }}" data-name="{{ $jobPosition->name_ru }}">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -66,7 +72,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="9" class="text-center py-5">
+                    <td colspan="7" class="text-center py-5">
                         <p class="text-muted mb-0">Нет должностей</p>
                     </td>
                 </tr>

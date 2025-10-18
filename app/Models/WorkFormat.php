@@ -35,15 +35,15 @@ class WorkFormat extends Model
         return $query->orderBy('sort_order')->orderBy('name_ru');
     }
 
-    // Связь с заявками кандидатов
+    // Связь с заявками кандидатов (One-to-Many)
     public function applications()
     {
-        return $this->belongsToMany(Application::class, 'application_work_formats');
+        return $this->hasMany(Application::class);
     }
 
-    // Использовать slug как ключ маршрута
+    // Использовать id как ключ маршрута
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'id';
     }
 }

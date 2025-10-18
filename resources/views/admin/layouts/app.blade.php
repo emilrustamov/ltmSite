@@ -12,6 +12,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Admin Common CSS -->
+    <link rel="stylesheet" href="{{ asset('css/admin-common.css') }}">
+    
     <style>
         /* Custom Admin Panel Styles */
         body {
@@ -80,6 +83,133 @@
             padding: 6px 12px;
             font-weight: 500;
         }
+        
+        /* Красивая пагинация */
+        .pagination-wrapper {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .pagination-info {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .pagination-nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .pagination-modern {
+            margin: 0;
+            gap: 8px;
+        }
+        
+        .pagination-modern .page-item {
+            margin: 0 2px;
+        }
+        
+        .pagination-modern .page-link {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 10px 15px;
+            color: #495057;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: #ffffff;
+            min-width: 45px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .pagination-modern .page-link:hover {
+            background: #007bff;
+            border-color: #007bff;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+        }
+        
+        .pagination-modern .page-item.active .page-link {
+            background: #007bff;
+            border-color: #007bff;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+        }
+        
+        .pagination-modern .page-item.disabled .page-link {
+            background: #f8f9fa;
+            border-color: #e9ecef;
+            color: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .pagination-modern .page-item.disabled .page-link:hover {
+            transform: none;
+            box-shadow: none;
+            background: #f8f9fa;
+            border-color: #e9ecef;
+            color: #6c757d;
+        }
+        
+        .pagination-quick-jump {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pagination-quick-jump .form-control {
+            border-radius: 6px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-quick-jump .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+        }
+        
+        .pagination-quick-jump .btn {
+            border-radius: 6px;
+            padding: 8px 12px;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .pagination-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .pagination-nav {
+                order: -1;
+            }
+            
+            .pagination-modern .page-link {
+                padding: 8px 12px;
+                min-width: 40px;
+                font-size: 0.9rem;
+            }
+            
+            .pagination-quick-jump {
+                justify-content: center;
+            }
+        }
     </style>
     
     @yield('styles')
@@ -141,6 +271,9 @@
     
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Admin Common JS -->
+    <script src="{{ asset('js/admin-common.js') }}"></script>
     
     <script>
         // Toast notification system

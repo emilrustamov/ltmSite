@@ -42,9 +42,9 @@ class Language extends Model
         return $this->belongsToMany(Application::class, 'application_languages');
     }
 
-    // Использовать slug как ключ маршрута
+    // Использовать id как ключ маршрута
     public function getRouteKeyName()
     {
-        return 'slug';
+        return 'id';
     }
 }

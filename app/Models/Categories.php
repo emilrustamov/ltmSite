@@ -13,6 +13,11 @@ class Categories extends Model
 
     protected $fillable = [
         'slug',
+        'status',
+    ];
+
+    protected $casts = [
+        'status' => 'boolean',
     ];
 
     // Связь с переводами

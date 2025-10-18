@@ -36,9 +36,7 @@ class TechnicalSkill extends Model
     // Связь с должностями
     public function jobPositions()
     {
-        return $this->belongsToMany(JobPosition::class, 'job_position_technical_skills')
-                    ->withPivot('importance')
-                    ->withTimestamps();
+        return $this->belongsToMany(JobPosition::class, 'job_position_technical_skills');
     }
 
     // Связь с заявками кандидатов

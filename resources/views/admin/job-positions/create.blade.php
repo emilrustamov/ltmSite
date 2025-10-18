@@ -60,6 +60,45 @@
                         </div>
                     </div>
                     
+                    <!-- Связь с техническими навыками -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Технические навыки для должности</label>
+                        
+                        <!-- Чекбокс "Выбрать все" -->
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="select_all_skills" onchange="toggleAllSkills()">
+                                <label class="form-check-label fw-bold text-primary" for="select_all_skills">
+                                    <i class="fas fa-check-double me-1"></i>Выбрать все навыки
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            @foreach(\App\Models\TechnicalSkill::active()->ordered()->get() as $skill)
+                                <div class="col-md-6 col-lg-4 mb-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input skill-checkbox" type="checkbox" 
+                                               id="skill_{{ $skill->id }}" 
+                                               name="technical_skills[]" 
+                                               value="{{ $skill->id }}">
+                                        <label class="form-check-label" for="skill_{{ $skill->id }}">
+                                            {{ $skill->name_ru }}
+                                        </label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        
+                        <div class="form-text">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Выберите навыки, которые требуются для этой должности
+                        </div>
+                        @error('technical_skills')
+                            <div class="invalid-feedback d-block">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    
                     <div class="d-flex justify-content-between">
                         <a href="{{ route('admin.job-positions.index') }}" class="btn btn-outline-secondary">
                             <i class="fas fa-arrow-left me-2"></i>
@@ -75,4 +114,15 @@
         </div>
     </div>
 </div>
+
+<script>
+function toggleAllSkills() {
+    const selectAllCheckbox = document.getElementById('select_all_skills');
+    const skillCheckboxes = document.querySelectorAll('.skill-checkbox');
+    
+    skillCheckboxes.forEach(checkbox => {
+        checkbox.checked = selectAllCheckbox.checked;
+    });
+}
+</script>
 @endsection

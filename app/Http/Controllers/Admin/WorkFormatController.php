@@ -14,7 +14,7 @@ class WorkFormatController extends Controller
     public function index()
     {
         // Проверка разрешения на просмотр форматов работы
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_VIEW)) {
+        if (!Auth::user()->hasPermission(Permissions::WORK_FORMATS_VIEW)) {
             abort(403, 'У вас нет прав для просмотра форматов работы');
         }
 
@@ -28,7 +28,7 @@ class WorkFormatController extends Controller
     public function create()
     {
         // Проверка разрешения на создание форматов работы
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::WORK_FORMATS_CREATE)) {
             abort(403, 'У вас нет прав для создания форматов работы');
         }
 
@@ -38,7 +38,7 @@ class WorkFormatController extends Controller
     public function store(Request $request)
     {
         // Проверка разрешения на создание форматов работы
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_CREATE)) {
+        if (!Auth::user()->hasPermission(Permissions::WORK_FORMATS_CREATE)) {
             abort(403, 'У вас нет прав для создания форматов работы');
         }
 
@@ -50,6 +50,7 @@ class WorkFormatController extends Controller
         ]);
 
         $data = $request->only(['name_ru', 'name_en', 'name_tm', 'sort_order']);
+        $data['slug'] = \Illuminate\Support\Str::slug($data['name_ru']) . '-' . time();
         
         WorkFormat::create($data);
 
@@ -60,7 +61,7 @@ class WorkFormatController extends Controller
     public function edit(WorkFormat $workFormat)
     {
         // Проверка разрешения на редактирование форматов работы
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::WORK_FORMATS_EDIT)) {
             abort(403, 'У вас нет прав для редактирования форматов работы');
         }
 
@@ -72,7 +73,7 @@ class WorkFormatController extends Controller
     public function update(Request $request, WorkFormat $workFormat)
     {
         // Проверка разрешения на редактирование форматов работы
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_EDIT)) {
+        if (!Auth::user()->hasPermission(Permissions::WORK_FORMATS_EDIT)) {
             abort(403, 'У вас нет прав для редактирования форматов работы');
         }
 
@@ -85,6 +86,7 @@ class WorkFormatController extends Controller
         ]);
 
         $data = $request->only(['name_ru', 'name_en', 'name_tm', 'sort_order', 'is_active']);
+        $data['slug'] = \Illuminate\Support\Str::slug($data['name_ru']) . '-' . $workFormat->id;
         
         $workFormat->update($data);
 
@@ -95,7 +97,7 @@ class WorkFormatController extends Controller
     public function destroy(WorkFormat $workFormat)
     {
         // Проверка разрешения на удаление форматов работы
-        if (!Auth::user()->hasPermission(Permissions::APPLICATIONS_DELETE)) {
+        if (!Auth::user()->hasPermission(Permissions::WORK_FORMATS_DELETE)) {
             abort(403, 'У вас нет прав для удаления форматов работы');
         }
 
