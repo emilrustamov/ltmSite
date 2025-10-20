@@ -80,10 +80,22 @@
                             <i class="fas fa-save me-2"></i>
                             Сохранить изменения
                         </button>
+                        <button type="button" class="btn btn-danger delete-btn delete-skill" 
+                                data-id="{{ $technicalSkill->id }}" 
+                                data-name="{{ $technicalSkill->name_ru }}">
+                            <i class="fas fa-trash me-2"></i>
+                            Удалить навык
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Скрытая форма для удаления -->
+<form id="delete-form-{{ $technicalSkill->id }}" action="{{ route('admin.technical-skills.destroy', $technicalSkill) }}" method="POST" style="display: none;">
+    @csrf
+    @method('DELETE')
+</form>
 @endsection

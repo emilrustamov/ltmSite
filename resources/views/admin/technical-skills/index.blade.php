@@ -22,12 +22,11 @@
                 <th>Порядок</th>
                 <th>Статус</th>
                 <th>Создан</th>
-                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
             @forelse($technicalSkills as $skill)
-                <tr class="skill-row clickable-row" data-id="{{ $skill->id }}">
+                <tr class="skill-row clickable-row" data-id="{{ $skill->id }}" data-slug="{{ $skill->slug }}">
                     <td>#{{ $skill->id }}</td>
                     <td>
                         <div class="fw-bold">{{ $skill->name_ru }}</div>
@@ -49,20 +48,10 @@
                         @endif
                     </td>
                     <td>{{ $skill->created_at->format('d.m.Y') }}</td>
-                    <td>
-                        <div class="btn-group" role="group">
-                            <a href="{{ route('admin.technical-skills.edit', $skill) }}" class="btn btn-sm btn-warning">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <button type="button" class="btn btn-sm btn-danger delete-btn delete-skill" data-id="{{ $skill->id }}" data-name="{{ $skill->name_ru }}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" class="text-center py-5">
+                    <td colspan="7" class="text-center py-5">
                         <p class="text-muted mb-0">Нет навыков</p>
                     </td>
                 </tr>
@@ -163,19 +152,4 @@
 </div>
 @endif
 
-<!-- Скрытые формы для удаления -->
-@foreach($technicalSkills as $skill)
-    <form id="delete-form-{{ $skill->id }}" action="{{ route('admin.technical-skills.destroy', $skill) }}" method="POST" style="display: none;">
-        @csrf
-        @method('DELETE')
-    </form>
-@endforeach
-
-<script>
-function confirmDelete(id) {
-    if (confirm('Вы уверены, что хотите удалить этот навык? Это действие нельзя отменить.')) {
-        document.getElementById('delete-form-' + id).submit();
-    }
-}
-</script>
 @endsection

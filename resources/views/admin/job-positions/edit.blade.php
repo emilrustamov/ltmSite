@@ -123,6 +123,12 @@
                             <i class="fas fa-save me-2"></i>
                             Сохранить изменения
                         </button>
+                        <button type="button" class="btn btn-danger delete-btn delete-position" 
+                                data-id="{{ $jobPosition->id }}" 
+                                data-name="{{ $jobPosition->name_ru }}">
+                            <i class="fas fa-trash me-2"></i>
+                            Удалить должность
+                        </button>
                     </div>
                 </form>
             </div>
@@ -140,4 +146,10 @@ function toggleAllSkills() {
     });
 }
 </script>
+
+<!-- Скрытая форма для удаления -->
+<form id="delete-form-{{ $jobPosition->id }}" action="{{ route('admin.job-positions.destroy', $jobPosition) }}" method="POST" style="display: none;">
+    @csrf
+    @method('DELETE')
+</form>
 @endsection

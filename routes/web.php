@@ -264,8 +264,18 @@ Route::middleware(['auth', 'admin', 'throttle:60,1'])
             Route::get('/technical-skills/create', [TechnicalSkillController::class, 'create'])->name('technical-skills.create');
             Route::post('/technical-skills', [TechnicalSkillController::class, 'store'])->name('technical-skills.store');
         });
+        Route::get('/test-route', function() {
+            return "Laravel работает!";
+        });
+        Route::get('/test-skill/{id}', function($id) {
+            $skill = \App\Models\TechnicalSkill::find($id);
+            if (!$skill) {
+                return "Навык не найден";
+            }
+            return "Навык найден: " . $skill->name_ru;
+        });
+        Route::get('/technical-skills/{technicalSkill}/edit', [TechnicalSkillController::class, 'edit'])->name('technical-skills.edit');
         Route::middleware(['permission:skills.edit'])->group(function () {
-            Route::get('/technical-skills/{technicalSkill}/edit', [TechnicalSkillController::class, 'edit'])->name('technical-skills.edit');
             Route::put('/technical-skills/{technicalSkill}', [TechnicalSkillController::class, 'update'])->name('technical-skills.update');
         });
         Route::middleware(['permission:skills.delete'])->group(function () {

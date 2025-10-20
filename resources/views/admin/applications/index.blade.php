@@ -22,7 +22,6 @@
                 <th>Ожидаемая зарплата</th>
                 <th>Статус</th>
                 <th>Создан</th>
-                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -56,23 +55,10 @@
                         @endif
                     </td>
                     <td>{{ $application->created_at->format('d.m.Y') }}</td>
-                    <td>
-                        <div class="btn-group" role="group">
-                            @if(Auth::user()->hasPermission('applications.delete'))
-                            <button type="button" 
-                                    class="btn btn-sm btn-outline-danger delete-btn delete-application" 
-                                    data-id="{{ $application->id }}"
-                                    data-name="{{ $application->name ?? '' }} {{ $application->surname }}"
-                                    title="Удалить">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            @endif
-                        </div>
-                    </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" class="text-center py-5">
+                    <td colspan="7" class="text-center py-5">
                         <p class="text-muted mb-0">Нет заявок</p>
                     </td>
                 </tr>

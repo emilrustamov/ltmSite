@@ -95,10 +95,22 @@
                             <i class="fas fa-save me-2"></i>
                             Сохранить изменения
                         </button>
+                        <button type="button" class="btn btn-danger delete-btn delete-language" 
+                                data-id="{{ $language->id }}" 
+                                data-name="{{ $language->name_ru }}">
+                            <i class="fas fa-trash me-2"></i>
+                            Удалить язык
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Скрытая форма для удаления -->
+<form id="delete-form-{{ $language->id }}" action="{{ route('admin.languages.destroy', $language) }}" method="POST" style="display: none;">
+    @csrf
+    @method('DELETE')
+</form>
 @endsection

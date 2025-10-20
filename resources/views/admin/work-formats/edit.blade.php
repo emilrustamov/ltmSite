@@ -80,10 +80,22 @@
                             <i class="fas fa-save me-2"></i>
                             Сохранить изменения
                         </button>
+                        <button type="button" class="btn btn-danger delete-btn delete-work-format" 
+                                data-id="{{ $workFormat->id }}" 
+                                data-name="{{ $workFormat->name_ru }}">
+                            <i class="fas fa-trash me-2"></i>
+                            Удалить формат работы
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Скрытая форма для удаления -->
+<form id="delete-form-{{ $workFormat->id }}" action="{{ route('admin.work-formats.destroy', $workFormat) }}" method="POST" style="display: none;">
+    @csrf
+    @method('DELETE')
+</form>
 @endsection

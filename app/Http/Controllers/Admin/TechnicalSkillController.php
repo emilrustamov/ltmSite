@@ -64,6 +64,14 @@ class TechnicalSkillController extends Controller
             abort(403, 'У вас нет прав для редактирования навыков');
         }
 
+        // Отладочная информация
+        \Log::info('TechnicalSkill edit accessed', [
+            'skill_id' => $technicalSkill->id,
+            'skill_name' => $technicalSkill->name_ru,
+            'user_id' => Auth::id(),
+            'user_name' => Auth::user()->name
+        ]);
+
         return view('admin.technical-skills.edit', [
             'technicalSkill' => $technicalSkill,
         ]);
