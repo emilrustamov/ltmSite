@@ -240,6 +240,7 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'bitrix_box'             => 'On-premise solution',
 
     // New translation variables for Bitrix (Cloud tab)
+     'bitrix_prices_note' => 'All prices are indicated in rubles. Current prices are available on the Bitrix24 website via <a href=":url" target="_blank" rel="noopener noreferrer">this link</a>.',
     'bitrix_cloud_solution' => 'Bitrix24 Cloud Solution',
     'bitrix_plan' => 'Plan',
     'bitrix_price' => 'Price',
@@ -248,28 +249,28 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'bitrix_cloud_space' => 'Cloud Space',
 
     'bitrix_free' => 'Free',
-    'bitrix_price_free' => '0 RUB',
+    'bitrix_price_free' => '0 ₽',
     'bitrix_for_start' => 'For Start',
     'bitrix_unlimited' => 'Unlimited',
     'bitrix_space_5gb' => '5 GB',
 
     'bitrix_basic' => 'Basic',
-    'bitrix_price_basic_old' => '2,490 RUB',
-    'bitrix_price_basic_new' => '1,743 RUB',
+    'bitrix_price_basic_old' => '2 490 ₽',
+    'bitrix_price_basic_new' => '1 990 ₽',
     'bitrix_for_small_teams' => 'For Small Teams',
     'bitrix_users_5' => '5 Users',
     'bitrix_space_24gb' => '24 GB',
 
     'bitrix_standard' => 'Standard',
-    'bitrix_price_standard_old' => '6,990 RUB',
-    'bitrix_price_standard_new' => '4,893 RUB',
+    'bitrix_price_standard_old' => '6 990 ₽',
+    'bitrix_price_standard_new' => '5 590 ₽',
     'bitrix_for_large_teams' => 'For Large Teams',
     'bitrix_users_50' => '50 Users',
     'bitrix_space_100gb' => '100 GB',
 
     'bitrix_professional' => 'Professional',
-    'bitrix_price_professional_old' => '13,990 RUB',
-    'bitrix_price_professional_new' => '9,793 RUB',
+    'bitrix_price_professional_old' => '13 990 ₽',
+    'bitrix_price_professional_new' => '11 190 ₽',
     'bitrix_for_companies' => 'For Companies',
     'bitrix_users_100' => '100 Users',
     'bitrix_space_1024gb' => '1 TB',
@@ -288,7 +289,7 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
 
     'bitrix_store_crm' => 'Bitrix24 CRM for Stores',
     'bitrix_users_12' => '12 Users',
-    'bitrix_price_store_crm' => '150 RUB',
+    'bitrix_price_store_crm' => '109 000 ₽',
     'bitrix_license_12_months' => '12-Month License',
 
     'bitrix_extranet' => 'Extranet',
@@ -302,10 +303,20 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
 
     'bitrix_corporate_portal' => 'Corporate Portal',
     'bitrix_users_500' => '500 Users',
-    'bitrix_price_corporate_portal' => '250 RUB',
+    'bitrix_price_corporate_portal' => '599 000 ₽',
 
     'bitrix_users_1000' => '1000 Users',
-    'bitrix_price_enterprise' => 'On Request',
+    'bitrix_price_enterprise' => '1 299 000 ₽',
+    
+     'bitrix_users_50' => '50 Users',
+    'bitrix_price_50_users' => '159 000 ₽',
+    'bitrix_users_100' => '100 Users',
+    'bitrix_price_100_users' => '229 000 ₽',
+    'bitrix_users_250' => '250 Users',
+    'bitrix_price_250_users' => '349 000 ₽',
+
+
+    
 
     // Variables for "Box Solution vs. Cloud" section
     'bitrix_box_vs_cloud' => 'Box Solution vs. Cloud Solution',
