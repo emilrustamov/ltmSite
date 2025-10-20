@@ -266,6 +266,7 @@ return [
     'bitrix_box'             => 'Коробочное решение',
 
     // Новые переменные перевода для битрикс (Cloud таб)
+    'bitrix_prices_note' => 'Все цены указаны в рублях. Актуальные цены на сайте Битрикс24 по <a href=":url" target="_blank" rel="noopener noreferrer">ссылке</a>.',
     'bitrix_cloud_solution' => 'Облачное решение Битрикс24',
     'bitrix_plan' => 'План',
     'bitrix_price' => 'Цена',
@@ -280,22 +281,22 @@ return [
     'bitrix_space_5gb' => '5 ГБ',
 
     'bitrix_basic' => 'Базовый',
-    'bitrix_price_basic_old' => '2 490 ₸.',
-    'bitrix_price_basic_new' => '9 600 ₸.',
+    'bitrix_price_basic_old' => '2 490 ₽',
+    'bitrix_price_basic_new' => '1 990 ₽',
     'bitrix_for_small_teams' => 'Для малых команд',
     'bitrix_users_5' => '5 пользователей',
     'bitrix_space_24gb' => '24 ГБ',
 
     'bitrix_standard' => 'Стандартный',
-    'bitrix_price_standard_old' => '34 000 ₸.',
-    'bitrix_price_standard_new' => '27 200 ₸.',
+    'bitrix_price_standard_old' => '6 990 ₽',
+    'bitrix_price_standard_new' => '5 590 ₽',
     'bitrix_for_large_teams' => 'Для больших команд',
     'bitrix_users_50' => '50 пользователей',
     'bitrix_space_100gb' => '100 ГБ',
 
     'bitrix_professional' => 'Профессиональный',
-    'bitrix_price_professional_old' => '68 000 ₸.',
-    'bitrix_price_professional_new' => '54 400 ₸.',
+    'bitrix_price_professional_old' => '13 990 ₽',
+    'bitrix_price_professional_new' => '11 190 ₽',
     'bitrix_for_companies' => 'Для компаний',
     'bitrix_users_100' => '100 пользователей',
     'bitrix_space_1024gb' => '1 ТБ',
@@ -314,7 +315,7 @@ return [
 
     'bitrix_store_crm' => 'Битрикс24 CRM для магазинов',
     'bitrix_users_12' => '12 пользователей',
-    'bitrix_price_store_crm' => '524 000 ₸.',
+    'bitrix_price_store_crm' => '109 000 ₽',
     'bitrix_license_12_months' => 'Лицензия на 12 месяцев',
 
     'bitrix_extranet' => 'Экстранет',
@@ -327,19 +328,19 @@ return [
     'bitrix_vip_support' => 'VIP поддержка',
 
     'bitrix_users_50' => '50 пользователей',
-    'bitrix_price_50_users' => '764 000 ₸.',
+    'bitrix_price_50_users' => '159 000 ₽',
     'bitrix_users_100' => '100 пользователей',
-    'bitrix_price_100_users' => '1 100 000 ₸.',
+    'bitrix_price_100_users' => '229 000 ₽',
     'bitrix_users_250' => '250 пользователей',
-    'bitrix_price_250_users' => '1 676 000 ₸.',
+    'bitrix_price_250_users' => '349 000 ₽',
 
 
     'bitrix_corporate_portal' => 'Корпоративный портал',
     'bitrix_users_500' => '500 пользователей',
-    'bitrix_price_corporate_portal' => '2 876 000 ₸.',
+    'bitrix_price_corporate_portal' => '599 000 ₽',
 
     'bitrix_users_1000' => '1000 пользователей',
-    'bitrix_price_enterprise' => 'По запросу',
+    'bitrix_price_enterprise' => '1 299 000 ₽',
 
     // Переменные для секции "Коробочное решение vs. Облако"
     'bitrix_box_vs_cloud' => 'Коробочное решение против Облачного решения',
