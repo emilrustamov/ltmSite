@@ -5,7 +5,7 @@
 @section('metaKey', 'работа, заявка, LTM, вакансии, карьера')
 
 @section('content')
-<section class="container mx-auto px-4 py-8">
+<section class="w-full px-4 py-8">
     <!-- Заголовок -->
     <div class="text-center mb-12">
         <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
@@ -45,7 +45,7 @@
                     @endif
 
     <!-- Форма в стиле LTM -->
-    <form action="{{ route('applications.store') }}" method="POST" enctype="multipart/form-data" class="max-w-4xl mx-auto">
+    <form action="{{ route('applications.store') }}" method="POST" enctype="multipart/form-data" class="w-full">
                         @csrf
                         
                         <!-- Личная информация -->
@@ -54,7 +54,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                  <label class="field">
                                     <input type="text" 
-                            class="field-input w-100 @error('name') border-red-500 @enderror" 
+                            class="field-input field-input-full-width @error('name') border-red-500 @enderror" 
                                            name="name" 
                                            value="{{ old('name') }}" 
                             placeholder="Ваше имя *"
@@ -65,7 +65,7 @@
                                     </label>
                 <label class="field">
                                     <input type="text" 
-                           class="field-input w-100 @error('surname') border-red-500 @enderror" 
+                           class="field-input field-input-full-width @error('surname') border-red-500 @enderror" 
                                            name="surname" 
                                            value="{{ old('surname') }}" 
                            placeholder="Ваша фамилия *"
@@ -78,7 +78,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <label class="field">
                                     <input type="email" 
-                           class="field-input w-100 @error('email') border-red-500 @enderror" 
+                           class="field-input field-input-full-width @error('email') border-red-500 @enderror" 
                                            name="email" 
                                            value="{{ old('email') }}" 
                            placeholder="Ваш email *"
@@ -89,7 +89,7 @@
                                     </label>
                 <label class="field">
                                     <input type="tel" 
-                           class="field-input w-100 @error('phone') border-red-500 @enderror" 
+                           class="field-input field-input-full-width @error('phone') border-red-500 @enderror" 
                                            name="phone" 
                                            value="{{ old('phone') }}" 
                            placeholder="Ваш телефон *"
@@ -100,21 +100,22 @@
                                     </label>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <label class="field">
+                <div class="field">
+                                    <div class="field-label">Дата рождения *</div>
                                     <input type="date" 
-                           class="field-input w-100 @error('date_of_birth') border-red-500 @enderror" 
+                           class="field-input field-input-full-width @error('date_of_birth') border-red-500 @enderror" 
                                            name="date_of_birth" 
                                            value="{{ old('date_of_birth') }}"
                                            required>
-                                    </label>
-                <label class="field">
+                                    </div>
+                <div class="field">
+                                    <div class="field-label">Ожидаемая зарплата *</div>
                                     <input type="text" 
-                           class="field-input w-100 @error('expected_salary') border-red-500 @enderror" 
+                           class="field-input field-input-full-width @error('expected_salary') border-red-500 @enderror" 
                                            name="expected_salary" 
                                            value="{{ old('expected_salary') }}" 
-                           placeholder="Ожидаемая зарплата *"
                                            required>
-                </label>
+                </div>
                             </div>
                         </div>
 
@@ -124,14 +125,14 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <label class="field">
                                     <input type="url" 
-                           class="field-input w-100 @error('linkedin_url') border-red-500 @enderror" 
+                           class="field-input field-input-full-width @error('linkedin_url') border-red-500 @enderror" 
                                            name="linkedin_url" 
                                            value="{{ old('linkedin_url') }}" 
                            placeholder="LinkedIn профиль">
                 </label>
                 <label class="field">
                                     <input type="url" 
-                           class="field-input w-100 @error('github_url') border-red-500 @enderror" 
+                           class="field-input field-input-full-width @error('github_url') border-red-500 @enderror" 
                                            name="github_url" 
                                            value="{{ old('github_url') }}" 
                            placeholder="GitHub профиль">
@@ -144,7 +145,7 @@
             <h2 class="text-3xl font-bold mb-8 text-white">Резюме</h2>
             <label class="field">
                                     <input type="file" 
-                       class="field-input w-100 @error('cv_file') border-red-500 @enderror" 
+                       class="field-input field-input-full-width @error('cv_file') border-red-500 @enderror" 
                                            name="cv_file" 
                                            accept=".pdf,.doc,.docx"
                                            required>
@@ -183,7 +184,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <label class="field">
-                        <select class="field-input w-100 @error('city_id') border-red-500 @enderror" 
+                        <select class="field-input field-input-full-width @error('city_id') border-red-500 @enderror" 
                                             name="city_id" 
                                 id="city_id"
                                             required>
@@ -200,7 +201,7 @@
                          <label for="custom_city_check" class="text-white text-3xl cursor-pointer">Моего города нет в списке</label>
                                     </div>
                                     <input type="text" 
-                           class="field-input w-100 mt-2 @error('custom_city') border-red-500 @enderror" 
+                           class="field-input field-input-full-width mt-2 @error('custom_city') border-red-500 @enderror" 
                                            id="custom_city" 
                                            name="custom_city" 
                                            value="{{ old('custom_city') }}" 
@@ -209,7 +210,7 @@
                                 </div>
                 <label class="field">
                                     <input type="text" 
-                           class="field-input w-100 @error('registration_address') border-red-500 @enderror" 
+                           class="field-input field-input-full-width @error('registration_address') border-red-500 @enderror" 
                                            name="registration_address" 
                                            value="{{ old('registration_address') }}" 
                            placeholder="Адрес по прописке *"
@@ -223,7 +224,7 @@
             <h2 class="text-3xl font-bold mb-8 text-white">Как вы узнали о нас?</h2>
             <div>
                 <label class="field">
-                    <select class="field-input w-100 @error('source_id') border-red-500 @enderror" 
+                    <select class="field-input field-input-full-width @error('source_id') border-red-500 @enderror" 
                                             name="source_id" 
                             id="source_id"
                                             required>
@@ -240,7 +241,7 @@
                      <label for="custom_source_check" class="text-white text-3xl cursor-pointer">Другой источник</label>
                                     </div>
                                     <input type="text" 
-                       class="field-input w-100 mt-2 @error('custom_source') border-red-500 @enderror" 
+                       class="field-input field-input-full-width mt-2 @error('custom_source') border-red-500 @enderror" 
                                            id="custom_source" 
                                            name="custom_source" 
                                            value="{{ old('custom_source') }}" 
@@ -255,7 +256,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <label class="field">
-                        <select class="field-input w-100 @error('work_format_id') border-red-500 @enderror" 
+                        <select class="field-input field-input-full-width @error('work_format_id') border-red-500 @enderror" 
                                             name="work_format_id" 
                                 id="work_format_id"
                                             required>
@@ -272,7 +273,7 @@
                          <label for="custom_work_format_check" class="text-white text-3xl cursor-pointer">Другой формат работы</label>
                                     </div>
                                     <input type="text" 
-                           class="field-input w-100 mt-2 @error('custom_work_format') border-red-500 @enderror" 
+                           class="field-input field-input-full-width mt-2 @error('custom_work_format') border-red-500 @enderror" 
                                            id="custom_work_format" 
                                            name="custom_work_format" 
                                            value="{{ old('custom_work_format') }}" 
@@ -281,7 +282,7 @@
                                 </div>
                 <div>
                     <label class="field">
-                        <select class="field-input w-100 @error('education_id') border-red-500 @enderror" 
+                        <select class="field-input field-input-full-width @error('education_id') border-red-500 @enderror" 
                                             name="education_id" 
                                 id="education_id"
                                             required>
@@ -298,7 +299,7 @@
                          <label for="custom_education_check" class="text-white text-3xl cursor-pointer">Другое образование</label>
                                     </div>
                                     <input type="text" 
-                           class="field-input w-100 mt-2 @error('custom_education') border-red-500 @enderror" 
+                           class="field-input field-input-full-width mt-2 @error('custom_education') border-red-500 @enderror" 
                                            id="custom_education" 
                                            name="custom_education" 
                                            value="{{ old('custom_education') }}" 
@@ -382,7 +383,7 @@
                                     </div>
                     <label class="field mt-4">
                                     <input type="text" 
-                               class="field-input w-100 @error('custom_language') border-red-500 @enderror" 
+                               class="field-input field-input-full-width @error('custom_language') border-red-500 @enderror" 
                                            name="custom_language" 
                                            value="{{ old('custom_language') }}" 
                                            placeholder="Другие языки (через запятую)">
@@ -402,35 +403,39 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
                                 <label class="field">
                                     <input type="text" 
-                                           class="field-input w-100 @error('work_experiences.'.$index.'.company_name') border-red-500 @enderror" 
+                                           class="field-input field-input-full-width @error('work_experiences.'.$index.'.company_name') border-red-500 @enderror" 
                                            name="work_experiences[{{ $index }}][company_name]" 
                                            value="{{ $experience['company_name'] ?? '' }}" 
                                            placeholder="Название компании *"
                                            required>
+                                    <span class="field-label">Название компании *</span>
                                 </label>
                                 <label class="field">
                                     <input type="text" 
-                                           class="field-input w-100 @error('work_experiences.'.$index.'.position') border-red-500 @enderror" 
+                                           class="field-input field-input-full-width @error('work_experiences.'.$index.'.position') border-red-500 @enderror" 
                                            name="work_experiences[{{ $index }}][position]" 
                                            value="{{ $experience['position'] ?? '' }}" 
                                            placeholder="Должность *"
                                            required>
+                                    <span class="field-label">Должность *</span>
                                 </label>
                                                 </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
-                                <label class="field">
+                                <div class="field">
+                                    <div class="field-label">Дата начала *</div>
                                     <input type="date" 
-                                           class="field-input w-100 @error('work_experiences.'.$index.'.start_date') border-red-500 @enderror" 
+                                           class="field-input field-input-full-width @error('work_experiences.'.$index.'.start_date') border-red-500 @enderror" 
                                            name="work_experiences[{{ $index }}][start_date]" 
                                            value="{{ $experience['start_date'] ?? '' }}" 
                                            required>
-                                </label>
-                                <label class="field">
+                                </div>
+                                <div class="field">
+                                    <div class="field-label">Дата окончания</div>
                                     <input type="date" 
-                                           class="field-input w-100 @error('work_experiences.'.$index.'.end_date') border-red-500 @enderror" 
+                                           class="field-input field-input-full-width @error('work_experiences.'.$index.'.end_date') border-red-500 @enderror" 
                                            name="work_experiences[{{ $index }}][end_date]" 
                                            value="{{ $experience['end_date'] ?? '' }}">
-                                </label>
+                                </div>
                                                 </div>
                             <label class="field">
                                 <textarea class="field-input field-textarea w-100 @error('work_experiences.'.$index.'.description') border-red-500 @enderror" 
@@ -458,7 +463,7 @@
                             <div class="mb-4">
                                 <label class="field">
                                     <input type="text" 
-                                           class="field-input w-100 @error('educational_institutions.'.$index.'.institution_name') border-red-500 @enderror" 
+                                           class="field-input field-input-full-width @error('educational_institutions.'.$index.'.institution_name') border-red-500 @enderror" 
                                            name="educational_institutions[{{ $index }}][institution_name]" 
                                            value="{{ $institution['institution_name'] ?? '' }}" 
                                            placeholder="Название учебного заведения *"
@@ -468,14 +473,14 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
                                 <label class="field">
                                     <input type="text" 
-                                           class="field-input w-100 @error('educational_institutions.'.$index.'.degree') border-red-500 @enderror" 
+                                           class="field-input field-input-full-width @error('educational_institutions.'.$index.'.degree') border-red-500 @enderror" 
                                            name="educational_institutions[{{ $index }}][degree]" 
                                            value="{{ $institution['degree'] ?? '' }}" 
                                            placeholder="Степень/Специальность">
                                 </label>
                                 <label class="field">
                                     <input type="text" 
-                                           class="field-input w-100 @error('educational_institutions.'.$index.'.faculty') border-red-500 @enderror" 
+                                           class="field-input field-input-full-width @error('educational_institutions.'.$index.'.faculty') border-red-500 @enderror" 
                                            name="educational_institutions[{{ $index }}][faculty]" 
                                            value="{{ $institution['faculty'] ?? '' }}" 
                                            placeholder="Факультет">
@@ -484,13 +489,13 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
                                 <label class="field">
                                     <input type="date" 
-                                           class="field-input w-100 @error('educational_institutions.'.$index.'.start_date') border-red-500 @enderror" 
+                                           class="field-input field-input-full-width @error('educational_institutions.'.$index.'.start_date') border-red-500 @enderror" 
                                            name="educational_institutions[{{ $index }}][start_date]" 
                                            value="{{ $institution['start_date'] ?? '' }}">
                                 </label>
                                 <label class="field">
                                     <input type="date" 
-                                           class="field-input w-100 @error('educational_institutions.'.$index.'.end_date') border-red-500 @enderror" 
+                                           class="field-input field-input-full-width @error('educational_institutions.'.$index.'.end_date') border-red-500 @enderror" 
                                            name="educational_institutions[{{ $index }}][end_date]" 
                                            value="{{ $institution['end_date'] ?? '' }}">
                                 </label>
@@ -549,18 +554,18 @@ function addWorkExperience() {
         '<button type="button" class="absolute top-4 right-4 text-red-500 hover:text-red-400 remove-item" aria-label="Close">×</button>' +
         '<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">' +
             '<label class="field">' +
-                '<input type="text" class="field-input w-100" name="work_experiences[' + workExperienceIndex + '][company_name]" placeholder="Название компании *" required>' +
+                '<input type="text" class="field-input field-input-full-width" name="work_experiences[' + workExperienceIndex + '][company_name]" placeholder="Название компании *" required>' +
             '</label>' +
             '<label class="field">' +
-                '<input type="text" class="field-input w-100" name="work_experiences[' + workExperienceIndex + '][position]" placeholder="Должность *" required>' +
+                '<input type="text" class="field-input field-input-full-width" name="work_experiences[' + workExperienceIndex + '][position]" placeholder="Должность *" required>' +
             '</label>' +
         '</div>' +
         '<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">' +
             '<label class="field">' +
-                '<input type="date" class="field-input w-100" name="work_experiences[' + workExperienceIndex + '][start_date]" required>' +
+                '<input type="date" class="field-input field-input-full-width" name="work_experiences[' + workExperienceIndex + '][start_date]" required>' +
             '</label>' +
             '<label class="field">' +
-                '<input type="date" class="field-input w-100" name="work_experiences[' + workExperienceIndex + '][end_date]">' +
+                '<input type="date" class="field-input field-input-full-width" name="work_experiences[' + workExperienceIndex + '][end_date]">' +
             '</label>' +
         '</div>' +
         '<label class="field">' +
@@ -583,23 +588,23 @@ function addEducationalInstitution() {
         '<button type="button" class="absolute top-4 right-4 text-red-500 hover:text-red-400 remove-item" aria-label="Close">×</button>' +
         '<div class="mb-4">' +
             '<label class="field">' +
-                '<input type="text" class="field-input w-100" name="educational_institutions[' + educationalInstitutionIndex + '][institution_name]" placeholder="Название учебного заведения *" required>' +
+                '<input type="text" class="field-input field-input-full-width" name="educational_institutions[' + educationalInstitutionIndex + '][institution_name]" placeholder="Название учебного заведения *" required>' +
             '</label>' +
         '</div>' +
         '<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">' +
             '<label class="field">' +
-                '<input type="text" class="field-input w-100" name="educational_institutions[' + educationalInstitutionIndex + '][degree]" placeholder="Степень/Специальность">' +
+                '<input type="text" class="field-input field-input-full-width" name="educational_institutions[' + educationalInstitutionIndex + '][degree]" placeholder="Степень/Специальность">' +
             '</label>' +
             '<label class="field">' +
-                '<input type="text" class="field-input w-100" name="educational_institutions[' + educationalInstitutionIndex + '][faculty]" placeholder="Факультет">' +
+                '<input type="text" class="field-input field-input-full-width" name="educational_institutions[' + educationalInstitutionIndex + '][faculty]" placeholder="Факультет">' +
             '</label>' +
         '</div>' +
         '<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">' +
             '<label class="field">' +
-                '<input type="date" class="field-input w-100" name="educational_institutions[' + educationalInstitutionIndex + '][start_date]">' +
+                '<input type="date" class="field-input field-input-full-width" name="educational_institutions[' + educationalInstitutionIndex + '][start_date]">' +
             '</label>' +
             '<label class="field">' +
-                '<input type="date" class="field-input w-100" name="educational_institutions[' + educationalInstitutionIndex + '][end_date]">' +
+                '<input type="date" class="field-input field-input-full-width" name="educational_institutions[' + educationalInstitutionIndex + '][end_date]">' +
             '</label>' +
         '</div>' +
         '<label class="field">' +
@@ -763,12 +768,12 @@ if (typeof window.addWorkExperience !== 'function') {
             const newFieldHtml = '<div class="work-experience-item border border-gray-600 rounded-lg p-6 mb-6 relative bg-gray-800/50">' +
                 '<button type="button" class="absolute top-4 right-4 text-red-500 hover:text-red-400 remove-item" aria-label="Close">×</button>' +
                 '<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">' +
-                    '<label class="field"><input type="text" class="field-input w-100" name="work_experiences[' + workExperienceIndex + '][company_name]" placeholder="Название компании *" required></label>' +
-                    '<label class="field"><input type="text" class="field-input w-100" name="work_experiences[' + workExperienceIndex + '][position]" placeholder="Должность *" required></label>' +
+                    '<label class="field"><input type="text" class="field-input field-input-full-width" name="work_experiences[' + workExperienceIndex + '][company_name]" placeholder="Название компании *" required></label>' +
+                    '<label class="field"><input type="text" class="field-input field-input-full-width" name="work_experiences[' + workExperienceIndex + '][position]" placeholder="Должность *" required></label>' +
                 '</div>' +
                 '<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">' +
-                    '<label class="field"><input type="date" class="field-input w-100" name="work_experiences[' + workExperienceIndex + '][start_date]" required></label>' +
-                    '<label class="field"><input type="date" class="field-input w-100" name="work_experiences[' + workExperienceIndex + '][end_date]"></label>' +
+                    '<label class="field"><input type="date" class="field-input field-input-full-width" name="work_experiences[' + workExperienceIndex + '][start_date]" required></label>' +
+                    '<label class="field"><input type="date" class="field-input field-input-full-width" name="work_experiences[' + workExperienceIndex + '][end_date]"></label>' +
                 '</div>' +
                 '<label class="field"><textarea class="field-input field-textarea w-100" name="work_experiences[' + workExperienceIndex + '][description]" rows="3" placeholder="Описание обязанностей"></textarea></label>' +
             '</div>';
@@ -784,14 +789,14 @@ if (typeof window.addEducationalInstitution !== 'function') {
         if (container) {
             const newFieldHtml = '<div class="educational-institution-item border border-gray-600 rounded-lg p-6 mb-6 relative bg-gray-800/50">' +
                 '<button type="button" class="absolute top-4 right-4 text-red-500 hover:text-red-400 remove-item" aria-label="Close">×</button>' +
-                '<div class="mb-4"><label class="field"><input type="text" class="field-input w-100" name="educational_institutions[' + educationalInstitutionIndex + '][institution_name]" placeholder="Название учебного заведения *" required></label></div>' +
+                '<div class="mb-4"><label class="field"><input type="text" class="field-input field-input-full-width" name="educational_institutions[' + educationalInstitutionIndex + '][institution_name]" placeholder="Название учебного заведения *" required></label></div>' +
                 '<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">' +
-                    '<label class="field"><input type="text" class="field-input w-100" name="educational_institutions[' + educationalInstitutionIndex + '][degree]" placeholder="Степень/Специальность"></label>' +
-                    '<label class="field"><input type="text" class="field-input w-100" name="educational_institutions[' + educationalInstitutionIndex + '][faculty]" placeholder="Факультет"></label>' +
+                    '<label class="field"><input type="text" class="field-input field-input-full-width" name="educational_institutions[' + educationalInstitutionIndex + '][degree]" placeholder="Степень/Специальность"></label>' +
+                    '<label class="field"><input type="text" class="field-input field-input-full-width" name="educational_institutions[' + educationalInstitutionIndex + '][faculty]" placeholder="Факультет"></label>' +
                 '</div>' +
                 '<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">' +
-                    '<label class="field"><input type="date" class="field-input w-100" name="educational_institutions[' + educationalInstitutionIndex + '][start_date]"></label>' +
-                    '<label class="field"><input type="date" class="field-input w-100" name="educational_institutions[' + educationalInstitutionIndex + '][end_date]"></label>' +
+                    '<label class="field"><input type="date" class="field-input field-input-full-width" name="educational_institutions[' + educationalInstitutionIndex + '][start_date]"></label>' +
+                    '<label class="field"><input type="date" class="field-input field-input-full-width" name="educational_institutions[' + educationalInstitutionIndex + '][end_date]"></label>' +
                 '</div>' +
                 '<label class="field"><textarea class="field-input field-textarea w-100" name="educational_institutions[' + educationalInstitutionIndex + '][description]" rows="3" placeholder="Дополнительная информация"></textarea></label>' +
             '</div>';

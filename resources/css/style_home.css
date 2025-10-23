@@ -19,7 +19,9 @@ label {
 
 .field {
     margin: 3rem 5rem 1rem 0 !important;
-    width: 40%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .field-textarea {
@@ -37,6 +39,18 @@ label {
     box-shadow: none;
     background-color: transparent;
     color: white;
+}
+
+.field-input-full-width {
+    width: 100% !important;
+}
+
+.field-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
 }
 
 .field-input_title {
