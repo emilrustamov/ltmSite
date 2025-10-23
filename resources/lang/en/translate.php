@@ -380,7 +380,30 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
 'metaKeyServices'  => 'Lebizli Tehnologiya Merkezi services, LTM IT company, website development Turkmenistan, mobile apps Turkmenistan, Bitrix24 implementation Turkmenistan',
 'titleServices'       => 'Services of Lebizli Tehnologiya Merkezi (LTM) - IT Company in Turkmenistan',
 
+    // Job positions translations
+    'jobs' => 'Jobs',
+    'jobsTitle' => 'Job Positions',
+    'jobsSubtitle' => 'Join our team and become part of innovative projects',
+    'allJobsTitle' => 'All Job Positions',
+    'allJobsSubtitle' => 'Find the right position in our team',
+    'jobsMetaDesc' => 'Open positions at IT company Lebizli Tehnologiya Merkezi (LTM) in Turkmenistan. Join our development team.',
+    'jobsMetaKey' => 'IT jobs Turkmenistan, programmer jobs Turkmenistan, LTM careers, IT career Turkmenistan',
+    'allJobsMetaDesc' => 'All open positions at IT company Lebizli Tehnologiya Merkezi (LTM) in Turkmenistan.',
+    'allJobsMetaKey' => 'IT jobs Turkmenistan, programmer jobs Turkmenistan, LTM careers, IT career Turkmenistan',
+    'open' => 'Open',
+    'closed' => 'Closed',
+    'jobDetails' => 'Job Details',
+    'position' => 'Position',
+    'status' => 'Status',
+    'skills' => 'Skills',
+    'skillsCount' => 'skills',
+    'noSkills' => 'No skills specified',
+    'description' => 'Description',
+    'responsibilities' => 'Responsibilities',
+    'requiredSkills' => 'Required Skills',
+    'benefits' => 'Benefits',
+    'applyNow' => 'Apply Now',
+    'defaultJobImage' => 'Default job image',
+    'career' => 'career',
 
-
-    
 ];

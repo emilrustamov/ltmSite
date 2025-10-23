@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPermissionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\JobPositionController;
+use App\Http\Controllers\JobPositionController as PublicJobPositionController;
 use App\Http\Controllers\Admin\TechnicalSkillController;
 use App\Http\Controllers\Admin\WorkFormatController;
 use App\Http\Controllers\Admin\LanguageController;
@@ -389,6 +390,12 @@ Route::prefix('{lang}')
             ->name('portfolio.index');
         Route::get('/portfolio/{portfolio}', [PublicPortfolioController::class, 'show'])
             ->name('portfolio.show');
+
+        // Job Positions (public)
+        Route::get('/jobs', [PublicJobPositionController::class, 'all'])
+            ->name('jobs.index');
+        Route::get('/jobs/{jobPosition}', [PublicJobPositionController::class, 'show'])
+            ->name('jobs.show');
 
         // Contacts
         Route::get('/contacts', function ($lang) {

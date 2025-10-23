@@ -47,14 +47,41 @@ class JobPositionController extends Controller
             'name_en' => 'nullable|string|max:255',
             'name_tm' => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
+            'description_ru' => 'nullable|string',
+            'description_en' => 'nullable|string',
+            'description_tm' => 'nullable|string',
+            'responsibilities_ru' => 'nullable|string',
+            'responsibilities_en' => 'nullable|string',
+            'responsibilities_tm' => 'nullable|string',
+            'benefits_ru' => 'nullable|string',
+            'benefits_en' => 'nullable|string',
+            'benefits_tm' => 'nullable|string',
+            'image' => 'nullable|image|max:10240|mimes:jpeg,png,jpg,gif,webp',
+            'status' => 'nullable|boolean',
+            'ordering' => 'nullable|integer|min:0',
             'technical_skills' => 'nullable|array',
             'technical_skills.*' => 'exists:technical_skills,id',
         ]);
 
-        $data = $request->only(['name_ru', 'name_en', 'name_tm', 'sort_order']);
+        $data = $request->only([
+            'name_ru', 'name_en', 'name_tm', 'sort_order',
+            'description_ru', 'description_en', 'description_tm',
+            'responsibilities_ru', 'responsibilities_en', 'responsibilities_tm',
+            'benefits_ru', 'benefits_en', 'benefits_tm',
+            'status', 'ordering'
+        ]);
         $data['slug'] = Str::slug($data['name_ru']) . '-' . time();
+        $data['image'] = ''; // Инициализируем пустой строкой
 
         $jobPosition = JobPosition::create($data);
+
+        // Обработка изображения
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $path = $image->storeAs('uploads/jobs', $filename, 'public');
+            $jobPosition->update(['image' => 'storage/' . $path]);
+        }
 
         // Синхронизация навыков
         $jobPosition->technicalSkills()->sync($request->technical_skills ?? []);
@@ -90,11 +117,37 @@ class JobPositionController extends Controller
             'name_tm' => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
             'is_active' => 'boolean',
+            'description_ru' => 'nullable|string',
+            'description_en' => 'nullable|string',
+            'description_tm' => 'nullable|string',
+            'responsibilities_ru' => 'nullable|string',
+            'responsibilities_en' => 'nullable|string',
+            'responsibilities_tm' => 'nullable|string',
+            'benefits_ru' => 'nullable|string',
+            'benefits_en' => 'nullable|string',
+            'benefits_tm' => 'nullable|string',
+            'image' => 'nullable|image|max:10240|mimes:jpeg,png,jpg,gif,webp',
+            'status' => 'nullable|boolean',
+            'ordering' => 'nullable|integer|min:0',
             'technical_skills' => 'nullable|array',
             'technical_skills.*' => 'exists:technical_skills,id',
         ]);
 
-        $data = $request->only(['name_ru', 'name_en', 'name_tm', 'sort_order', 'is_active']);
+        $data = $request->only([
+            'name_ru', 'name_en', 'name_tm', 'sort_order', 'is_active',
+            'description_ru', 'description_en', 'description_tm',
+            'responsibilities_ru', 'responsibilities_en', 'responsibilities_tm',
+            'benefits_ru', 'benefits_en', 'benefits_tm',
+            'status', 'ordering'
+        ]);
+        
+        // Обработка изображения
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $path = $image->storeAs('uploads/jobs', $filename, 'public');
+            $data['image'] = 'storage/' . $path;
+        }
         
         $jobPosition->update($data);
 

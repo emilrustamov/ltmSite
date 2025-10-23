@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 class PublicApplicationController extends Controller
 {
     // Публичная форма создания заявки
-    public function create()
+    public function create(Request $request)
     {
         // Получаем данные для формы
         $cities = City::active()->ordered()->get();
@@ -29,10 +29,16 @@ class PublicApplicationController extends Controller
         
         // Устанавливаем язык по умолчанию
         $lang = 'ru';
+        
+        // Получаем предварительно выбранную должность
+        $selectedPosition = null;
+        if ($request->has('position')) {
+            $selectedPosition = JobPosition::find($request->position);
+        }
 
         return view('public.applications.create', compact(
             'cities', 'sources', 'workFormats', 'educations', 
-            'jobPositions', 'technicalSkills', 'languages', 'lang'
+            'jobPositions', 'technicalSkills', 'languages', 'lang', 'selectedPosition'
         ));
     }
 
@@ -41,7 +47,7 @@ class PublicApplicationController extends Controller
     {
         // Создаем правила валидации с учетом кастомных полей
         $validationRules = [
-            'name' => 'nullable|string|max:255',
+            'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:255',
@@ -256,8 +262,8 @@ class PublicApplicationController extends Controller
             }
         }
 
-        // Редирект на главную страницу с сообщением об успехе
-        return redirect('/')->with('success', 'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
+        // Редирект обратно на страницу заявки с сообщением об успехе
+        return redirect()->back()->with('success', 'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
     }
 
     // API метод для получения навыков по должностям

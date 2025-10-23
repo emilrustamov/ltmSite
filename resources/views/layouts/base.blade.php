@@ -85,6 +85,11 @@
     <script src="{{ asset('assets/js/lenis.js') }}"></script>
     <script src="{{ asset('assets/js/swiper.js') }}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+    <!-- Дополнительные стили для вакансий -->
+    @if(request()->is('*/jobs*'))
+        <link rel="stylesheet" href="{{ asset('resources/css/style_jobs.css') }}">
+    @endif
 
 </head>
 

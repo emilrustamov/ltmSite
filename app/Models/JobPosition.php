@@ -15,12 +15,26 @@ class JobPosition extends Model
         'name_tm',
         'slug',
         'sort_order',
-        'is_active'
+        'is_active',
+        'description_ru',
+        'description_en',
+        'description_tm',
+        'responsibilities_ru',
+        'responsibilities_en',
+        'responsibilities_tm',
+        'benefits_ru',
+        'benefits_en',
+        'benefits_tm',
+        'image',
+        'status',
+        'ordering'
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
-        'sort_order' => 'integer'
+        'sort_order' => 'integer',
+        'status' => 'boolean',
+        'ordering' => 'integer'
     ];
 
     // Скоуп для активных должностей
@@ -33,6 +47,20 @@ class JobPosition extends Model
     public function scopeOrdered($query)
     {
         return $query->orderBy('sort_order')->orderBy('name_ru');
+    }
+
+    // Скоуп для отображения на главной странице
+    public function scopeMainPage($query)
+    {
+        return $query->where('status', true)
+                    ->orderBy('ordering');
+    }
+
+    // Скоуп для активных и опубликованных вакансий
+    public function scopePublished($query)
+    {
+        return $query->where('status', true)
+                    ->where('is_active', true);
     }
 
     // Связь с заявками кандидатов

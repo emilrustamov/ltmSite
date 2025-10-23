@@ -44,7 +44,11 @@
             </a>
         </div>
 
-        <!-- Добавьте стиль для бейджа, если его ещё нет -->
+        <div class="nav-item">
+            <a href="/{{ $lang }}/jobs"
+                class="text-sm md:text-base {{ Request::is($lang . '/jobs*') ? 'active' : '' }}"
+                itemprop="url">{{ __('translate.jobs') }}</a>
+        </div>
 
         <div class="nav-item">
             <a href="/{{ $lang }}/contacts"
@@ -228,6 +232,7 @@
         <a href="/{{ $lang }}/bitrix24">{{ __('translate.bitrix') }}</a>
         <a href="/{{ $lang }}/about_us">{{ __('translate.aboutUs') }}</a>
         <a href="/{{ $lang }}/portfolio">{{ __('translate.portfolio') }}</a>
+        <a href="/{{ $lang }}/jobs">{{ __('translate.jobs') }}</a>
         <a href="/{{ $lang }}/contacts">{{ __('translate.contacts') }}</a>
     </nav>
 

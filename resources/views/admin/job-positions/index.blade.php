@@ -18,6 +18,7 @@
                 <th>ID</th>
                 <th>Название (RU)</th>
                 <th>Навыки</th>
+                <th>Изображение</th>
                 <th>Порядок</th>
                 <th>Статус</th>
                 <th>Создан</th>
@@ -48,20 +49,37 @@
                         @endif
                     </td>
                     <td>
-                        <span class="badge bg-info">{{ $jobPosition->sort_order }}</span>
+                        @if($jobPosition->image)
+                            <img src="{{ $jobPosition->image }}" alt="Изображение" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+                        @else
+                            <span class="text-muted">Нет изображения</span>
+                        @endif
                     </td>
                     <td>
-                        @if($jobPosition->is_active)
-                            <span class="badge bg-success">Активна</span>
-                        @else
-                            <span class="badge bg-secondary">Неактивна</span>
-                        @endif
+                        <div class="d-flex flex-column gap-1">
+                            <span class="badge bg-info">Сортировка: {{ $jobPosition->sort_order }}</span>
+                            <span class="badge bg-warning">Главная: {{ $jobPosition->ordering }}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex flex-column gap-1">
+                            @if($jobPosition->is_active)
+                                <span class="badge bg-success">Активна</span>
+                            @else
+                                <span class="badge bg-secondary">Неактивна</span>
+                            @endif
+                            @if($jobPosition->status)
+                                <span class="badge bg-primary">Опубликовано</span>
+                            @else
+                                <span class="badge bg-danger">Не опубликовано</span>
+                            @endif
+                        </div>
                     </td>
                     <td>{{ $jobPosition->created_at->format('d.m.Y') }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="text-center py-5">
+                    <td colspan="7" class="text-center py-5">
                         <p class="text-muted mb-0">Нет должностей</p>
                     </td>
                 </tr>
