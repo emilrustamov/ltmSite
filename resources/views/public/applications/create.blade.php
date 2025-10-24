@@ -5,7 +5,7 @@
 @section('metaKey', 'работа, заявка, LTM, вакансии, карьера')
 
 @section('content')
-<section class="w-full px-4 py-8">
+<section class="container">
     <!-- Заголовок -->
     <div class="text-center mb-12">
         <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
@@ -449,7 +449,7 @@
                             </div>
             <button type="button" class="btn send-p text-white bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg transition-colors cursor-pointer border-2 border-red-600 hover:border-red-700" id="add_work_experience" onclick="if(typeof addWorkExperience === 'function') { addWorkExperience(); } else { console.error('addWorkExperience не найдена'); }">
                 Добавить опыт работы
-                            </button>
+            </button>
                         </div>
 
                         <!-- Образование -->
@@ -512,7 +512,7 @@
                             </div>
             <button type="button" class="btn send-p text-white bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg transition-colors cursor-pointer border-2 border-red-600 hover:border-red-700" id="add_educational_institution" onclick="if(typeof addEducationalInstitution === 'function') { addEducationalInstitution(); } else { console.error('addEducationalInstitution не найдена'); }">
                 Добавить образование
-                            </button>
+            </button>
                         </div>
 
                         <!-- Дополнительные заметки -->
@@ -532,8 +532,8 @@
                 ← Назад на главную
             </a>
             <button type="submit" class="btn send-p text-white bg-red-600 hover:bg-red-700 px-8 py-4 rounded-lg text-lg font-bold">
-                                        Отправить заявку
-                                    </button>
+                Отправить заявку
+            </button>
                         </div>
                     </form>
 </section>

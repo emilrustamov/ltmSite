@@ -16,7 +16,7 @@
                 <div class="carousel-custom-item">
                     <a href="/{{ $lang }}/portfolio/{{ $p->slug }}">
                         <div class="col flex-column slide-text">
-                            <p class="slide-title">{{ $p->translation($lang)?->title ?? '' }}</p>
+                            <h2 class="slide-title">{{ $p->translation($lang)?->title ?? '' }}</h2>
                             <a class="slide-a"
                                 href="/{{ $lang }}/portfolio/{{ $p->slug }}">{{ __('translate.readMore') }}</a>
                         </div>

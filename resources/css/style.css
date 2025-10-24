@@ -614,15 +614,22 @@ section {
   z-index: -1;
 }
 
+.send-p {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
 .send-p:after {
   content: "";
-  display: block;
+  display: inline-block !important;
   width: 30px;
   height: 30px;
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("/assets/images/long-arrow-right.png");
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .send-p:hover:after {
@@ -1222,22 +1229,23 @@ section {
 
 .custom-button {
   background-color: var(--primary);
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  gap: 10px;
   padding: 10px 20px;
-  border-radius: 5px
+  border-radius: 5px;
 }
 
 .custom-button:after {
   content: "";
-  display: block;
+  display: inline-block !important;
   width: 30px;
   height: 30px;
-  margin-left: 40px;
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("/assets/images/long-arrow-right.png");
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .custom-button:hover:after {

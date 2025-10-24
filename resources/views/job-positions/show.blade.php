@@ -34,26 +34,6 @@
                             {{ $jobPosition->{'name_' . $lang} ?? $jobPosition->name_ru }}
                         </h3>
                     </div>
-                    <div class="flex-1">
-                        <h4 class="text-white font-semibold mb-2">{{ __('translate.status') }}</h4>
-                        <h3 class="text-[#e4abab]">
-                            @if($jobPosition->status)
-                                <span class="text-green-400">{{ __('translate.open') }}</span>
-                            @else
-                                <span class="text-gray-400">{{ __('translate.closed') }}</span>
-                            @endif
-                        </h3>
-                    </div>
-                    <div class="flex-1">
-                        <h4 class="text-white font-semibold mb-2">{{ __('translate.skills') }}</h4>
-                        <h3 class="text-[#e4abab]">
-                            @if($jobPosition->technicalSkills->count() > 0)
-                                {{ $jobPosition->technicalSkills->pluck('name_' . $lang)->filter()->implode(', ') ?: $jobPosition->technicalSkills->pluck('name_ru')->implode(', ') }}
-                            @else
-                                {{ __('translate.noSkills') }}
-                            @endif
-                        </h3>
-                    </div>
                 </div>
             </div>
         </div>
@@ -72,6 +52,14 @@
         </div>
         @endif
 
+        @if($jobPosition->technicalSkills->count() > 0)
+        <div class="section">
+            <h2>{{ __('translate.skills') }}</h2>
+            <p>
+                {{ $jobPosition->technicalSkills->pluck('name_' . $lang)->filter()->implode(', ') ?: $jobPosition->technicalSkills->pluck('name_ru')->implode(', ') }}
+            </p>
+        </div>
+        @endif
 
         @if($jobPosition->{'benefits_' . $lang} ?? $jobPosition->benefits_ru)
         <div class="section">
