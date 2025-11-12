@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Mail;
+use App\Mail\ANMail;
 
 class Application extends Model
 {
@@ -22,6 +24,23 @@ class Application extends Model
         'status' => 'boolean',
         'date_of_birth' => 'date',
     ];
+
+    /**
+     * Boot method для автоматической отправки писем
+     */
+    public static function boot() {
+        parent::boot();
+
+        static::created(function ($item) {
+            try {
+                $adminEmail = "info@ltm.studio";
+                Mail::to($adminEmail)->send(new ANMail($item));
+            } catch (\Exception $e) {
+                // Логируем ошибку, но не прерываем сохранение
+                \Log::error('Ошибка отправки почты для заявки: ' . $e->getMessage());
+            }
+        });
+    }
 
     // Связь с городом (Many-to-One)
     public function city()
