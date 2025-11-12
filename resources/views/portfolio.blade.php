@@ -50,6 +50,8 @@
     </section>
 
     <script>
+        window.totalProjectsCount = @json($portfolios->total());
+
         document.addEventListener("DOMContentLoaded", () => {
             const root = document.querySelector("[data-portfolio-root]");
             if (!root) {
@@ -60,6 +62,19 @@
             const gridContainer = document.getElementById("portfolio-grid");
             const paginationContainer = document.getElementById("portfolio-pagination");
             const filterButtons = root.querySelectorAll("[data-category-id]");
+            const loader = document.querySelector(".loaders");
+
+            const showLoader = () => {
+                if (loader) {
+                    loader.style.display = "flex";
+                }
+            };
+
+            const hideLoader = () => {
+                if (loader) {
+                    loader.style.display = "none";
+                }
+            };
 
             let selectedCategories;
             try {
@@ -116,32 +131,6 @@
                 });
             };
 
-            const buildRequestUrl = (url, resetPage = false) => {
-                const requestUrl = new URL(url, window.location.origin);
-                const currentPage = requestUrl.searchParams.get("page");
-
-                requestUrl.searchParams.delete("categories[]");
-                requestUrl.searchParams.delete("categories");
-
-                if (resetPage) {
-                    requestUrl.searchParams.delete("page");
-                } else if (currentPage) {
-                    requestUrl.searchParams.set("page", currentPage);
-                } else {
-                    requestUrl.searchParams.delete("page");
-                }
-
-                requestUrl.searchParams.delete("ajax");
-
-                selectedCategories.forEach(id => {
-                    requestUrl.searchParams.append("categories[]", id);
-                });
-
-                requestUrl.searchParams.set("ajax", "1");
-
-                return requestUrl.toString();
-            };
-
             const updateHistory = (page) => {
                 const historyUrl = new URL(window.location.href);
 
@@ -171,7 +160,32 @@
             };
 
             const fetchPortfolios = (url = null, { resetPage = false } = {}) => {
-                const requestUrl = buildRequestUrl(url || filterUrl, resetPage);
+                const baseUrl = new URL(filterUrl, window.location.origin);
+                const targetUrl = url ? new URL(url, window.location.origin) : baseUrl;
+
+                if (resetPage) {
+                    baseUrl.searchParams.delete("page");
+                } else {
+                    const page = targetUrl.searchParams.get("page");
+                    if (page) {
+                        baseUrl.searchParams.set("page", page);
+                    } else {
+                        baseUrl.searchParams.delete("page");
+                    }
+                }
+
+                baseUrl.searchParams.delete("categories[]");
+                baseUrl.searchParams.delete("categories");
+
+                selectedCategories.forEach(id => {
+                    baseUrl.searchParams.append("categories[]", id);
+                });
+
+                baseUrl.searchParams.set("ajax", "1");
+
+                const requestUrl = baseUrl.toString();
+
+                showLoader();
 
                 fetch(requestUrl, {
                     headers: {
@@ -190,6 +204,9 @@
                     .catch(() => {
                         gridContainer.innerHTML = `<div class="portfolio-empty"><p>{{ __('translate.portfolioFilterError') }}</p></div>`;
                         paginationContainer.innerHTML = "";
+                    })
+                    .finally(() => {
+                        hideLoader();
                     });
             };
 
@@ -258,6 +275,7 @@
         }
 
         .portfolio-empty {
+            grid-column: 1 / -1;
             width: 100%;
             padding: 80px 20px;
             text-align: center;
@@ -266,6 +284,11 @@
             border-radius: 16px;
             font-size: 1.1rem;
             letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 220px;
         }
 
         .portfolio-pagination {

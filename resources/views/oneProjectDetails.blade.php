@@ -81,6 +81,8 @@
                 viewedProjects.push(projectId);
                 localStorage.setItem("viewedProjects", JSON.stringify(viewedProjects));
             }
+
+            document.dispatchEvent(new Event('portfolio-viewed-updated'));
         });
     </script>
 @endsection

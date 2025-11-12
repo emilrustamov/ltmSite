@@ -285,26 +285,51 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", async function() {
-        // Если переменная уже установлена (на portfolio), используем её,
-        // иначе делаем AJAX запрос для получения количества проектов.
-        let totalProjects = window.totalProjectsCount || 0;
-        if (totalProjects === 0) {
-            try {
-                const response = await fetch('/api/portfolio-count/{{ $lang }}');
-                const data = await response.json();
-                totalProjects = data.total;
-            } catch (error) {
-                console.error('Ошибка загрузки количества проектов:', error);
-            }
+        const badge = document.getElementById("newProjectBadge");
+        if (!badge) {
+            return;
         }
 
-        let viewedProjects = JSON.parse(localStorage.getItem("viewedProjects") || "[]");
-        const newCount = totalProjects - viewedProjects.length;
-        const badge = document.getElementById("newProjectBadge");
-        if (badge && newCount > 0) {
-            badge.textContent = newCount;
-            badge.style.display = "inline-block";
-        }
+        let totalProjects = Number(window.totalProjectsCount || 0);
+
+        const updateBadge = () => {
+            const viewedProjects = JSON.parse(localStorage.getItem("viewedProjects") || "[]");
+            const newCount = Math.max(totalProjects - viewedProjects.length, 0);
+
+            if (newCount > 0) {
+                badge.textContent = newCount;
+                badge.style.display = "inline-block";
+            } else {
+                badge.textContent = "";
+                badge.style.display = "none";
+            }
+        };
+
+        const ensureTotalProjects = async () => {
+            if (totalProjects > 0) {
+                return totalProjects;
+            }
+
+            try {
+                const response = await fetch('/api/portfolio-count/{{ $lang }}');
+                if (!response.ok) {
+                    throw new Error(`Request failed with status ${response.status}`);
+                }
+                const data = await response.json();
+                totalProjects = Number(data.total || 0);
+                window.totalProjectsCount = totalProjects;
+            } catch (error) {
+                console.error('Ошибка загрузки количества проектов:', error);
+                totalProjects = 0;
+            }
+
+            return totalProjects;
+        };
+
+        await ensureTotalProjects();
+        updateBadge();
+
+        document.addEventListener('portfolio-viewed-updated', updateBadge);
     });
 </script>
 
