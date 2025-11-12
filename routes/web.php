@@ -388,6 +388,8 @@ Route::prefix('{lang}')
         // Portfolio (public)
         Route::get('/portfolio', [PublicPortfolioController::class, 'index'])
             ->name('portfolio.index');
+        Route::get('/portfolio/filter', [PublicPortfolioController::class, 'filter'])
+            ->name('portfolio.filter');
         Route::get('/portfolio/{portfolio}', [PublicPortfolioController::class, 'show'])
             ->name('portfolio.show');
 

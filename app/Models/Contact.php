@@ -24,7 +24,7 @@ class Contact extends Model
   
         static::created(function ($item) {
             try {
-                $adminEmail = "info@ltm.studio";
+                $adminEmail = env('ADMIN_EMAIL', 'info@ltm.studio');
                 Mail::to($adminEmail)->send(new ANMail($item));
             } catch (\Exception $e) {
                 // Логируем ошибку, но не прерываем сохранение

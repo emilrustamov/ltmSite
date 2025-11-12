@@ -159,6 +159,9 @@ return [
 
     'portfolioTitle' => 'Проекты LTM ',
     'portfolioSub' => 'Много интересных кейсов, за которые не стыдно)',
+    'portfolioFilterAll' => 'Все проекты',
+    'portfolioFilterEmpty' => 'Проекты не найдены. Попробуйте выбрать другие категории.',
+    'portfolioFilterError' => 'Не удалось загрузить проекты. Попробуйте снова позже.',
     'menuAll' => 'Все',
     'menu' => "МЕ\nНЮ",
 

@@ -25,6 +25,9 @@ class DatabaseSeeder extends Seeder
             // 4. Заполняем ВСЕ данные портфолио из дампа
             FullDataSeeder::class,        // Очищает и заполняет все портфолио, категории и связи
             
+            // 5. Добавляем демонстрационные проекты для каждой категории
+            DemoPortfolioSeeder::class,
+            
             // 5. Обновляем только поля result для существующих портфолио (БЕЗОПАСНО)
             UpdatePortfolioResultsSeeder::class,  // Обновляет только описания результатов
             

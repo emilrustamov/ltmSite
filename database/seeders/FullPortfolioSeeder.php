@@ -71,15 +71,6 @@ class FullPortfolioSeeder extends Seeder
                     'tm' => ['name' => 'WebCatalog'],
                 ],
             ],
-            [
-                'id' => 7,
-                'slug' => 'web-catalog-2',
-                'translations' => [
-                    'en' => ['name' => 'WebCatalog'],
-                    'ru' => ['name' => 'Сайт каталог'],
-                    'tm' => ['name' => 'WebCatalog'],
-                ],
-            ],
         ];
 
         foreach ($categories as $categoryData) {

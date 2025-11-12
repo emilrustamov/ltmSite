@@ -144,6 +144,9 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
 
     'portfolioTitle' => 'LTM  Projects',
     'portfolioSub' => 'Many interesting cases we\'re proud of)',
+    'portfolioFilterAll' => 'All projects',
+    'portfolioFilterEmpty' => 'No projects found. Try choosing other categories.',
+    'portfolioFilterError' => 'Failed to load projects. Please try again later.',
     'menuAll' => 'All',
     'menu' => "ME\nNU",
 

@@ -77,11 +77,11 @@ class FullCategoryPortfolioSeeder extends Seeder
                 'created_at' => '2025-04-13 14:54:14',
                 'updated_at' => '2025-04-13 14:54:14',
             ],
-            // Eurocosmetics (123) - Сайт каталог (7)
+            // Eurocosmetics (123) - Сайт каталог (6)
             [
                 'id' => 85,
                 'portfolio_id' => 123,
-                'category_id' => 7,
+                'category_id' => 6,
                 'created_at' => '2025-04-13 14:52:27',
                 'updated_at' => '2025-04-13 14:52:27',
             ],
@@ -93,11 +93,11 @@ class FullCategoryPortfolioSeeder extends Seeder
                 'created_at' => '2025-04-14 14:38:31',
                 'updated_at' => '2025-04-14 14:38:31',
             ],
-            // Transcaspian Tours (125) - Сайт каталог (7)
+            // Transcaspian Tours (125) - Сайт каталог (6)
             [
                 'id' => 88,
                 'portfolio_id' => 125,
-                'category_id' => 7,
+                'category_id' => 6,
                 'created_at' => '2025-04-18 14:46:40',
                 'updated_at' => '2025-04-18 14:46:40',
             ],

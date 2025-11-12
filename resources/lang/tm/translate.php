@@ -164,6 +164,9 @@ Biziň superwaýzerlerimiz işlerimizi mümkin boldugyça amatly ýagdaýda meý
 
     'portfolioTitle' => 'LTM -nyň taslamalary',
     'portfolioSub' => 'Много интересных кейсов, за которые не стыдно)',
+    'portfolioFilterAll' => 'Ähli taslamalar',
+    'portfolioFilterEmpty' => 'Taslamalar tapylmady. Başga kategoriýalary synap görüň.',
+    'portfolioFilterError' => 'Taslamalary ýükläp bolmady. Birazdan gaýtadan synanyşyň.',
     'menuAll' => 'Hemmesi',
     'menu' => "МЕN\nÝU",
 

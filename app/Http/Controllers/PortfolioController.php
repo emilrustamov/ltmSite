@@ -33,7 +33,7 @@ class PortfolioController extends Controller
                 }
             ])
             ->orderBy('created_at', 'desc')
-            ->paginate(20);
+            ->paginate(15);
         
         return view('admin.portfolios.index', [
             'portfolios' => $portfolios,
@@ -88,22 +88,25 @@ class PortfolioController extends Controller
         ]);
 
         $data = $request->only([
-            'url_button', 'is_main_page', 'when',
+            'url_button', 'when',
             'title_tm', 'title_ru', 'title_en',
             'who_tm', 'who_ru', 'who_en',
             'desc_tm', 'desc_ru', 'desc_en',
             'target_tm', 'target_ru', 'target_en',
             'res_tm', 'res_ru', 'res_en',
-            'status', 'ordering', 'categories'
+            'ordering', 'categories'
         ]);
+
+        $status = $request->boolean('status', true);
+        $isMainPage = $request->boolean('is_main_page', false);
 
         // Создаём запись портфолио
         $portfolio = Portfolio::create([
             'slug' => Str::slug($data['title_ru'] ?? '') . '-' . time(),
             'url_button' => $data['url_button'] ?? null,
-            'is_main_page' => $data['is_main_page'] ?? false,
+            'is_main_page' => $isMainPage,
             'when' => $data['when'] ?? null,
-            'status' => $data['status'] ?? true,
+            'status' => $status,
             'ordering' => $data['ordering'] ?? 0,
             'photo' => '',
         ]);
@@ -186,21 +189,24 @@ class PortfolioController extends Controller
         }
 
         $data = $request->only([
-            'url_button', 'is_main_page', 'when',
+            'url_button', 'when',
             'title_tm', 'title_ru', 'title_en',
             'who_tm', 'who_ru', 'who_en',
             'desc_tm', 'desc_ru', 'desc_en',
             'target_tm', 'target_ru', 'target_en',
             'res_tm', 'res_ru', 'res_en',
-            'status', 'ordering', 'categories'
+            'ordering', 'categories'
         ]);
+
+        $status = $request->boolean('status', false);
+        $isMainPage = $request->boolean('is_main_page', false);
 
         // Обновляем основную запись
         $portfolio->update([
             'url_button' => $data['url_button'] ?? null,
-            'is_main_page' => $data['is_main_page'] ?? false,
+            'is_main_page' => $isMainPage,
             'when' => $data['when'] ?? null,
-            'status' => $data['status'] ?? true,
+            'status' => $status,
             'ordering' => $data['ordering'] ?? 0,
         ]);
 
