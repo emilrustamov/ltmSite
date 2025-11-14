@@ -54,9 +54,43 @@ $(document).ready(function () {
   });
 
   // Обновляем отображение кнопки при прокрутке
-  $(window).scroll(function () {
-    checkScrollAndShowButton();
-  });
+  // Используем Lenis события, если доступен, иначе fallback на нативный скролл
+  const initScrollListeners = () => {
+    if (window.lenis) {
+      // Слушаем события прокрутки Lenis
+      window.lenis.on('scroll', ({ scroll }) => {
+        if (scroll > 20) {
+          $scrollToTopButton.show();
+        } else {
+          $scrollToTopButton.hide();
+        }
+      });
+    } else {
+      // Fallback на нативный скролл
+      $(window).scroll(function () {
+        checkScrollAndShowButton();
+      });
+    }
+  };
+
+  // Ждем инициализации Lenis
+  if (window.lenis) {
+    initScrollListeners();
+  } else {
+    // Если Lenis еще не загружен, ждем немного и пробуем снова
+    const checkLenis = setInterval(() => {
+      if (window.lenis) {
+        clearInterval(checkLenis);
+        initScrollListeners();
+      }
+    }, 50);
+    
+    // Останавливаем проверку через 2 секунды, если Lenis так и не загрузился
+    setTimeout(() => {
+      clearInterval(checkLenis);
+      initScrollListeners(); // Инициализируем с fallback на нативный скролл
+    }, 2000);
+  }
 
 
 

@@ -9,6 +9,19 @@
                 @endif
                 <div class="content">
                     <div>
+                        @if($portf->categories->isNotEmpty())
+                            @php
+                                $categoryNames = $portf->categories
+                                    ->map(function($category) use ($lang) {
+                                        return $category->translation($lang)?->name ?? $category->slug ?? '';
+                                    })
+                                    ->filter()
+                                    ->take(2); // Показываем максимум 2 категории
+                            @endphp
+                            @if($categoryNames->isNotEmpty())
+                                <div class="portfolio-category">{{ $categoryNames->implode(', ') }}</div>
+                            @endif
+                        @endif
                         <div class="line"></div>
                         <h2>
                             {!! $portf->translation($lang)?->title ?? 'No title' !!}

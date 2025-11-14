@@ -199,14 +199,29 @@
                         </div>
                     </div>
 
-                    <!-- Статус -->
-                    <div class="mb-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="status" name="status" value="1" 
-                                   {{ old('status', true) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="status">
-                                Опубликовано
-                            </label>
+                    <!-- Статусы -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" 
+                                           {{ old('is_active', true) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="is_active">
+                                        Активна
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="status" name="status" value="1" 
+                                           {{ old('status', true) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="status">
+                                        Опубликовано
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     

@@ -167,10 +167,12 @@
                         <a href="tel:+99312753713" class="text-6xl">+993 12 75 37 13</a>
                         <a href="mailto:info@ltm.studio" class="text-6xl">info@ltm.studio</a>
                         <div class="flex media-links">
-                            <!-- Временно закомментированы иконки Instagram и LinkedIn
-                            <a class="menu-a" href="https://www.instagram.com/lebizli_tehnologiya/" id="instLink">In</a>
-                            <a class="menu-a" href="linkedin.com/company/ltmstudio" id="linkedLink">Ln</a>
-                            -->
+                            <a class="menu-a" href="https://www.instagram.com/lebizli_tehnologiya_merkezi?igsh=a3ZwZHN3aXdtYzJ5" id="instLink" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a class="menu-a" href="https://www.linkedin.com/company/ltm-studio/" id="linkedLink" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
                         </div>
                         <a class="opacity-[0.7]" href="/{{ $lang }}/"
                             id="linkAddress">https://ltm.studio/</a>
@@ -220,10 +222,8 @@
     </a>
 
     <div class="flex gap-4 mb-6">
-        <!-- Временно закомментированы иконки Instagram и LinkedIn
-        <a href="https://www.instagram.com/lebizli_tehnologiya/"><i class="fa-brands fa-instagram text-3xl"></i></a>
+        <a href="https://www.instagram.com/lebizli_tehnologiya_merkezi?igsh=a3ZwZHN3aXdtYzJ5"><i class="fa-brands fa-instagram text-3xl"></i></a>
         <a href="https://www.linkedin.com/company/ltm-studio/"><i class="fa-brands fa-linkedin text-3xl"></i></a>
-        -->
     </div>
 
     <nav class="flex flex-col gap-4 text-xl font-semibold mb-6">

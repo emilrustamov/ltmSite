@@ -67,12 +67,16 @@
             const showLoader = () => {
                 if (loader) {
                     loader.style.display = "flex";
+                    // Убираем черный фон для фильтрации портфолио
+                    loader.style.backgroundColor = "transparent";
                 }
             };
 
             const hideLoader = () => {
                 if (loader) {
                     loader.style.display = "none";
+                    // Восстанавливаем оригинальный фон для основного спиннера
+                    loader.style.backgroundColor = "#1c1b1b";
                 }
             };
 
@@ -200,6 +204,39 @@
                         applyViewedState(gridContainer);
                         attachPaginationHandlers();
                         updateHistory(data.meta.page);
+                        
+                        // Прокрутка вверх страницы после обновления контента
+                        // Обновляем Lenis после изменения DOM и прокручиваем вверх
+                        if (window.lenis) {
+                            // Принудительно обновляем размеры Lenis после изменения DOM
+                            if (typeof window.lenis.resize === 'function') {
+                                window.lenis.resize();
+                            }
+                            // Используем двойной requestAnimationFrame для предотвращения резкого скачка
+                            // Это гарантирует, что браузер успеет отрендерить новый контент перед прокруткой
+                            requestAnimationFrame(() => {
+                                requestAnimationFrame(() => {
+                                    try {
+                                        // Простой вызов scrollTo - Lenis использует настройки из конфигурации
+                                        window.lenis.scrollTo(0);
+                                    } catch (e) {
+                                        // Если произошла ошибка, используем нативный скролл
+                                        window.scrollTo({
+                                            top: 0,
+                                            behavior: 'smooth'
+                                        });
+                                    }
+                                });
+                            });
+                        } else {
+                            // Fallback на нативный скролл, если Lenis не доступен
+                            requestAnimationFrame(() => {
+                                window.scrollTo({
+                                    top: 0,
+                                    behavior: 'smooth'
+                                });
+                            });
+                        }
                     })
                     .catch(() => {
                         gridContainer.innerHTML = `<div class="portfolio-empty"><p>{{ __('translate.portfolioFilterError') }}</p></div>`;
@@ -233,6 +270,46 @@
             applyViewedState(gridContainer);
             updateButtonStates();
             attachPaginationHandlers();
+            
+            // Прокрутка вверх при загрузке страницы с параметром page
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('page')) {
+                // Ждем инициализации Lenis и используем двойной requestAnimationFrame для плавности
+                const scrollToTop = () => {
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            if (window.lenis) {
+                                try {
+                                    // Простой вызов scrollTo - Lenis использует настройки из конфигурации
+                                    window.lenis.scrollTo(0);
+                                } catch (e) {
+                                    // Если произошла ошибка, используем нативный скролл
+                                    window.scrollTo({
+                                        top: 0,
+                                        behavior: 'smooth'
+                                    });
+                                }
+                            } else {
+                                // Fallback на нативный скролл, если Lenis не доступен
+                                window.scrollTo({
+                                    top: 0,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        });
+                    });
+                };
+
+                // Проверяем, инициализирован ли Lenis
+                if (window.lenis) {
+                    scrollToTop();
+                } else {
+                    // Если Lenis еще не загружен, ждем события готовности
+                    window.addEventListener('lenis:ready', scrollToTop, { once: true });
+                    // Fallback: если событие не произошло, ждем немного
+                    setTimeout(scrollToTop, 300);
+                }
+            }
         });
     </script>
 

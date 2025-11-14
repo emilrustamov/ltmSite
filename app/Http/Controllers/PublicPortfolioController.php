@@ -91,7 +91,7 @@ class PublicPortfolioController extends Controller
 
     protected function buildPortfolioQuery(array $categoryIds = [])
     {
-        $query = Portfolio::with(['translations'])
+        $query = Portfolio::with(['translations', 'categories.translations'])
             ->where('status', true)
             ->orderBy('created_at', 'desc');
 

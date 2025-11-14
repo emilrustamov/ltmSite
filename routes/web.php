@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use App\Models\Portfolio;
+use App\Models\Categories;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PublicPortfolioController;
@@ -352,7 +353,40 @@ Route::prefix('{lang}')
         // Bitrix24
         Route::get('/bitrix24', function ($lang) {
             App::setLocale($lang);
-            return view('bitrix', compact('lang'));
+            
+            // Найти категорию Bitrix по slug (пробуем разные варианты)
+            $bitrixCategory = Categories::where(function($query) {
+                    $query->where('slug', 'bitrix')
+                          ->orWhere('slug', 'bitrix24');
+                })
+                ->where('status', true)
+                ->first();
+            
+            // Если не нашли по slug, попробуем найти по имени в переводах
+            if (!$bitrixCategory) {
+                $bitrixCategory = Categories::whereHas('translations', function($query) {
+                        $query->where('name', 'LIKE', '%bitrix%')
+                              ->orWhere('name', 'LIKE', '%Битрикс%');
+                    })
+                    ->where('status', true)
+                    ->first();
+            }
+            
+            // Получить проекты с категорией Bitrix (только если категория найдена)
+            $bitrixProjects = collect();
+            
+            if ($bitrixCategory) {
+                $bitrixProjects = Portfolio::with(['translations', 'categories.translations'])
+                    ->where('status', true)
+                    ->whereHas('categories', function ($relation) use ($bitrixCategory) {
+                        $relation->where('categories.id', $bitrixCategory->id);
+                    })
+                    ->orderBy('ordering')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+            }
+            
+            return view('bitrix', compact('lang', 'bitrixProjects'));
         })
             ->name('bitrix');
 

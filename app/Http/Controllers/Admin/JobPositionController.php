@@ -47,6 +47,7 @@ class JobPositionController extends Controller
             'name_en' => 'nullable|string|max:255',
             'name_tm' => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
+            'is_active' => 'nullable|boolean',
             'description_ru' => 'nullable|string',
             'description_en' => 'nullable|string',
             'description_tm' => 'nullable|string',
@@ -64,12 +65,16 @@ class JobPositionController extends Controller
         ]);
 
         $data = $request->only([
-            'name_ru', 'name_en', 'name_tm', 'sort_order',
+            'name_ru', 'name_en', 'name_tm', 'sort_order', 'is_active',
             'description_ru', 'description_en', 'description_tm',
             'responsibilities_ru', 'responsibilities_en', 'responsibilities_tm',
             'benefits_ru', 'benefits_en', 'benefits_tm',
             'status', 'ordering'
         ]);
+        
+        // Обработка boolean полей (чекбоксы не отправляются, если не отмечены)
+        $data['is_active'] = $request->has('is_active') ? (bool)$request->is_active : false;
+        $data['status'] = $request->has('status') ? (bool)$request->status : false;
         $data['slug'] = Str::slug($data['name_ru']) . '-' . time();
         $data['image'] = ''; // Инициализируем пустой строкой
 
@@ -116,7 +121,7 @@ class JobPositionController extends Controller
             'name_en' => 'nullable|string|max:255',
             'name_tm' => 'nullable|string|max:255',
             'sort_order' => 'nullable|integer|min:0',
-            'is_active' => 'boolean',
+            'is_active' => 'nullable|boolean',
             'description_ru' => 'nullable|string',
             'description_en' => 'nullable|string',
             'description_tm' => 'nullable|string',
@@ -140,6 +145,10 @@ class JobPositionController extends Controller
             'benefits_ru', 'benefits_en', 'benefits_tm',
             'status', 'ordering'
         ]);
+        
+        // Обработка boolean полей (чекбоксы не отправляются, если не отмечены)
+        $data['is_active'] = $request->has('is_active') ? (bool)$request->is_active : false;
+        $data['status'] = $request->has('status') ? (bool)$request->status : false;
         
         // Обработка изображения
         if ($request->hasFile('image')) {

@@ -1151,6 +1151,15 @@ section {
   margin-right: 25px;
   margin-top: 80px;
   font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.media-links a:hover {
+  transform: scale(1.1);
+  color: var(--primary);
 }
 
 .circle-1 {
