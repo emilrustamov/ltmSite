@@ -64,11 +64,17 @@
             const filterButtons = root.querySelectorAll("[data-category-id]");
             const loader = document.querySelector(".loaders");
 
-            const showLoader = () => {
+            const showLoader = (isFiltering = false) => {
                 if (loader) {
                     loader.style.display = "flex";
-                    // Убираем черный фон для фильтрации портфолио
-                    loader.style.backgroundColor = "transparent";
+                    // Убираем черный фон только для фильтрации
+                    // При пагинации оставляем черный фон как при переходах между вкладками
+                    if (isFiltering) {
+                        loader.style.backgroundColor = "transparent";
+                    } else {
+                        // При пагинации используем тот же черный фон, что и при переходах между вкладками
+                        loader.style.backgroundColor = "#1c1b1b";
+                    }
                 }
             };
 
@@ -158,12 +164,12 @@
                 paginationContainer.querySelectorAll("a").forEach(link => {
                     link.addEventListener("click", event => {
                         event.preventDefault();
-                        fetchPortfolios(link.href, { resetPage: false });
+                        fetchPortfolios(link.href, { resetPage: false, isPagination: true });
                     });
                 });
             };
 
-            const fetchPortfolios = (url = null, { resetPage = false } = {}) => {
+            const fetchPortfolios = (url = null, { resetPage = false, isPagination = false } = {}) => {
                 const baseUrl = new URL(filterUrl, window.location.origin);
                 const targetUrl = url ? new URL(url, window.location.origin) : baseUrl;
 
@@ -189,7 +195,10 @@
 
                 const requestUrl = baseUrl.toString();
 
-                showLoader();
+                // При пагинации показываем логотип с черным фоном (как при переходах между вкладками)
+                // При фильтрации показываем логотип без черного фона
+                // isPagination = true означает пагинацию (черный фон), false означает фильтрацию (прозрачный фон)
+                showLoader(!isPagination);
 
                 fetch(requestUrl, {
                     headers: {
@@ -263,7 +272,8 @@
                     }
 
                     updateButtonStates();
-                    fetchPortfolios(filterUrl, { resetPage: true });
+                    // При фильтрации передаем isPagination: false, чтобы показать логотип без черного фона
+                    fetchPortfolios(filterUrl, { resetPage: true, isPagination: false });
                 });
             });
 
