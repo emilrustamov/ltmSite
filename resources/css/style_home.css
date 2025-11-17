@@ -40,6 +40,10 @@ label {
     background-color: transparent;
     color: white;
 }
+select.field-input option {
+    color: #111;
+    background-color: #fff;
+}
 
 .field-input-full-width {
     width: 100% !important;
