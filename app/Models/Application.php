@@ -14,9 +14,9 @@ class Application extends Model
     protected $table = 'applications';
 
     protected $fillable = [
-        'name', 'surname', 'email', 'phone', 'date_of_birth', 'expected_salary', 'personal_info', 'contact_info', 'general_info',
+        'name', 'surname', 'email', 'phone', 'date_of_birth', 'expected_salary', 'personal_info', 'contact_info',
         'linkedin_url', 'github_url', 'city_id', 'custom_city', 'registration_address', 'source_id', 'custom_source',
-        'work_format_id', 'custom_work_format', 'education_id', 'custom_education', 'custom_language', 
+        'work_format_id', 'custom_work_format', 'education_id', 'custom_education', 'custom_language', 'custom_technical_skill',
         'cv_file', 'professional_plans', 'other_notes', 'status'
     ];
 

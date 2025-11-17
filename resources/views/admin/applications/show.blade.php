@@ -109,13 +109,6 @@
                 </div>
                 @endif
 
-                @if($application->general_info)
-                <div class="mb-3">
-                    <label class="form-label fw-bold">Общая информация</label>
-                    <p class="mb-0">{{ $application->general_info }}</p>
-                </div>
-                @endif
-
                 <div class="row">
                     @if($application->linkedin_url)
                     <div class="col-md-6">
@@ -274,6 +267,13 @@
                     <label class="form-label fw-bold">Образование</label>
                     <p class="mb-0">{{ $application->education?->name_ru ?? $application->custom_education ?? 'Не указано' }}</p>
                 </div>
+
+                @if($application->custom_technical_skill)
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Дополнительные навыки</label>
+                    <p class="mb-0">{{ $application->custom_technical_skill }}</p>
+                </div>
+                @endif
 
                 @if($application->custom_language)
                 <div class="mb-3">

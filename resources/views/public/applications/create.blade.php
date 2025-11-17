@@ -6,6 +6,13 @@
 
 @section('content')
 <section class="container">
+    <style>
+        .application-section-title {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 600;
+            line-height: 1.2;
+        }
+    </style>
     <!-- Заголовок -->
     <div class="text-center mb-12">
         <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
@@ -50,7 +57,7 @@
                         
                         <!-- Личная информация -->
         <div class="mb-12">
-            <h2 class="text-3xl font-bold mb-8 text-white">Личная информация</h2>
+            <h2 class="application-section-title mb-8 text-white">Личная информация</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                  <label class="field">
                                     <input type="text" 
@@ -121,7 +128,7 @@
 
                         <!-- Дополнительная информация -->
         <div class="mb-12">
-            <h2 class="text-3xl font-bold mb-8 text-white">Дополнительная информация</h2>
+            <h2 class="application-section-title mb-8 text-white">Дополнительная информация</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <label class="field">
                                     <input type="url" 
@@ -142,7 +149,7 @@
 
                         <!-- CV файл -->
         <div class="mb-12">
-            <h2 class="text-3xl font-bold mb-8 text-white">Резюме</h2>
+            <h2 class="application-section-title mb-8 text-white">Резюме</h2>
             <label class="field">
                                     <input type="file" 
                        class="field-input field-input-full-width @error('cv_file') border-red-500 @enderror" 
@@ -155,7 +162,7 @@
 
                         <!-- Дополнительная информация -->
         <div class="mb-12">
-            <h2 class="text-3xl font-bold mb-8 text-white">Дополнительная информация</h2>
+            <h2 class="application-section-title mb-8 text-white">Дополнительная информация</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <label class="field">
                     <textarea class="field-input field-textarea w-100 @error('personal_info') border-red-500 @enderror" 
@@ -170,17 +177,11 @@
                                               placeholder="Дополнительные контакты...">{{ old('contact_info') }}</textarea>
                 </label>
                                 </div>
-            <label class="field">
-                <textarea class="field-input field-textarea w-100 @error('general_info') border-red-500 @enderror" 
-                                              name="general_info" 
-                                              rows="3" 
-                                              placeholder="Любая дополнительная информация...">{{ old('general_info') }}</textarea>
-            </label>
                         </div>
 
         <!-- Местоположение -->
         <div class="mb-12">
-            <h2 class="text-3xl font-bold mb-8 text-white">Местоположение</h2>
+            <h2 class="application-section-title mb-8 text-white">Местоположение</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <label class="field">
@@ -221,7 +222,7 @@
 
                         <!-- Источник информации -->
         <div class="mb-12">
-            <h2 class="text-3xl font-bold mb-8 text-white">Как вы узнали о нас?</h2>
+            <h2 class="application-section-title mb-8 text-white">Как вы узнали о нас?</h2>
             <div>
                 <label class="field">
                     <select class="field-input field-input-full-width @error('source_id') border-red-500 @enderror" 
@@ -252,7 +253,7 @@
 
         <!-- Работа и образование -->
         <div class="mb-12">
-            <h2 class="text-3xl font-bold mb-8 text-white">Работа и образование</h2>
+            <h2 class="application-section-title mb-8 text-white">Работа и образование</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <label class="field">
@@ -311,7 +312,7 @@
 
                         <!-- Профессиональные планы -->
         <div class="mb-12">
-            <h2 class="text-3xl font-bold mb-8 text-white">Профессиональные планы</h2>
+            <h2 class="application-section-title mb-8 text-white">Профессиональные планы</h2>
             <label class="field">
                 <textarea class="field-input field-textarea w-100 @error('professional_plans') border-red-500 @enderror" 
                                               name="professional_plans" 
@@ -323,7 +324,7 @@
 
                         <!-- Профессиональные данные -->
         <div class="mb-12">
-            <h2 class="text-3xl font-bold mb-8 text-white">Профессиональные данные</h2>
+            <h2 class="application-section-title mb-8 text-white">Профессиональные данные</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <h3 class="text-xl font-semibold mb-4 text-white">Интересующие должности</h3>
@@ -363,6 +364,16 @@
                                             </div>
                                         @endforeach
                                     </div>
+                    <label class="field mt-4">
+                                    <input type="text" 
+                               class="field-input field-input-full-width @error('custom_technical_skill') border-red-500 @enderror" 
+                                           name="custom_technical_skill" 
+                                           value="{{ old('custom_technical_skill') }}" 
+                                           placeholder="Другие навыки (через запятую)">
+                                    @error('custom_technical_skill')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
+                    </label>
                                 </div>
                 <div>
                     <h3 class="text-xl font-semibold mb-4 text-white">Языки</h3>
@@ -394,7 +405,7 @@
 
                         <!-- Опыт работы -->
         <div class="mb-12">
-            <h2 class="text-3xl font-bold mb-8 text-white">Опыт работы</h2>
+            <h2 class="application-section-title mb-8 text-white">Опыт работы</h2>
                             <div id="work_experiences_container">
                                 @if(old('work_experiences'))
                                     @foreach(old('work_experiences') as $index => $experience)
@@ -447,14 +458,14 @@
                                     @endforeach
                                 @endif
                             </div>
-            <button type="button" class="btn send-p text-white bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg transition-colors cursor-pointer border-2 border-red-600 hover:border-red-700" id="add_work_experience" onclick="if(typeof addWorkExperience === 'function') { addWorkExperience(); } else { console.error('addWorkExperience не найдена'); }">
+            <button type="button" class="btn add-plus text-white bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg transition-colors cursor-pointer border-2 border-red-600 hover:border-red-700" id="add_work_experience" onclick="if(typeof addWorkExperience === 'function') { addWorkExperience(); } else { console.error('addWorkExperience не найдена'); }">
                 Добавить опыт работы
             </button>
                         </div>
 
                         <!-- Образование -->
         <div class="mb-12">
-            <h2 class="text-3xl font-bold mb-8 text-white">Образование</h2>
+            <h2 class="application-section-title mb-8 text-white">Образование</h2>
                             <div id="educational_institutions_container">
                                 @if(old('educational_institutions'))
                                     @foreach(old('educational_institutions') as $index => $institution)
@@ -510,14 +521,14 @@
                                     @endforeach
                                 @endif
                             </div>
-            <button type="button" class="btn send-p text-white bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg transition-colors cursor-pointer border-2 border-red-600 hover:border-red-700" id="add_educational_institution" onclick="if(typeof addEducationalInstitution === 'function') { addEducationalInstitution(); } else { console.error('addEducationalInstitution не найдена'); }">
+            <button type="button" class="btn add-plus text-white bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg transition-colors cursor-pointer border-2 border-red-600 hover:border-red-700" id="add_educational_institution" onclick="if(typeof addEducationalInstitution === 'function') { addEducationalInstitution(); } else { console.error('addEducationalInstitution не найдена'); }">
                 Добавить образование
             </button>
                         </div>
 
                         <!-- Дополнительные заметки -->
         <div class="mb-12">
-            <h2 class="text-3xl font-bold mb-8 text-white">Дополнительные заметки</h2>
+            <h2 class="application-section-title mb-8 text-white">Дополнительные заметки</h2>
             <label class="field">
                 <textarea class="field-input field-textarea w-100 @error('other_notes') border-red-500 @enderror" 
                                           name="other_notes" 
