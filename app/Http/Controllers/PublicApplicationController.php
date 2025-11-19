@@ -45,6 +45,8 @@ class PublicApplicationController extends Controller
     // Сохранение публичной заявки
     public function store(Request $request)
     {
+        $positionParam = $request->input('position');
+
         // Создаем правила валидации с учетом кастомных полей
         $validationRules = [
             'name' => 'required|string|max:255',
@@ -262,8 +264,16 @@ class PublicApplicationController extends Controller
             }
         }
 
+        // Готовим параметры для возврата на форму (с сохранением выбранной должности)
+        $redirectParams = [];
+        if (!empty($positionParam)) {
+            $redirectParams['position'] = $positionParam;
+        }
+
         // Редирект обратно на страницу заявки с сообщением об успехе
-        return redirect()->back()->with('success', 'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
+        return redirect()
+            ->route('applications.create', $redirectParams)
+            ->with('success', 'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
     }
 
     // API метод для получения навыков по должностям

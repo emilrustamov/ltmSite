@@ -54,6 +54,7 @@
     <!-- Форма в стиле LTM -->
     <form action="{{ route('applications.store') }}" method="POST" enctype="multipart/form-data" class="w-full">
                         @csrf
+                        <input type="hidden" name="position" value="{{ old('position', request('position')) }}">
                         
                         <!-- Личная информация -->
         <div class="mb-12">
