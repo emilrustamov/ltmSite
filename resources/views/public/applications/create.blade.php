@@ -52,7 +52,7 @@
                     @endif
 
     <!-- Форма в стиле LTM -->
-    <form action="{{ route('applications.store') }}" method="POST" enctype="multipart/form-data" class="w-full">
+    <form action="{{ route('applications.store') }}" method="POST" enctype="multipart/form-data" class="w-full" data-application-form="true">
                         @csrf
                         <input type="hidden" name="position" value="{{ old('position', request('position')) }}">
                         
@@ -115,6 +115,9 @@
                                            name="date_of_birth" 
                                            value="{{ old('date_of_birth') }}"
                                            required>
+                                    @error('date_of_birth')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                                     </div>
                 <div class="field">
                                     <div class="field-label">Ожидаемая зарплата *</div>
@@ -123,6 +126,9 @@
                                            name="expected_salary" 
                                            value="{{ old('expected_salary') }}" 
                                            required>
+                                    @error('expected_salary')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                 </div>
                             </div>
                         </div>
@@ -137,6 +143,9 @@
                                            name="linkedin_url" 
                                            value="{{ old('linkedin_url') }}" 
                            placeholder="LinkedIn профиль">
+                                    @error('linkedin_url')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                 </label>
                 <label class="field">
                                     <input type="url" 
@@ -144,6 +153,9 @@
                                            name="github_url" 
                                            value="{{ old('github_url') }}" 
                            placeholder="GitHub профиль">
+                                    @error('github_url')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                 </label>
                             </div>
                         </div>
@@ -158,6 +170,9 @@
                                            accept=".pdf,.doc,.docx"
                                            required>
                 <div class="text-gray-400 text-sm mt-2">Поддерживаемые форматы: PDF, DOC, DOCX. Максимальный размер: 10MB</div>
+                                    @error('cv_file')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
             </label>
                         </div>
 
@@ -170,12 +185,18 @@
                                               name="personal_info" 
                                               rows="3" 
                                               placeholder="Расскажите о себе...">{{ old('personal_info') }}</textarea>
+                                    @error('personal_info')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                 </label>
                 <label class="field">
                     <textarea class="field-input field-textarea w-100 @error('contact_info') border-red-500 @enderror" 
                                               name="contact_info" 
                                               rows="3" 
                                               placeholder="Дополнительные контакты...">{{ old('contact_info') }}</textarea>
+                                    @error('contact_info')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                 </label>
                                 </div>
                         </div>
@@ -197,6 +218,9 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                    @error('city_id')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                     </label>
                      <div class="flex items-center mt-4">
                          <input type="checkbox" id="custom_city_check" name="custom_city_check" {{ old('custom_city_check') ? 'checked' : '' }} class="mr-4 w-7 h-7 text-red-600 bg-gray-700 border-gray-600 rounded focus:ring-red-500 focus:ring-2">
@@ -209,6 +233,9 @@
                                            value="{{ old('custom_city') }}" 
                                            placeholder="Введите свой город" 
                                            style="{{ old('custom_city_check') ? '' : 'display:none;' }}">
+                                    @error('custom_city')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
                 <label class="field">
                                     <input type="text" 
@@ -217,6 +244,9 @@
                                            value="{{ old('registration_address') }}" 
                            placeholder="Адрес по прописке *"
                                            required>
+                                    @error('registration_address')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                 </label>
                             </div>
                         </div>
@@ -237,6 +267,9 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                    @error('source_id')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                 </label>
                  <div class="flex items-center mt-4">
                      <input type="checkbox" id="custom_source_check" name="custom_source_check" {{ old('custom_source_check') ? 'checked' : '' }} class="mr-4 w-7 h-7 text-red-600 bg-gray-700 border-gray-600 rounded focus:ring-red-500 focus:ring-2">
@@ -249,6 +282,9 @@
                                            value="{{ old('custom_source') }}" 
                                            placeholder="Укажите источник" 
                                            style="{{ old('custom_source_check') ? '' : 'display:none;' }}">
+                                    @error('custom_source')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                             </div>
                         </div>
 
@@ -269,6 +305,9 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                    @error('work_format_id')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                     </label>
                      <div class="flex items-center mt-4">
                          <input type="checkbox" id="custom_work_format_check" name="custom_work_format_check" {{ old('custom_work_format_check') ? 'checked' : '' }} class="mr-4 w-7 h-7 text-red-600 bg-gray-700 border-gray-600 rounded focus:ring-red-500 focus:ring-2">
@@ -281,6 +320,9 @@
                                            value="{{ old('custom_work_format') }}" 
                                            placeholder="Укажите формат работы" 
                                            style="{{ old('custom_work_format_check') ? '' : 'display:none;' }}">
+                                    @error('custom_work_format')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
                 <div>
                     <label class="field">
@@ -295,6 +337,9 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                    @error('education_id')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                     </label>
                      <div class="flex items-center mt-4">
                          <input type="checkbox" id="custom_education_check" name="custom_education_check" {{ old('custom_education_check') ? 'checked' : '' }} class="mr-4 w-7 h-7 text-red-600 bg-gray-700 border-gray-600 rounded focus:ring-red-500 focus:ring-2">
@@ -307,6 +352,9 @@
                                            value="{{ old('custom_education') }}" 
                                            placeholder="Укажите образование" 
                                            style="{{ old('custom_education_check') ? '' : 'display:none;' }}">
+                                    @error('custom_education')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -320,6 +368,9 @@
                                               rows="4" 
                           placeholder="Расскажите о ваших профессиональных планах *"
                                               required>{{ old('professional_plans') }}</textarea>
+                                    @error('professional_plans')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
             </label>
                         </div>
 
@@ -399,6 +450,9 @@
                                            name="custom_language" 
                                            value="{{ old('custom_language') }}" 
                                            placeholder="Другие языки (через запятую)">
+                                    @error('custom_language')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                     </label>
                                 </div>
                             </div>
@@ -421,6 +475,9 @@
                                            placeholder="Название компании *"
                                            required>
                                     <span class="field-label">Название компании *</span>
+                                    @error('work_experiences.'.$index.'.company_name')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                                 </label>
                                 <label class="field">
                                     <input type="text" 
@@ -430,6 +487,9 @@
                                            placeholder="Должность *"
                                            required>
                                     <span class="field-label">Должность *</span>
+                                    @error('work_experiences.'.$index.'.position')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                                 </label>
                                                 </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
@@ -440,6 +500,9 @@
                                            name="work_experiences[{{ $index }}][start_date]" 
                                            value="{{ $experience['start_date'] ?? '' }}" 
                                            required>
+                                    @error('work_experiences.'.$index.'.start_date')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="field">
                                     <div class="field-label">Дата окончания</div>
@@ -447,6 +510,9 @@
                                            class="field-input field-input-full-width @error('work_experiences.'.$index.'.end_date') border-red-500 @enderror" 
                                            name="work_experiences[{{ $index }}][end_date]" 
                                            value="{{ $experience['end_date'] ?? '' }}">
+                                    @error('work_experiences.'.$index.'.end_date')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                                 </div>
                             <label class="field">
@@ -454,6 +520,9 @@
                                           name="work_experiences[{{ $index }}][description]" 
                                           rows="3" 
                                           placeholder="Описание обязанностей">{{ $experience['description'] ?? '' }}</textarea>
+                                    @error('work_experiences.'.$index.'.description')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                             </label>
                                         </div>
                                     @endforeach
@@ -480,6 +549,9 @@
                                            value="{{ $institution['institution_name'] ?? '' }}" 
                                            placeholder="Название учебного заведения *"
                                            required>
+                                    @error('educational_institutions.'.$index.'.institution_name')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                                 </label>
                                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
@@ -489,6 +561,9 @@
                                            name="educational_institutions[{{ $index }}][degree]" 
                                            value="{{ $institution['degree'] ?? '' }}" 
                                            placeholder="Степень/Специальность">
+                                    @error('educational_institutions.'.$index.'.degree')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                                 </label>
                                 <label class="field">
                                     <input type="text" 
@@ -496,6 +571,9 @@
                                            name="educational_institutions[{{ $index }}][faculty]" 
                                            value="{{ $institution['faculty'] ?? '' }}" 
                                            placeholder="Факультет">
+                                    @error('educational_institutions.'.$index.'.faculty')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                                 </label>
                                                 </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
@@ -504,12 +582,18 @@
                                            class="field-input field-input-full-width @error('educational_institutions.'.$index.'.start_date') border-red-500 @enderror" 
                                            name="educational_institutions[{{ $index }}][start_date]" 
                                            value="{{ $institution['start_date'] ?? '' }}">
+                                    @error('educational_institutions.'.$index.'.start_date')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                                 </label>
                                 <label class="field">
                                     <input type="date" 
                                            class="field-input field-input-full-width @error('educational_institutions.'.$index.'.end_date') border-red-500 @enderror" 
                                            name="educational_institutions[{{ $index }}][end_date]" 
                                            value="{{ $institution['end_date'] ?? '' }}">
+                                    @error('educational_institutions.'.$index.'.end_date')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                                 </label>
                                                 </div>
                             <label class="field">
@@ -517,6 +601,9 @@
                                           name="educational_institutions[{{ $index }}][description]" 
                                           rows="3" 
                                           placeholder="Дополнительная информация">{{ $institution['description'] ?? '' }}</textarea>
+                                    @error('educational_institutions.'.$index.'.description')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
                             </label>
                                         </div>
                                     @endforeach
@@ -535,6 +622,9 @@
                                           name="other_notes" 
                                           rows="3" 
                                           placeholder="Любая дополнительная информация...">{{ old('other_notes') }}</textarea>
+                                    @error('other_notes')
+                        <div class="text-red-400 text-sm mt-2">{{ $message }}</div>
+                                    @enderror
             </label>
                         </div>
 
@@ -543,7 +633,7 @@
             <a href="/" class="text-white hover:text-red-400 transition-colors">
                 ← Назад на главную
             </a>
-            <button type="submit" class="btn send-p text-white bg-red-600 hover:bg-red-700 px-8 py-4 rounded-lg text-lg font-bold">
+            <button type="submit" class="btn send-p text-white bg-red-600 hover:bg-red-700 px-8 py-4 rounded-lg text-lg font-bold" data-application-submit="true">
                 Отправить заявку
             </button>
                         </div>
@@ -767,6 +857,39 @@ document.addEventListener('DOMContentLoaded', function() {
            // Инициализация при загрузке
            updateSkillsVisibility();
        }
+
+    // Дебаунс отправки формы (без влияния на HTML5-валидацию)
+    const applicationForm = document.querySelector('[data-application-form]');
+    if (applicationForm) {
+        const submitButton = applicationForm.querySelector('[data-application-submit]');
+        let isSubmitting = false;
+        let lastSubmitTime = 0;
+
+        applicationForm.addEventListener('submit', function(event) {
+            const now = Date.now();
+
+            if (isSubmitting && now - lastSubmitTime < 1500) {
+                event.preventDefault();
+                return;
+            }
+
+            lastSubmitTime = now;
+
+            if (isSubmitting) {
+                event.preventDefault();
+                return;
+            }
+
+            isSubmitting = true;
+
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.classList.add('opacity-70', 'cursor-not-allowed');
+                submitButton.dataset.originalText = submitButton.dataset.originalText || submitButton.textContent;
+                submitButton.textContent = 'Отправляем...';
+            }
+        });
+    }
 
 });
 
