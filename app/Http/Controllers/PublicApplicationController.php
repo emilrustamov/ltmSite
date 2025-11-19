@@ -12,6 +12,7 @@ use App\Models\TechnicalSkill;
 use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PublicApplicationController extends Controller
 {
@@ -122,69 +123,17 @@ class PublicApplicationController extends Controller
         $validated = $request->validate($validationRules);
 
         // Обработка кастомных полей
-        $cityId = $validated['city_id'] ?? null;
+        $cityId = $request->has('custom_city_check') ? null : ($validated['city_id'] ?? null);
         $customCity = $validated['custom_city'] ?? null;
 
-        $sourceId = $validated['source_id'] ?? null;
+        $sourceId = $request->has('custom_source_check') ? null : ($validated['source_id'] ?? null);
         $customSource = $validated['custom_source'] ?? null;
 
-        $workFormatId = $validated['work_format_id'] ?? null;
+        $workFormatId = $request->has('custom_work_format_check') ? null : ($validated['work_format_id'] ?? null);
         $customWorkFormat = $validated['custom_work_format'] ?? null;
 
-        $educationId = $validated['education_id'] ?? null;
+        $educationId = $request->has('custom_education_check') ? null : ($validated['education_id'] ?? null);
         $customEducation = $validated['custom_education'] ?? null;
-
-        // Если выбрано кастомное образование, создаем запись в таблице educations
-        if ($request->has('custom_education_check') && $customEducation) {
-            $slug = \Illuminate\Support\Str::slug($customEducation) . '-' . time();
-            $customEducationRecord = \App\Models\Education::create([
-                'name_ru' => $customEducation,
-                'name_en' => $customEducation,
-                'name_tm' => $customEducation,
-                'slug' => $slug,
-                'is_active' => true,
-                'sort_order' => 999
-            ]);
-            $educationId = $customEducationRecord->id;
-        }
-
-        // Если выбран кастомный город, создаем запись в таблице cities
-        if ($request->has('custom_city_check') && $customCity) {
-            $customCityRecord = \App\Models\City::create([
-                'name_ru' => $customCity,
-                'name_en' => $customCity,
-                'name_tm' => $customCity,
-                'is_active' => true,
-                'sort_order' => 999
-            ]);
-            $cityId = $customCityRecord->id;
-        }
-
-        // Если выбран кастомный источник, создаем запись в таблице sources
-        if ($request->has('custom_source_check') && $customSource) {
-            $slug = \Illuminate\Support\Str::slug($customSource) . '-' . time();
-            $customSourceRecord = \App\Models\Source::create([
-                'name_ru' => $customSource,
-                'name_en' => $customSource,
-                'name_tm' => $customSource,
-                'slug' => $slug,
-                'is_active' => true,
-                'sort_order' => 999
-            ]);
-            $sourceId = $customSourceRecord->id;
-        }
-
-        // Если выбран кастомный формат работы, создаем запись в таблице work_formats
-        if ($request->has('custom_work_format_check') && $customWorkFormat) {
-            $customWorkFormatRecord = \App\Models\WorkFormat::create([
-                'name_ru' => $customWorkFormat,
-                'name_en' => $customWorkFormat,
-                'name_tm' => $customWorkFormat,
-                'is_active' => true,
-                'sort_order' => 999
-            ]);
-            $workFormatId = $customWorkFormatRecord->id;
-        }
 
         // Создаём заявку
         $application = Application::create([
@@ -218,8 +167,14 @@ class PublicApplicationController extends Controller
         if ($request->hasFile('cv_file')) {
             $file = $request->file('cv_file');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/cv'), $filename);
-            $application->update(['cv_file' => 'uploads/cv/' . $filename]);
+
+            $storage = Storage::disk('public');
+            if (!$storage->exists('uploads/cv')) {
+                $storage->makeDirectory('uploads/cv');
+            }
+
+            $path = $file->storeAs('uploads/cv', $filename, 'public');
+            $application->update(['cv_file' => $path]);
         }
 
         // Связываем с должностями
