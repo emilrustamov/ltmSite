@@ -90,7 +90,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Ожидаемая зарплата</label>
-                            <p class="mb-0">{{ $application->expected_salary ? number_format($application->expected_salary, 0, ',', ' ') : 'Не указана' }}</p>
+                            <p class="mb-0">{{ $application->expected_salary }}</p>
                         </div>
                     </div>
                 </div>

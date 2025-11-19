@@ -106,4 +106,18 @@ class Application extends Model
         return $query->where('status', true);
     }
 
+    // Аксессоры
+    public function getFormattedSalaryAttribute()
+    {
+        if ($this->expected_salary) {
+            // Проверяем, является ли значение числом
+            if (is_numeric($this->expected_salary)) {
+                return number_format((float)$this->expected_salary, 0, ',', ' ');
+            }
+            // Если это строка (например, "70-80 тыс."), возвращаем как есть
+            return $this->expected_salary;
+        }
+        return 'Не указана';
+    }
+
 }

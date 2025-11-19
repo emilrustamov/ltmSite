@@ -42,7 +42,7 @@
                     </td>
                     <td>
                         @if($application->expected_salary)
-                            {{ $application->formatted_salary }}
+                            {{ $application->expected_salary }}
                         @else
                             <span class="text-muted">Не указана</span>
                         @endif
