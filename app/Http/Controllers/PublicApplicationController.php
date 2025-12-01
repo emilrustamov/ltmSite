@@ -13,13 +13,11 @@ use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Log;
 class PublicApplicationController extends Controller
 {
-    // Публичная форма создания заявки
     public function create(Request $request)
     {
-        // Получаем данные для формы
         $cities = City::active()->ordered()->get();
         $sources = Source::active()->ordered()->get();
         $workFormats = WorkFormat::active()->ordered()->get();
@@ -28,10 +26,8 @@ class PublicApplicationController extends Controller
         $technicalSkills = TechnicalSkill::active()->ordered()->get();
         $languages = Language::active()->ordered()->get();
         
-        // Устанавливаем язык по умолчанию
         $lang = 'ru';
         
-        // Получаем предварительно выбранную должность
         $selectedPosition = null;
         if ($request->has('position')) {
             $selectedPosition = JobPosition::find($request->position);
@@ -43,12 +39,55 @@ class PublicApplicationController extends Controller
         ));
     }
 
-    // Сохранение публичной заявки
     public function store(Request $request)
     {
+        if (!empty($request->input('website'))) {
+            Log::warning('Bot detected via honeypot on application form', [
+                'ip' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+            ]);
+            
+            return redirect()
+                ->route('applications.create', ['position' => $request->input('position')])
+                ->with('success', 'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
+        }
+
+        $recaptchaToken = $request->input('recaptcha_token');
+        if (!empty($recaptchaToken)) {
+            $recaptchaSecret = config('services.recaptcha.secret_key');
+            
+            if (!empty($recaptchaSecret)) {
+                $recaptchaResponse = $this->verifyRecaptcha($recaptchaToken, $request->ip());
+                
+                if (!$recaptchaResponse['success']) {
+                    Log::warning('reCAPTCHA verification failed', [
+                        'ip' => $request->ip(),
+                        'errors' => $recaptchaResponse['error-codes'] ?? [],
+                    ]);
+                    
+                    return redirect()
+                        ->route('applications.create', ['position' => $request->input('position')])
+                        ->withInput()
+                        ->withErrors(['recaptcha' => 'Ошибка проверки безопасности. Пожалуйста, попробуйте еще раз.']);
+                }
+                
+                $score = $recaptchaResponse['score'] ?? 0;
+                if ($score < 0.5) {
+                    Log::warning('reCAPTCHA score too low', [
+                        'ip' => $request->ip(),
+                        'score' => $score,
+                    ]);
+                    
+                    return redirect()
+                        ->route('applications.create', ['position' => $request->input('position')])
+                        ->withInput()
+                        ->withErrors(['recaptcha' => 'Подозрительная активность обнаружена. Пожалуйста, попробуйте еще раз.']);
+                }
+            }
+        }
+
         $positionParam = $request->input('position');
 
-        // Создаем правила валидации с учетом кастомных полей
         $validationRules = [
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
@@ -87,7 +126,6 @@ class PublicApplicationController extends Controller
             'languages.*' => 'exists:languages,id',
         ];
 
-        // Динамически добавляем правила для кастомных полей
         if ($request->has('custom_city_check')) {
             $validationRules['custom_city'] = 'required|string|max:255';
             $validationRules['city_id'] = 'nullable|exists:cities,id';
@@ -122,7 +160,6 @@ class PublicApplicationController extends Controller
 
         $validated = $request->validate($validationRules);
 
-        // Обработка кастомных полей
         $cityId = $request->has('custom_city_check') ? null : ($validated['city_id'] ?? null);
         $customCity = $validated['custom_city'] ?? null;
 
@@ -135,7 +172,6 @@ class PublicApplicationController extends Controller
         $educationId = $request->has('custom_education_check') ? null : ($validated['education_id'] ?? null);
         $customEducation = $validated['custom_education'] ?? null;
 
-        // Создаём заявку
         $application = Application::create([
             'name' => $validated['name'],
             'surname' => $validated['surname'],
@@ -160,10 +196,9 @@ class PublicApplicationController extends Controller
             'custom_technical_skill' => $validated['custom_technical_skill'],
             'professional_plans' => $validated['professional_plans'],
             'other_notes' => $validated['other_notes'],
-            'status' => true, // Публичные заявки всегда активны
+            'status' => true,
         ]);
 
-        // Загрузка CV файла
         if ($request->hasFile('cv_file')) {
             $file = $request->file('cv_file');
             $filename = time() . '_' . $file->getClientOriginalName();
@@ -177,22 +212,18 @@ class PublicApplicationController extends Controller
             $application->update(['cv_file' => $path]);
         }
 
-        // Связываем с должностями
         if (!empty($validated['job_positions'])) {
             $application->jobPositions()->sync($validated['job_positions']);
         }
 
-        // Связываем с техническими навыками
         if (!empty($validated['technical_skills'])) {
             $application->technicalSkills()->sync($validated['technical_skills']);
         }
 
-        // Связываем с языками
         if (!empty($validated['languages'])) {
             $application->languages()->sync($validated['languages']);
         }
 
-        // Создаем записи опыта работы
         if (!empty($validated['work_experiences'])) {
             foreach ($validated['work_experiences'] as $index => $experience) {
                 $application->workExperiences()->create([
@@ -205,7 +236,6 @@ class PublicApplicationController extends Controller
             }
         }
 
-        // Создаем записи учебных заведений
         if (!empty($validated['educational_institutions'])) {
             foreach ($validated['educational_institutions'] as $index => $education) {
                 $application->educationalInstitutions()->create([
@@ -219,19 +249,16 @@ class PublicApplicationController extends Controller
             }
         }
 
-        // Готовим параметры для возврата на форму (с сохранением выбранной должности)
         $redirectParams = [];
         if (!empty($positionParam)) {
             $redirectParams['position'] = $positionParam;
         }
 
-        // Редирект обратно на страницу заявки с сообщением об успехе
         return redirect()
             ->route('applications.create', $redirectParams)
             ->with('success', 'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
     }
 
-    // API метод для получения навыков по должностям
     public function getSkillsByPositions(Request $request)
     {
         $positionIds = $request->input('positions', []);
@@ -245,5 +272,48 @@ class PublicApplicationController extends Controller
         })->active()->pluck('id')->toArray();
 
         return response()->json(['skills' => $skills]);
+    }
+
+    /**
+     * 
+     *
+     * @param string 
+     * @param string|null 
+     * @return array
+     */
+    private function verifyRecaptcha(string $token, ?string $remoteIp = null): array
+    {
+        $secretKey = config('services.recaptcha.secret_key');
+        
+        if (empty($secretKey)) {
+            return ['success' => false, 'error-codes' => ['missing-secret']];
+        }
+
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
+        $data = [
+            'secret' => $secretKey,
+            'response' => $token,
+        ];
+
+        if ($remoteIp) {
+            $data['remoteip'] = $remoteIp;
+        }
+
+        $options = [
+            'http' => [
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
+                'content' => http_build_query($data),
+            ],
+        ];
+
+        $context = stream_context_create($options);
+        $result = @file_get_contents($url, false, $context);
+        
+        if ($result === false) {
+            return ['success' => false, 'error-codes' => ['network-error']];
+        }
+
+        return json_decode($result, true) ?? ['success' => false, 'error-codes' => ['invalid-response']];
     }
 }

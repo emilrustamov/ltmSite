@@ -13,7 +13,6 @@
             line-height: 1.2;
         }
     </style>
-    <!-- Заголовок -->
     <div class="text-center mb-12">
         <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
             Подать заявку на работу
@@ -22,7 +21,6 @@
             Заполните форму ниже, чтобы подать заявку на работу в нашей компании
         </p>
                 </div>
-           <!-- Сообщения об ошибках и успехе -->
                     @if (session('success'))
                <div style="background: linear-gradient(135deg, #10B981, #059669); color: white; padding: 20px; margin: 20px; border-radius: 10px; text-align: center; font-size: 18px; font-weight: bold; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);">
                    <i class="fas fa-check-circle" style="font-size: 24px; margin-right: 10px;"></i>
@@ -51,12 +49,20 @@
                         </div>
                     @endif
 
-    <!-- Форма в стиле LTM -->
-    <form action="{{ route('applications.store') }}" method="POST" enctype="multipart/form-data" class="w-full" data-application-form="true">
+    <form action="{{ route('applications.store') }}" method="POST" enctype="multipart/form-data" class="w-full" data-application-form="true" id="application-form">
                         @csrf
                         <input type="hidden" name="position" value="{{ old('position', request('position')) }}">
                         
-                        <!-- Личная информация -->
+                        <input type="text" 
+                               name="website" 
+                               id="website" 
+                               tabindex="-1" 
+                               autocomplete="off" 
+                               style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;"
+                               aria-hidden="true">
+                        
+                        <input type="hidden" name="recaptcha_token" id="recaptcha_token">
+                        
         <div class="mb-12">
             <h2 class="application-section-title mb-8 text-white">Личная информация</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -133,7 +139,6 @@
                             </div>
                         </div>
 
-                        <!-- Дополнительная информация -->
         <div class="mb-12">
             <h2 class="application-section-title mb-8 text-white">Дополнительная информация</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -160,7 +165,6 @@
                             </div>
                         </div>
 
-                        <!-- CV файл -->
         <div class="mb-12">
             <h2 class="application-section-title mb-8 text-white">Резюме</h2>
             <label class="field">
@@ -176,7 +180,6 @@
             </label>
                         </div>
 
-                        <!-- Дополнительная информация -->
         <div class="mb-12">
             <h2 class="application-section-title mb-8 text-white">Дополнительная информация</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -201,7 +204,6 @@
                                 </div>
                         </div>
 
-        <!-- Местоположение -->
         <div class="mb-12">
             <h2 class="application-section-title mb-8 text-white">Местоположение</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -251,7 +253,6 @@
                             </div>
                         </div>
 
-                        <!-- Источник информации -->
         <div class="mb-12">
             <h2 class="application-section-title mb-8 text-white">Как вы узнали о нас?</h2>
             <div>
@@ -288,7 +289,6 @@
                             </div>
                         </div>
 
-        <!-- Работа и образование -->
         <div class="mb-12">
             <h2 class="application-section-title mb-8 text-white">Работа и образование</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -359,7 +359,6 @@
                             </div>
                         </div>
 
-                        <!-- Профессиональные планы -->
         <div class="mb-12">
             <h2 class="application-section-title mb-8 text-white">Профессиональные планы</h2>
             <label class="field">
@@ -374,7 +373,6 @@
             </label>
                         </div>
 
-                        <!-- Профессиональные данные -->
         <div class="mb-12">
             <h2 class="application-section-title mb-8 text-white">Профессиональные данные</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -458,7 +456,6 @@
                             </div>
                         </div>
 
-                        <!-- Опыт работы -->
         <div class="mb-12">
             <h2 class="application-section-title mb-8 text-white">Опыт работы</h2>
                             <div id="work_experiences_container">
@@ -533,7 +530,6 @@
             </button>
                         </div>
 
-                        <!-- Образование -->
         <div class="mb-12">
             <h2 class="application-section-title mb-8 text-white">Образование</h2>
                             <div id="educational_institutions_container">
@@ -614,7 +610,6 @@
             </button>
                         </div>
 
-                        <!-- Дополнительные заметки -->
         <div class="mb-12">
             <h2 class="application-section-title mb-8 text-white">Дополнительные заметки</h2>
             <label class="field">
@@ -628,7 +623,6 @@
             </label>
                         </div>
 
-                        <!-- Кнопки -->
         <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
             <a href="/" class="text-white hover:text-red-400 transition-colors">
                 ← Назад на главную
@@ -641,11 +635,9 @@
 </section>
 
     <script>
-// Глобальные переменные
 let workExperienceIndex = {{ old('work_experiences') ? count(old('work_experiences')) : 0 }};
 let educationalInstitutionIndex = {{ old('educational_institutions') ? count(old('educational_institutions')) : 0 }};
 
-// Простые глобальные функции
 function addWorkExperience() {
     const container = document.getElementById('work_experiences_container');
     if (!container) {
@@ -725,19 +717,15 @@ function removeItem(event) {
 }
 
 
-// Дублируем функции в window для надежности
 window.addWorkExperience = addWorkExperience;
 window.addEducationalInstitution = addEducationalInstitution;
 window.removeItem = removeItem;
 
 
-// Инициализация после загрузки DOM
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Обработчик для удаления полей
     document.addEventListener('click', removeItem);
 
-    // Управление кастомными полями
     function setupCustomFieldToggle(checkboxId, inputId, selectId) {
         const checkbox = document.getElementById(checkboxId);
         const input = document.getElementById(inputId);
@@ -746,13 +734,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (checkbox && input && select) {
             const toggleVisibility = () => {
                 if (checkbox.checked) {
-                    // Если включено кастомное поле - обнуляем основное и показываем кастомное
                     select.value = '';
                     input.style.display = 'block';
                     select.removeAttribute('required');
                     input.setAttribute('required', 'required');
                 } else {
-                    // Если выключено кастомное поле - скрываем и обнуляем кастомное
                     input.style.display = 'none';
                     input.value = '';
                     select.setAttribute('required', 'required');
@@ -760,10 +746,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             };
             
-            // Обработчик для чекбокса
             checkbox.addEventListener('change', toggleVisibility);
             
-            // Обработчик для основного поля - если что-то выбрано, снимаем чекбокс
             select.addEventListener('change', function() {
                 if (this.value !== '') {
                     checkbox.checked = false;
@@ -778,53 +762,48 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-           // Настройка кастомных полей
            setupCustomFieldToggle('custom_city_check', 'custom_city', 'city_id');
            setupCustomFieldToggle('custom_source_check', 'custom_source', 'source_id');
            setupCustomFieldToggle('custom_work_format_check', 'custom_work_format', 'work_format_id');
            setupCustomFieldToggle('custom_education_check', 'custom_education', 'education_id');
 
-           // Фильтрация навыков по должностям
            setupSkillsFiltering();
 
-       // Функция для фильтрации навыков по должностям
        function setupSkillsFiltering() {
            const jobPositionCheckboxes = document.querySelectorAll('input[name="job_positions[]"]');
            const skillsPlaceholder = document.getElementById('skills-placeholder');
            const skillCheckboxes = document.querySelectorAll('input[name="technical_skills[]"]');
            
-           // Обработчик изменения должностей
            jobPositionCheckboxes.forEach(checkbox => {
                checkbox.addEventListener('change', function() {
                    updateSkillsVisibility();
                });
            });
            
-           // Функция обновления видимости навыков
            function updateSkillsVisibility() {
                const selectedPositions = Array.from(jobPositionCheckboxes)
                    .filter(cb => cb.checked)
                    .map(cb => cb.value);
                
                if (selectedPositions.length === 0) {
-                   // Если не выбрано должностей - показываем placeholder
                    skillsPlaceholder.style.display = 'block';
                    skillCheckboxes.forEach(cb => {
                        cb.closest('div').style.display = 'none';
                    });
                } else {
-                   // Загружаем навыки для выбранных должностей
                    fetchSkillsForPositions(selectedPositions);
                }
            }
            
-           // Функция загрузки навыков
            function fetchSkillsForPositions(positionIds) {
+               const csrfMeta = document.querySelector('meta[name="csrf_token"]');
+               const csrfToken = csrfMeta ? csrfMeta.getAttribute('content') : '';
+               
                fetch('{{ route("api.positions.skills") }}', {
                    method: 'POST',
                    headers: {
                        'Content-Type': 'application/json',
-                       'X-CSRF-TOKEN': document.querySelector('meta[name="csrf_token"]').getAttribute('content')
+                       'X-CSRF-TOKEN': csrfToken
                    },
                    body: JSON.stringify({ positions: positionIds })
                })
@@ -837,7 +816,6 @@ document.addEventListener('DOMContentLoaded', function() {
                });
            }
            
-           // Функция обновления отображения навыков
            function updateSkillsDisplay(relevantSkillIds) {
                skillsPlaceholder.style.display = 'none';
                
@@ -849,17 +827,15 @@ document.addEventListener('DOMContentLoaded', function() {
                        skillDiv.style.display = 'flex';
                    } else {
                        skillDiv.style.display = 'none';
-                       cb.checked = false; // Снимаем выбор с нерелевантных навыков
+                       cb.checked = false;
                    }
                });
            }
-           
-           // Инициализация при загрузке
+        
            updateSkillsVisibility();
        }
 
-    // Дебаунс отправки формы (без влияния на HTML5-валидацию)
-    const applicationForm = document.querySelector('[data-application-form]');
+    const applicationForm = document.getElementById('application-form');
     if (applicationForm) {
         const submitButton = applicationForm.querySelector('[data-application-submit]');
         let isSubmitting = false;
@@ -881,21 +857,37 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             isSubmitting = true;
-
             if (submitButton) {
                 submitButton.disabled = true;
                 submitButton.classList.add('opacity-70', 'cursor-not-allowed');
                 submitButton.dataset.originalText = submitButton.dataset.originalText || submitButton.textContent;
                 submitButton.textContent = 'Отправляем...';
             }
+
+            const recaptchaSiteKey = @json(config('services.recaptcha.site_key'));
+            if (typeof grecaptcha !== 'undefined' && recaptchaSiteKey) {
+                event.preventDefault();
+                
+                grecaptcha.ready(function() {
+                    grecaptcha.execute(recaptchaSiteKey, {action: 'submit_application'})
+                        .then(function(token) {
+                            const tokenInput = document.getElementById('recaptcha_token');
+                            if (tokenInput) {
+                                tokenInput.value = token;
+                            }
+                            applicationForm.submit();
+                        })
+                        .catch(function(error) {
+                            console.error('reCAPTCHA error:', error);
+                            applicationForm.submit();
+                        });
+                });
+            }
         });
     }
 
 });
 
-// Финальная проверка функций
-
-// Принудительно создаем функции в window если они не существуют
 if (typeof window.addWorkExperience !== 'function') {
     window.addWorkExperience = function() {
         const container = document.getElementById('work_experiences_container');
@@ -942,4 +934,8 @@ if (typeof window.addEducationalInstitution !== 'function') {
 }
 
 </script>
+
+@if(config('services.recaptcha.site_key'))
+<script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
+@endif
 @endsection
