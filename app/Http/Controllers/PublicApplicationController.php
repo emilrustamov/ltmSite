@@ -25,17 +25,24 @@ class PublicApplicationController extends Controller
         $jobPositions = JobPosition::active()->ordered()->get();
         $technicalSkills = TechnicalSkill::active()->ordered()->get();
         $languages = Language::active()->ordered()->get();
-        
+
         $lang = 'ru';
-        
+
         $selectedPosition = null;
         if ($request->has('position')) {
             $selectedPosition = JobPosition::find($request->position);
         }
 
         return view('public.applications.create', compact(
-            'cities', 'sources', 'workFormats', 'educations', 
-            'jobPositions', 'technicalSkills', 'languages', 'lang', 'selectedPosition'
+            'cities',
+            'sources',
+            'workFormats',
+            'educations',
+            'jobPositions',
+            'technicalSkills',
+            'languages',
+            'lang',
+            'selectedPosition'
         ));
     }
 
@@ -46,43 +53,53 @@ class PublicApplicationController extends Controller
                 'ip' => $request->ip(),
                 'user_agent' => $request->userAgent(),
             ]);
-            
+
             return redirect()
                 ->route('applications.create', ['position' => $request->input('position')])
                 ->with('success', 'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
         }
 
         $recaptchaToken = $request->input('recaptcha_token');
-        if (!empty($recaptchaToken)) {
-            $recaptchaSecret = config('services.recaptcha.secret_key');
-            
-            if (!empty($recaptchaSecret)) {
-                $recaptchaResponse = $this->verifyRecaptcha($recaptchaToken, $request->ip());
-                
-                if (!$recaptchaResponse['success']) {
-                    Log::warning('reCAPTCHA verification failed', [
-                        'ip' => $request->ip(),
-                        'errors' => $recaptchaResponse['error-codes'] ?? [],
-                    ]);
-                    
-                    return redirect()
-                        ->route('applications.create', ['position' => $request->input('position')])
-                        ->withInput()
-                        ->withErrors(['recaptcha' => 'Ошибка проверки безопасности. Пожалуйста, попробуйте еще раз.']);
-                }
-                
-                $score = $recaptchaResponse['score'] ?? 0;
-                if ($score < 0.5) {
-                    Log::warning('reCAPTCHA score too low', [
-                        'ip' => $request->ip(),
-                        'score' => $score,
-                    ]);
-                    
-                    return redirect()
-                        ->route('applications.create', ['position' => $request->input('position')])
-                        ->withInput()
-                        ->withErrors(['recaptcha' => 'Подозрительная активность обнаружена. Пожалуйста, попробуйте еще раз.']);
-                }
+        $recaptchaSecret = config('services.recaptcha.secret_key');
+
+        if (!empty($recaptchaSecret)) {
+            if (empty($recaptchaToken)) {
+                Log::warning('reCAPTCHA token missing', [
+                    'ip' => $request->ip(),
+                    'user_agent' => $request->userAgent(),
+                ]);
+
+                return redirect()
+                    ->route('applications.create', ['position' => $request->input('position')])
+                    ->withInput()
+                    ->withErrors(['recaptcha' => 'Ошибка проверки безопасности. Пожалуйста, обновите страницу и попробуйте еще раз.']);
+            }
+
+            $recaptchaResponse = $this->verifyRecaptcha($recaptchaToken, $request->ip());
+
+            if (!$recaptchaResponse['success']) {
+                Log::warning('reCAPTCHA verification failed', [
+                    'ip' => $request->ip(),
+                    'errors' => $recaptchaResponse['error-codes'] ?? [],
+                ]);
+
+                return redirect()
+                    ->route('applications.create', ['position' => $request->input('position')])
+                    ->withInput()
+                    ->withErrors(['recaptcha' => 'Ошибка проверки безопасности. Пожалуйста, попробуйте еще раз.']);
+            }
+
+            $score = $recaptchaResponse['score'] ?? 0;
+            if ($score < 0.5) {
+                Log::warning('reCAPTCHA score too low', [
+                    'ip' => $request->ip(),
+                    'score' => $score,
+                ]);
+
+                return redirect()
+                    ->route('applications.create', ['position' => $request->input('position')])
+                    ->withInput()
+                    ->withErrors(['recaptcha' => 'Подозрительная активность обнаружена. Пожалуйста, попробуйте еще раз.']);
             }
         }
 
@@ -262,12 +279,12 @@ class PublicApplicationController extends Controller
     public function getSkillsByPositions(Request $request)
     {
         $positionIds = $request->input('positions', []);
-        
+
         if (empty($positionIds)) {
             return response()->json(['skills' => []]);
         }
 
-        $skills = \App\Models\TechnicalSkill::whereHas('jobPositions', function($query) use ($positionIds) {
+        $skills = \App\Models\TechnicalSkill::whereHas('jobPositions', function ($query) use ($positionIds) {
             $query->whereIn('job_positions.id', $positionIds);
         })->active()->pluck('id')->toArray();
 
@@ -284,7 +301,7 @@ class PublicApplicationController extends Controller
     private function verifyRecaptcha(string $token, ?string $remoteIp = null): array
     {
         $secretKey = config('services.recaptcha.secret_key');
-        
+
         if (empty($secretKey)) {
             return ['success' => false, 'error-codes' => ['missing-secret']];
         }
@@ -309,7 +326,7 @@ class PublicApplicationController extends Controller
 
         $context = stream_context_create($options);
         $result = @file_get_contents($url, false, $context);
-        
+
         if ($result === false) {
             return ['success' => false, 'error-codes' => ['network-error']];
         }
