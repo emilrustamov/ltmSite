@@ -62,8 +62,20 @@ class ANMail extends Mailable
                         'as' => $displayName,
                         'mime' => $mimeType,
                     ]);
+                    
+                    \Log::info('CV файл прикреплен к email', [
+                        'file_path' => $filePath,
+                        'display_name' => $displayName,
+                        'mime_type' => $mimeType,
+                    ]);
+                } else {
+                    \Log::warning('CV файл не найден по пути', ['file_path' => $filePath]);
                 }
+            } else {
+                \Log::warning('CV файл не существует в storage', ['cv_file' => $this->data->cv_file]);
             }
+        } else {
+            \Log::info('CV файл не указан в заявке');
         }
         
         return $mail;

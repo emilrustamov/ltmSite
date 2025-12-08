@@ -189,6 +189,20 @@ class PublicApplicationController extends Controller
         $educationId = $request->has('custom_education_check') ? null : ($validated['education_id'] ?? null);
         $customEducation = $validated['custom_education'] ?? null;
 
+        // Сохраняем файл CV ПЕРЕД созданием Application, чтобы он был доступен при отправке email
+        $cvFilePath = null;
+        if ($request->hasFile('cv_file')) {
+            $file = $request->file('cv_file');
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            $storage = Storage::disk('public');
+            if (!$storage->exists('uploads/cv')) {
+                $storage->makeDirectory('uploads/cv');
+            }
+
+            $cvFilePath = $file->storeAs('uploads/cv', $filename, 'public');
+        }
+
         $application = Application::create([
             'name' => $validated['name'],
             'surname' => $validated['surname'],
@@ -213,21 +227,9 @@ class PublicApplicationController extends Controller
             'custom_technical_skill' => $validated['custom_technical_skill'],
             'professional_plans' => $validated['professional_plans'],
             'other_notes' => $validated['other_notes'],
+            'cv_file' => $cvFilePath, // Файл уже сохранен, добавляем путь сразу
             'status' => true,
         ]);
-
-        if ($request->hasFile('cv_file')) {
-            $file = $request->file('cv_file');
-            $filename = time() . '_' . $file->getClientOriginalName();
-
-            $storage = Storage::disk('public');
-            if (!$storage->exists('uploads/cv')) {
-                $storage->makeDirectory('uploads/cv');
-            }
-
-            $path = $file->storeAs('uploads/cv', $filename, 'public');
-            $application->update(['cv_file' => $path]);
-        }
 
         if (!empty($validated['job_positions'])) {
             $application->jobPositions()->sync($validated['job_positions']);
