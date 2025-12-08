@@ -12,6 +12,13 @@
             font-weight: 600;
             line-height: 1.2;
         }
+        
+        /* Скрытие значка reCAPTCHA */
+        .grecaptcha-badge {
+            visibility: hidden !important;
+            opacity: 0 !important;
+            display: none !important;
+        }
     </style>
     <div class="text-center mb-12">
         <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
@@ -631,6 +638,17 @@
                 Отправить заявку
             </button>
                         </div>
+                        
+        <!-- Требование Google reCAPTCHA: ссылка на политику конфиденциальности -->
+        <div class="text-center mb-6">
+            <p class="text-gray-400 text-sm">
+                Этот сайт защищен reCAPTCHA. Применяются 
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300 underline">Политика конфиденциальности</a> 
+                и 
+                <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300 underline">Условия использования</a> 
+                Google.
+            </p>
+        </div>
                     </form>
 </section>
 
