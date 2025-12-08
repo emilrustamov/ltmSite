@@ -33,6 +33,19 @@ class Application extends Model
 
         static::created(function ($item) {
             try {
+                // Загружаем все связи для email
+                $item->load([
+                    'city',
+                    'source',
+                    'workFormat',
+                    'education',
+                    'jobPositions',
+                    'languages',
+                    'technicalSkills',
+                    'workExperiences',
+                    'educationalInstitutions'
+                ]);
+                
                 $adminEmail = "info@ltm.studio";
                 Mail::to($adminEmail)->send(new ANMail($item));
             } catch (\Exception $e) {
