@@ -192,15 +192,8 @@ class PublicApplicationController extends Controller
         // Сохраняем файл CV ПЕРЕД созданием Application, чтобы он был доступен при отправке email
         $cvFilePath = null;
         if ($request->hasFile('cv_file')) {
-            $file = $request->file('cv_file');
-            $filename = time() . '_' . $file->getClientOriginalName();
-
-            $storage = Storage::disk('public');
-            if (!$storage->exists('uploads/cv')) {
-                $storage->makeDirectory('uploads/cv');
-            }
-
-            $cvFilePath = $file->storeAs('uploads/cv', $filename, 'public');
+            // Используем store() для сохранения файла - он вернет относительный путь типа cv/filename.pdf
+            $cvFilePath = $request->file('cv_file')->store('cv', 'public');
         }
 
         $application = Application::create([

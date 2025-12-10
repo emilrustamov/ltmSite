@@ -35,16 +35,20 @@ class ANMail extends Mailable
         if ($this->data->cv_file) {
             $storage = Storage::disk('public');
             
-            if ($storage->exists($this->data->cv_file)) {
+            // Убеждаемся, что путь правильный (убираем возможные префиксы storage/ или public/)
+            $cvFilePath = $this->data->cv_file;
+            $cvFilePath = preg_replace('/^(storage\/|public\/)/', '', $cvFilePath);
+            
+            if ($storage->exists($cvFilePath)) {
                 // Получаем полный путь к файлу
-                $filePath = storage_path('app/public/' . $this->data->cv_file);
-                $originalName = basename($this->data->cv_file);
+                $filePath = storage_path('app/public/' . $cvFilePath);
+                $originalName = basename($cvFilePath);
                 
                 // Убираем временную метку из имени файла для более читаемого имени
                 $displayName = preg_replace('/^\d+_/', '', $originalName);
                 
                 // Определяем MIME тип
-                $mimeType = $storage->mimeType($this->data->cv_file);
+                $mimeType = $storage->mimeType($cvFilePath);
                 if (!$mimeType) {
                     // Определяем по расширению, если MIME не определен
                     $extension = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));
@@ -72,7 +76,7 @@ class ANMail extends Mailable
                     \Log::warning('CV файл не найден по пути', ['file_path' => $filePath]);
                 }
             } else {
-                \Log::warning('CV файл не существует в storage', ['cv_file' => $this->data->cv_file]);
+                \Log::warning('CV файл не существует в storage', ['cv_file' => $cvFilePath, 'original_path' => $this->data->cv_file]);
             }
         } else {
             \Log::info('CV файл не указан в заявке');
