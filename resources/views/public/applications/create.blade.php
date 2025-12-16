@@ -69,6 +69,7 @@
                                aria-hidden="true">
                         
                         <input type="hidden" name="recaptcha_token" id="recaptcha_token">
+                        <input type="hidden" name="form_started_at" id="form_started_at">
                         
         <div class="mb-12">
             <h2 class="application-section-title mb-8 text-white">Личная информация</h2>
@@ -741,6 +742,11 @@ window.removeItem = removeItem;
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Устанавливаем время начала заполнения формы
+    const formStartedAtInput = document.getElementById('form_started_at');
+    if (formStartedAtInput && !formStartedAtInput.value) {
+        formStartedAtInput.value = Math.floor(Date.now() / 1000);
+    }
     
     document.addEventListener('click', removeItem);
 
@@ -858,6 +864,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const submitButton = applicationForm.querySelector('[data-application-submit]');
         let isSubmitting = false;
         let lastSubmitTime = 0;
+        let recaptchaExecuting = false;
 
         applicationForm.addEventListener('submit', function(event) {
             const now = Date.now();
@@ -869,7 +876,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             lastSubmitTime = now;
 
-            if (isSubmitting) {
+            if (isSubmitting || recaptchaExecuting) {
                 event.preventDefault();
                 return;
             }
@@ -886,9 +893,16 @@ document.addEventListener('DOMContentLoaded', function() {
             if (typeof grecaptcha !== 'undefined' && recaptchaSiteKey) {
                 event.preventDefault();
                 
+                if (recaptchaExecuting) {
+                    return;
+                }
+                
+                recaptchaExecuting = true;
+                
                 grecaptcha.ready(function() {
                     grecaptcha.execute(recaptchaSiteKey, {action: 'submit_application'})
                         .then(function(token) {
+                            recaptchaExecuting = false;
                             const tokenInput = document.getElementById('recaptcha_token');
                             if (tokenInput) {
                                 tokenInput.value = token;
@@ -896,8 +910,14 @@ document.addEventListener('DOMContentLoaded', function() {
                             applicationForm.submit();
                         })
                         .catch(function(error) {
+                            recaptchaExecuting = false;
                             console.error('reCAPTCHA error:', error);
-                            applicationForm.submit();
+                            isSubmitting = false;
+                            if (submitButton) {
+                                submitButton.disabled = false;
+                                submitButton.classList.remove('opacity-70', 'cursor-not-allowed');
+                                submitButton.textContent = submitButton.dataset.originalText || 'Отправить заявку';
+                            }
                         });
                 });
             }

@@ -13,7 +13,6 @@ use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
 class PublicApplicationController extends Controller
 {
     public function create(Request $request)
@@ -48,61 +47,6 @@ class PublicApplicationController extends Controller
 
     public function store(Request $request)
     {
-        if (!empty($request->input('website'))) {
-            Log::warning('Bot detected via honeypot on application form', [
-                'ip' => $request->ip(),
-                'user_agent' => $request->userAgent(),
-            ]);
-
-            return redirect()
-                ->route('applications.create', ['position' => $request->input('position')])
-                ->with('success', 'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
-        }
-
-        $recaptchaToken = $request->input('recaptcha_token');
-        $recaptchaSecret = config('services.recaptcha.secret_key');
-
-        if (!empty($recaptchaSecret)) {
-            if (empty($recaptchaToken)) {
-                Log::warning('reCAPTCHA token missing', [
-                    'ip' => $request->ip(),
-                    'user_agent' => $request->userAgent(),
-                ]);
-
-                return redirect()
-                    ->route('applications.create', ['position' => $request->input('position')])
-                    ->withInput()
-                    ->withErrors(['recaptcha' => 'Ошибка проверки безопасности. Пожалуйста, обновите страницу и попробуйте еще раз.']);
-            }
-
-            $recaptchaResponse = $this->verifyRecaptcha($recaptchaToken, $request->ip());
-
-            if (!$recaptchaResponse['success']) {
-                Log::warning('reCAPTCHA verification failed', [
-                    'ip' => $request->ip(),
-                    'errors' => $recaptchaResponse['error-codes'] ?? [],
-                ]);
-
-                return redirect()
-                    ->route('applications.create', ['position' => $request->input('position')])
-                    ->withInput()
-                    ->withErrors(['recaptcha' => 'Ошибка проверки безопасности. Пожалуйста, попробуйте еще раз.']);
-            }
-
-            $score = $recaptchaResponse['score'] ?? 0;
-            if ($score < 0.5) {
-                Log::warning('reCAPTCHA score too low', [
-                    'ip' => $request->ip(),
-                    'score' => $score,
-                ]);
-
-                return redirect()
-                    ->route('applications.create', ['position' => $request->input('position')])
-                    ->withInput()
-                    ->withErrors(['recaptcha' => 'Подозрительная активность обнаружена. Пожалуйста, попробуйте еще раз.']);
-            }
-        }
-
         $positionParam = $request->input('position');
 
         $validationRules = [
@@ -284,48 +228,5 @@ class PublicApplicationController extends Controller
         })->active()->pluck('id')->toArray();
 
         return response()->json(['skills' => $skills]);
-    }
-
-    /**
-     * 
-     *
-     * @param string 
-     * @param string|null 
-     * @return array
-     */
-    private function verifyRecaptcha(string $token, ?string $remoteIp = null): array
-    {
-        $secretKey = config('services.recaptcha.secret_key');
-
-        if (empty($secretKey)) {
-            return ['success' => false, 'error-codes' => ['missing-secret']];
-        }
-
-        $url = 'https://www.google.com/recaptcha/api/siteverify';
-        $data = [
-            'secret' => $secretKey,
-            'response' => $token,
-        ];
-
-        if ($remoteIp) {
-            $data['remoteip'] = $remoteIp;
-        }
-
-        $options = [
-            'http' => [
-                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method' => 'POST',
-                'content' => http_build_query($data),
-            ],
-        ];
-
-        $context = stream_context_create($options);
-        $result = @file_get_contents($url, false, $context);
-
-        if ($result === false) {
-            return ['success' => false, 'error-codes' => ['network-error']];
-        }
-
-        return json_decode($result, true) ?? ['success' => false, 'error-codes' => ['invalid-response']];
     }
 }

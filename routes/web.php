@@ -447,7 +447,7 @@ Route::prefix('{lang}')
 // Public Application Routes (без префикса admin)
 // ---------------------------------------
 Route::get('/applications/create', [PublicApplicationController::class, 'create'])->name('applications.create');
-Route::post('/applications', [PublicApplicationController::class, 'store'])->name('applications.store');
+Route::post('/applications', [PublicApplicationController::class, 'store'])->name('applications.store')->middleware(['anti.spam', 'throttle:2,1']);
 
 // API маршрут для получения навыков по должностям
 Route::post('/api/positions/skills', [PublicApplicationController::class, 'getSkillsByPositions'])->name('api.positions.skills');
