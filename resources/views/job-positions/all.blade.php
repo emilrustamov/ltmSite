@@ -1,45 +1,40 @@
 @extends('layouts.base')
 
 @section('title', __('translate.allJobsTitle'))
-@section('ogTitle', __('translate.allJobsTitle'))
-@section('metaDesc', __('translate.allJobsMetaDesc'))
-@section('metaKey', __('translate.allJobsMetaKey'))
-
 @section('content')
-    <section class="container">
-        <div>
+
+    <section class="container jobs-page">
+        <div class="jobs-header">
             <h1>{{ __('translate.allJobsTitle') }}</h1>
             <p>{{ __('translate.allJobsSubtitle') }}</p>
         </div>
 
-        <div class="grid_portfolio section" data-lang="{{ $lang }}">
+        <div class="jobs-table">
             @foreach($jobPositions as $job)
-            <a href="/{{ $lang }}/jobs/{{ $job->id }}" class="grid-item relative job-link">
-                    <div class="columnPort relative content">
-                        @if ($job->image)
-                            <img data-src="{{ asset($job->image) }}" alt="{{ $job->name_ru }}" loading="lazy" class="lazyload">
-                        @else
-                            <img src="{{ asset('assets/images/proformat.png') }}" alt="{{ $job->name_ru }}" loading="lazy">
-                        @endif
-                        <div class="content">
-                            <div>
-                                <div class="line"></div>
-                                <h2>
-                                    {{ $job->{'name_' . $lang} ?? $job->name_ru }}
-                                </h2>
-                            </div>
-                        </div>
+                <a href="/{{ $lang }}/jobs/{{ $job->id }}" class="job-row">
+
+                    <!-- Название -->
+                    <div class="job-title">
+                        {{ $job->{'name_' . $lang} ?? $job->name_ru }}
                     </div>
-                    <div class="arrow d-flex align-items-center justify-content-center">
-                        <i class="fa-solid fa-arrow-right-long" style="color:white; font-size:30px;"></i>
+
+                    <div class="job-meta-wrap">
+                        <span class="job-meta">{{ $job->{'employment_type_' . $lang} }}</span>
+                        <span class="job-meta">{{ $job->{'work_format_' . $lang} }}</span>
+                        <span class="job-salary">{{ $job->{'salary_' . $lang} }}</span>
                     </div>
+
+                    <!-- Стрелка -->
+                    <div class="job-arrow">
+                        <i class="fa-solid fa-arrow-right job-button--icon" aria-hidden="true"></i>
+                    </div>
+
                 </a>
             @endforeach
         </div>
 
-        <!-- Пагинация -->
         <div class="pagination-wrapper">
             {{ $jobPositions->links() }}
         </div>
-        
+    </section>
 @endsection

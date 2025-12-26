@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\JobPosition;
+use App\Models\TechnicalSkill;
 use App\Constants\Permissions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,7 @@ class JobPositionController extends Controller
         }
 
         $jobPositions = JobPosition::with('technicalSkills')->ordered()->paginate(20);
-        
+
         return view('admin.job-positions.index', [
             'jobPositions' => $jobPositions,
         ]);
@@ -32,7 +33,9 @@ class JobPositionController extends Controller
             abort(403, 'У вас нет прав для создания должностей');
         }
 
-        return view('admin.job-positions.create');
+        $technicalSkills = TechnicalSkill::all();
+
+        return view('admin.job-positions.create', compact('technicalSkills'));
     }
 
     public function store(Request $request)
@@ -57,38 +60,29 @@ class JobPositionController extends Controller
             'benefits_ru' => 'nullable|string',
             'benefits_en' => 'nullable|string',
             'benefits_tm' => 'nullable|string',
-            'image' => 'nullable|image|max:10240|mimes:jpeg,png,jpg,gif,webp',
-            'status' => 'nullable|boolean',
+            'employment_type_ru' => 'nullable|string|max:255',
+            'employment_type_en' => 'nullable|string|max:255',
+            'employment_type_tm' => 'nullable|string|max:255',
+            'work_format_ru' => 'nullable|string|max:255',
+            'work_format_en' => 'nullable|string|max:255',
+            'work_format_tm' => 'nullable|string|max:255',
+            'salary_ru' => 'nullable|string|max:255',
+            'salary_en' => 'nullable|string|max:255',
+            'salary_tm' => 'nullable|string|max:255',
             'ordering' => 'nullable|integer|min:0',
             'technical_skills' => 'nullable|array',
             'technical_skills.*' => 'exists:technical_skills,id',
         ]);
 
-        $data = $request->only([
-            'name_ru', 'name_en', 'name_tm', 'sort_order', 'is_active',
-            'description_ru', 'description_en', 'description_tm',
-            'responsibilities_ru', 'responsibilities_en', 'responsibilities_tm',
-            'benefits_ru', 'benefits_en', 'benefits_tm',
-            'status', 'ordering'
-        ]);
-        
-        // Обработка boolean полей (чекбоксы не отправляются, если не отмечены)
-        $data['is_active'] = $request->has('is_active') ? (bool)$request->is_active : false;
-        $data['status'] = $request->has('status') ? (bool)$request->status : false;
-        $data['slug'] = Str::slug($data['name_ru']) . '-' . time();
-        $data['image'] = ''; // Инициализируем пустой строкой
+        $data = $request->except(['technical_skills']);
 
+        // Обработка boolean полей (чекбоксы не отправляются, если не отмечены)
+        $data['is_active'] = $request->has('is_active') ? (bool) $request->is_active : false;
+        $data['status'] = $request->has('status') ? (bool) $request->status : false;
+        $data['slug'] = Str::slug($data['name_ru']) . '-' . time();
         $jobPosition = JobPosition::create($data);
 
-        // Обработка изображения
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time() . '_' . $image->getClientOriginalName();
-            $path = $image->storeAs('uploads/jobs', $filename, 'public');
-            $jobPosition->update(['image' => 'storage/' . $path]);
-        }
-
-        // Синхронизация навыков
+        // Синхронизация навыков (изображение удалено)
         $jobPosition->technicalSkills()->sync($request->technical_skills ?? []);
 
         return redirect()->route('admin.job-positions.index')
@@ -103,10 +97,9 @@ class JobPositionController extends Controller
         }
 
         $jobPosition->load('technicalSkills');
-        
-        return view('admin.job-positions.edit', [
-            'jobPosition' => $jobPosition,
-        ]);
+        $technicalSkills = TechnicalSkill::all();
+
+        return view('admin.job-positions.edit', compact('jobPosition', 'technicalSkills'));
     }
 
     public function update(Request $request, JobPosition $jobPosition)
@@ -131,36 +124,29 @@ class JobPositionController extends Controller
             'benefits_ru' => 'nullable|string',
             'benefits_en' => 'nullable|string',
             'benefits_tm' => 'nullable|string',
-            'image' => 'nullable|image|max:10240|mimes:jpeg,png,jpg,gif,webp',
-            'status' => 'nullable|boolean',
+            'employment_type_ru' => 'nullable|string|max:255',
+            'employment_type_en' => 'nullable|string|max:255',
+            'employment_type_tm' => 'nullable|string|max:255',
+            'work_format_ru' => 'nullable|string|max:255',
+            'work_format_en' => 'nullable|string|max:255',
+            'work_format_tm' => 'nullable|string|max:255',
+            'salary_ru' => 'nullable|string|max:255',
+            'salary_en' => 'nullable|string|max:255',
+            'salary_tm' => 'nullable|string|max:255',
             'ordering' => 'nullable|integer|min:0',
             'technical_skills' => 'nullable|array',
             'technical_skills.*' => 'exists:technical_skills,id',
         ]);
 
-        $data = $request->only([
-            'name_ru', 'name_en', 'name_tm', 'sort_order', 'is_active',
-            'description_ru', 'description_en', 'description_tm',
-            'responsibilities_ru', 'responsibilities_en', 'responsibilities_tm',
-            'benefits_ru', 'benefits_en', 'benefits_tm',
-            'status', 'ordering'
-        ]);
-        
+        $data = $request->except(['technical_skills']);
+
         // Обработка boolean полей (чекбоксы не отправляются, если не отмечены)
-        $data['is_active'] = $request->has('is_active') ? (bool)$request->is_active : false;
-        $data['status'] = $request->has('status') ? (bool)$request->status : false;
-        
-        // Обработка изображения
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = time() . '_' . $image->getClientOriginalName();
-            $path = $image->storeAs('uploads/jobs', $filename, 'public');
-            $data['image'] = 'storage/' . $path;
-        }
-        
+        $data['is_active'] = $request->has('is_active') ? (bool) $request->is_active : false;
+        $data['status'] = $request->has('status') ? (bool) $request->status : false;
+
         $jobPosition->update($data);
 
-        // Синхронизация навыков
+        // Синхронизация навыков (изображение удалено)
         $jobPosition->technicalSkills()->sync($request->technical_skills ?? []);
 
         return redirect()->route('admin.job-positions.index')

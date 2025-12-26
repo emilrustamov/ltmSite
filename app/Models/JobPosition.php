@@ -11,7 +11,7 @@ class JobPosition extends Model
 
     protected $fillable = [
         'name_ru',
-        'name_en', 
+        'name_en',
         'name_tm',
         'slug',
         'sort_order',
@@ -25,7 +25,15 @@ class JobPosition extends Model
         'benefits_ru',
         'benefits_en',
         'benefits_tm',
-        'image',
+        'employment_type_ru',
+        'employment_type_en',
+        'employment_type_tm',
+        'work_format_ru',
+        'work_format_en',
+        'work_format_tm',
+        'salary_ru',
+        'salary_en',
+        'salary_tm',
         'status',
         'ordering'
     ];
@@ -53,14 +61,14 @@ class JobPosition extends Model
     public function scopeMainPage($query)
     {
         return $query->where('status', true)
-                    ->orderBy('ordering');
+            ->orderBy('ordering');
     }
 
     // Скоуп для активных и опубликованных вакансий
     public function scopePublished($query)
     {
         return $query->where('status', true)
-                    ->where('is_active', true);
+            ->where('is_active', true);
     }
 
     // Связь с заявками кандидатов

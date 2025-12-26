@@ -1,138 +1,215 @@
-/* Стили для вакансий - аналогично портфолио */
-.grid_portfolio {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 5rem 10rem;
-}
-
-.columnPort img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 30px;
-}
-
-.grid-item:nth-child(2n) {
-  margin-top: 8rem;
-}
-
-.line {
-  width: 12.2rem;
-  height: 0.2rem;
-  background-color: white;
-  margin: 5px 15px 0px 0px;
-}
-
-.skill-tag {
-  display: inline-block;
-  background-color: #e31e24;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 500;
-  margin: 5px;
-}
-
-.skills-grid {
+.jobs-table {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
+  flex-direction: column;
 }
 
-.responsibilities-content,
-.benefits-content {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #e4abab;
-  white-space: pre-line;
+/* Одна строка вакансии */
+.jobs-table .job-row {
+  padding: 35px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+  text-decoration: none !important;
+  color: #fff !important;
+  transition: background 420ms cubic-bezier(0.22,1,0.36,1) !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important; /* vertically center row contents */
+  width: 100% !important;
 }
 
-
-.blur-effect {
-  filter: blur(5px);
-  transition: filter 0.3s ease;
+.job-meta-wrap {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  align-items: baseline;
+  /* 🔥 расстояние между элементами */
+  margin-left: auto;
 }
 
-.no-blur {
-  filter: none !important;
+.job-meta-wrap span:not(:last-child)::after {
+  content: "•";
+  margin: 0 12px;
+  color: rgba(255, 255, 255, 0.3);
 }
 
-.content img {
-  transition: transform 0.3s ease;
+/* Линия сверху первого элемента для четкого списка */
+.jobs-table .job-row:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
-.content img:hover {
-  transform: scale(1.1);
+/* Hover фон */
+.jobs-table .job-row:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
 }
 
-.arrow {
-  position: absolute;
-  padding: 50px;
-  top: -50px;
-  right: 20px;
-  transform: translateY(100%);
-  width: 0;
-  height: 0;
-  background-color: #477edd;
-  opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+/* Название */
+.job-title {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  color: #fff !important;
+  padding: 0 20px !important;
 }
 
-.grid-item:hover .arrow {
-  transform: translateY(0);
+/* Мета-инфо и колонки */
+.job-meta,
+.job-salary {
+  font-size: 16px !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  border-left: none !important;
+  /* Убираем линии между данными */
+  padding: 0 !important;
+}
+
+/* Стрелка */
+.job-arrow {
+  font-size: 20px !important;
+  color: #fff !important;
+  padding: 0 28px 0 20px !important; /* a bit more space from right edge */
+  border-left: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  opacity: 0.6;
+}
+
+.job-row:hover .job-arrow {
+  opacity: 1 !important;
+}
+
+/* Make the standardized icon-button respond when hovering the entire row */
+.job-row:hover .custom-button--icon {
+  background-color: rgba(255,255,255,0.04) !important;
+}
+.job-row:hover .custom-button--icon:after {
+  transform: translateX(10px) !important;
+}
+
+/* Small icon-only modifier re-used on the jobs page */
+.custom-button--icon {
+  padding: 6px;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border: none !important;
+}
+.custom-button--icon:after {
+  content: "";
+  display: inline-block !important;
+  width: 18px;
+  height: 18px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("/assets/images/long-arrow-right.png");
+  transition: transform 0.18s ease;
+  flex-shrink: 0;
+}
+
+/* Job-page specialized icon button: mirrors .custom-button--icon
+   but only animates when hovering the parent .job-row */
+.job-button--icon {
+  padding: 4px 6px;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: transparent !important;
+  color: inherit !important;
+  border: none !important;
+  position: relative;
+  transition: transform 420ms cubic-bezier(0.22,1,0.36,1),
+              color 320ms cubic-bezier(0.22,1,0.36,1),
+              box-shadow 360ms cubic-bezier(0.22,1,0.36,1),
+              opacity 300ms ease;
+  will-change: transform, opacity, box-shadow;
+}
+.job-button--icon:after {
+  content: "";
+  display: inline-block !important;
+  width: 14px;
+  height: 14px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("/assets/images/long-arrow-right.png");
+  transition: transform 420ms cubic-bezier(0.22,1,0.36,1), opacity 300ms ease;
+  flex-shrink: 0;
+  opacity: 0.95;
+}
+
+/* Only animate when hovering the whole row, not when hovering the button itself */
+.job-row:hover .job-button--icon {
+  background-color: rgba(255,255,255,0.04) !important;
+}
+
+/* Support direct icon elements (Font Awesome) and fallback pseudo-element */
+.job-button--icon {
+  font-size: 16px; /* slightly smaller icon */
+  line-height: 1;
+}
+.job-row:hover .job-button--icon {
+  transform: translateX(10px) rotate(1deg) scale(1.02) !important;
+  color: var(--primary) !important;
+  box-shadow: 0 8px 18px rgba(227,30,36,0.10);
   opacity: 1;
 }
+.job-row:hover .job-button--icon:empty:after {
+  transform: translateX(10px) !important;
+}
 
+/* subtle breathing animation when hovered briefly */
+.job-row:hover .job-button--icon.animate-breathe {
+  animation: job-icon-breathe 900ms ease both;
+}
+@keyframes job-icon-breathe {
+  0% { transform: translateX(0) scale(1); }
+  50% { transform: translateX(13px) scale(1.04); }
+  100% { transform: translateX(10px) scale(1); }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .jobs-table .job-row,
+  .job-button--icon,
+  .job-button--icon:after {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
 
 @media (max-width: 768px) {
-  .grid_portfolio {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-content: center;
-    align-items: center;
+  .jobs-table .job-row {
+    padding: 20px 15px !important;
+    flex-direction: column !important;
+    gap: 10px !important;
   }
-  
-  .grid-item:nth-child(2n) {
-    margin-top: 4rem;
+
+  .job-title,
+  .job-meta,
+  .job-salary,
+  .job-arrow {
+    padding: 0 !important;
+    font-size: 18px !important;
   }
-  
-  .skills-grid {
-    justify-content: center;
+
+  .job-arrow {
+    margin-left: 20px;
   }
-  
-  .skill-tag {
-    font-size: 12px;
-    padding: 6px 12px;
+
+  /* reduce motion on small screens */
+  .job-row:hover .job-button--icon {
+    transform: translateX(8px) rotate(0) !important;
   }
-}
 
-/* Стили для пагинации */
-.pagination-wrapper {
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
-}
-
-.pagination-wrapper .pagination {
-  display: flex;
-  gap: 10px;
-}
-
-.pagination-wrapper .pagination a,
-.pagination-wrapper .pagination span {
-  padding: 10px 15px;
-  background-color: #e31e24;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.pagination-wrapper .pagination a:hover {
-  background-color: #c41e3a;
-}
-
-.pagination-wrapper .pagination .active span {
-  background-color: #28a745;
+  .job-title {
+    font-size: 18px;
+  }
 }

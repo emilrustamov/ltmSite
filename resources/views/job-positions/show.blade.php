@@ -18,12 +18,6 @@
 
 @section('content')
     <section class="container">
-        @if ($jobPosition->image)
-            <img src="{{ asset($jobPosition->image) }}" alt="{{ $jobPosition->{'name_' . $lang} ?? $jobPosition->name_ru }}" loading="lazy" class="w-full">
-        @else
-            <img src="{{ asset('assets/images/proformat.png') }}" alt="{{ __('translate.defaultJobImage') }}" loading="lazy" class="w-full">
-        @endif
-
         <div class="project-details">
             <div class="mt-10">
                 <h1 class="mb-15">{{ $jobPosition->{'name_' . $lang} ?? $jobPosition->name_ru }}</h1>
