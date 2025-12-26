@@ -10,11 +10,6 @@ class AntiSpamMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        /*
-        |--------------------------------------------------------------------------
-        | 1. Honeypot — мгновенный стоп
-        |--------------------------------------------------------------------------
-        */
         if ($request->filled('website')) {
             Log::warning('Spam blocked: honeypot', [
                 'ip' => $request->ip(),
@@ -24,11 +19,6 @@ class AntiSpamMiddleware
             abort(403);
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | 2. Проверка времени заполнения формы
-        |--------------------------------------------------------------------------
-        */
         if (
             !$request->filled('form_started_at') ||
             time() - (int) $request->form_started_at < 5
@@ -40,11 +30,6 @@ class AntiSpamMiddleware
             abort(403);
         }
 
-        /*
-        |--------------------------------------------------------------------------
-        | 3. reCAPTCHA v3 — строгая проверка
-        |--------------------------------------------------------------------------
-        */
         $secretKey = config('services.recaptcha.secret_key');
 
         if (!empty($secretKey)) {
@@ -91,9 +76,6 @@ class AntiSpamMiddleware
         return $next($request);
     }
 
-    /**
-     * Проверка reCAPTCHA v3
-     */
     private function verifyRecaptcha(string $token, ?string $remoteIp = null): array
     {
         $secretKey = config('services.recaptcha.secret_key');
