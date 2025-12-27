@@ -15,7 +15,7 @@ return [
     'p1_2_custom' => 'turning your ideas into success stories.',
     'p1_2_cont' => 'Discover an IT company in Turkmenistan that will bring a new wave of development to your business!',
     'emoji' => "In every solution we create - a spark of innovation and flame of passion for technology",
-    "emoji1" => "🤞🖖✌️",
+    "emoji1" =>  "🤞🖖✌️",
     'qualityTitle' => 'Your project will be effective and profitable',
     'qualitySub' => 'Our goal is to lead you to market leadership or at least maximize your potential.',
     'q1_title' => '🤓 We don\'t learn at "your expense"',
@@ -368,31 +368,31 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'bitrix_more' => 'Learn More',
 
     'metaDescBitrix' => 'LTM offers implementation and configuration of the Bitrix24 system in Turkmenistan. Business automation, CRM, project management, and integration for your success.',
-    'metaKeyBitrix' => 'Bitrix24 in Turkmenistan, Bitrix24 implementation, CRM setup in Turkmenistan, business automation in Turkmenistan, Bitrix24 IT services',
-    'titleBitrix' => 'Bitrix24 in Turkmenistan',
+    'metaKeyBitrix'  => 'Bitrix24 in Turkmenistan, Bitrix24 implementation, CRM setup in Turkmenistan, business automation in Turkmenistan, Bitrix24 IT services',
+    'titleBitrix'       => 'Bitrix24 in Turkmenistan',
 
     'metaDescAboutUs' => 'Lebizli Tehnologiya Merkezi (LTM) is a leading IT company in Turkmenistan. We offer website development, mobile applications, e-commerce platforms, and Bitrix24 integration for your business.',
-    'metaKeyAboutUs' => 'Lebizli Tehnologiya Merkezi, LTM IT company, IT company Turkmenistan, website development Turkmenistan, Bitrix24 implementation Turkmenistan',
-    'titleAboutUs' => 'About Us - Lebizli Tehnologiya Merkezi (LTM) - IT Company in Turkmenistan',
+    'metaKeyAboutUs'  => 'Lebizli Tehnologiya Merkezi, LTM IT company, IT company Turkmenistan, website development Turkmenistan, Bitrix24 implementation Turkmenistan',
+    'titleAboutUs'       => 'About Us - Lebizli Tehnologiya Merkezi (LTM) - IT Company in Turkmenistan',
 
     'metaDescContacts' => 'Contact Lebizli Tehnologiya Merkezi (LTM) in Turkmenistan! Our IT company offers website and mobile app development, as well as Bitrix24 integration. Contact us for consultation.',
-    'metaKeyContacts' => 'Lebizli Tehnologiya Merkezi contacts, LTM contacts, IT company in Turkmenistan, Bitrix24 consultation Turkmenistan, website development Turkmenistan',
-    'titleContacts' => 'Contact Lebizli Tehnologiya Merkezi (LTM) in Turkmenistan',
+    'metaKeyContacts'  => 'Lebizli Tehnologiya Merkezi contacts, LTM contacts, IT company in Turkmenistan, Bitrix24 consultation Turkmenistan, website development Turkmenistan',
+    'titleContacts'       => 'Contact Lebizli Tehnologiya Merkezi (LTM) in Turkmenistan',
 
     'metaDescMain' => 'Lebizli Tehnologiya Merkezi (LTM) is an IT company in Turkmenistan offering a full range of professional services, from design to website and mobile app development, e-commerce, and Bitrix24 solutions.',
-    'metaKeyMain' => 'website development in Turkmenistan, mobile app development in Turkmenistan, Bitrix CRM Turkmenistan, developer company Turkmenistan, IT company Turkmenistan',
-    'titleMain' => 'Lebizli Tehnologiya Merkezi (LTM): IT Company in Turkmenistan',
+    'metaKeyMain'  => 'website development in Turkmenistan, mobile app development in Turkmenistan, Bitrix CRM Turkmenistan, developer company Turkmenistan, IT company Turkmenistan',
+    'titleMain'       => 'Lebizli Tehnologiya Merkezi (LTM): IT Company in Turkmenistan',
 
-    'metaKeyProjectDetails' => 'Lebizli Tehnologiya Merkezi, LTM IT company, website development Turkmenistan, Bitrix24 Turkmenistan',
-    'titleProjectDetails' => '- Lebizli Tehnologiya Merkezi (LTM) - IT Company in Turkmenistan',
+    'metaKeyProjectDetails'  => 'Lebizli Tehnologiya Merkezi, LTM IT company, website development Turkmenistan, Bitrix24 Turkmenistan',
+    'titleProjectDetails'       => '- Lebizli Tehnologiya Merkezi (LTM) - IT Company in Turkmenistan',
 
     'metaDescPortfolio' => 'Explore the portfolio of Lebizli Tehnologiya Merkezi (LTM), an IT company in Turkmenistan. Examples of websites, mobile apps, e-commerce projects, and Bitrix24 implementations.',
-    'metaKeyPortfolio' => 'Lebizli Tehnologiya Merkezi portfolio, LTM IT company, IT portfolio Turkmenistan, website development Turkmenistan, Bitrix24 examples Turkmenistan',
-    'titlePortfolio' => 'Portfolio of Lebizli Tehnologiya Merkezi (LTM) - IT Company in Turkmenistan',
+    'metaKeyPortfolio'  => 'Lebizli Tehnologiya Merkezi portfolio, LTM IT company, IT portfolio Turkmenistan, website development Turkmenistan, Bitrix24 examples Turkmenistan',
+    'titlePortfolio'       => 'Portfolio of Lebizli Tehnologiya Merkezi (LTM) - IT Company in Turkmenistan',
 
     'metaDescServices' => 'Lebizli Tehnologiya Merkezi (LTM) is an IT company in Turkmenistan offering services in website development, mobile apps, e-commerce, and Bitrix24 implementation for your business.',
-    'metaKeyServices' => 'Lebizli Tehnologiya Merkezi services, LTM IT company, website development Turkmenistan, mobile apps Turkmenistan, Bitrix24 implementation Turkmenistan',
-    'titleServices' => 'Services of Lebizli Tehnologiya Merkezi (LTM) - IT Company in Turkmenistan',
+    'metaKeyServices'  => 'Lebizli Tehnologiya Merkezi services, LTM IT company, website development Turkmenistan, mobile apps Turkmenistan, Bitrix24 implementation Turkmenistan',
+    'titleServices'       => 'Services of Lebizli Tehnologiya Merkezi (LTM) - IT Company in Turkmenistan',
 
     // Job positions translations
     'jobs' => 'Jobs',

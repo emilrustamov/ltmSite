@@ -58,9 +58,9 @@
 
     <!-- Meta Pixel Code -->
     <script>
-        ! function (f, b, e, v, n, t, s) {
+        ! function(f, b, e, v, n, t, s) {
             if (f.fbq) return;
-            n = f.fbq = function () {
+            n = f.fbq = function() {
                 n.callMethod ?
                     n.callMethod.apply(n, arguments) : n.queue.push(arguments)
             };
@@ -193,7 +193,7 @@
     });
 </script>
 <script>
-    (function (w, d, u) {
+    (function(w, d, u) {
         var s = d.createElement('script');
         s.async = true;
         s.src = u + '?' + (Date.now() / 60000 | 0);
