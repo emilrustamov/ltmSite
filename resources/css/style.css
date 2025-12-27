@@ -42,6 +42,23 @@ h2 {
   font-size: 48px;
   font-weight: 600;
   margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+  transition: width 0.8s ease;
+}
+
+.section h2.visible::after {
+  width: 200px;
 }
 
 h3 {
@@ -83,7 +100,7 @@ button {
   font-weight: 600;
 }
 input {
-  background-color: none;
+  background-color: transparent;
   outline: none !important;
 }
 
@@ -623,8 +640,8 @@ section {
 .send-p:after {
   content: "";
   display: inline-block !important;
-  width: 30px;
-  height: 30px;
+  width: 30px !important;
+  height: 30px !important;
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("/assets/images/long-arrow-right.png");
@@ -633,6 +650,7 @@ section {
 }
 
 .send-p:hover:after {
+  width: 30px !important;
   transform: translateX(10px);
 }
 
@@ -858,7 +876,7 @@ section {
 
 .block-item-26 {
   height: 50%;
-  width: 66, 6%;
+  width: 66.6%;
   background-color: rgb(178, 95, 255);
   color: white;
   font-size: var(--font18);
@@ -1075,14 +1093,16 @@ section {
 
 }
 
+/* Container padding для всех экранов */
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 @media (max-width: 1024px) {
 
   .typing-text {
     display: none;
-  }
-
-  .container {
-    padding: 0 20px;
   }
 }
 
@@ -1267,13 +1287,20 @@ section {
   gap: 10px;
   padding: 10px 20px;
   border-radius: 5px;
+  color: white !important;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .custom-button:after {
   content: "";
   display: inline-block !important;
-  width: 30px;
-  height: 30px;
+  width: 30px !important;
+  height: 30px !important;
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("/assets/images/long-arrow-right.png");
@@ -1281,7 +1308,13 @@ section {
   flex-shrink: 0;
 }
 
+.custom-button:hover {
+  background-color: var(--dark-primary);
+  color: white !important;
+}
+
 .custom-button:hover:after {
+  width: 30px !important;
   transform: translateX(10px);
 }
 
@@ -1433,7 +1466,7 @@ section {
   font-size: 24px;
 }
 
-.criteria li ::before {
+.criteria li::before {
   content: "";
   position: absolute;
   left: 0;
