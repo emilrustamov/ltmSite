@@ -1477,3 +1477,102 @@ section {
   border-radius: 50%;
 }
 /*конец о нас*/
+
+/* Начало стилей для вакансий - двухколоночный layout */
+.job-section-two-columns {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  gap: 250px;
+}
+
+.job-section-title {
+  position: sticky;
+  top: 100px;
+  text-align: left;
+  flex: 0 0 300px;
+  min-width: 300px;
+  max-width: 300px;
+}
+
+.job-section-title h2 {
+  margin: 0;
+  padding-bottom: 0;
+  text-align: left;
+  font-size: 47px;
+}
+
+.job-section-title h2::after {
+  display: none;
+}
+
+.job-section-content {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.job-section-content p,
+.job-section-content ul {
+  text-align: left;
+}
+
+.job-content-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 0;
+}
+
+.job-content-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 0;
+}
+
+.job-content-list li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 20px;
+  margin-left: 0;
+  padding-right: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.job-content-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--primary);
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.6;
+  width: 30px;
+  text-align: left;
+}
+
+@media (max-width: 991px) {
+  .job-section-two-columns {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .job-section-title {
+    position: static;
+    text-align: left;
+    min-width: auto;
+  }
+
+  .job-section-title h2 {
+    text-align: left;
+  }
+
+  .job-section-title h2::after {
+    display: none;
+  }
+}
+/* Конец стилей для вакансий */

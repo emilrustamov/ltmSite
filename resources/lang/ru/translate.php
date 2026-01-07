@@ -447,7 +447,18 @@ return [
     'defaultJobImage' => 'Изображение вакансии по умолчанию',
     'career' => 'карьера',
     'employment_type' => 'Тип занятости',
+    'employment_type_full_time' => 'Полная занятость',
+    'employment_type_part_time' => 'Частичная занятость',
+    'employment_type_contract' => 'Контракт',
+    'employment_type_temporary' => 'Временная работа',
+    'employment_type_internship' => 'Стажировка',
+    'employment_type_volunteer' => 'Волонтерство',
     'work_format' => 'Формат работы',
+    'work_format_on_site' => 'В офисе',
+    'work_format_remote' => 'Удаленно',
+    'work_format_hybrid' => 'Гибридный',
     'salary' => 'Зарплата',
+    'requirements' => 'Требования',
+    'conditions' => 'Условия',
 
 ];

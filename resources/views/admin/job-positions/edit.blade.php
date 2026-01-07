@@ -65,41 +65,37 @@
                         
                         <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label fw-bold">Тип занятости (ru/en/tm)</label>
-                                <input type="text" name="employment_type_ru" class="form-control mb-2" placeholder="Русский" value="{{ old('employment_type_ru', $jobPosition->employment_type_ru) }}">
-                                <input type="text" name="employment_type_en" class="form-control mb-2" placeholder="English" value="{{ old('employment_type_en', $jobPosition->employment_type_en) }}">
-                                <input type="text" name="employment_type_tm" class="form-control" placeholder="Türkmen" value="{{ old('employment_type_tm', $jobPosition->employment_type_tm) }}">
+                                <label for="employment_type" class="form-label fw-bold">Тип занятости</label>
+                                <select class="form-control @error('employment_type') is-invalid @enderror" id="employment_type" name="employment_type">
+                                    <option value="">-- Выберите тип --</option>
+                                    <option value="full-time" {{ old('employment_type', $jobPosition->employment_type) == 'full-time' ? 'selected' : '' }}>Полная занятость (Full-time)</option>
+                                    <option value="part-time" {{ old('employment_type', $jobPosition->employment_type) == 'part-time' ? 'selected' : '' }}>Частичная занятость (Part-time)</option>
+                                    <option value="contract" {{ old('employment_type', $jobPosition->employment_type) == 'contract' ? 'selected' : '' }}>Контракт (Contract)</option>
+                                    <option value="temporary" {{ old('employment_type', $jobPosition->employment_type) == 'temporary' ? 'selected' : '' }}>Временная работа (Temporary)</option>
+                                    <option value="internship" {{ old('employment_type', $jobPosition->employment_type) == 'internship' ? 'selected' : '' }}>Стажировка (Internship)</option>
+                                    <option value="volunteer" {{ old('employment_type', $jobPosition->employment_type) == 'volunteer' ? 'selected' : '' }}>Волонтерство (Volunteer)</option>
+                                </select>
+                                @error('employment_type')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label fw-bold">Формат работы (ru/en/tm)</label>
-                                <input type="text" name="work_format_ru" class="form-control mb-2" placeholder="Русский" value="{{ old('work_format_ru', $jobPosition->work_format_ru) }}">
-                                <input type="text" name="work_format_en" class="form-control mb-2" placeholder="English" value="{{ old('work_format_en', $jobPosition->work_format_en) }}">
-                                <input type="text" name="work_format_tm" class="form-control" placeholder="Türkmen" value="{{ old('work_format_tm', $jobPosition->work_format_tm) }}">
+                                <label for="work_format" class="form-label fw-bold">Формат работы</label>
+                                <select class="form-control @error('work_format') is-invalid @enderror" id="work_format" name="work_format">
+                                    <option value="">-- Выберите формат --</option>
+                                    <option value="on-site" {{ old('work_format', $jobPosition->work_format) == 'on-site' ? 'selected' : '' }}>В офисе (On-site)</option>
+                                    <option value="remote" {{ old('work_format', $jobPosition->work_format) == 'remote' ? 'selected' : '' }}>Удаленно (Remote)</option>
+                                    <option value="hybrid" {{ old('work_format', $jobPosition->work_format) == 'hybrid' ? 'selected' : '' }}>Гибридный (Hybrid)</option>
+                                </select>
+                                @error('work_format')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label fw-bold">Заработная плата (ru/en/tm)</label>
                                 <input type="text" name="salary_ru" class="form-control mb-2" placeholder="Русский" value="{{ old('salary_ru', $jobPosition->salary_ru) }}">
                                 <input type="text" name="salary_en" class="form-control mb-2" placeholder="English" value="{{ old('salary_en', $jobPosition->salary_en) }}">
                                 <input type="text" name="salary_tm" class="form-control" placeholder="Türkmen" value="{{ old('salary_tm', $jobPosition->salary_tm) }}">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Описание -->
-                    <div class="mb-4">
-                        <h6 class="border-bottom pb-2 mb-3">Описание вакансии</h6>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label for="description_ru" class="form-label">Русский</label>
-                                <textarea class="form-control" id="description_ru" name="description_ru" rows="5">{{ old('description_ru', $jobPosition->description_ru) }}</textarea>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="description_en" class="form-label">English</label>
-                                <textarea class="form-control" id="description_en" name="description_en" rows="5">{{ old('description_en', $jobPosition->description_en) }}</textarea>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="description_tm" class="form-label">Türkmen</label>
-                                <textarea class="form-control" id="description_tm" name="description_tm" rows="5">{{ old('description_tm', $jobPosition->description_tm) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -123,21 +119,40 @@
                         </div>
                     </div>
 
-                    <!-- Преимущества -->
+                    <!-- Требования -->
                     <div class="mb-4">
-                        <h6 class="border-bottom pb-2 mb-3">Условия и бонусы</h6>
+                        <h6 class="border-bottom pb-2 mb-3">Требования</h6>
                         <div class="row">
                             <div class="col-md-4">
-                                <label for="benefits_ru" class="form-label">Русский</label>
-                                <textarea class="form-control" id="benefits_ru" name="benefits_ru" rows="5">{{ old('benefits_ru', $jobPosition->benefits_ru) }}</textarea>
+                                <label for="requirements_ru" class="form-label">Русский</label>
+                                <textarea class="form-control" id="requirements_ru" name="requirements_ru" rows="5">{{ old('requirements_ru', $jobPosition->requirements_ru) }}</textarea>
                             </div>
                             <div class="col-md-4">
-                                <label for="benefits_en" class="form-label">English</label>
-                                <textarea class="form-control" id="benefits_en" name="benefits_en" rows="5">{{ old('benefits_en', $jobPosition->benefits_en) }}</textarea>
+                                <label for="requirements_en" class="form-label">English</label>
+                                <textarea class="form-control" id="requirements_en" name="requirements_en" rows="5">{{ old('requirements_en', $jobPosition->requirements_en) }}</textarea>
                             </div>
                             <div class="col-md-4">
-                                <label for="benefits_tm" class="form-label">Türkmen</label>
-                                <textarea class="form-control" id="benefits_tm" name="benefits_tm" rows="5">{{ old('benefits_tm', $jobPosition->benefits_tm) }}</textarea>
+                                <label for="requirements_tm" class="form-label">Türkmen</label>
+                                <textarea class="form-control" id="requirements_tm" name="requirements_tm" rows="5">{{ old('requirements_tm', $jobPosition->requirements_tm) }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Условия -->
+                    <div class="mb-4">
+                        <h6 class="border-bottom pb-2 mb-3">Условия</h6>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="conditions_ru" class="form-label">Русский</label>
+                                <textarea class="form-control" id="conditions_ru" name="conditions_ru" rows="5">{{ old('conditions_ru', $jobPosition->conditions_ru) }}</textarea>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="conditions_en" class="form-label">English</label>
+                                <textarea class="form-control" id="conditions_en" name="conditions_en" rows="5">{{ old('conditions_en', $jobPosition->conditions_en) }}</textarea>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="conditions_tm" class="form-label">Türkmen</label>
+                                <textarea class="form-control" id="conditions_tm" name="conditions_tm" rows="5">{{ old('conditions_tm', $jobPosition->conditions_tm) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -198,6 +213,15 @@
                                 </div>
                             @endforeach
                         </div>
+                        
+                        <!-- Блок для добавления новых навыков -->
+                        <div class="card-footer bg-white border-top">
+                            <button type="button" class="btn btn-sm btn-outline-primary w-100" id="addNewSkillBtn">
+                                <i class="fas fa-plus me-2"></i>
+                                Добавить новый навык
+                            </button>
+                            <div id="newSkillsContainer" class="mt-3"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -227,11 +251,56 @@
 document.addEventListener('DOMContentLoaded', function() {
     const selectAllBtn = document.getElementById('selectAllSkills');
     const checkboxes = document.querySelectorAll('.skill-checkbox');
+    const addNewSkillBtn = document.getElementById('addNewSkillBtn');
+    const newSkillsContainer = document.getElementById('newSkillsContainer');
+    let skillCounter = 0;
     
     selectAllBtn.addEventListener('click', function() {
         const allChecked = Array.from(checkboxes).every(cb => cb.checked);
         checkboxes.forEach(cb => cb.checked = !allChecked);
         this.textContent = !allChecked ? 'Снять все' : 'Все';
+    });
+
+    addNewSkillBtn.addEventListener('click', function() {
+        const skillIndex = skillCounter++;
+        const skillHtml = `
+            <div class="new-skill-item mb-3 p-3 border rounded" data-skill-index="${skillIndex}">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <strong>Новый навык #${skillIndex + 1}</strong>
+                    <button type="button" class="btn btn-sm btn-outline-danger remove-skill-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-2">
+                        <label class="form-label small">Русский *</label>
+                        <input type="text" class="form-control form-control-sm" 
+                               name="new_technical_skills[${skillIndex}][name_ru]" 
+                               placeholder="Название на русском" required>
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label class="form-label small">English</label>
+                        <input type="text" class="form-control form-control-sm" 
+                               name="new_technical_skills[${skillIndex}][name_en]" 
+                               placeholder="Name in English">
+                    </div>
+                    <div class="col-md-4 mb-2">
+                        <label class="form-label small">Türkmen</label>
+                        <input type="text" class="form-control form-control-sm" 
+                               name="new_technical_skills[${skillIndex}][name_tm]" 
+                               placeholder="Türkmençe ady">
+                    </div>
+                </div>
+            </div>
+        `;
+        newSkillsContainer.insertAdjacentHTML('beforeend', skillHtml);
+    });
+
+    // Удаление нового навыка
+    newSkillsContainer.addEventListener('click', function(e) {
+        if (e.target.closest('.remove-skill-btn')) {
+            e.target.closest('.new-skill-item').remove();
+        }
     });
 });
 </script>

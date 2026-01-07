@@ -507,7 +507,18 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
     'defaultJobImage' => 'Iş ýeri suraty',
     'career' => 'kariýera',
     'employment_type' => 'Zanitost görnüşi',
+    'employment_type_full_time' => 'Doly zanitost',
+    'employment_type_part_time' => 'Bölekleýin zanitost',
+    'employment_type_contract' => 'Şertnama',
+    'employment_type_temporary' => 'Wagtlaýyn iş',
+    'employment_type_internship' => 'Stažirovka',
+    'employment_type_volunteer' => 'Meýletinçilik',
     'work_format' => 'Iş formaty',
+    'work_format_on_site' => 'Ofisde',
+    'work_format_remote' => 'Uzakdan',
+    'work_format_hybrid' => 'Gibrid',
     'salary' => 'Aýlyk',
+    'requirements' => 'Talaplar',
+    'conditions' => 'Şertler',
 
 ];

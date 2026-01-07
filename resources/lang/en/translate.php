@@ -420,7 +420,18 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'defaultJobImage' => 'Default job image',
     'career' => 'career',
     'employment_type' => 'Employment Type',
+    'employment_type_full_time' => 'Full-time',
+    'employment_type_part_time' => 'Part-time',
+    'employment_type_contract' => 'Contract',
+    'employment_type_temporary' => 'Temporary',
+    'employment_type_internship' => 'Internship',
+    'employment_type_volunteer' => 'Volunteer',
     'work_format' => 'Work Format',
+    'work_format_on_site' => 'On-site',
+    'work_format_remote' => 'Remote',
+    'work_format_hybrid' => 'Hybrid',
     'salary' => 'Salary',
+    'requirements' => 'Requirements',
+    'conditions' => 'Conditions',
 
 ];

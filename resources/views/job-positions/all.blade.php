@@ -28,11 +28,33 @@
                         {{ $job->{'name_' . $lang} ?? $job->name_ru }}
                                             </h2>
                                             <div class="job-meta-row">
-                                                @if($job->{'employment_type_' . $lang} ?? $job->employment_type_ru)
-                                                    <span class="job-meta-badge">{{ $job->{'employment_type_' . $lang} ?? $job->employment_type_ru }}</span>
+                                                @if($job->employment_type)
+                                                    <span class="job-meta-badge">
+                                                        @if($job->employment_type == 'full-time')
+                                                            {{ __('translate.employment_type_full_time') ?? 'Полная занятость' }}
+                                                        @elseif($job->employment_type == 'part-time')
+                                                            {{ __('translate.employment_type_part_time') ?? 'Частичная занятость' }}
+                                                        @elseif($job->employment_type == 'contract')
+                                                            {{ __('translate.employment_type_contract') ?? 'Контракт' }}
+                                                        @elseif($job->employment_type == 'temporary')
+                                                            {{ __('translate.employment_type_temporary') ?? 'Временная работа' }}
+                                                        @elseif($job->employment_type == 'internship')
+                                                            {{ __('translate.employment_type_internship') ?? 'Стажировка' }}
+                                                        @elseif($job->employment_type == 'volunteer')
+                                                            {{ __('translate.employment_type_volunteer') ?? 'Волонтерство' }}
+                                                        @endif
+                                                    </span>
                                                 @endif
-                                                @if($job->{'work_format_' . $lang} ?? $job->work_format_ru)
-                                                    <span class="job-meta-badge">{{ $job->{'work_format_' . $lang} ?? $job->work_format_ru }}</span>
+                                                @if($job->work_format)
+                                                    <span class="job-meta-badge">
+                                                        @if($job->work_format == 'on-site')
+                                                            {{ __('translate.work_format_on_site') ?? 'В офисе' }}
+                                                        @elseif($job->work_format == 'remote')
+                                                            {{ __('translate.work_format_remote') ?? 'Удаленно' }}
+                                                        @elseif($job->work_format == 'hybrid')
+                                                            {{ __('translate.work_format_hybrid') ?? 'Гибридный' }}
+                                                        @endif
+                                                    </span>
                                                 @endif
                                                 @if($job->{'salary_' . $lang} ?? $job->salary_ru)
                                                     <span class="job-meta-badge job-salary-badge">{{ $job->{'salary_' . $lang} ?? $job->salary_ru }}</span>

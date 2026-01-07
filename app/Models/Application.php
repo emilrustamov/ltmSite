@@ -46,7 +46,7 @@ class Application extends Model
                     'educationalInstitutions'
                 ]);
                 
-                $adminEmail = "info@ltm.studio";
+                $adminEmail = "hr@ltm.studio";
                 Mail::to($adminEmail)->send(new ANMail($item));
             } catch (\Exception $e) {
                 // Логируем ошибку, но не прерываем сохранение
