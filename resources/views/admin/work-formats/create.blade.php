@@ -61,10 +61,16 @@
                     </div>
                     
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('admin.work-formats.index') }}" class="btn btn-outline-secondary">
-                            <i class="fas fa-arrow-left me-2"></i>
-                            Назад к списку
-                        </a>
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('admin.job-positions.index') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-briefcase me-2"></i>
+                                К вакансиям
+                            </a>
+                            <a href="{{ route('admin.work-formats.index') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                К списку форматов
+                            </a>
+                        </div>
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-save me-2"></i>
                             Создать формат работы

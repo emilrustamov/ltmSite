@@ -92,45 +92,5 @@
             Должности
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link text-white py-3 px-3 {{ request()->routeIs('admin.technical-skills.*') ? 'bg-primary' : '' }}" 
-           href="{{ route('admin.technical-skills.index') }}"
-           style="border: none; transition: all 0.2s;"
-           onmouseover="{{ request()->routeIs('admin.technical-skills.*') ? '' : 'this.style.backgroundColor=\'#34495e\'' }}"
-           onmouseout="{{ request()->routeIs('admin.technical-skills.*') ? '' : 'this.style.backgroundColor=\'\'' }}">
-            <i class="fas fa-code me-2"></i>
-            Навыки
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-white py-3 px-3 {{ request()->routeIs('admin.work-formats.*') ? 'bg-primary' : '' }}" 
-           href="{{ route('admin.work-formats.index') }}"
-           style="border: none; transition: all 0.2s;"
-           onmouseover="{{ request()->routeIs('admin.work-formats.*') ? '' : 'this.style.backgroundColor=\'#34495e\'' }}"
-           onmouseout="{{ request()->routeIs('admin.work-formats.*') ? '' : 'this.style.backgroundColor=\'\'' }}">
-            <i class="fas fa-laptop me-2"></i>
-            Форматы работы
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-white py-3 px-3 {{ request()->routeIs('admin.languages.*') ? 'bg-primary' : '' }}" 
-           href="{{ route('admin.languages.index') }}"
-           style="border: none; transition: all 0.2s;"
-           onmouseover="{{ request()->routeIs('admin.languages.*') ? '' : 'this.style.backgroundColor=\'#34495e\'' }}"
-           onmouseout="{{ request()->routeIs('admin.languages.*') ? '' : 'this.style.backgroundColor=\'\'' }}">
-            <i class="fas fa-language me-2"></i>
-            Языки
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-white py-3 px-3 {{ request()->routeIs('admin.cities.*') ? 'bg-primary' : '' }}" 
-           href="{{ route('admin.cities.index') }}"
-           style="border: none; transition: all 0.2s;"
-           onmouseover="{{ request()->routeIs('admin.cities.*') ? '' : 'this.style.backgroundColor=\'#34495e\'' }}"
-           onmouseout="{{ request()->routeIs('admin.cities.*') ? '' : 'this.style.backgroundColor=\'\'' }}">
-            <i class="fas fa-map-marker-alt me-2"></i>
-            Города
-        </a>
-    </li>
     @endif
 </ul>

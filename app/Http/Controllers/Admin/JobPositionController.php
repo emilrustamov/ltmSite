@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\JobPosition;
 use App\Models\TechnicalSkill;
+use App\Models\WorkFormat;
 use App\Constants\Permissions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,8 +35,9 @@ class JobPositionController extends Controller
         }
 
         $technicalSkills = TechnicalSkill::all();
+        $workFormats = WorkFormat::active()->ordered()->get();
 
-        return view('admin.job-positions.create', compact('technicalSkills'));
+        return view('admin.job-positions.create', compact('technicalSkills', 'workFormats'));
     }
 
     public function store(Request $request)
@@ -55,7 +57,7 @@ class JobPositionController extends Controller
             'responsibilities_en' => 'nullable|string',
             'responsibilities_tm' => 'nullable|string',
             'employment_type' => 'nullable|in:full-time,part-time,contract,temporary,internship,volunteer',
-            'work_format' => 'nullable|in:on-site,remote,hybrid',
+            'work_format_id' => 'nullable|exists:work_formats,id',
             'salary_ru' => 'nullable|string|max:255',
             'salary_en' => 'nullable|string|max:255',
             'salary_tm' => 'nullable|string|max:255',
@@ -142,8 +144,9 @@ class JobPositionController extends Controller
 
         $jobPosition->load('technicalSkills');
         $technicalSkills = TechnicalSkill::all();
+        $workFormats = WorkFormat::active()->ordered()->get();
 
-        return view('admin.job-positions.edit', compact('jobPosition', 'technicalSkills'));
+        return view('admin.job-positions.edit', compact('jobPosition', 'technicalSkills', 'workFormats'));
     }
 
     public function update(Request $request, JobPosition $jobPosition)
@@ -163,7 +166,7 @@ class JobPositionController extends Controller
             'responsibilities_en' => 'nullable|string',
             'responsibilities_tm' => 'nullable|string',
             'employment_type' => 'nullable|in:full-time,part-time,contract,temporary,internship,volunteer',
-            'work_format' => 'nullable|in:on-site,remote,hybrid',
+            'work_format_id' => 'nullable|exists:work_formats,id',
             'salary_ru' => 'nullable|string|max:255',
             'salary_en' => 'nullable|string|max:255',
             'salary_tm' => 'nullable|string|max:255',

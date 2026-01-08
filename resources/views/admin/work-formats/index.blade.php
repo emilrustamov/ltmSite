@@ -4,7 +4,11 @@
 @section('page-title', 'Управление форматами работы')
 
 @section('content')
-<div class="d-flex justify-content-end mb-3">
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <a href="{{ route('admin.job-positions.index') }}" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left me-2"></i>
+        Назад к вакансиям
+    </a>
     <a href="{{ route('admin.work-formats.create') }}" class="btn btn-primary">
         <i class="fas fa-plus me-2"></i>
         Создать формат работы

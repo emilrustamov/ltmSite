@@ -68,14 +68,16 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="work_format" class="form-label fw-bold">Формат работы</label>
-                                    <select class="form-control @error('work_format') is-invalid @enderror" id="work_format" name="work_format">
+                                    <label for="work_format_id" class="form-label fw-bold">Формат работы</label>
+                                    <select class="form-control @error('work_format_id') is-invalid @enderror" id="work_format_id" name="work_format_id">
                                         <option value="">-- Выберите формат --</option>
-                                        <option value="on-site" {{ old('work_format') == 'on-site' ? 'selected' : '' }}>В офисе (On-site)</option>
-                                        <option value="remote" {{ old('work_format') == 'remote' ? 'selected' : '' }}>Удаленно (Remote)</option>
-                                        <option value="hybrid" {{ old('work_format') == 'hybrid' ? 'selected' : '' }}>Гибридный (Hybrid)</option>
+                                        @foreach($workFormats as $format)
+                                            <option value="{{ $format->id }}" {{ old('work_format_id') == $format->id ? 'selected' : '' }}>
+                                                {{ $format->name_ru }}
+                                            </option>
+                                        @endforeach
                                     </select>
-                                    @error('work_format')
+                                    @error('work_format_id')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>

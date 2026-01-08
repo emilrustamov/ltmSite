@@ -45,15 +45,9 @@
                                                         @endif
                                                     </span>
                                                 @endif
-                                                @if($job->work_format)
+                                                @if($job->workFormat)
                                                     <span class="job-meta-badge">
-                                                        @if($job->work_format == 'on-site')
-                                                            {{ __('translate.work_format_on_site') ?? 'В офисе' }}
-                                                        @elseif($job->work_format == 'remote')
-                                                            {{ __('translate.work_format_remote') ?? 'Удаленно' }}
-                                                        @elseif($job->work_format == 'hybrid')
-                                                            {{ __('translate.work_format_hybrid') ?? 'Гибридный' }}
-                                                        @endif
+                                                        {{ $job->workFormat->{'name_' . $lang} ?? $job->workFormat->name_ru }}
                                                     </span>
                                                 @endif
                                                 @if($job->{'salary_' . $lang} ?? $job->salary_ru)

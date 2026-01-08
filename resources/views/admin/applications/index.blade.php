@@ -9,6 +9,16 @@
         <h5 class="mb-0">Управление заявками кандидатов</h5>
         <small class="text-muted">Всего заявок: {{ $applications->total() }}</small>
     </div>
+    <div class="d-flex gap-2">
+        <a href="{{ route('admin.languages.index') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-language me-2"></i>
+            Языки
+        </a>
+        <a href="{{ route('admin.cities.index') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-map-marker-alt me-2"></i>
+            Города
+        </a>
+    </div>
 </div>
 
 <div class="table-responsive">

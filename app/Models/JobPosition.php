@@ -20,7 +20,7 @@ class JobPosition extends Model
         'responsibilities_en',
         'responsibilities_tm',
         'employment_type',
-        'work_format',
+        'work_format_id',
         'salary_ru',
         'salary_en',
         'salary_tm',
@@ -77,6 +77,12 @@ class JobPosition extends Model
     public function technicalSkills()
     {
         return $this->belongsToMany(TechnicalSkill::class, 'job_position_technical_skills');
+    }
+
+    // Связь с форматом работы
+    public function workFormat()
+    {
+        return $this->belongsTo(WorkFormat::class);
     }
 
     // Использовать id как ключ маршрута

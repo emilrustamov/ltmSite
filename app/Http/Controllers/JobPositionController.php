@@ -16,7 +16,7 @@ class JobPositionController extends Controller
     {
         App::setLocale($lang);
         
-        $jobPositions = JobPosition::with('technicalSkills')
+        $jobPositions = JobPosition::with(['technicalSkills', 'workFormat'])
             ->published()
             ->ordered()
             ->paginate(12);
@@ -39,7 +39,7 @@ class JobPositionController extends Controller
             abort(404);
         }
 
-        $jobPosition->load('technicalSkills');
+        $jobPosition->load(['technicalSkills', 'workFormat']);
 
         return view('job-positions.show', [
             'lang' => $lang,

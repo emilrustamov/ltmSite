@@ -56,15 +56,9 @@
             </p>
             @endif
             
-            @if($jobPosition->work_format)
+            @if($jobPosition->workFormat)
             <p><strong>{{ __('translate.work_format') }}:</strong> 
-                @if($jobPosition->work_format == 'on-site')
-                    {{ __('translate.work_format_on_site') ?? 'В офисе' }}
-                @elseif($jobPosition->work_format == 'remote')
-                    {{ __('translate.work_format_remote') ?? 'Удаленно' }}
-                @elseif($jobPosition->work_format == 'hybrid')
-                    {{ __('translate.work_format_hybrid') ?? 'Гибридный' }}
-                @endif
+                {{ $jobPosition->workFormat->{'name_' . $lang} ?? $jobPosition->workFormat->name_ru }}
             </p>
             @endif
             

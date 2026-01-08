@@ -14,10 +14,20 @@
                 @endif
             </small>
         </div>
-        <a href="{{ route('admin.job-positions.create') }}" class="btn btn-primary">
-            <i class="fas fa-plus me-2"></i>
-            Создать должность
-        </a>
+        <div class="d-flex gap-2">
+            <a href="{{ route('admin.technical-skills.index') }}" class="btn btn-outline-secondary">
+                <i class="fas fa-code me-2"></i>
+                Управление навыками
+            </a>
+            <a href="{{ route('admin.work-formats.index') }}" class="btn btn-outline-secondary">
+                <i class="fas fa-laptop me-2"></i>
+                Форматы работы
+            </a>
+            <a href="{{ route('admin.job-positions.create') }}" class="btn btn-primary">
+                <i class="fas fa-plus me-2"></i>
+                Создать должность
+            </a>
+        </div>
     </div>
 
     <div class="table-responsive">
