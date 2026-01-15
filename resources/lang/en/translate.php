@@ -191,6 +191,17 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'servTitle4' => "Bitrix24 CRM\nimplementation",
     'servSubTitle4' => "Control and management of employee workspace",
     'servDesc4' => "Bitrix24 provides employee work control through task and report systems. CRM component improves customer relations by recording interactions and deals. The platform also helps plan and coordinate projects for their successful completion.",
+    
+    'servTitle5' => "Corporate\nPortal",
+    'servDesc5' => "A unified internal company platform: news, documents, communication, and employee task management.",
+    'servTitle6' => "ERP\nSystem",
+    'servDesc6' => "Full control over finance, procurement, production, and warehouses. Centralized management of all business processes.",
+    'servTitle7' => "CRM\nSystem",
+    'servDesc7' => "Sales and customer interaction automation. Pipeline control, analytics of manager performance, and conversion growth.",
+    'servTitle8' => "BI\nDashboards",
+    'servDes8' => "Interactive analytics and real-time reports. Help executives make data-driven decisions.",
+
+    
     'aboutUsFooter1' => 'We create "details and tools" that move your business forward. Developing each idea, we expand its values and philosophy, creating important solutions that help businesses achieve necessary growth.',
     'aboutUsFooter2' => 'Our company puts "efficiency" first, and despite all business pragmatism, we find many creative ideas to implement solutions that can connect you with your audience for years to come. LTM  that can!',
     'aboutUsFooter3' => 'LTM  - an IT company offering solutions in website development, mobile applications and Bitrix24 platform implementation in Turkmenistan. We focus on large and medium businesses, helping not just create digital products but eliminate "pain points" in business processes through IT solutions.',
