@@ -336,7 +336,8 @@ Route::middleware(['auth', 'admin', 'throttle:60,1'])
 Route::get('/contact', [ContactController::class, 'showForm'])
     ->name('contact.show');
 Route::post('/contact', [ContactController::class, 'submitForm'])
-    ->name('contact.submit');
+    ->name('contact.submit')
+    ->middleware(['anti.spam', 'throttle:3,1']);
 
 // ---------------------------------------
 // Lang-prefixed routes (public)
@@ -447,7 +448,12 @@ Route::prefix('{lang}')
 // Public Application Routes (без префикса admin)
 // ---------------------------------------
 Route::get('/applications/create', [PublicApplicationController::class, 'create'])->name('applications.create');
-Route::post('/applications', [PublicApplicationController::class, 'store'])->name('applications.store')->middleware(['anti.spam', 'throttle:2,1']);
+Route::post('/applications', [PublicApplicationController::class, 'store'])->name('applications.store')->middleware(['anti.spam', 'throttle:1,1']);
 
 // API маршрут для получения навыков по должностям
 Route::post('/api/positions/skills', [PublicApplicationController::class, 'getSkillsByPositions'])->name('api.positions.skills');
+
+// Тестовый маршрут для проверки reCAPTCHA
+Route::get('/test-recaptcha', function () {
+    return view('test-recaptcha');
+})->name('test.recaptcha');
