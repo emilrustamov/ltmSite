@@ -1,9 +1,21 @@
 @extends('layouts.base')
 
-@section('title',  __('translate.titlePortfolio'))
-@section('ogTitle', __('translate.titlePortfolio'))
-@section('metaDesc', __('translate.metaDescPortfolio'))
-@section('metaKey', __('translate.metaKeyPortfolio'))
+@php
+    // Улучшенные мета-теги с локализацией
+    $title = __('translate.titlePortfolio');
+    $metaDesc = __('translate.metaDescPortfolio');
+    $metaKey = __('translate.metaKeyPortfolio');
+    
+    if ($lang === 'ru') {
+        $metaDesc = 'Ознакомьтесь с портфолио IT-компании LTM в Ашхабаде, Туркменистан. Примеры веб-сайтов, мобильных приложений, интернет-магазинов и внедрения Bitrix24.';
+        $metaKey .= ', разработка в Ашхабаде, IT-компания в Туркменистане, разработка мобильного приложения в Ашхабаде, купить битрикс в туркменистане';
+    }
+@endphp
+
+@section('title', $title)
+@section('ogTitle', $title)
+@section('metaDesc', $metaDesc)
+@section('metaKey', $metaKey)
 
 {{-- Структурированные данные для страницы портфолио --}}
 @push('structured-data')
@@ -27,12 +39,43 @@
                     "name": "{{ addslashes($portfolio->translation($lang)?->who ?? $portfolio->translation($lang)?->title ?? 'Проект') }}",
                     "url": "{{ url($lang . '/portfolio/' . $portfolio->slug) }}",
                     @if($portfolio->getFirstMediaUrl('portfolio-images', 'webp'))
-                    "image": "{{ $portfolio->getFirstMediaUrl('portfolio-images', 'webp') }}",
+                    "image": {
+                        "@type": "ImageObject",
+                        "url": "{{ $portfolio->getFirstMediaUrl('portfolio-images', 'webp') }}",
+                        "width": 1200,
+                        "height": 630
+                    },
                     @endif
-                    "description": "{{ addslashes(Str::limit(strip_tags($portfolio->translation($lang)?->target ?? ''), 150)) }}"
+                    "description": "{{ addslashes(Str::limit(strip_tags($portfolio->translation($lang)?->target ?? ''), 150)) }}",
+                    "creator": {
+                        "@type": "Organization",
+                        "name": "Lebizli Tehnologiya Merkezi (LTM)",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Ашхабад",
+                            "addressCountry": "TM"
+                        }
+                    }
                 }
             }@if(!$loop->last),@endif
             @endforeach
+        ]
+    },
+    "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "{{ __('translate.mainPage') ?? 'Главная' }}",
+                "item": "{{ url($lang) }}"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ __('translate.titlePortfolio') }}",
+                "item": "{{ url($lang . '/portfolio') }}"
+            }
         ]
     }
 }

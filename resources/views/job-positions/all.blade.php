@@ -1,9 +1,21 @@
 @extends('layouts.base')
 
-@section('title', __('translate.allJobsTitle'))
-@section('ogTitle', __('translate.allJobsTitle'))
-@section('metaDesc', __('translate.allJobsMetaDesc'))
-@section('metaKey', __('translate.allJobsMetaKey'))
+@php
+    // Улучшенные мета-теги с локализацией
+    $title = __('translate.allJobsTitle');
+    $metaDesc = __('translate.allJobsMetaDesc');
+    $metaKey = __('translate.allJobsMetaKey');
+    
+    if ($lang === 'ru') {
+        $metaDesc = 'Открытые вакансии в IT-компании LTM в Ашхабаде, Туркменистан. Присоединяйтесь к нашей команде разработчиков.';
+        $metaKey .= ', вакансии в Ашхабаде, работа в Туркменистане, IT-вакансии Туркменистан, программист в Ашхабаде';
+    }
+@endphp
+
+@section('title', $title)
+@section('ogTitle', $title)
+@section('metaDesc', $metaDesc)
+@section('metaKey', $metaKey)
 
 {{-- Структурированные данные для страницы со списком вакансий --}}
 @push('structured-data')
@@ -25,10 +37,44 @@
                 "item": {
                     "@type": "JobPosting",
                     "name": "{{ addslashes($job->{'name_' . $lang} ?? $job->name_ru) }}",
-                    "url": "{{ url($lang . '/jobs/' . $job->id) }}"
+                    "url": "{{ url($lang . '/jobs/' . $job->id) }}",
+                    "hiringOrganization": {
+                        "@type": "Organization",
+                        "name": "Lebizli Tehnologiya Merkezi (LTM)",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Ашхабад",
+                            "addressCountry": "TM"
+                        }
+                    },
+                    "jobLocation": {
+                        "@type": "Place",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Ашхабад",
+                            "addressCountry": "TM"
+                        }
+                    }
                 }
             }@if(!$loop->last),@endif
             @endforeach
+        ]
+    },
+    "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "{{ __('translate.mainPage') ?? 'Главная' }}",
+                "item": "{{ url($lang) }}"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ __('translate.allJobsTitle') }}",
+                "item": "{{ url($lang . '/jobs') }}"
+            }
         ]
     }
 }

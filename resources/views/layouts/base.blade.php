@@ -52,11 +52,15 @@
     <meta property="og:description" content="{{ $metaDesc }}">
     <meta property="og:url" content="{{ $currentUrl }}">
     <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:image:secure_url" content="{{ $ogImage }}">
     <meta property="og:image:width" content="{{ $ogImageWidth }}">
     <meta property="og:image:height" content="{{ $ogImageHeight }}">
     <meta property="og:image:alt" content="{{ $ogTitle ?: $title }}">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:site_name" content="Lebizli Tehnologiya Merkezi (LTM)">
     <meta property="og:locale" content="{{ $ogLocale }}">
+    <meta property="article:author" content="Lebizli Tehnologiya Merkezi (LTM)">
+    <meta property="article:publisher" content="{{ config('app.url') }}">
     
     {{-- Альтернативные локали для Open Graph --}}
     @foreach ($locales as $code)
