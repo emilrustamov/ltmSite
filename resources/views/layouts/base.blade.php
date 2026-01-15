@@ -2,29 +2,91 @@
 <html lang="{{ $lang ?? app()->getLocale() }}">
 
 <head itemscope itemtype="http://schema.org/WPHeader">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf_token" content="{{ csrf_token() }}">
-    <link rel="canonical" href="{{ config('app.url') }}/{{ Request::path() }}">
-    <meta property="og:type" content="website">
-    <meta property="og:description" content="@yield('metaDesc')">
-    <meta property="og:url" content="{{ config('app.url') }}/{{ $lang }}">
-    <meta property="og:image" content="{{ config('app.url') }}/assets/images/ltm.png">
-    <meta property="og:site_name" content="Lebizli Tehnologiya Merkezi (LTM)">
+    
     @php
-        // ② таблица соответствия для Open Graph
+        // Все поддерживаемые локали
+        $locales = ['ru', 'en', 'tm'];
+        $lang = $lang ?? app()->getLocale();
+        $segments = request()->segments();
+        $slug = implode('/', array_slice($segments, 1)); // '' для главной
+        
+        // Получаем мета-данные
+        $title = trim(@yield('title', ''));
+        $ogTitle = trim(@yield('ogTitle', $title));
+        $metaDesc = trim(@yield('metaDesc', ''));
+        $metaKey = trim(@yield('metaKey', ''));
+        
+        // Динамическое изображение для Open Graph
+        $ogImage = @yield('ogImage', config('app.url') . '/assets/images/ltm.png');
+        $ogImageWidth = @yield('ogImageWidth', '1200');
+        $ogImageHeight = @yield('ogImageHeight', '630');
+        
+        // URL текущей страницы
+        $currentUrl = url($lang . ($slug ? '/' . $slug : ''));
+        
+        // Таблица соответствия для Open Graph
         $ogLocales = ['ru' => 'ru_RU', 'en' => 'en_US', 'tm' => 'tk_TM'];
-        $ogLocale = $ogLocales[$lang ?? app()->getLocale()] ?? 'ru_RU';
+        $ogLocale = $ogLocales[$lang] ?? 'ru_RU';
+        
+        // Тип контента для Open Graph
+        $ogType = @yield('ogType', 'website');
     @endphp
 
-    <meta property="og:locale" content="{{ $ogLocale }}"> {{-- ② OG‑локаль --}}
-    <title itemprop="headline">@yield('title')</title>
-    <meta name="robots" content="index, follow">
+    {{-- Основные мета-теги --}}
+    <title itemprop="headline">{{ $title ?: 'Lebizli Tehnologiya Merkezi (LTM)' }}</title>
+    <meta name="description" content="{{ $metaDesc }}">
+    <meta name="keywords" content="{{ $metaKey }}">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Lebizli Tehnologiya Merkezi (LTM)">
     <meta name="publisher" content="Lebizli Tehnologiya Merkezi (LTM)">
-    <meta property="og:title" content="@yield('ogTitle')">
-    <meta itemprop="description" name="description" content="@yield('metaDesc')">
-    <meta itemprop="keywords" name="keywords" content="@yield('metaKey')">
+    <meta name="theme-color" content="#e31e24">
     <meta name='freelancehunt' content='c02792cc8b8b525'>
+
+    {{-- Open Graph мета-теги --}}
+    <meta property="og:type" content="{{ $ogType }}">
+    <meta property="og:title" content="{{ $ogTitle ?: $title }}">
+    <meta property="og:description" content="{{ $metaDesc }}">
+    <meta property="og:url" content="{{ $currentUrl }}">
+    <meta property="og:image" content="{{ $ogImage }}">
+    <meta property="og:image:width" content="{{ $ogImageWidth }}">
+    <meta property="og:image:height" content="{{ $ogImageHeight }}">
+    <meta property="og:image:alt" content="{{ $ogTitle ?: $title }}">
+    <meta property="og:site_name" content="Lebizli Tehnologiya Merkezi (LTM)">
+    <meta property="og:locale" content="{{ $ogLocale }}">
+    
+    {{-- Альтернативные локали для Open Graph --}}
+    @foreach ($locales as $code)
+        @if($code !== $lang)
+            <meta property="og:locale:alternate" content="{{ $ogLocales[$code] ?? 'ru_RU' }}">
+        @endif
+    @endforeach
+
+    {{-- Twitter Card мета-теги --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@ltm_studio">
+    <meta name="twitter:creator" content="@ltm_studio">
+    <meta name="twitter:title" content="{{ $ogTitle ?: $title }}">
+    <meta name="twitter:description" content="{{ $metaDesc }}">
+    <meta name="twitter:image" content="{{ $ogImage }}">
+    <meta name="twitter:image:alt" content="{{ $ogTitle ?: $title }}">
+
+    {{-- Schema.org микроразметка --}}
+    <meta itemprop="name" content="{{ $title }}">
+    <meta itemprop="description" content="{{ $metaDesc }}">
+    <meta itemprop="image" content="{{ $ogImage }}">
+
+    {{-- Canonical и HREFLANG --}}
+    <link rel="canonical" href="{{ $currentUrl }}" />
+    @foreach ($locales as $code)
+        <link rel="alternate" hreflang="{{ $code }}" href="{{ url($code . ($slug ? '/' . $slug : '')) }}" />
+    @endforeach
+    <link rel="alternate" hreflang="x-default" href="{{ url($slug) }}" />
+
+    {{-- Favicon и иконки --}}
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -32,29 +94,43 @@
     <meta name="apple-mobile-web-app-title" content="LTM" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <script type='application/ld+json'> </script>
+    {{-- JSON-LD структурированные данные (базовые) --}}
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Lebizli Tehnologiya Merkezi (LTM)",
+        "alternateName": "LTM",
+        "url": "{{ config('app.url') }}",
+        "logo": "{{ config('app.url') }}/assets/images/ltm.png",
+        "description": "{{ $metaDesc ?: 'IT-компания в Туркменистане, предлагающая современные решения в области разработки сайтов, мобильных приложений и внедрения платформы Битрикс24' }}",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2127 ул. (Г. Кулиева), здание \"Gökje\" 26A",
+            "addressLocality": "Ашхабад",
+            "addressCountry": "TM"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+993-12-75-37-13",
+            "contactType": "customer service",
+            "email": "info@ltm.studio",
+            "availableLanguage": ["ru", "en", "tm"]
+        },
+        "sameAs": [
+            "http://linkedin.com/company/ltm-studio",
+            "https://www.instagram.com/lebizli_tehnologiya_merkezi"
+        ]
+    }
+    </script>
+    
+    {{-- Дополнительные структурированные данные от страниц --}}
+    @stack('structured-data')
+    {{-- Google Analytics --}}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TMJMPE0M9"></script>
     <script>
         var texts = @json(__('translate.texts'));
     </script>
-
-    @php
-        // Все поддерживаемые локали
-        $locales = ['ru', 'en', 'tm'];
-
-        $lang = $lang ?? app()->getLocale();
-        $segments = request()->segments();
-        $slug = implode('/', array_slice($segments, 1)); // '' для главной
-    @endphp
-
-    {{-- CANONICAL: всегда на текущую страницу текущего языка --}}
-    <link rel="canonical" href="{{ url($lang . ($slug ? '/' . $slug : '')) }}" />
-
-    {{-- HREFLANG: все языки + x‑default --}}
-    @foreach ($locales as $code)
-        <link rel="alternate" hreflang="{{ $code }}" href="{{ url($code . ($slug ? '/' . $slug : '')) }}" />
-    @endforeach
-    <link rel="alternate" hreflang="x-default" href="{{ url($slug) }}" /> {{-- без префикса языка --}}
 
     <!-- Meta Pixel Code -->
     <script>

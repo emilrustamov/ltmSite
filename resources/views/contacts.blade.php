@@ -4,8 +4,6 @@
 @section('metaDesc', __('translate.metaDescContacts'))
 @section('metaKey', __('translate.metaKeyContacts'))
 
-@section('metaDesc', __('metaDescContacts'))
-@section('metaKey', __('metaKeyContacts'))
 @section('content')
     <section>
         <div class="container mx-auto">

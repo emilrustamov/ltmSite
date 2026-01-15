@@ -5,6 +5,36 @@
 @section('metaDesc', __('translate.allJobsMetaDesc'))
 @section('metaKey', __('translate.allJobsMetaKey'))
 
+{{-- Структурированные данные для страницы со списком вакансий --}}
+@push('structured-data')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "{{ __('translate.allJobsTitle') }}",
+    "description": "{{ __('translate.allJobsMetaDesc') }}",
+    "url": "{{ url($lang . '/jobs') }}",
+    "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": "{{ $jobPositions->total() }}",
+        "itemListElement": [
+            @foreach($jobPositions as $index => $job)
+            {
+                "@type": "ListItem",
+                "position": {{ ($jobPositions->currentPage() - 1) * $jobPositions->perPage() + $index + 1 }},
+                "item": {
+                    "@type": "JobPosting",
+                    "name": "{{ addslashes($job->{'name_' . $lang} ?? $job->name_ru) }}",
+                    "url": "{{ url($lang . '/jobs/' . $job->id) }}"
+                }
+            }@if(!$loop->last),@endif
+            @endforeach
+        ]
+    }
+}
+</script>
+@endpush
+
 @section('content')
     <section class="container jobs-page">
         <!-- Заголовок секции -->

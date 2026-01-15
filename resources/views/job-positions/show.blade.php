@@ -16,6 +16,52 @@
     {{ $jobPosition->{'name_' . $lang} ?? $jobPosition->name_ru }}, {{ __('translate.jobs') }}, {{ __('translate.career') }}
 @endsection
 
+@section('ogType', 'article')
+
+{{-- Структурированные данные для вакансии --}}
+@push('structured-data')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    "title": "{{ addslashes($jobPosition->{'name_' . $lang} ?? $jobPosition->name_ru) }}",
+    "description": "{{ addslashes(Str::limit(strip_tags(($jobPosition->{'responsibilities_' . $lang} ?? $jobPosition->responsibilities_ru) . ' ' . ($jobPosition->{'requirements_' . $lang} ?? $jobPosition->requirements_ru)), 500)) }}",
+    "identifier": {
+        "@type": "PropertyValue",
+        "name": "LTM",
+        "value": "{{ $jobPosition->id }}"
+    },
+    "datePosted": "{{ $jobPosition->created_at->toIso8601String() }}",
+    "validThrough": "{{ $jobPosition->updated_at->addMonths(3)->toIso8601String() }}",
+    "employmentType": "{{ $jobPosition->employment_type ?? 'FULL_TIME' }}",
+    "hiringOrganization": {
+        "@type": "Organization",
+        "name": "Lebizli Tehnologiya Merkezi (LTM)",
+        "sameAs": "{{ config('app.url') }}",
+        "logo": "{{ config('app.url') }}/assets/images/ltm.png"
+    },
+    "jobLocation": {
+        "@type": "Place",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2127 ул. (Г. Кулиева), здание \"Gökje\" 26A",
+            "addressLocality": "Ашхабад",
+            "addressCountry": "TM"
+        }
+    },
+    "baseSalary": {
+        "@type": "MonetaryAmount",
+        "currency": "TMT",
+        "value": {
+            "@type": "QuantitativeValue",
+            "value": "{{ $jobPosition->{'salary_' . $lang} ?? $jobPosition->salary_ru ?? '' }}"
+        }
+    },
+    "url": "{{ url($lang . '/jobs/' . $jobPosition->id) }}"
+}
+</script>
+@endpush
+
 @section('content')
     <section class="container">
         <!-- Хлебные крошки -->

@@ -5,6 +5,40 @@
 @section('metaDesc', __('translate.metaDescPortfolio'))
 @section('metaKey', __('translate.metaKeyPortfolio'))
 
+{{-- Структурированные данные для страницы портфолио --}}
+@push('structured-data')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "{{ __('translate.titlePortfolio') }}",
+    "description": "{{ __('translate.metaDescPortfolio') }}",
+    "url": "{{ url($lang . '/portfolio') }}",
+    "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": "{{ $portfolios->total() }}",
+        "itemListElement": [
+            @foreach($portfolios as $index => $portfolio)
+            {
+                "@type": "ListItem",
+                "position": {{ ($portfolios->currentPage() - 1) * $portfolios->perPage() + $index + 1 }},
+                "item": {
+                    "@type": "CreativeWork",
+                    "name": "{{ addslashes($portfolio->translation($lang)?->who ?? $portfolio->translation($lang)?->title ?? 'Проект') }}",
+                    "url": "{{ url($lang . '/portfolio/' . $portfolio->slug) }}",
+                    @if($portfolio->getFirstMediaUrl('portfolio-images', 'webp'))
+                    "image": "{{ $portfolio->getFirstMediaUrl('portfolio-images', 'webp') }}",
+                    @endif
+                    "description": "{{ addslashes(Str::limit(strip_tags($portfolio->translation($lang)?->target ?? ''), 150)) }}"
+                }
+            }@if(!$loop->last),@endif
+            @endforeach
+        ]
+    }
+}
+</script>
+@endpush
+
 @section('content')
     <section class="container">
         <div>

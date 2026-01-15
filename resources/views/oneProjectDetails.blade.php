@@ -16,6 +16,46 @@
     {{ ($portfolio->translation($lang)?->who ?? 'проект') . ', ' . __('translate.metaKeyProjectDetails') }}
 @endsection
 
+@php
+    // Динамическое изображение для Open Graph
+    $portfolioImage = $portfolio->getFirstMediaUrl('portfolio-images', 'webp');
+    if (!$portfolioImage && $portfolio->photo) {
+        $portfolioImage = asset('storage/' . $portfolio->photo);
+    }
+    $ogImage = $portfolioImage ?: config('app.url') . '/assets/images/ltm.png';
+@endphp
+
+@section('ogImage', $ogImage)
+@section('ogType', 'article')
+
+{{-- Дополнительные структурированные данные для проекта --}}
+@push('structured-data')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "{{ addslashes($portfolio->translation($lang)?->who ?? 'Проект') }}",
+    "description": "{{ addslashes(Str::limit(strip_tags($portfolio->translation($lang)?->target ?? ''), 200)) }}",
+    "image": "{{ $ogImage }}",
+    "url": "{{ url($lang . '/portfolio/' . $portfolio->slug) }}",
+    "datePublished": "{{ $portfolio->created_at->toIso8601String() }}",
+    "dateModified": "{{ $portfolio->updated_at->toIso8601String() }}",
+    "author": {
+        "@type": "Organization",
+        "name": "Lebizli Tehnologiya Merkezi (LTM)"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Lebizli Tehnologiya Merkezi (LTM)",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ config('app.url') }}/assets/images/ltm.png"
+        }
+    }
+}
+</script>
+@endpush
+
 
 @section('content')
     <section class="container">
