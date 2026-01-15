@@ -250,8 +250,11 @@ Platforma taslamalary meýilleşdirmäge we utgaşdyrmaga kömek edýär, netije
 'servTitle7' => "CRM\n ulgamy",
 'servDesc7'  => "Satuwlaryň we müşderiler bilen gatnaşyklaryň awtomatlaşdyrylmagy. Satuw hunisiň dolandyrylyşy, menejerleriň netijeliliginiň seljermesi we konwersiýanyň ýokarlandyrylmagy.",
 
-'servTitle8' => "BI\n daşordlar",
+'servTitle8' => "BI\n daşbordlar",
 'servDesc8'  => "Interaktiw analitika we hakyky wagtda hasabatlar. Ulanyjylara maglumatlara esaslanýan kararlar kabul etmäge kömek edýär.",
+    'servTitle9' => "Biznes\n prosesleriň\n awtomatlaşdyrylmagy",
+'servDesc9'  => "Gündelik işleriň optimizasiýasy we ulgamlaryň integrasiýasy. Prosesleriň sanlylaşdyrylmagy arkaly kompaniýanyň netijeliligini ýokarlandyrmak.",
+
 
 
     
