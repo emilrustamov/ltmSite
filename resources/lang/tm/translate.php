@@ -471,8 +471,8 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
     'bitrix_our_cases' => 'Biziň taslamalarymyz',
     'bitrix_more' => 'Giňişleýin',
 
-    'metaDescBitrix' => 'LTM Türkmenistanyň çäginde Bitrix24 ulgamynyň ornaşdyrylmagyny we sazlamasyny hödürleýär. Biznesiň awtomatlaşdyrylmagy, CRM, taslamalaryň dolandyrylyşy we üstünlik üçin integrasiýa.',
-'metaKeyBitrix'  => 'Bitrix24 Türkmenistan, Bitrix24 ornaşdyrmak, CRM sazlamak Türkmenistan, biznesi awtomatlaşdyrmak Türkmenistan, Bitrix24 IT hyzmatlary',
+    'metaDescBitrix' => 'Resmi Bitrix24 hyzmatdaşlary Türkmenistanda. LTM Türkmenistanyň çäginde Bitrix24 ulgamynyň ornaşdyrylmagyny we sazlamasyny hödürleýär. Biznesiň awtomatlaşdyrylmagy, CRM, taslamalaryň dolandyrylyşy we üstünlik üçin integrasiýa.',
+'metaKeyBitrix'  => 'Resmi Bitrix24 hyzmatdaşlary Türkmenistanda, Bitrix24 Türkmenistan, Bitrix24 ornaşdyrmak, CRM sazlamak Türkmenistan, biznesi awtomatlaşdyrmak Türkmenistan, Bitrix24 IT hyzmatlary',
 'titleBitrix'       => 'Bitrix24 Türkmenistan',
 
     'metaDescAboutUs' => 'Lebizli Tehnologiya Merkezi (LTM) — Türkmenistanyň öňdebaryjy IT kompaniýasy. Web sahypalaryň, mobil goşundylaryň, internet dükanlarynyň taýýarlanylmagy we Bitrix24 ornaşdyrylmagy.',

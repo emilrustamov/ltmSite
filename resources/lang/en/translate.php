@@ -380,8 +380,8 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'bitrix_our_cases' => 'Our Cases',
     'bitrix_more' => 'Learn More',
 
-    'metaDescBitrix' => 'LTM offers implementation and configuration of the Bitrix24 system in Turkmenistan. Business automation, CRM, project management, and integration for your success.',
-    'metaKeyBitrix'  => 'Bitrix24 in Turkmenistan, Bitrix24 implementation, CRM setup in Turkmenistan, business automation in Turkmenistan, Bitrix24 IT services',
+    'metaDescBitrix' => 'Official Bitrix24 Partners in Turkmenistan. LTM offers implementation and configuration of the Bitrix24 system in Turkmenistan. Business automation, CRM, project management, and integration for your success.',
+    'metaKeyBitrix'  => 'Official Bitrix24 Partners in Turkmenistan, Bitrix24 in Turkmenistan, Bitrix24 implementation, CRM setup in Turkmenistan, business automation in Turkmenistan, Bitrix24 IT services',
     'titleBitrix'       => 'Bitrix24 in Turkmenistan',
 
     'metaDescAboutUs' => 'Lebizli Tehnologiya Merkezi (LTM) is a leading IT company in Turkmenistan. We offer website development, mobile applications, e-commerce platforms, and Bitrix24 integration for your business.',
