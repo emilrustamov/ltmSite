@@ -339,6 +339,11 @@ Route::post('/contact', [ContactController::class, 'submitForm'])
     ->name('contact.submit')
     ->middleware(['anti.spam', 'throttle:3,1']);
 
+// Тестовый маршрут для проверки reCAPTCHA (должен быть ДО маршрутов с префиксом {lang})
+Route::get('/test-recaptcha', function () {
+    return view('test-recaptcha');
+})->name('test.recaptcha');
+
 // ---------------------------------------
 // Lang-prefixed routes (public)
 // ---------------------------------------
@@ -452,8 +457,3 @@ Route::post('/applications', [PublicApplicationController::class, 'store'])->nam
 
 // API маршрут для получения навыков по должностям
 Route::post('/api/positions/skills', [PublicApplicationController::class, 'getSkillsByPositions'])->name('api.positions.skills');
-
-// Тестовый маршрут для проверки reCAPTCHA
-Route::get('/test-recaptcha', function () {
-    return view('test-recaptcha');
-})->name('test.recaptcha');
