@@ -241,6 +241,20 @@ Biz onlaýn satuw üçin amatly, ygtybarly we köpugurly internet dükanlaryny d
 CRM komponenti müşderiler bilen gatnaşygy ösdürýär — söwdalary we gatnaşyk taryhlaryny doly hasaba alýar.  
 Platforma taslamalary meýilleşdirmäge we utgaşdyrmaga kömek edýär, netijede olaryň üstünlikli ýerine ýetirilmegine şert döredýär.",
 
+'servTitle5' => "Korporatiw\n portal",
+'servDesc5'  => "Kompaniýanyň içerki bitewi platformasy: täzelikler, resminamalar, aragatnaşyk we işgärleriň wezipelerini dolandyrmak.",
+
+'servTitle6' => "ERP\n ulgamy",
+'servDesc6'  => "Maliýe, satyn alyşlar, önümçilik we ammarlara doly gözegçilik. Ähli biznes prosesleriniň merkezleşdirilen dolandyrylyşy.",
+
+'servTitle7' => "CRM\n ulgamy",
+'servDesc7'  => "Satuwlaryň we müşderiler bilen gatnaşyklaryň awtomatlaşdyrylmagy. Satuw hunisiň dolandyrylyşy, menejerleriň netijeliliginiň seljermesi we konwersiýanyň ýokarlandyrylmagy.",
+
+'servTitle8' => "BI\n daşordlar",
+'servDesc8'  => "Interaktiw analitika we hakyky wagtda hasabatlar. Ulanyjylara maglumatlara esaslanýan kararlar kabul etmäge kömek edýär.",
+
+
+    
     'aboutUsFooter1' => 'Biz işiňizi öňe sürýän "detallar we gurallar" döredýäris.  
 Her bir pikiri çuňňur işläp taýýarlaýarys, onuň gymmatlyklaryny we filosofiýasyny giňeldýäris.  
 Netijede, işiňiziň ösmegine kömek edýän möhüm çözgütleri döredýäris.',
