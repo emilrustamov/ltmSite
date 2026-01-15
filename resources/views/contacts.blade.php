@@ -37,8 +37,8 @@
                                     ],
                                     [
                                         'icon' => 'fa-brands fa-instagram',
-                                        'href' => 'https://www.instagram.com/lebizli_tehn...ya_merkezi',
-                                        'text' => 'instagram.com/LTM',
+                                        'href' => 'https://www.instagram.com/lebizli_tehnologiya_merkezi?igsh=a3ZwZHN3aXdtYzJ5',
+                                        'text' => 'instagram.com/lebizli_tehnologiya_merkezi',
                                     ],
                                 ];
                             @endphp

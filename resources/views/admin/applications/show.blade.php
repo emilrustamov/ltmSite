@@ -90,7 +90,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Ожидаемая зарплата</label>
-                            <p class="mb-0">{{ $application->expected_salary ? number_format($application->expected_salary, 0, ',', ' ') : 'Не указана' }}</p>
+                            <p class="mb-0">{{ $application->expected_salary }}</p>
                         </div>
                     </div>
                 </div>
@@ -106,13 +106,6 @@
                 <div class="mb-3">
                     <label class="form-label fw-bold">Контактная информация</label>
                     <p class="mb-0">{{ $application->contact_info }}</p>
-                </div>
-                @endif
-
-                @if($application->general_info)
-                <div class="mb-3">
-                    <label class="form-label fw-bold">Общая информация</label>
-                    <p class="mb-0">{{ $application->general_info }}</p>
                 </div>
                 @endif
 
@@ -274,6 +267,13 @@
                     <label class="form-label fw-bold">Образование</label>
                     <p class="mb-0">{{ $application->education?->name_ru ?? $application->custom_education ?? 'Не указано' }}</p>
                 </div>
+
+                @if($application->custom_technical_skill)
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Дополнительные навыки</label>
+                    <p class="mb-0">{{ $application->custom_technical_skill }}</p>
+                </div>
+                @endif
 
                 @if($application->custom_language)
                 <div class="mb-3">

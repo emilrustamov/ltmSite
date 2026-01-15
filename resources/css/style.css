@@ -42,6 +42,23 @@ h2 {
   font-size: 48px;
   font-weight: 600;
   margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+  transition: width 0.8s ease;
+}
+
+.section h2.visible::after {
+  width: 200px;
 }
 
 h3 {
@@ -83,7 +100,7 @@ button {
   font-weight: 600;
 }
 input {
-  background-color: none;
+  background-color: transparent;
   outline: none !important;
 }
 
@@ -614,19 +631,51 @@ section {
   z-index: -1;
 }
 
+.send-p {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
 .send-p:after {
   content: "";
-  display: block;
-  width: 30px;
-  height: 30px;
+  display: inline-block !important;
+  width: 30px !important;
+  height: 30px !important;
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("/assets/images/long-arrow-right.png");
   transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .send-p:hover:after {
+  width: 30px !important;
   transform: translateX(10px);
+}
+
+.add-plus {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.add-plus:after {
+  content: "+";
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-size: 32px;
+  font-weight: 600;
+  height: 1em;
+  vertical-align: middle;
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+.add-plus:hover:after {
+  transform: translateY(-2px) scale(1.2);
 }
 
 #closeModalButton {
@@ -827,7 +876,7 @@ section {
 
 .block-item-26 {
   height: 50%;
-  width: 66, 6%;
+  width: 66.6%;
   background-color: rgb(178, 95, 255);
   color: white;
   font-size: var(--font18);
@@ -1044,14 +1093,16 @@ section {
 
 }
 
+/* Container padding для всех экранов */
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 @media (max-width: 1024px) {
 
   .typing-text {
     display: none;
-  }
-
-  .container {
-    padding: 0 20px;
   }
 }
 
@@ -1144,6 +1195,15 @@ section {
   margin-right: 25px;
   margin-top: 80px;
   font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.media-links a:hover {
+  transform: scale(1.1);
+  color: var(--primary);
 }
 
 .circle-1 {
@@ -1222,25 +1282,39 @@ section {
 
 .custom-button {
   background-color: var(--primary);
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  gap: 10px;
   padding: 10px 20px;
-  border-radius: 5px
+  border-radius: 5px;
+  color: white !important;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .custom-button:after {
   content: "";
-  display: block;
-  width: 30px;
-  height: 30px;
-  margin-left: 40px;
+  display: inline-block !important;
+  width: 30px !important;
+  height: 30px !important;
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url("/assets/images/long-arrow-right.png");
   transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.custom-button:hover {
+  background-color: var(--dark-primary);
+  color: white !important;
 }
 
 .custom-button:hover:after {
+  width: 30px !important;
   transform: translateX(10px);
 }
 
@@ -1392,7 +1466,7 @@ section {
   font-size: 24px;
 }
 
-.criteria li ::before {
+.criteria li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -1403,3 +1477,102 @@ section {
   border-radius: 50%;
 }
 /*конец о нас*/
+
+/* Начало стилей для вакансий - двухколоночный layout */
+.job-section-two-columns {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  gap: 250px;
+}
+
+.job-section-title {
+  position: sticky;
+  top: 100px;
+  text-align: left;
+  flex: 0 0 300px;
+  min-width: 300px;
+  max-width: 300px;
+}
+
+.job-section-title h2 {
+  margin: 0;
+  padding-bottom: 0;
+  text-align: left;
+  font-size: 47px;
+}
+
+.job-section-title h2::after {
+  display: none;
+}
+
+.job-section-content {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.job-section-content p,
+.job-section-content ul {
+  text-align: left;
+}
+
+.job-content-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 0;
+}
+
+.job-content-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding-left: 0;
+}
+
+.job-content-list li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 20px;
+  margin-left: 0;
+  padding-right: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.job-content-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--primary);
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.6;
+  width: 30px;
+  text-align: left;
+}
+
+@media (max-width: 991px) {
+  .job-section-two-columns {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .job-section-title {
+    position: static;
+    text-align: left;
+    min-width: auto;
+  }
+
+  .job-section-title h2 {
+    text-align: left;
+  }
+
+  .job-section-title h2::after {
+    display: none;
+  }
+}
+/* Конец стилей для вакансий */

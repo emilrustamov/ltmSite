@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('expected_salary'); // Ожидаемая зарплата (обязательно)
             $table->text('personal_info')->nullable(); // Личная информация (необязательно)
             $table->text('contact_info')->nullable(); // Контактная информация (необязательно)
-            $table->text('general_info')->nullable(); // Общая информация (необязательно)
             $table->string('linkedin_url')->nullable(); // Ссылка на LinkedIn (необязательно)
             $table->string('github_url')->nullable(); // Ссылка на GitHub (необязательно)
             $table->unsignedBigInteger('city_id')->nullable(); // Связь с городом

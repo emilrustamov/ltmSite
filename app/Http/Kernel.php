@@ -68,6 +68,7 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'permission' => \App\Http\Middleware\CheckPermission::class,
         'permission.any' => \App\Http\Middleware\CheckAnyPermission::class,
+        'anti.spam' => \App\Http\Middleware\AntiSpamMiddleware::class,
     ];
 
     

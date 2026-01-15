@@ -7,6 +7,7 @@ use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\LogsUserActivity;
+use Illuminate\Support\Facades\Storage;
 
 class ApplicationController extends Controller
 {
@@ -71,8 +72,12 @@ class ApplicationController extends Controller
         ]);
 
         // Удаляем CV файл перед удалением записи
-        if ($application->cv_file && file_exists(public_path($application->cv_file))) {
-            unlink(public_path($application->cv_file));
+        if ($application->cv_file) {
+            if (Storage::disk('public')->exists($application->cv_file)) {
+                Storage::disk('public')->delete($application->cv_file);
+            } elseif (file_exists(public_path($application->cv_file))) {
+                unlink(public_path($application->cv_file));
+            }
         }
         $application->delete();
 
@@ -87,10 +92,17 @@ class ApplicationController extends Controller
             abort(403, 'У вас нет прав для просмотра заявок');
         }
 
-        if (!$application->cv_file || !file_exists(public_path($application->cv_file))) {
-            abort(404, 'CV файл не найден');
+        if ($application->cv_file) {
+            if (Storage::disk('public')->exists($application->cv_file)) {
+                $path = Storage::disk('public')->path($application->cv_file);
+                return response()->download($path);
+            }
+
+            if (file_exists(public_path($application->cv_file))) {
+                return response()->download(public_path($application->cv_file));
+            }
         }
 
-        return response()->download(public_path($application->cv_file));
+        abort(404, 'CV файл не найден');
     }
 }

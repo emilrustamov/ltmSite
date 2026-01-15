@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
 use App\Models\Portfolio;
+use App\Models\Categories;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PublicPortfolioController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPermissionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\JobPositionController;
+use App\Http\Controllers\JobPositionController as PublicJobPositionController;
 use App\Http\Controllers\Admin\TechnicalSkillController;
 use App\Http\Controllers\Admin\WorkFormatController;
 use App\Http\Controllers\Admin\LanguageController;
@@ -264,8 +266,18 @@ Route::middleware(['auth', 'admin', 'throttle:60,1'])
             Route::get('/technical-skills/create', [TechnicalSkillController::class, 'create'])->name('technical-skills.create');
             Route::post('/technical-skills', [TechnicalSkillController::class, 'store'])->name('technical-skills.store');
         });
+        Route::get('/test-route', function() {
+            return "Laravel работает!";
+        });
+        Route::get('/test-skill/{id}', function($id) {
+            $skill = \App\Models\TechnicalSkill::find($id);
+            if (!$skill) {
+                return "Навык не найден";
+            }
+            return "Навык найден: " . $skill->name_ru;
+        });
+        Route::get('/technical-skills/{technicalSkill}/edit', [TechnicalSkillController::class, 'edit'])->name('technical-skills.edit');
         Route::middleware(['permission:skills.edit'])->group(function () {
-            Route::get('/technical-skills/{technicalSkill}/edit', [TechnicalSkillController::class, 'edit'])->name('technical-skills.edit');
             Route::put('/technical-skills/{technicalSkill}', [TechnicalSkillController::class, 'update'])->name('technical-skills.update');
         });
         Route::middleware(['permission:skills.delete'])->group(function () {
@@ -341,7 +353,40 @@ Route::prefix('{lang}')
         // Bitrix24
         Route::get('/bitrix24', function ($lang) {
             App::setLocale($lang);
-            return view('bitrix', compact('lang'));
+            
+            // Найти категорию Bitrix по slug (пробуем разные варианты)
+            $bitrixCategory = Categories::where(function($query) {
+                    $query->where('slug', 'bitrix')
+                          ->orWhere('slug', 'bitrix24');
+                })
+                ->where('status', true)
+                ->first();
+            
+            // Если не нашли по slug, попробуем найти по имени в переводах
+            if (!$bitrixCategory) {
+                $bitrixCategory = Categories::whereHas('translations', function($query) {
+                        $query->where('name', 'LIKE', '%bitrix%')
+                              ->orWhere('name', 'LIKE', '%Битрикс%');
+                    })
+                    ->where('status', true)
+                    ->first();
+            }
+            
+            // Получить проекты с категорией Bitrix (только если категория найдена)
+            $bitrixProjects = collect();
+            
+            if ($bitrixCategory) {
+                $bitrixProjects = Portfolio::with(['translations', 'categories.translations'])
+                    ->where('status', true)
+                    ->whereHas('categories', function ($relation) use ($bitrixCategory) {
+                        $relation->where('categories.id', $bitrixCategory->id);
+                    })
+                    ->orderBy('ordering')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+            }
+            
+            return view('bitrix', compact('lang', 'bitrixProjects'));
         })
             ->name('bitrix');
 
@@ -377,8 +422,16 @@ Route::prefix('{lang}')
         // Portfolio (public)
         Route::get('/portfolio', [PublicPortfolioController::class, 'index'])
             ->name('portfolio.index');
+        Route::get('/portfolio/filter', [PublicPortfolioController::class, 'filter'])
+            ->name('portfolio.filter');
         Route::get('/portfolio/{portfolio}', [PublicPortfolioController::class, 'show'])
             ->name('portfolio.show');
+
+        // Job Positions (public)
+        Route::get('/jobs', [PublicJobPositionController::class, 'all'])
+            ->name('jobs.index');
+        Route::get('/jobs/{jobPosition}', [PublicJobPositionController::class, 'show'])
+            ->name('jobs.show');
 
         // Contacts
         Route::get('/contacts', function ($lang) {
@@ -394,7 +447,7 @@ Route::prefix('{lang}')
 // Public Application Routes (без префикса admin)
 // ---------------------------------------
 Route::get('/applications/create', [PublicApplicationController::class, 'create'])->name('applications.create');
-Route::post('/applications', [PublicApplicationController::class, 'store'])->name('applications.store');
+Route::post('/applications', [PublicApplicationController::class, 'store'])->name('applications.store')->middleware(['anti.spam', 'throttle:2,1']);
 
 // API маршрут для получения навыков по должностям
 Route::post('/api/positions/skills', [PublicApplicationController::class, 'getSkillsByPositions'])->name('api.positions.skills');

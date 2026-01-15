@@ -1,0 +1,484 @@
+/* ============================================
+   JOBS PAGE - Табличный корпоративный стиль
+   ============================================ */
+
+/* Заголовок страницы */
+.jobs-page {
+  /* Отступы управляются классом .container */
+}
+
+.jobs-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.jobs-main-title {
+  font-size: 56px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.jobs-subtitle {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Контейнер таблицы */
+.jobs-table-container {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Таблица */
+.jobs-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+/* Строка вакансии */
+.jobs-table .job-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  background: transparent;
+}
+
+.jobs-table .job-row:first-child {
+  border-top: none;
+}
+
+.jobs-table .job-row:last-child {
+  border-bottom: none;
+}
+
+/* Hover эффект для строки */
+.jobs-table .job-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--primary) 0%, #ff4757 100%);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1;
+}
+
+.jobs-table .job-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.jobs-table .job-row:hover::before {
+  transform: scaleY(1);
+}
+
+/* Основная ячейка */
+.job-cell-main {
+  padding: 32px 28px;
+  vertical-align: middle;
+  width: auto;
+}
+
+/* Ячейка со стрелкой */
+.job-cell-arrow {
+  padding: 32px 28px;
+  vertical-align: middle;
+  width: 70px;
+  text-align: center;
+}
+
+/* Ссылка на строку */
+.job-row-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+.job-content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Строка с названием и мета-информацией */
+.job-title-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  min-height: 100%;
+}
+
+/* Название вакансии */
+.job-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+  letter-spacing: -0.3px;
+  flex-shrink: 0;
+}
+
+.job-row:hover .job-title {
+  color: var(--primary);
+}
+
+/* Мета-информация в строке */
+.job-meta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 15px;
+  margin-left: auto;
+}
+
+.job-meta-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.job-row:hover .job-meta-badge {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Зарплата - особый стиль */
+.job-salary-badge {
+  background: rgba(227, 30, 36, 0.15);
+  border-color: rgba(227, 30, 36, 0.25);
+  color: #ff6b7a;
+  font-weight: 600;
+}
+
+.job-row:hover .job-salary-badge {
+  background: rgba(227, 30, 36, 0.25);
+  border-color: rgba(227, 30, 36, 0.4);
+  color: var(--primary);
+}
+
+
+/* Стрелка */
+.job-arrow-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.job-arrow-icon {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.job-row:hover .job-arrow-link {
+  background: rgba(227, 30, 36, 0.2);
+  border-color: rgba(227, 30, 36, 0.3);
+  color: var(--primary);
+}
+
+.job-row:hover .job-arrow-icon {
+  transform: translateX(4px);
+}
+
+/* Пустое состояние */
+.jobs-empty-cell {
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.jobs-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.jobs-empty-icon {
+  font-size: 72px;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+.jobs-empty h3 {
+  font-size: 32px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-weight: 600;
+}
+
+.jobs-empty p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 500px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Пагинация - используем те же стили, что и в portfolio */
+.portfolio-pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 60px auto 20px;
+  gap: 20px;
+}
+
+.portfolio-pagination__nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.portfolio-pagination__list {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.portfolio-pagination__item {
+  display: inline-flex;
+}
+
+.portfolio-pagination__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 14px;
+  border-radius: 30px;
+  background: rgba(227, 30, 36, 0.15);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border: 1px solid rgba(227, 30, 36, 0.4);
+}
+
+.portfolio-pagination__link:hover {
+  background: #e31e24;
+  border-color: #e31e24;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(227, 30, 36, 0.35);
+}
+
+.portfolio-pagination__item.active .portfolio-pagination__link {
+  background: #e31e24;
+  border-color: #e31e24;
+  box-shadow: 0 10px 25px rgba(227, 30, 36, 0.45);
+}
+
+.portfolio-pagination__item.disabled .portfolio-pagination__link {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: transparent;
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.portfolio-pagination__item.disabled .portfolio-pagination__link:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.portfolio-pagination__link--arrow {
+  min-width: 48px;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.portfolio-pagination__link--arrow:hover {
+  background: #ffffff;
+  color: #1f1f1f;
+  border-color: #ffffff;
+}
+
+.portfolio-pagination__item.dots .portfolio-pagination__link {
+  pointer-events: none;
+  background: transparent;
+  border: none;
+  color: #c7c7c7;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .portfolio-pagination {
+    margin-top: 40px;
+    gap: 16px;
+  }
+
+  .portfolio-pagination__link {
+    min-width: 38px;
+    height: 38px;
+    font-size: 0.85rem;
+    padding: 0 12px;
+  }
+
+  .portfolio-pagination__link--arrow {
+    min-width: 42px;
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .jobs-page {
+    padding: 60px 15px 80px;
+  }
+
+  .jobs-header {
+    margin-bottom: 40px;
+  }
+
+  .jobs-main-title {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+
+  .jobs-subtitle {
+    font-size: 18px;
+  }
+
+  .job-cell-main {
+    padding: 24px 20px;
+  }
+
+  .job-cell-arrow {
+    padding: 24px 16px;
+    width: 60px;
+  }
+
+  .job-title {
+    font-size: 20px;
+  }
+
+  .job-meta-row {
+    font-size: 14px;
+    gap: 6px;
+  }
+
+  .job-meta-badge {
+    font-size: 13px;
+    padding: 5px 12px;
+  }
+
+  .job-arrow-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .job-arrow-icon {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .job-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .job-meta-row {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .jobs-main-title {
+    font-size: 32px;
+  }
+
+  .jobs-subtitle {
+    font-size: 16px;
+  }
+
+  .job-cell-main {
+    padding: 20px 16px;
+  }
+
+  .job-cell-arrow {
+    padding: 20px 12px;
+    width: 50px;
+  }
+
+  .job-title {
+    font-size: 18px;
+  }
+
+  .job-title-row {
+    gap: 10px;
+  }
+
+  .job-meta-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .job-meta-badge {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+}
+
+/* Уважение к пользовательским настройкам */
+@media (prefers-reduced-motion: reduce) {
+  .job-row,
+  .job-row::before,
+  .job-title,
+  .job-meta-badge,
+  .job-arrow-link,
+  .job-arrow-icon {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .job-row:hover .job-arrow-link {
+    transform: none;
+  }
+
+  .job-row:hover .job-arrow-icon {
+    transform: none;
+  }
+
+  .job-row:hover::before {
+    transform: none;
+  }
+}

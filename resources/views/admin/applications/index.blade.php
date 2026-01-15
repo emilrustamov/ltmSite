@@ -9,6 +9,16 @@
         <h5 class="mb-0">Управление заявками кандидатов</h5>
         <small class="text-muted">Всего заявок: {{ $applications->total() }}</small>
     </div>
+    <div class="d-flex gap-2">
+        <a href="{{ route('admin.languages.index') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-language me-2"></i>
+            Языки
+        </a>
+        <a href="{{ route('admin.cities.index') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-map-marker-alt me-2"></i>
+            Города
+        </a>
+    </div>
 </div>
 
 <div class="table-responsive">
@@ -22,7 +32,6 @@
                 <th>Ожидаемая зарплата</th>
                 <th>Статус</th>
                 <th>Создан</th>
-                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -43,7 +52,7 @@
                     </td>
                     <td>
                         @if($application->expected_salary)
-                            {{ $application->formatted_salary }}
+                            {{ $application->expected_salary }}
                         @else
                             <span class="text-muted">Не указана</span>
                         @endif
@@ -56,23 +65,10 @@
                         @endif
                     </td>
                     <td>{{ $application->created_at->format('d.m.Y') }}</td>
-                    <td>
-                        <div class="btn-group" role="group">
-                            @if(Auth::user()->hasPermission('applications.delete'))
-                            <button type="button" 
-                                    class="btn btn-sm btn-outline-danger delete-btn delete-application" 
-                                    data-id="{{ $application->id }}"
-                                    data-name="{{ $application->name ?? '' }} {{ $application->surname }}"
-                                    title="Удалить">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                            @endif
-                        </div>
-                    </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" class="text-center py-5">
+                    <td colspan="7" class="text-center py-5">
                         <p class="text-muted mb-0">Нет заявок</p>
                     </td>
                 </tr>

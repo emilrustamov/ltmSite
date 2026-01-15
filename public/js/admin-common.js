@@ -4,6 +4,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Admin Common JS loaded successfully');
+    
     // ========================================
     // УНИВЕРСАЛЬНАЯ СИСТЕМА УДАЛЕНИЯ
     // ========================================
@@ -130,9 +132,13 @@ function initializeClickableRows() {
             const id = row.getAttribute('data-id') || 
                       row.getAttribute('data-application-id') || 
                       row.getAttribute('data-portfolio-slug');
+            const slug = row.getAttribute('data-slug') || row.getAttribute('data-portfolio-slug');
             
-            if (id) {
-                const editUrl = getEditUrl(row, id);
+            // Используем slug если есть, иначе ID
+            const identifier = slug || id;
+            
+            if (identifier) {
+                const editUrl = getEditUrl(row, identifier);
                 if (editUrl) {
                     window.location.href = editUrl;
                 }
@@ -142,17 +148,21 @@ function initializeClickableRows() {
     
     // Добавляем визуальную обратную связь
     document.addEventListener('mouseenter', function(e) {
-        const row = e.target.closest(clickableClasses);
-        if (row) {
-            row.style.backgroundColor = '#f8f9fa';
-            row.style.cursor = 'pointer';
+        if (e.target && e.target.closest) {
+            const row = e.target.closest(clickableClasses);
+            if (row) {
+                row.style.backgroundColor = '#f8f9fa';
+                row.style.cursor = 'pointer';
+            }
         }
     }, true);
     
     document.addEventListener('mouseleave', function(e) {
-        const row = e.target.closest(clickableClasses);
-        if (row) {
-            row.style.backgroundColor = '';
+        if (e.target && e.target.closest) {
+            const row = e.target.closest(clickableClasses);
+            if (row) {
+                row.style.backgroundColor = '';
+            }
         }
     }, true);
 }
@@ -227,9 +237,7 @@ function showDeleteConfirmation(id, name, type) {
     
     const entityName = entityNames[type] || 'элемент';
     
-    if (confirm(`Вы уверены, что хотите удалить ${entityName} "${name}"? Это действие нельзя отменить.`)) {
-        deleteEntity(id, type);
-    }
+    deleteEntity(id, type);
 }
 
 function deleteEntity(id, type) {

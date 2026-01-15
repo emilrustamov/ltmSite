@@ -72,13 +72,25 @@
                     </div>
                     
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('admin.cities.index') }}" class="btn btn-outline-secondary">
-                            <i class="fas fa-arrow-left me-2"></i>
-                            Назад к списку
-                        </a>
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('admin.applications.index') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-file-alt me-2"></i>
+                                К заявкам
+                            </a>
+                            <a href="{{ route('admin.cities.index') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>
+                                К списку городов
+                            </a>
+                        </div>
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-save me-2"></i>
                             Сохранить изменения
+                        </button>
+                        <button type="button" class="btn btn-danger delete-btn delete-city" 
+                                data-id="{{ $city->id }}" 
+                                data-name="{{ $city->name_ru }}">
+                            <i class="fas fa-trash me-2"></i>
+                            Удалить город
                         </button>
                     </div>
                 </form>
@@ -86,4 +98,10 @@
         </div>
     </div>
 </div>
+
+<!-- Скрытая форма для удаления -->
+<form id="delete-form-{{ $city->id }}" action="{{ route('admin.cities.destroy', $city) }}" method="POST" style="display: none;">
+    @csrf
+    @method('DELETE')
+</form>
 @endsection

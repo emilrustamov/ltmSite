@@ -5,6 +5,7 @@ return [
     'aboutUs' => 'О нас',
     'aboutUsTitle' => 'LTM ：',
     'portfolio' => 'Портфолио',
+    'jobs' => 'Вакансии',
     'bitrix' => 'Битрикс24',
     'blog' => 'Блог',
     'contacts' => 'Контакты',
@@ -158,6 +159,9 @@ return [
 
     'portfolioTitle' => 'Проекты LTM ',
     'portfolioSub' => 'Много интересных кейсов, за которые не стыдно)',
+    'portfolioFilterAll' => 'Все проекты',
+    'portfolioFilterEmpty' => 'Проекты не найдены. Попробуйте выбрать другие категории.',
+    'portfolioFilterError' => 'Не удалось загрузить проекты. Попробуйте снова позже.',
     'menuAll' => 'Все',
     'menu' => "МЕ\nНЮ",
 
@@ -214,6 +218,18 @@ return [
     'servTitle4' => " Внедрение \nCRM Битрикс24",
     'servSubTitle4' => " Контроль и управление рабочим пространством сотрудников",
     'servDesc4' => "Битрикс24 обеспечивает контроль работы сотрудников через систему задач и отчетов. CRM-компонент улучшает отношения с клиентами, фиксируя взаимодействия и сделки. Платформа также помогает планировать и координировать проекты для их успешного выполнения.",
+    
+    'servTitle5' => "Корпоративный\nпортал",
+    'servDesc5'  => "Единая внутренняя платформа компании: новости, документы, коммуникация и управление задачами сотрудников.",
+    'servTitle6' => "ERP\nсистема",
+    'servDesc6'  => "Полный контроль над финансами, закупками, производством и складами. Централизованное управление всеми бизнес-процессами.",
+    'servTitle7' => "CRM\nсистема",
+    'servDesc7'  => "Автоматизация продаж и клиентских взаимодействий. Контроль воронки, аналитика эффективности менеджеров и рост конверсии.",
+    'servTitle8' => "BI\nдашборды",
+    'servDesc8'  => "Интерактивная аналитика и отчёты в реальном времени. Помогают руководителям принимать решения на основе данных.",
+
+
+    
     'aboutUsFooter1' => 'Создаем «детали и инструменты», которые двигают ваш бизнес вперед. Прорабатывая каждую идею, мы расширяем ее ценности и философию, создаем важные решения, которые помогают бизнесу достигать необходимого роста.',
     'aboutUsFooter2' => 'Наша компания ставит «эффективность» на первое место, и несмотря на всю прагматичность бизнеса, находим множество креативных идей для реализации решений, которые способны связать вас с вашей аудиторией на долгие годы вперед. LTM , которая может!',
     'aboutUsFooter3' => 'LTM  — IT-компания, предлагающая решения в области разработки сайтов, мобильных приложений и внедрения платформы Битрикс24 в Туркменистане. Ориентируемся на крупные и средние бизнесы, помогая не просто создавать цифровые продукты, а устранять "боли" в бизнес-процессах с помощью IT-решений.',
@@ -266,6 +282,7 @@ return [
     'bitrix_box'             => 'Коробочное решение',
 
     // Новые переменные перевода для битрикс (Cloud таб)
+    'bitrix_prices_note' => 'Все цены указаны в рублях. Актуальные цены на сайте Битрикс24 по <a href=":url" target="_blank" rel="noopener noreferrer">ссылке</a>.',
     'bitrix_cloud_solution' => 'Облачное решение Битрикс24',
     'bitrix_plan' => 'План',
     'bitrix_price' => 'Цена',
@@ -280,22 +297,22 @@ return [
     'bitrix_space_5gb' => '5 ГБ',
 
     'bitrix_basic' => 'Базовый',
-    'bitrix_price_basic_old' => '2 490 ₸.',
-    'bitrix_price_basic_new' => '9 600 ₸.',
+    'bitrix_price_basic_old' => '2 490 ₽',
+    'bitrix_price_basic_new' => '1 990 ₽',
     'bitrix_for_small_teams' => 'Для малых команд',
     'bitrix_users_5' => '5 пользователей',
     'bitrix_space_24gb' => '24 ГБ',
 
     'bitrix_standard' => 'Стандартный',
-    'bitrix_price_standard_old' => '34 000 ₸.',
-    'bitrix_price_standard_new' => '27 200 ₸.',
+    'bitrix_price_standard_old' => '6 990 ₽',
+    'bitrix_price_standard_new' => '5 590 ₽',
     'bitrix_for_large_teams' => 'Для больших команд',
     'bitrix_users_50' => '50 пользователей',
     'bitrix_space_100gb' => '100 ГБ',
 
     'bitrix_professional' => 'Профессиональный',
-    'bitrix_price_professional_old' => '68 000 ₸.',
-    'bitrix_price_professional_new' => '54 400 ₸.',
+    'bitrix_price_professional_old' => '13 990 ₽',
+    'bitrix_price_professional_new' => '11 190 ₽',
     'bitrix_for_companies' => 'Для компаний',
     'bitrix_users_100' => '100 пользователей',
     'bitrix_space_1024gb' => '1 ТБ',
@@ -314,7 +331,7 @@ return [
 
     'bitrix_store_crm' => 'Битрикс24 CRM для магазинов',
     'bitrix_users_12' => '12 пользователей',
-    'bitrix_price_store_crm' => '524 000 ₸.',
+    'bitrix_price_store_crm' => '109 000 ₽',
     'bitrix_license_12_months' => 'Лицензия на 12 месяцев',
 
     'bitrix_extranet' => 'Экстранет',
@@ -327,19 +344,19 @@ return [
     'bitrix_vip_support' => 'VIP поддержка',
 
     'bitrix_users_50' => '50 пользователей',
-    'bitrix_price_50_users' => '764 000 ₸.',
+    'bitrix_price_50_users' => '159 000 ₽',
     'bitrix_users_100' => '100 пользователей',
-    'bitrix_price_100_users' => '1 100 000 ₸.',
+    'bitrix_price_100_users' => '229 000 ₽',
     'bitrix_users_250' => '250 пользователей',
-    'bitrix_price_250_users' => '1 676 000 ₸.',
+    'bitrix_price_250_users' => '349 000 ₽',
 
 
     'bitrix_corporate_portal' => 'Корпоративный портал',
     'bitrix_users_500' => '500 пользователей',
-    'bitrix_price_corporate_portal' => '2 876 000 ₸.',
+    'bitrix_price_corporate_portal' => '599 000 ₽',
 
     'bitrix_users_1000' => '1000 пользователей',
-    'bitrix_price_enterprise' => 'По запросу',
+    'bitrix_price_enterprise' => '1 299 000 ₽',
 
     // Переменные для секции "Коробочное решение vs. Облако"
     'bitrix_box_vs_cloud' => 'Коробочное решение против Облачного решения',
@@ -416,5 +433,44 @@ return [
     'metaDescServices' => 'Lebizli Tehnologiya Merkezi (LTM) – IT-компания в Туркменистане. Услуги по разработке веб-сайтов, мобильных приложений, интернет-магазинов и внедрению Bitrix24 для вашего бизнеса.',
     'metaKeyServices'  =>  'Lebizli Tehnologiya Merkezi услуги, LTM IT-компания, разработка сайтов Туркменистан, мобильные приложения Туркменистан, внедрение Bitrix24 Туркменистан',
     'titleServices'       => 'Услуги Lebizli Tehnologiya Merkezi (LTM) - IT-компания в Туркменистане',
+
+    // Переводы для вакансий
+    'jobsTitle' => 'Вакансии',
+    'jobsSubtitle' => 'Присоединяйтесь к нашей команде и станьте частью инновационных проектов',
+    'allJobsTitle' => 'Все вакансии',
+    'allJobsSubtitle' => 'Найдите подходящую позицию в нашей команде',
+    'jobsMetaDesc' => 'Открытые вакансии в IT-компании Lebizli Tehnologiya Merkezi (LTM) в Туркменистане. Присоединяйтесь к нашей команде разработчиков.',
+    'jobsMetaKey' => 'вакансии IT Туркменистан, работа программист Туркменистан, LTM вакансии, IT карьера Туркменистан',
+    'allJobsMetaDesc' => 'Все открытые вакансии в IT-компании Lebizli Tehnologiya Merkezi (LTM) в Туркменистане.',
+    'allJobsMetaKey' => 'вакансии IT Туркменистан, работа программист Туркменистан, LTM вакансии, IT карьера Туркменистан',
+    'open' => 'Открыта',
+    'closed' => 'Закрыта',
+    'jobDetails' => 'Детали вакансии',
+    'position' => 'Должность',
+    'status' => 'Статус',
+    'skills' => 'Навыки',
+    'skillsCount' => 'навыков',
+    'noSkills' => 'Навыки не указаны',
+    'description' => 'Описание',
+    'responsibilities' => 'Обязанности',
+    'requiredSkills' => 'Требуемые навыки',
+    'benefits' => 'Преимущества',
+    'applyNow' => 'Подать заявку',
+    'defaultJobImage' => 'Изображение вакансии по умолчанию',
+    'career' => 'карьера',
+    'employment_type' => 'Тип занятости',
+    'employment_type_full_time' => 'Полная занятость',
+    'employment_type_part_time' => 'Частичная занятость',
+    'employment_type_contract' => 'Контракт',
+    'employment_type_temporary' => 'Временная работа',
+    'employment_type_internship' => 'Стажировка',
+    'employment_type_volunteer' => 'Волонтерство',
+    'work_format' => 'Формат работы',
+    'work_format_on_site' => 'В офисе',
+    'work_format_remote' => 'Удаленно',
+    'work_format_hybrid' => 'Гибридный',
+    'salary' => 'Зарплата',
+    'requirements' => 'Требования',
+    'conditions' => 'Условия',
 
 ];

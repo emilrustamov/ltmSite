@@ -5,11 +5,6 @@
 @section('metaDesc', __('translate.metaDescMain'))
 @section('metaKey', __('translate.metaKeyMain'))
 @section('custom-slider')
-    @if (session('success'))
-        <div class="alert alert-success">
-            <p>{{ session('success') }}</p>
-        </div>
-    @endif
 
     <section class="mainSlider">
         <h1 class="text-center container">
@@ -21,7 +16,7 @@
                 <div class="carousel-custom-item">
                     <a href="/{{ $lang }}/portfolio/{{ $p->slug }}">
                         <div class="col flex-column slide-text">
-                            <p class="slide-title">{{ $p->translation($lang)?->title ?? '' }}</p>
+                            <h2 class="slide-title">{{ $p->translation($lang)?->title ?? '' }}</h2>
                             <a class="slide-a"
                                 href="/{{ $lang }}/portfolio/{{ $p->slug }}">{{ __('translate.readMore') }}</a>
                         </div>
@@ -50,6 +45,12 @@
 @endsection
 
 @section('content')
+    @if (session('success'))
+        <div style="background: linear-gradient(135deg, #10B981, #059669); color: white; padding: 20px; margin: 20px; border-radius: 10px; text-align: center; font-size: 18px; font-weight: bold; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);">
+            <i class="fas fa-check-circle" style="font-size: 24px; margin-right: 10px;"></i>
+            {{ session('success') }}
+        </div>
+    @endif
 
     <section class="container">
         {{-- <div class="red-circle-feedback">

@@ -19,6 +19,23 @@
 
 @section('content')
     <section class="container">
+        <!-- Хлебные крошки -->
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol class="breadcrumbs-list">
+                <li class="breadcrumbs-item">
+                    <a href="/{{ $lang }}" class="breadcrumbs-link">{{ __('translate.mainPage') ?? 'Главная' }}</a>
+                </li>
+                <li class="breadcrumbs-separator" aria-hidden="true">/</li>
+                <li class="breadcrumbs-item">
+                    <a href="{{ route('lang.portfolio.index', ['lang' => $lang]) }}" class="breadcrumbs-link">{{ __('translate.portfolio') }}</a>
+                </li>
+                <li class="breadcrumbs-separator" aria-hidden="true">/</li>
+                <li class="breadcrumbs-item breadcrumbs-item-active" aria-current="page">
+                    <span class="breadcrumbs-current">{{ $portfolio->translation($lang)?->who ?? 'Проект' }}</span>
+                </li>
+            </ol>
+        </nav>
+
         @if ($portfolio->getFirstMediaUrl('portfolio-images', 'webp'))
             <img src="{{ $portfolio->getFirstMediaUrl('portfolio-images', 'webp') }}" alt="{{ $portfolio->translation($lang)?->who ?? 'Проект' }}" loading="lazy" class="w-full">
         @else
@@ -81,6 +98,72 @@
                 viewedProjects.push(projectId);
                 localStorage.setItem("viewedProjects", JSON.stringify(viewedProjects));
             }
+
+            document.dispatchEvent(new Event('portfolio-viewed-updated'));
         });
     </script>
+
+    <style>
+        /* Хлебные крошки */
+        .breadcrumbs {
+            margin-bottom: 30px;
+            padding-top: 20px;
+        }
+
+        .breadcrumbs-list {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            gap: 8px;
+        }
+
+        .breadcrumbs-item {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .breadcrumbs-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s ease;
+            padding: 4px 0;
+        }
+
+        .breadcrumbs-link:hover {
+            color: #e31e24;
+        }
+
+        .breadcrumbs-separator {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 15px;
+            padding: 0 4px;
+        }
+
+        .breadcrumbs-item-active .breadcrumbs-current {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .breadcrumbs {
+                margin-bottom: 20px;
+                padding-top: 15px;
+            }
+
+            .breadcrumbs-link,
+            .breadcrumbs-current,
+            .breadcrumbs-separator {
+                font-size: 14px;
+            }
+
+            .breadcrumbs-list {
+                gap: 6px;
+            }
+        }
+    </style>
 @endsection

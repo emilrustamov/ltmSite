@@ -86,6 +86,8 @@
     <script src="{{ asset('assets/js/swiper.js') }}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+
+
 </head>
 
 <body>
@@ -136,7 +138,8 @@
     @include('layouts.scripts')
 
     <script>
-        const lenis = new Lenis({
+        // Инициализируем Lenis
+        window.lenis = new Lenis({
             duration: 1.5, // больше = более тягучий скролл
             easing: t => 1 - Math.pow(1 - t, 4), // кинематографичный, лёгкий на старте, тяжёлый в конце
             smooth: true,
@@ -145,11 +148,19 @@
         });
 
         function raf(time) {
-            lenis.raf(time);
+            window.lenis.raf(time);
             requestAnimationFrame(raf);
         }
 
         requestAnimationFrame(raf);
+
+        // Создаем событие после инициализации Lenis для других скриптов
+        document.addEventListener('DOMContentLoaded', () => {
+            // Небольшая задержка для полной инициализации
+            requestAnimationFrame(() => {
+                window.dispatchEvent(new CustomEvent('lenis:ready'));
+            });
+        });
     </script>
 
 

@@ -44,7 +44,11 @@
             </a>
         </div>
 
-        <!-- Добавьте стиль для бейджа, если его ещё нет -->
+        <div class="nav-item">
+            <a href="/{{ $lang }}/jobs"
+                class="text-sm md:text-base {{ Request::is($lang . '/jobs*') ? 'active' : '' }}"
+                itemprop="url">{{ __('translate.jobs') }}</a>
+        </div>
 
         <div class="nav-item">
             <a href="/{{ $lang }}/contacts"
@@ -163,10 +167,12 @@
                         <a href="tel:+99312753713" class="text-6xl">+993 12 75 37 13</a>
                         <a href="mailto:info@ltm.studio" class="text-6xl">info@ltm.studio</a>
                         <div class="flex media-links">
-                            <!-- Временно закомментированы иконки Instagram и LinkedIn
-                            <a class="menu-a" href="https://www.instagram.com/lebizli_tehnologiya/" id="instLink">In</a>
-                            <a class="menu-a" href="linkedin.com/company/ltmstudio" id="linkedLink">Ln</a>
-                            -->
+                            <a class="menu-a" href="https://www.instagram.com/lebizli_tehnologiya_merkezi?igsh=a3ZwZHN3aXdtYzJ5" id="instLink" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a class="menu-a" href="https://www.linkedin.com/company/ltm-studio/" id="linkedLink" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
                         </div>
                         <a class="opacity-[0.7]" href="/{{ $lang }}/"
                             id="linkAddress">https://ltm.studio/</a>
@@ -216,10 +222,8 @@
     </a>
 
     <div class="flex gap-4 mb-6">
-        <!-- Временно закомментированы иконки Instagram и LinkedIn
-        <a href="https://www.instagram.com/lebizli_tehnologiya/"><i class="fa-brands fa-instagram text-3xl"></i></a>
+        <a href="https://www.instagram.com/lebizli_tehnologiya_merkezi?igsh=a3ZwZHN3aXdtYzJ5"><i class="fa-brands fa-instagram text-3xl"></i></a>
         <a href="https://www.linkedin.com/company/ltm-studio/"><i class="fa-brands fa-linkedin text-3xl"></i></a>
-        -->
     </div>
 
     <nav class="flex flex-col gap-4 text-xl font-semibold mb-6">
@@ -228,6 +232,7 @@
         <a href="/{{ $lang }}/bitrix24">{{ __('translate.bitrix') }}</a>
         <a href="/{{ $lang }}/about_us">{{ __('translate.aboutUs') }}</a>
         <a href="/{{ $lang }}/portfolio">{{ __('translate.portfolio') }}</a>
+        <a href="/{{ $lang }}/jobs">{{ __('translate.jobs') }}</a>
         <a href="/{{ $lang }}/contacts">{{ __('translate.contacts') }}</a>
     </nav>
 
@@ -280,26 +285,51 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", async function() {
-        // Если переменная уже установлена (на portfolio), используем её,
-        // иначе делаем AJAX запрос для получения количества проектов.
-        let totalProjects = window.totalProjectsCount || 0;
-        if (totalProjects === 0) {
-            try {
-                const response = await fetch('/api/portfolio-count/{{ $lang }}');
-                const data = await response.json();
-                totalProjects = data.total;
-            } catch (error) {
-                console.error('Ошибка загрузки количества проектов:', error);
-            }
+        const badge = document.getElementById("newProjectBadge");
+        if (!badge) {
+            return;
         }
 
-        let viewedProjects = JSON.parse(localStorage.getItem("viewedProjects") || "[]");
-        const newCount = totalProjects - viewedProjects.length;
-        const badge = document.getElementById("newProjectBadge");
-        if (badge && newCount > 0) {
-            badge.textContent = newCount;
-            badge.style.display = "inline-block";
-        }
+        let totalProjects = Number(window.totalProjectsCount || 0);
+
+        const updateBadge = () => {
+            const viewedProjects = JSON.parse(localStorage.getItem("viewedProjects") || "[]");
+            const newCount = Math.max(totalProjects - viewedProjects.length, 0);
+
+            if (newCount > 0) {
+                badge.textContent = newCount;
+                badge.style.display = "inline-block";
+            } else {
+                badge.textContent = "";
+                badge.style.display = "none";
+            }
+        };
+
+        const ensureTotalProjects = async () => {
+            if (totalProjects > 0) {
+                return totalProjects;
+            }
+
+            try {
+                const response = await fetch('/api/portfolio-count/{{ $lang }}');
+                if (!response.ok) {
+                    throw new Error(`Request failed with status ${response.status}`);
+                }
+                const data = await response.json();
+                totalProjects = Number(data.total || 0);
+                window.totalProjectsCount = totalProjects;
+            } catch (error) {
+                console.error('Ошибка загрузки количества проектов:', error);
+                totalProjects = 0;
+            }
+
+            return totalProjects;
+        };
+
+        await ensureTotalProjects();
+        updateBadge();
+
+        document.addEventListener('portfolio-viewed-updated', updateBadge);
     });
 </script>
 

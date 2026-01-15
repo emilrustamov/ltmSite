@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Mail;
+use App\Mail\ANMail;
 
 class Application extends Model
 {
@@ -12,9 +14,9 @@ class Application extends Model
     protected $table = 'applications';
 
     protected $fillable = [
-        'name', 'surname', 'email', 'phone', 'date_of_birth', 'expected_salary', 'personal_info', 'contact_info', 'general_info',
+        'name', 'surname', 'email', 'phone', 'date_of_birth', 'expected_salary', 'personal_info', 'contact_info',
         'linkedin_url', 'github_url', 'city_id', 'custom_city', 'registration_address', 'source_id', 'custom_source',
-        'work_format_id', 'custom_work_format', 'education_id', 'custom_education', 'custom_language', 
+        'work_format_id', 'custom_work_format', 'education_id', 'custom_education', 'custom_language', 'custom_technical_skill',
         'cv_file', 'professional_plans', 'other_notes', 'status'
     ];
 
@@ -22,6 +24,36 @@ class Application extends Model
         'status' => 'boolean',
         'date_of_birth' => 'date',
     ];
+
+    /**
+     * Boot method для автоматической отправки писем
+     */
+    public static function boot() {
+        parent::boot();
+
+        static::created(function ($item) {
+            try {
+                // Загружаем все связи для email
+                $item->load([
+                    'city',
+                    'source',
+                    'workFormat',
+                    'education',
+                    'jobPositions',
+                    'languages',
+                    'technicalSkills',
+                    'workExperiences',
+                    'educationalInstitutions'
+                ]);
+                
+                $adminEmail = "hr@ltm.studio";
+                Mail::to($adminEmail)->send(new ANMail($item));
+            } catch (\Exception $e) {
+                // Логируем ошибку, но не прерываем сохранение
+                \Log::error('Ошибка отправки почты для заявки: ' . $e->getMessage());
+            }
+        });
+    }
 
     // Связь с городом (Many-to-One)
     public function city()
@@ -85,15 +117,6 @@ class Application extends Model
     public function scopeActive($query)
     {
         return $query->where('status', true);
-    }
-
-    // Аксессоры
-    public function getFormattedSalaryAttribute()
-    {
-        if ($this->expected_salary) {
-            return number_format($this->expected_salary, 0, ',', ' ');
-        }
-        return 'Не указана';
     }
 
 }

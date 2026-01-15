@@ -12,13 +12,11 @@ use App\Models\TechnicalSkill;
 use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
 class PublicApplicationController extends Controller
 {
-    // Публичная форма создания заявки
-    public function create()
+    public function create(Request $request)
     {
-        // Получаем данные для формы
         $cities = City::active()->ordered()->get();
         $sources = Source::active()->ordered()->get();
         $workFormats = WorkFormat::active()->ordered()->get();
@@ -26,22 +24,33 @@ class PublicApplicationController extends Controller
         $jobPositions = JobPosition::active()->ordered()->get();
         $technicalSkills = TechnicalSkill::active()->ordered()->get();
         $languages = Language::active()->ordered()->get();
-        
-        // Устанавливаем язык по умолчанию
+
         $lang = 'ru';
 
+        $selectedPosition = null;
+        if ($request->has('position')) {
+            $selectedPosition = JobPosition::find($request->position);
+        }
+
         return view('public.applications.create', compact(
-            'cities', 'sources', 'workFormats', 'educations', 
-            'jobPositions', 'technicalSkills', 'languages', 'lang'
+            'cities',
+            'sources',
+            'workFormats',
+            'educations',
+            'jobPositions',
+            'technicalSkills',
+            'languages',
+            'lang',
+            'selectedPosition'
         ));
     }
 
-    // Сохранение публичной заявки
     public function store(Request $request)
     {
-        // Создаем правила валидации с учетом кастомных полей
+        $positionParam = $request->input('position');
+
         $validationRules = [
-            'name' => 'nullable|string|max:255',
+            'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:255',
@@ -49,11 +58,11 @@ class PublicApplicationController extends Controller
             'expected_salary' => 'required|string|max:255',
             'personal_info' => 'nullable|string',
             'contact_info' => 'nullable|string',
-            'general_info' => 'nullable|string',
             'linkedin_url' => 'nullable|url|max:255',
             'github_url' => 'nullable|url|max:255',
             'registration_address' => 'required|string|max:500',
             'custom_language' => 'nullable|string|max:255',
+            'custom_technical_skill' => 'nullable|string|max:255',
             'cv_file' => 'required|file|mimes:pdf,doc,docx|max:10240',
             'professional_plans' => 'required|string',
             'other_notes' => 'nullable|string',
@@ -78,7 +87,6 @@ class PublicApplicationController extends Controller
             'languages.*' => 'exists:languages,id',
         ];
 
-        // Динамически добавляем правила для кастомных полей
         if ($request->has('custom_city_check')) {
             $validationRules['custom_city'] = 'required|string|max:255';
             $validationRules['city_id'] = 'nullable|exists:cities,id';
@@ -113,72 +121,25 @@ class PublicApplicationController extends Controller
 
         $validated = $request->validate($validationRules);
 
-        // Обработка кастомных полей
-        $cityId = $validated['city_id'] ?? null;
+        $cityId = $request->has('custom_city_check') ? null : ($validated['city_id'] ?? null);
         $customCity = $validated['custom_city'] ?? null;
 
-        $sourceId = $validated['source_id'] ?? null;
+        $sourceId = $request->has('custom_source_check') ? null : ($validated['source_id'] ?? null);
         $customSource = $validated['custom_source'] ?? null;
 
-        $workFormatId = $validated['work_format_id'] ?? null;
+        $workFormatId = $request->has('custom_work_format_check') ? null : ($validated['work_format_id'] ?? null);
         $customWorkFormat = $validated['custom_work_format'] ?? null;
 
-        $educationId = $validated['education_id'] ?? null;
+        $educationId = $request->has('custom_education_check') ? null : ($validated['education_id'] ?? null);
         $customEducation = $validated['custom_education'] ?? null;
 
-        // Если выбрано кастомное образование, создаем запись в таблице educations
-        if ($request->has('custom_education_check') && $customEducation) {
-            $slug = \Illuminate\Support\Str::slug($customEducation) . '-' . time();
-            $customEducationRecord = \App\Models\Education::create([
-                'name_ru' => $customEducation,
-                'name_en' => $customEducation,
-                'name_tm' => $customEducation,
-                'slug' => $slug,
-                'is_active' => true,
-                'sort_order' => 999
-            ]);
-            $educationId = $customEducationRecord->id;
+        // Сохраняем файл CV ПЕРЕД созданием Application, чтобы он был доступен при отправке email
+        $cvFilePath = null;
+        if ($request->hasFile('cv_file')) {
+            // Используем store() для сохранения файла - он вернет относительный путь типа cv/filename.pdf
+            $cvFilePath = $request->file('cv_file')->store('cv', 'public');
         }
 
-        // Если выбран кастомный город, создаем запись в таблице cities
-        if ($request->has('custom_city_check') && $customCity) {
-            $customCityRecord = \App\Models\City::create([
-                'name_ru' => $customCity,
-                'name_en' => $customCity,
-                'name_tm' => $customCity,
-                'is_active' => true,
-                'sort_order' => 999
-            ]);
-            $cityId = $customCityRecord->id;
-        }
-
-        // Если выбран кастомный источник, создаем запись в таблице sources
-        if ($request->has('custom_source_check') && $customSource) {
-            $slug = \Illuminate\Support\Str::slug($customSource) . '-' . time();
-            $customSourceRecord = \App\Models\Source::create([
-                'name_ru' => $customSource,
-                'name_en' => $customSource,
-                'name_tm' => $customSource,
-                'slug' => $slug,
-                'is_active' => true,
-                'sort_order' => 999
-            ]);
-            $sourceId = $customSourceRecord->id;
-        }
-
-        // Если выбран кастомный формат работы, создаем запись в таблице work_formats
-        if ($request->has('custom_work_format_check') && $customWorkFormat) {
-            $customWorkFormatRecord = \App\Models\WorkFormat::create([
-                'name_ru' => $customWorkFormat,
-                'name_en' => $customWorkFormat,
-                'name_tm' => $customWorkFormat,
-                'is_active' => true,
-                'sort_order' => 999
-            ]);
-            $workFormatId = $customWorkFormatRecord->id;
-        }
-
-        // Создаём заявку
         $application = Application::create([
             'name' => $validated['name'],
             'surname' => $validated['surname'],
@@ -188,7 +149,6 @@ class PublicApplicationController extends Controller
             'expected_salary' => $validated['expected_salary'],
             'personal_info' => $validated['personal_info'],
             'contact_info' => $validated['contact_info'],
-            'general_info' => $validated['general_info'],
             'linkedin_url' => $validated['linkedin_url'],
             'github_url' => $validated['github_url'],
             'city_id' => $cityId,
@@ -201,35 +161,25 @@ class PublicApplicationController extends Controller
             'education_id' => $educationId,
             'custom_education' => $customEducation,
             'custom_language' => $validated['custom_language'],
+            'custom_technical_skill' => $validated['custom_technical_skill'],
             'professional_plans' => $validated['professional_plans'],
             'other_notes' => $validated['other_notes'],
-            'status' => true, // Публичные заявки всегда активны
+            'cv_file' => $cvFilePath, // Файл уже сохранен, добавляем путь сразу
+            'status' => true,
         ]);
 
-        // Загрузка CV файла
-        if ($request->hasFile('cv_file')) {
-            $file = $request->file('cv_file');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/cv'), $filename);
-            $application->update(['cv_file' => 'uploads/cv/' . $filename]);
-        }
-
-        // Связываем с должностями
         if (!empty($validated['job_positions'])) {
             $application->jobPositions()->sync($validated['job_positions']);
         }
 
-        // Связываем с техническими навыками
         if (!empty($validated['technical_skills'])) {
             $application->technicalSkills()->sync($validated['technical_skills']);
         }
 
-        // Связываем с языками
         if (!empty($validated['languages'])) {
             $application->languages()->sync($validated['languages']);
         }
 
-        // Создаем записи опыта работы
         if (!empty($validated['work_experiences'])) {
             foreach ($validated['work_experiences'] as $index => $experience) {
                 $application->workExperiences()->create([
@@ -242,7 +192,6 @@ class PublicApplicationController extends Controller
             }
         }
 
-        // Создаем записи учебных заведений
         if (!empty($validated['educational_institutions'])) {
             foreach ($validated['educational_institutions'] as $index => $education) {
                 $application->educationalInstitutions()->create([
@@ -256,20 +205,25 @@ class PublicApplicationController extends Controller
             }
         }
 
-        // Редирект на главную страницу с сообщением об успехе
-        return redirect('/')->with('success', 'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
+        $redirectParams = [];
+        if (!empty($positionParam)) {
+            $redirectParams['position'] = $positionParam;
+        }
+
+        return redirect()
+            ->route('applications.create', $redirectParams)
+            ->with('success', 'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
     }
 
-    // API метод для получения навыков по должностям
     public function getSkillsByPositions(Request $request)
     {
         $positionIds = $request->input('positions', []);
-        
+
         if (empty($positionIds)) {
             return response()->json(['skills' => []]);
         }
 
-        $skills = \App\Models\TechnicalSkill::whereHas('jobPositions', function($query) use ($positionIds) {
+        $skills = \App\Models\TechnicalSkill::whereHas('jobPositions', function ($query) use ($positionIds) {
             $query->whereIn('job_positions.id', $positionIds);
         })->active()->pluck('id')->toArray();
 

@@ -164,6 +164,9 @@ Biziň superwaýzerlerimiz işlerimizi mümkin boldugyça amatly ýagdaýda meý
 
     'portfolioTitle' => 'LTM -nyň taslamalary',
     'portfolioSub' => 'Много интересных кейсов, за которые не стыдно)',
+    'portfolioFilterAll' => 'Ähli taslamalar',
+    'portfolioFilterEmpty' => 'Taslamalar tapylmady. Başga kategoriýalary synap görüň.',
+    'portfolioFilterError' => 'Taslamalary ýükläp bolmady. Birazdan gaýtadan synanyşyň.',
     'menuAll' => 'Hemmesi',
     'menu' => "МЕN\nÝU",
 
@@ -238,6 +241,20 @@ Biz onlaýn satuw üçin amatly, ygtybarly we köpugurly internet dükanlaryny d
 CRM komponenti müşderiler bilen gatnaşygy ösdürýär — söwdalary we gatnaşyk taryhlaryny doly hasaba alýar.  
 Platforma taslamalary meýilleşdirmäge we utgaşdyrmaga kömek edýär, netijede olaryň üstünlikli ýerine ýetirilmegine şert döredýär.",
 
+'servTitle5' => "Korporatiw\n portal",
+'servDesc5'  => "Kompaniýanyň içerki bitewi platformasy: täzelikler, resminamalar, aragatnaşyk we işgärleriň wezipelerini dolandyrmak.",
+
+'servTitle6' => "ERP\n ulgamy",
+'servDesc6'  => "Maliýe, satyn alyşlar, önümçilik we ammarlara doly gözegçilik. Ähli biznes prosesleriniň merkezleşdirilen dolandyrylyşy.",
+
+'servTitle7' => "CRM\n ulgamy",
+'servDesc7'  => "Satuwlaryň we müşderiler bilen gatnaşyklaryň awtomatlaşdyrylmagy. Satuw hunisiň dolandyrylyşy, menejerleriň netijeliliginiň seljermesi we konwersiýanyň ýokarlandyrylmagy.",
+
+'servTitle8' => "BI\n daşordlar",
+'servDesc8'  => "Interaktiw analitika we hakyky wagtda hasabatlar. Ulanyjylara maglumatlara esaslanýan kararlar kabul etmäge kömek edýär.",
+
+
+    
     'aboutUsFooter1' => 'Biz işiňizi öňe sürýän "detallar we gurallar" döredýäris.  
 Her bir pikiri çuňňur işläp taýýarlaýarys, onuň gymmatlyklaryny we filosofiýasyny giňeldýäris.  
 Netijede, işiňiziň ösmegine kömek edýän möhüm çözgütleri döredýäris.',
@@ -330,6 +347,7 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
     'bitrix_box'             => 'Gutujyk çözgüdi',
 
     // New translation variables for Bitrix (Cloud tab)
+    'bitrix_prices_note' => 'Ähli bahalar rubl bilen görkezilýär. Bitrix24 saýtynda häzirki bahalary şu <a href=":url" target="_blank" rel="noopener noreferrer">salgy</a> arkaly görüp bilersiňiz.',
     'bitrix_cloud_solution' => 'Bitrix24 Bulut Çözgüdi',
     'bitrix_plan' => 'Meýilnama',
     'bitrix_price' => 'Bahasy',
@@ -338,28 +356,28 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
     'bitrix_cloud_space' => 'Bulut Ýerleşigi',
 
     'bitrix_free' => 'Mugt',
-    'bitrix_price_free' => '0 RUB',
+    'bitrix_price_free' => '0 ₽',
     'bitrix_for_start' => 'Başlamak üçin',
     'bitrix_unlimited' => 'Çäksiz',
     'bitrix_space_5gb' => '5 GB',
 
     'bitrix_basic' => 'Esasy',
-    'bitrix_price_basic_old' => '2,490 RUB',
-    'bitrix_price_basic_new' => '1,743 RUB',
+    'bitrix_price_basic_old' => '2 490 ₽',
+    'bitrix_price_basic_new' => '1 990 ₽',
     'bitrix_for_small_teams' => 'Kiçi toparlar üçin',
     'bitrix_users_5' => '5 Ulanyjy',
     'bitrix_space_24gb' => '24 GB',
 
     'bitrix_standard' => 'Standart',
-    'bitrix_price_standard_old' => '6,990 RUB',
-    'bitrix_price_standard_new' => '4,893 RUB',
+    'bitrix_price_standard_old' => '6 990 ₽',
+    'bitrix_price_standard_new' => '5 590 ₽',
     'bitrix_for_large_teams' => 'Uly toparlar üçin',
     'bitrix_users_50' => '50 Ulanyjy',
     'bitrix_space_100gb' => '100 GB',
 
     'bitrix_professional' => 'Professional',
-    'bitrix_price_professional_old' => '13,990 RUB',
-    'bitrix_price_professional_new' => '9,793 RUB',
+    'bitrix_price_professional_old' => '13 990 ₽',
+    'bitrix_price_professional_new' => '11 190 ₽',
     'bitrix_for_companies' => 'Kompaniýalar üçin',
     'bitrix_users_100' => '100 Ulanyjy',
     'bitrix_space_1024gb' => '1 TB',
@@ -378,7 +396,7 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
 
     'bitrix_store_crm' => 'Bitrix24 CRM Dükany üçin',
     'bitrix_users_12' => '12 Ulanyjy',
-    'bitrix_price_store_crm' => '150 RUB',
+    'bitrix_price_store_crm' => '109 000 ₽',
     'bitrix_license_12_months' => '12 Aýlyk Lisenziýa',
 
     'bitrix_extranet' => 'Ekstranet',
@@ -392,10 +410,18 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
 
     'bitrix_corporate_portal' => 'Korporatiw Portal',
     'bitrix_users_500' => '500 Ulanyjy',
-    'bitrix_price_corporate_portal' => '250 RUB',
+    'bitrix_price_corporate_portal' => '599 000 ₽',
 
     'bitrix_users_1000' => '1000 Ulanyjy',
-    'bitrix_price_enterprise' => 'Sorag boýunça',
+    'bitrix_price_enterprise' => '1 299 000 ₽',
+
+    'bitrix_users_50' => '50 Ulanyjy',
+    'bitrix_price_50_users' => '159 000 ₽',
+    'bitrix_users_100' => '100 Ulanyjy',
+    'bitrix_price_100_users' => '229 000 ₽',
+    'bitrix_users_250' => '250 Ulanyjy',
+    'bitrix_price_250_users' => '349 000 ₽',
+
 
     // "Gutujyk Çözgüdi vs. Bulut" bölümi üçin üýtgeýänler
     'bitrix_box_vs_cloud' => 'Gutujyk Çözgüdi vs. Bulut Çözgüdi',
@@ -439,34 +465,74 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
 
 
     // Bölüm üçin üýtgeýänler: "Biziň taslamalarymyz"
-'bitrix_our_cases' => 'Biziň taslamalarymyz',
-'bitrix_more' => 'Giňişleýin',
+    'bitrix_our_cases' => 'Biziň taslamalarymyz',
+    'bitrix_more' => 'Giňişleýin',
 
-'metaDescBitrix' => 'LTM Türkmenistanyň çäginde Bitrix24 ulgamynyň ornaşdyrylmagyny we sazlamasyny hödürleýär. Biznesiň awtomatlaşdyrylmagy, CRM, taslamalaryň dolandyrylyşy we üstünlik üçin integrasiýa.',
+    'metaDescBitrix' => 'LTM Türkmenistanyň çäginde Bitrix24 ulgamynyň ornaşdyrylmagyny we sazlamasyny hödürleýär. Biznesiň awtomatlaşdyrylmagy, CRM, taslamalaryň dolandyrylyşy we üstünlik üçin integrasiýa.',
 'metaKeyBitrix'  => 'Bitrix24 Türkmenistan, Bitrix24 ornaşdyrmak, CRM sazlamak Türkmenistan, biznesi awtomatlaşdyrmak Türkmenistan, Bitrix24 IT hyzmatlary',
 'titleBitrix'       => 'Bitrix24 Türkmenistan',
 
-'metaDescAboutUs' => 'Lebizli Tehnologiya Merkezi (LTM) — Türkmenistanyň öňdebaryjy IT kompaniýasy. Web sahypalaryň, mobil goşundylaryň, internet dükanlarynyň taýýarlanylmagy we Bitrix24 ornaşdyrylmagy.',
+    'metaDescAboutUs' => 'Lebizli Tehnologiya Merkezi (LTM) — Türkmenistanyň öňdebaryjy IT kompaniýasy. Web sahypalaryň, mobil goşundylaryň, internet dükanlarynyň taýýarlanylmagy we Bitrix24 ornaşdyrylmagy.',
 'metaKeyAboutUs'  => 'Lebizli Tehnologiya Merkezi, LTM IT kompaniýasy, IT kompaniýasy Türkmenistan, web sahypa taýýarlamak Türkmenistan, Bitrix24 ornaşdyrmak Türkmenistan',
 'titleAboutUs'       => 'Biz barada - Lebizli Tehnologiya Merkezi (LTM) - IT kompaniýasy Türkmenistanda',
 
-'metaDescContacts' => 'Lebizli Tehnologiya Merkezi (LTM) bilen habarlaşyň! Web sahypa taýýarlamak, mobil goşundylar we Bitrix24 ornaşdyrmak boýunça hyzmatlary hödürleýäris. Habarlaşmak üçin maglumatlar.',
+    'metaDescContacts' => 'Lebizli Tehnologiya Merkezi (LTM) bilen habarlaşyň! Web sahypa taýýarlamak, mobil goşundylar we Bitrix24 ornaşdyrmak boýunça hyzmatlary hödürleýäris. Habarlaşmak üçin maglumatlar.',
 'metaKeyContacts'  => 'Lebizli Tehnologiya Merkezi bilen habarlaşmak, LTM kontaktlary, IT kompaniýasy Türkmenistan, Bitrix24 maslahat Türkmenistan, web sahypa taýýarlamak Türkmenistan',
 'titleContacts'       => 'Lebizli Tehnologiya Merkezi (LTM) bilen habarlaşmak - Türkmenistan',
 
-'metaDescMain' => 'Lebizli Tehnologiya Merkezi (LTM) — Türkmenistanda IT kompaniýasy bolup, dizaýndan başlap web sahypalaryň, mobil goşundylaryň, internet dükanlaryň we Bitrix24 ulgamynyň taýýarlanylmagyny hödürleýär.',
+    'metaDescMain' => 'Lebizli Tehnologiya Merkezi (LTM) — Türkmenistanda IT kompaniýasy bolup, dizaýndan başlap web sahypalaryň, mobil goşundylaryň, internet dükanlaryň we Bitrix24 ulgamynyň taýýarlanylmagyny hödürleýär.',
 'metaKeyMain'  => 'Türkmenistanda web sahypa taýýarlamak, Türkmenistanda mobil goşundy taýýarlamak, Bitrix CRM Türkmenistan, programma üpjünçiligi kompaniýasy Türkmenistan, IT kompaniýasy Türkmenistan',
 'titleMain'       => 'Lebizli Tehnologiya Merkezi (LTM): Türkmenistanda IT kompaniýasy',
 
 'metaKeyProjectDetails'  => 'Lebizli Tehnologiya Merkezi, LTM IT kompaniýasy, web sahypa taýýarlamak Türkmenistan, Bitrix24 Türkmenistan',
 'titleProjectDetails'       => '- Lebizli Tehnologiya Merkezi (LTM) - Türkmenistanda IT kompaniýasy',
 
-'metaDescPortfolio' => 'Lebizli Tehnologiya Merkezi (LTM) — Türkmenistanda IT kompaniýasynyň ýerine ýetiren işlerine göz aýlaň. Web sahypalary, mobil goşundylar, internet dükanlary we Bitrix24 ornaşdyrylyşy boýunça mysallar.',
+    'metaDescPortfolio' => 'Lebizli Tehnologiya Merkezi (LTM) — Türkmenistanda IT kompaniýasynyň ýerine ýetiren işlerine göz aýlaň. Web sahypalary, mobil goşundylar, internet dükanlary we Bitrix24 ornaşdyrylyşy boýunça mysallar.',
 'metaKeyPortfolio'  => 'Lebizli Tehnologiya Merkezi portfeli, LTM IT kompaniýasy, IT taslamalary Türkmenistan, web sahypa taýýarlamak Türkmenistan, Bitrix24 mysallary Türkmenistan',
 'titlePortfolio'       => 'Lebizli Tehnologiya Merkezi (LTM) portfeli - Türkmenistanda IT kompaniýasy',
 
-'metaDescServices' => 'Lebizli Tehnologiya Merkezi (LTM) — Türkmenistanda IT kompaniýasy. Web sahypalaryň, mobil goşundylaryň, internet dükanlaryň taýýarlanylmagy we Bitrix24 hyzmatlary.',
+    'metaDescServices' => 'Lebizli Tehnologiya Merkezi (LTM) — Türkmenistanda IT kompaniýasy. Web sahypalaryň, mobil goşundylaryň, internet dükanlaryň taýýarlanylmagy we Bitrix24 hyzmatlary.',
 'metaKeyServices'  => 'Lebizli Tehnologiya Merkezi hyzmatlary, LTM IT kompaniýasy, web sahypa taýýarlamak Türkmenistan, mobil goşundylar Türkmenistan, Bitrix24 hyzmatlary Türkmenistan',
 'titleServices'       => 'Lebizli Tehnologiya Merkezi (LTM) hyzmatlary - Türkmenistanda IT kompaniýasy',
+
+    // Iş ýerleri üçin terjimeler
+    'jobs' => 'Iş ýerleri',
+    'jobsTitle' => 'Iş ýerleri',
+    'jobsSubtitle' => 'Toparymyza goşulyň we täze taslamalaryň bir bölegi boluň',
+    'allJobsTitle' => 'Ähli iş ýerleri',
+    'allJobsSubtitle' => 'Toparymyzda amatly iş ýerini tapyň',
+    'jobsMetaDesc' => 'Türkmenistanda IT kompaniýasy Lebizli Tehnologiya Merkezi (LTM) açyk iş ýerleri. Ösüş toparymyza goşulyň.',
+    'jobsMetaKey' => 'IT iş ýerleri Türkmenistan, programmir işi Türkmenistan, LTM iş ýerleri, IT kariýera Türkmenistan',
+    'allJobsMetaDesc' => 'Türkmenistanda IT kompaniýasy Lebizli Tehnologiya Merkezi (LTM) ähli açyk iş ýerleri.',
+    'allJobsMetaKey' => 'IT iş ýerleri Türkmenistan, programmir işi Türkmenistan, LTM iş ýerleri, IT kariýera Türkmenistan',
+    'open' => 'Açyk',
+    'closed' => 'Ýapyk',
+    'jobDetails' => 'Iş ýeri jikme-jiklikleri',
+    'position' => 'Iş ýeri',
+    'status' => 'Ýagdaýy',
+    'skills' => 'Ukyplar',
+    'skillsCount' => 'ukyp',
+    'noSkills' => 'Ukyplar görkezilmedik',
+    'description' => 'Düşündiriş',
+    'responsibilities' => 'Jogapkärçilikler',
+    'requiredSkills' => 'Gerekli ukyplar',
+    'benefits' => 'Arzuwlar',
+    'applyNow' => 'Arza beriň',
+    'defaultJobImage' => 'Iş ýeri suraty',
+    'career' => 'kariýera',
+    'employment_type' => 'Zanitost görnüşi',
+    'employment_type_full_time' => 'Doly zanitost',
+    'employment_type_part_time' => 'Bölekleýin zanitost',
+    'employment_type_contract' => 'Şertnama',
+    'employment_type_temporary' => 'Wagtlaýyn iş',
+    'employment_type_internship' => 'Stažirovka',
+    'employment_type_volunteer' => 'Meýletinçilik',
+    'work_format' => 'Iş formaty',
+    'work_format_on_site' => 'Ofisde',
+    'work_format_remote' => 'Uzakdan',
+    'work_format_hybrid' => 'Gibrid',
+    'salary' => 'Aýlyk',
+    'requirements' => 'Talaplar',
+    'conditions' => 'Şertler',
 
 ];

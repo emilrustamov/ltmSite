@@ -4,7 +4,11 @@
 @section('page-title', 'Управление городами')
 
 @section('content')
-<div class="d-flex justify-content-end mb-3">
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <a href="{{ route('admin.applications.index') }}" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left me-2"></i>
+        Назад к заявкам
+    </a>
     <a href="{{ route('admin.cities.create') }}" class="btn btn-primary">
         <i class="fas fa-plus me-2"></i>
         Создать город
@@ -22,7 +26,6 @@
                 <th>Порядок</th>
                 <th>Статус</th>
                 <th>Создан</th>
-                <th>Действия</th>
             </tr>
         </thead>
         <tbody>
@@ -49,20 +52,10 @@
                         @endif
                     </td>
                     <td>{{ $city->created_at->format('d.m.Y') }}</td>
-                    <td>
-                        <div class="btn-group" role="group">
-                            <a href="{{ route('admin.cities.edit', $city) }}" class="btn btn-sm btn-warning">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <button type="button" class="btn btn-sm btn-danger delete-btn delete-city" data-id="{{ $city->id }}" data-name="{{ $city->name_ru }}">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" class="text-center py-5">
+                    <td colspan="7" class="text-center py-5">
                         <p class="text-muted mb-0">Нет городов</p>
                     </td>
                 </tr>
@@ -73,12 +66,5 @@
 
 {{ $cities->links() }}
 
-<!-- Скрытые формы для удаления -->
-@foreach($cities as $city)
-    <form id="delete-form-{{ $city->id }}" action="{{ route('admin.cities.destroy', $city) }}" method="POST" style="display: none;">
-        @csrf
-        @method('DELETE')
-    </form>
-@endforeach
 
 @endsection

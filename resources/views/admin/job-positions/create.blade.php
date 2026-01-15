@@ -1,128 +1,294 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Создать должность')
-@section('page-title', 'Создать должность')
+@section('title', 'Создать вакансию')
+@section('page-title', 'Создать вакансию')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-8">
-        <div class="card">
-            <div class="card-header">
-                <h6 class="mb-0">Информация о должности</h6>
-            </div>
-            <div class="card-body">
-                <form action="{{ route('admin.job-positions.store') }}" method="POST">
-                    @csrf
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="name_ru" class="form-label">Название (RU) *</label>
-                                <input type="text" class="form-control @error('name_ru') is-invalid @enderror" 
-                                       id="name_ru" name="name_ru" value="{{ old('name_ru') }}" required>
-                                @error('name_ru')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+    <div class="row">
+        <div class="col-12">
+            <h4 class="mb-4">
+                <i class="fas fa-plus me-2"></i>
+                Добавление новой должности
+            </h4>
+            <form action="{{ route('admin.job-positions.store') }}" method="POST">
+                @csrf
+
+                <div class="row">
+                    <!-- Основная информация -->
+                    <div class="col-lg-8">
+                        <!-- Название -->
+                        <div class="mb-4">
+                            <h6 class="border-bottom pb-2 mb-3">Название должности</h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="name_ru" class="form-label">Русский *</label>
+                                    <input type="text" class="form-control @error('name_ru') is-invalid @enderror" 
+                                           id="name_ru" name="name_ru" value="{{ old('name_ru') }}" required>
+                                    @error('name_ru')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="name_en" class="form-label">English</label>
+                                    <input type="text" class="form-control @error('name_en') is-invalid @enderror" 
+                                           id="name_en" name="name_en" value="{{ old('name_en') }}">
+                                    @error('name_en')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="name_tm" class="form-label">Türkmen</label>
+                                    <input type="text" class="form-control @error('name_tm') is-invalid @enderror" 
+                                           id="name_tm" name="name_tm" value="{{ old('name_tm') }}">
+                                    @error('name_tm')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="name_en" class="form-label">Название (EN)</label>
-                                <input type="text" class="form-control @error('name_en') is-invalid @enderror" 
-                                       id="name_en" name="name_en" value="{{ old('name_en') }}">
-                                @error('name_en')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+
+                        <!-- Мета поля (Тип, Формат, З/П) -->
+                        <div class="mb-4">
+                            <h6 class="border-bottom pb-2 mb-3">Детали вакансии</h6>
+
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="employment_type" class="form-label fw-bold">Тип занятости</label>
+                                    <select class="form-control @error('employment_type') is-invalid @enderror" id="employment_type" name="employment_type">
+                                        <option value="">-- Выберите тип --</option>
+                                        <option value="full-time" {{ old('employment_type') == 'full-time' ? 'selected' : '' }}>Полная занятость (Full-time)</option>
+                                        <option value="part-time" {{ old('employment_type') == 'part-time' ? 'selected' : '' }}>Частичная занятость (Part-time)</option>
+                                        <option value="contract" {{ old('employment_type') == 'contract' ? 'selected' : '' }}>Контракт (Contract)</option>
+                                        <option value="temporary" {{ old('employment_type') == 'temporary' ? 'selected' : '' }}>Временная работа (Temporary)</option>
+                                        <option value="internship" {{ old('employment_type') == 'internship' ? 'selected' : '' }}>Стажировка (Internship)</option>
+                                        <option value="volunteer" {{ old('employment_type') == 'volunteer' ? 'selected' : '' }}>Волонтерство (Volunteer)</option>
+                                    </select>
+                                    @error('employment_type')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="work_format_id" class="form-label fw-bold">Формат работы</label>
+                                    <select class="form-control @error('work_format_id') is-invalid @enderror" id="work_format_id" name="work_format_id">
+                                        <option value="">-- Выберите формат --</option>
+                                        @foreach($workFormats as $format)
+                                            <option value="{{ $format->id }}" {{ old('work_format_id') == $format->id ? 'selected' : '' }}>
+                                                {{ $format->name_ru }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('work_format_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-bold">Заработная плата (ru/en/tm)</label>
+                                    <input type="text" name="salary_ru" class="form-control mb-2" placeholder="Русский" value="{{ old('salary_ru') }}">
+                                    <input type="text" name="salary_en" class="form-control mb-2" placeholder="English" value="{{ old('salary_en') }}">
+                                    <input type="text" name="salary_tm" class="form-control" placeholder="Türkmen" value="{{ old('salary_tm') }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Обязанности -->
+                        <div class="mb-4">
+                            <h6 class="border-bottom pb-2 mb-3">Обязанности</h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="responsibilities_ru" class="form-label">Русский</label>
+                                    <textarea class="form-control" id="responsibilities_ru" name="responsibilities_ru" rows="5">{{ old('responsibilities_ru') }}</textarea>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="responsibilities_en" class="form-label">English</label>
+                                    <textarea class="form-control" id="responsibilities_en" name="responsibilities_en" rows="5">{{ old('responsibilities_en') }}</textarea>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="responsibilities_tm" class="form-label">Türkmen</label>
+                                    <textarea class="form-control" id="responsibilities_tm" name="responsibilities_tm" rows="5">{{ old('responsibilities_tm') }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Требования -->
+                        <div class="mb-4">
+                            <h6 class="border-bottom pb-2 mb-3">Требования</h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="requirements_ru" class="form-label">Русский</label>
+                                    <textarea class="form-control" id="requirements_ru" name="requirements_ru" rows="5">{{ old('requirements_ru') }}</textarea>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="requirements_en" class="form-label">English</label>
+                                    <textarea class="form-control" id="requirements_en" name="requirements_en" rows="5">{{ old('requirements_en') }}</textarea>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="requirements_tm" class="form-label">Türkmen</label>
+                                    <textarea class="form-control" id="requirements_tm" name="requirements_tm" rows="5">{{ old('requirements_tm') }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Условия -->
+                        <div class="mb-4">
+                            <h6 class="border-bottom pb-2 mb-3">Условия</h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="conditions_ru" class="form-label">Русский</label>
+                                    <textarea class="form-control" id="conditions_ru" name="conditions_ru" rows="5">{{ old('conditions_ru') }}</textarea>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="conditions_en" class="form-label">English</label>
+                                    <textarea class="form-control" id="conditions_en" name="conditions_en" rows="5">{{ old('conditions_en') }}</textarea>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="conditions_tm" class="form-label">Türkmen</label>
+                                    <textarea class="form-control" id="conditions_tm" name="conditions_tm" rows="5">{{ old('conditions_tm') }}</textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="name_tm" class="form-label">Название (TM)</label>
-                                <input type="text" class="form-control @error('name_tm') is-invalid @enderror" 
-                                       id="name_tm" name="name_tm" value="{{ old('name_tm') }}">
-                                @error('name_tm')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+
+                    <!-- Боковая панель -->
+                    <div class="col-lg-4">
+                        <!-- Настройки -->
+                        <div class="card mb-4 shadow-sm border-0">
+                            <div class="card-header bg-white">
+                                <h6 class="mb-0 fw-bold">Настройки</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="sort_order" class="form-label">Порядок сортировки</label>
+                                    <input type="number" class="form-control" id="sort_order" name="sort_order" value="{{ old('sort_order', 0) }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="ordering" class="form-label">Сортировка на главной</label>
+                                    <input type="number" class="form-control" id="ordering" name="ordering" value="{{ old('ordering', 0) }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" {{ old('is_active', true) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="is_active">Активна</label>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="status" name="status" value="1" {{ old('status', true) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="status">Показывать на главной</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="sort_order" class="form-label">Порядок сортировки</label>
-                                <input type="number" class="form-control @error('sort_order') is-invalid @enderror" 
-                                       id="sort_order" name="sort_order" value="{{ old('sort_order', 0) }}" min="0">
-                                @error('sort_order')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+
+                        <!-- Навыки -->
+                        <div class="card mb-4 shadow-sm border-0">
+                            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                                <h6 class="mb-0 fw-bold">Технические навыки</h6>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" id="selectAllSkills">Все</button>
                             </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Связь с техническими навыками -->
-                    <div class="mb-4">
-                        <label class="form-label fw-bold">Технические навыки для должности</label>
-                        
-                        <!-- Чекбокс "Выбрать все" -->
-                        <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="select_all_skills" onchange="toggleAllSkills()">
-                                <label class="form-check-label fw-bold text-primary" for="select_all_skills">
-                                    <i class="fas fa-check-double me-1"></i>Выбрать все навыки
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            @foreach(\App\Models\TechnicalSkill::active()->ordered()->get() as $skill)
-                                <div class="col-md-6 col-lg-4 mb-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input skill-checkbox" type="checkbox" 
-                                               id="skill_{{ $skill->id }}" 
-                                               name="technical_skills[]" 
-                                               value="{{ $skill->id }}">
+                            <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+                                @foreach($technicalSkills as $skill)
+                                    <div class="form-check mb-2">
+                                        <input class="form-check-input skill-checkbox" type="checkbox" name="technical_skills[]" 
+                                               value="{{ $skill->id }}" id="skill_{{ $skill->id }}"
+                                               {{ in_array($skill->id, old('technical_skills', [])) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="skill_{{ $skill->id }}">
                                             {{ $skill->name_ru }}
                                         </label>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
+                            
+                            <!-- Блок для добавления новых навыков -->
+                            <div class="card-footer bg-white border-top">
+                                <button type="button" class="btn btn-sm btn-outline-primary w-100" id="addNewSkillBtn">
+                                    <i class="fas fa-plus me-2"></i>
+                                    Добавить новый навык
+                                </button>
+                                <div id="newSkillsContainer" class="mt-3"></div>
+                            </div>
                         </div>
-                        
-                        <div class="form-text">
-                            <i class="fas fa-info-circle me-1"></i>
-                            Выберите навыки, которые требуются для этой должности
+                    </div>
+                </div>
+
+                <!-- Кнопки действий -->
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body d-flex justify-content-between">
+                                <a href="{{ route('admin.job-positions.index') }}" class="btn btn-secondary px-4">
+                                    <i class="fas fa-arrow-left me-2"></i>
+                                    Назад к списку
+                                </a>
+                                <button type="submit" class="btn btn-primary px-5">
+                                    <i class="fas fa-save me-2"></i>
+                                    Создать вакансию
+                                </button>
+                            </div>
                         </div>
-                        @error('technical_skills')
-                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                        @enderror
                     </div>
-                    
-                    <div class="d-flex justify-content-between">
-                        <a href="{{ route('admin.job-positions.index') }}" class="btn btn-outline-secondary">
-                            <i class="fas fa-arrow-left me-2"></i>
-                            Назад к списку
-                        </a>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save me-2"></i>
-                            Создать должность
-                        </button>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
-</div>
 
-<script>
-function toggleAllSkills() {
-    const selectAllCheckbox = document.getElementById('select_all_skills');
-    const skillCheckboxes = document.querySelectorAll('.skill-checkbox');
-    
-    skillCheckboxes.forEach(checkbox => {
-        checkbox.checked = selectAllCheckbox.checked;
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const selectAllBtn = document.getElementById('selectAllSkills');
+        const checkboxes = document.querySelectorAll('.skill-checkbox');
+        const addNewSkillBtn = document.getElementById('addNewSkillBtn');
+        const newSkillsContainer = document.getElementById('newSkillsContainer');
+        let skillCounter = 0;
+
+        selectAllBtn.addEventListener('click', function() {
+            const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+            checkboxes.forEach(cb => cb.checked = !allChecked);
+            this.textContent = !allChecked ? 'Снять все' : 'Все';
+        });
+
+        addNewSkillBtn.addEventListener('click', function() {
+            const skillIndex = skillCounter++;
+            const skillHtml = `
+                <div class="new-skill-item mb-3 p-3 border rounded" data-skill-index="${skillIndex}">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <strong>Новый навык #${skillIndex + 1}</strong>
+                        <button type="button" class="btn btn-sm btn-outline-danger remove-skill-btn">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-2">
+                            <label class="form-label small">Русский *</label>
+                            <input type="text" class="form-control form-control-sm" 
+                                   name="new_technical_skills[${skillIndex}][name_ru]" 
+                                   placeholder="Название на русском" required>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label class="form-label small">English</label>
+                            <input type="text" class="form-control form-control-sm" 
+                                   name="new_technical_skills[${skillIndex}][name_en]" 
+                                   placeholder="Name in English">
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label class="form-label small">Türkmen</label>
+                            <input type="text" class="form-control form-control-sm" 
+                                   name="new_technical_skills[${skillIndex}][name_tm]" 
+                                   placeholder="Türkmençe ady">
+                        </div>
+                    </div>
+                </div>
+            `;
+            newSkillsContainer.insertAdjacentHTML('beforeend', skillHtml);
+        });
+
+        // Удаление нового навыка
+        newSkillsContainer.addEventListener('click', function(e) {
+            if (e.target.closest('.remove-skill-btn')) {
+                e.target.closest('.new-skill-item').remove();
+            }
+        });
     });
-}
-</script>
+    </script>
 @endsection
