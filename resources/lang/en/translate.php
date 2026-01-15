@@ -199,7 +199,9 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'servTitle7' => "CRM\nSystem",
     'servDesc7' => "Sales and customer interaction automation. Pipeline control, analytics of manager performance, and conversion growth.",
     'servTitle8' => "BI\nDashboards",
-    'servDes8' => "Interactive analytics and real-time reports. Help executives make data-driven decisions.",
+    'servDesc8' => "Interactive analytics and real-time reports. Help executives make data-driven decisions.",
+    'servTitle9' => "Bisiness\n Process\n Automation",
+    'servDesc9' => "Optimization of routine tasks and system integration. Increasing company efficiency through process digitalization.",
 
     
     'aboutUsFooter1' => 'We create "details and tools" that move your business forward. Developing each idea, we expand its values and philosophy, creating important solutions that help businesses achieve necessary growth.',
