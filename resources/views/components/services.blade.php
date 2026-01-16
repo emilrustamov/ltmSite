@@ -152,15 +152,15 @@
                     itemscope itemtype="http://schema.org/Service">
                     <svg class="w-10 h-10 mb-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
-                        <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v16a1 1 0 01-1 1H4a1 1 0 01-1-1V4z" />
-                        <path d="M3 8h18" />
+                        <rect x="7" y="2" width="10" height="20" rx="2" />
+                        <path d="M11 18h2" />
                     </svg>
                     <h3 class="text-6xl font-bold mb-4" itemprop="name">{{ __('translate.servTitle9') }}</h3>
                     <p class="text-3xl flex-grow mb-4" itemprop="description">
                         {{ __('translate.servDesc9') }}
                     </p>
-                    <a href="/{{ $lang }}/portfolio"
-                        class="inline-block !px-10 !py-6 bg-[#bc2c2c] hover:bg-[#e31e24] rounded font-bold text-white text-2xl">
+                    <a href="/{{ $lang }}/services-mobileapps"
+                        class="inline-block !px-10 !py-6 bg-[#350000] hover:bg-[#e31e24] rounded font-bold text-white text-2xl">
                         {{ __('translate.readMore') }}
                     </a>
                 </div>
