@@ -8,13 +8,119 @@
     {{ $jobPosition->{'name_' . $lang} ?? $jobPosition->name_ru }} - {{ __('translate.jobDetails') }}
 @endsection
 
-@section('metaDesc')
-    {{ Str::limit($jobPosition->{'name_' . $lang} ?? $jobPosition->name_ru ?? '', 150, '...') }}
-@endsection
+@php
+    // Динамическое изображение для Open Graph вакансии
+    $jobImage = null;
+    if ($jobPosition->image) {
+        $jobImage = asset('storage/' . $jobPosition->image);
+    }
+    $ogImage = $jobImage ?: config('app.url') . '/assets/images/ltm.png';
+    
+    // Улучшенное описание с локализацией
+    $jobName = $jobPosition->{'name_' . $lang} ?? $jobPosition->name_ru ?? '';
+    $jobDesc = $jobPosition->{'description_' . $lang} ?? $jobPosition->description_ru ?? '';
+    $metaDescription = Str::limit($jobName . ($jobDesc ? ': ' . strip_tags($jobDesc) : ''), 150, '...');
+    if ($lang === 'ru') {
+        $metaDescription = Str::limit($jobName . ' в IT-компании LTM в Ашхабаде, Туркменистан' . ($jobDesc ? ': ' . strip_tags($jobDesc) : ''), 150, '...');
+    }
+    
+    // Улучшенные ключевые слова с локализацией
+    $metaKeywords = $jobName . ', ' . __('translate.jobs') . ', ' . __('translate.career');
+    if ($lang === 'ru') {
+        $metaKeywords .= ', вакансии в Ашхабаде, работа в Туркменистане, IT-вакансии Туркменистан, программист в Ашхабаде';
+    }
+@endphp
 
-@section('metaKey')
-    {{ $jobPosition->{'name_' . $lang} ?? $jobPosition->name_ru }}, {{ __('translate.jobs') }}, {{ __('translate.career') }}
-@endsection
+@section('ogImage', $ogImage)
+@section('ogImageWidth', '1200')
+@section('ogImageHeight', '630')
+@section('metaDesc', $metaDescription)
+@section('metaKey', $metaKeywords)
+@section('ogType', 'article')
+
+{{-- Структурированные данные для вакансии --}}
+@push('structured-data')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    "title": "{{ addslashes($jobPosition->{'name_' . $lang} ?? $jobPosition->name_ru) }}",
+    "description": "{{ addslashes(Str::limit(strip_tags(($jobPosition->{'description_' . $lang} ?? $jobPosition->description_ru ?? '') . ' ' . ($jobPosition->{'responsibilities_' . $lang} ?? $jobPosition->responsibilities_ru ?? '') . ' ' . ($jobPosition->{'requirements_' . $lang} ?? $jobPosition->requirements_ru ?? '')), 500)) }}",
+    "identifier": {
+        "@type": "PropertyValue",
+        "name": "LTM",
+        "value": "{{ $jobPosition->id }}"
+    },
+    "datePosted": "{{ $jobPosition->created_at->toIso8601String() }}",
+    "validThrough": "{{ $jobPosition->updated_at->addMonths(3)->toIso8601String() }}",
+    "employmentType": "{{ $jobPosition->employment_type ?? 'FULL_TIME' }}",
+    @if($jobPosition->workFormat)
+    "workHours": "{{ $jobPosition->workFormat->{'name_' . $lang} ?? $jobPosition->workFormat->name_ru }}",
+    @endif
+    "hiringOrganization": {
+        "@type": "Organization",
+        "name": "Lebizli Tehnologiya Merkezi (LTM)",
+        "alternateName": "LTM",
+        "sameAs": "{{ config('app.url') }}",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ config('app.url') }}/assets/images/ltm.png",
+            "width": 512,
+            "height": 512
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2127 ул. (Г. Кулиева), здание \"Gökje\" 26A",
+            "addressLocality": "Ашхабад",
+            "addressRegion": "Ашхабад",
+            "addressCountry": "TM"
+        }
+    },
+    "jobLocation": {
+        "@type": "Place",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2127 ул. (Г. Кулиева), здание \"Gökje\" 26A",
+            "addressLocality": "Ашхабад",
+            "addressRegion": "Ашхабад",
+            "addressCountry": "TM",
+            "addressCountryCode": "TM"
+        }
+    },
+    @if($jobPosition->{'salary_' . $lang} ?? $jobPosition->salary_ru)
+    "baseSalary": {
+        "@type": "MonetaryAmount",
+        "currency": "TMT",
+        "value": {
+            "@type": "QuantitativeValue",
+            "value": "{{ $jobPosition->{'salary_' . $lang} ?? $jobPosition->salary_ru }}"
+        }
+    },
+    @endif
+    @if($jobPosition->technicalSkills->count() > 0)
+    "skills": [
+        @foreach($jobPosition->technicalSkills as $index => $skill)
+        "{{ addslashes($skill->{'name_' . $lang} ?? $skill->name_ru) }}"@if(!$loop->last),@endif
+        @endforeach
+    ],
+    @endif
+    "url": "{{ url($lang . '/jobs/' . $jobPosition->id) }}",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ url($lang . '/jobs/' . $jobPosition->id) }}"
+    },
+    @if($ogImage)
+    "image": {
+        "@type": "ImageObject",
+        "url": "{{ $ogImage }}",
+        "width": 1200,
+        "height": 630
+    },
+    @endif
+    "inLanguage": "{{ $lang }}"
+}
+</script>
+@endpush
 
 @section('content')
     <section class="container">

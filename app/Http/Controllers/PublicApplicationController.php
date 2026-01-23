@@ -121,6 +121,38 @@ class PublicApplicationController extends Controller
 
         $validated = $request->validate($validationRules);
 
+        // Дополнительная проверка на спам: дубликаты по email или IP за последние 24 часа
+        $recentDuplicate = Application::where(function($query) use ($validated, $request) {
+                $query->where('email', $validated['email'])
+                      ->orWhere('phone', $validated['phone']);
+            })
+            ->where('created_at', '>=', now()->subHours(24))
+            ->exists();
+
+        if ($recentDuplicate) {
+            \Log::warning('Spam blocked: duplicate application', [
+                'ip' => $request->ip(),
+                'email' => $validated['email'],
+                'phone' => $validated['phone'],
+            ]);
+
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Вы уже отправляли заявку недавно. Пожалуйста, подождите перед повторной отправкой.');
+        }
+
+        // Проверка на подозрительные паттерны в данных
+        if ($this->containsSpamPatterns($validated)) {
+            \Log::warning('Spam blocked: suspicious patterns detected', [
+                'ip' => $request->ip(),
+                'email' => $validated['email'],
+            ]);
+
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Обнаружены подозрительные данные. Пожалуйста, проверьте введенную информацию.');
+        }
+
         $cityId = $request->has('custom_city_check') ? null : ($validated['city_id'] ?? null);
         $customCity = $validated['custom_city'] ?? null;
 
@@ -228,5 +260,61 @@ class PublicApplicationController extends Controller
         })->active()->pluck('id')->toArray();
 
         return response()->json(['skills' => $skills]);
+    }
+
+    /**
+     * Проверка на спам-паттерны в данных
+     */
+    private function containsSpamPatterns(array $data): bool
+    {
+        // Проверка на повторяющиеся символы (например, "aaaaaa" или "111111")
+        $spamPatterns = [
+            '/(.)\1{5,}/', // Повторяющийся символ более 5 раз
+            '/^(.)\1+$/',  // Все символы одинаковые
+        ];
+
+        $fieldsToCheck = ['name', 'surname', 'email', 'phone', 'professional_plans', 'personal_info'];
+        
+        foreach ($fieldsToCheck as $field) {
+            if (!isset($data[$field]) || empty($data[$field])) {
+                continue;
+            }
+
+            $value = (string) $data[$field];
+            
+            // Проверка на повторяющиеся символы
+            foreach ($spamPatterns as $pattern) {
+                if (preg_match($pattern, $value)) {
+                    return true;
+                }
+            }
+
+            // Проверка на подозрительно короткие значения в важных полях
+            if (in_array($field, ['name', 'surname']) && strlen($value) < 2) {
+                return true;
+            }
+
+            // Проверка на слишком длинные значения (возможный спам)
+            if (strlen($value) > 1000 && in_array($field, ['professional_plans', 'personal_info', 'other_notes'])) {
+                return true;
+            }
+        }
+
+        // Проверка email на подозрительные домены
+        if (isset($data['email'])) {
+            $suspiciousDomains = [
+                'tempmail', 'guerrillamail', 'mailinator', '10minutemail',
+                'throwaway', 'fake', 'spam', 'test'
+            ];
+            
+            $emailLower = strtolower($data['email']);
+            foreach ($suspiciousDomains as $domain) {
+                if (str_contains($emailLower, $domain)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

@@ -9,12 +9,96 @@
 @endsection
 
 @section('metaDesc')
-    {{ Str::limit(($portfolio->translation($lang)?->who ?? 'Проект') . ' от LTM: ' . strip_tags($portfolio->translation($lang)?->target ?? ''), 150, '...') }}
+    @php
+        $projectName = $portfolio->translation($lang)?->who ?? 'Проект';
+        $description = Str::limit($projectName . ' от LTM в Туркменистане: ' . strip_tags($portfolio->translation($lang)?->target ?? ''), 150, '...');
+        if ($lang === 'ru') {
+            $description = Str::limit($projectName . ' от LTM в Ашхабаде, Туркменистан: ' . strip_tags($portfolio->translation($lang)?->target ?? ''), 150, '...');
+        }
+    @endphp
+    {{ $description }}
 @endsection
 
 @section('metaKey')
-    {{ ($portfolio->translation($lang)?->who ?? 'проект') . ', ' . __('translate.metaKeyProjectDetails') }}
+    @php
+        $projectName = $portfolio->translation($lang)?->who ?? 'проект';
+        $keywords = $projectName . ', ' . __('translate.metaKeyProjectDetails');
+        if ($lang === 'ru') {
+            $keywords .= ', разработка в Ашхабаде, IT-компания в Туркменистане, разработка мобильного приложения в Ашхабаде, купить битрикс в туркменистане';
+        }
+    @endphp
+    {{ $keywords }}
 @endsection
+
+@php
+    // Динамическое изображение для Open Graph
+    $portfolioImage = $portfolio->getFirstMediaUrl('portfolio-images', 'webp');
+    if (!$portfolioImage && $portfolio->photo) {
+        $portfolioImage = asset('storage/' . $portfolio->photo);
+    }
+    $ogImage = $portfolioImage ?: config('app.url') . '/assets/images/ltm.png';
+@endphp
+
+@section('ogImage', $ogImage)
+@section('ogType', 'article')
+
+{{-- Дополнительные структурированные данные для проекта --}}
+@push('structured-data')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "{{ addslashes($portfolio->translation($lang)?->who ?? 'Проект') }}",
+    "description": "{{ addslashes(Str::limit(strip_tags($portfolio->translation($lang)?->target ?? ''), 200)) }}",
+    "image": {
+        "@type": "ImageObject",
+        "url": "{{ $ogImage }}",
+        "width": 1200,
+        "height": 630
+    },
+    "url": "{{ url($lang . '/portfolio/' . $portfolio->slug) }}",
+    "datePublished": "{{ $portfolio->created_at->toIso8601String() }}",
+    "dateModified": "{{ $portfolio->updated_at->toIso8601String() }}",
+    "author": {
+        "@type": "Organization",
+        "name": "Lebizli Tehnologiya Merkezi (LTM)",
+        "url": "{{ config('app.url') }}",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "2127 ул. (Г. Кулиева), здание \"Gökje\" 26A",
+            "addressLocality": "Ашхабад",
+            "addressCountry": "TM"
+        }
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Lebizli Tehnologiya Merkezi (LTM)",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ config('app.url') }}/assets/images/ltm.png",
+            "width": 512,
+            "height": 512
+        }
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ url($lang . '/portfolio/' . $portfolio->slug) }}"
+    },
+    "keywords": "{{ addslashes(($portfolio->translation($lang)?->who ?? 'проект') . ', разработка в Ашхабаде, IT-компания в Туркменистане') }}",
+    "inLanguage": "{{ $lang }}",
+    @if($portfolio->when)
+    "temporalCoverage": "{{ \Carbon\Carbon::parse($portfolio->when)->format('Y') }}",
+    @endif
+    @if($portfolio->url_button)
+    "relatedLink": "{{ $portfolio->url_button }}",
+    @endif
+    "about": {
+        "@type": "Thing",
+        "name": "{{ addslashes($portfolio->translation($lang)?->target ?? '') }}"
+    }
+}
+</script>
+@endpush
 
 
 @section('content')

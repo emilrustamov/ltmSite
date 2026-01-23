@@ -49,30 +49,43 @@
                                             </h2>
                                             <p class="hidden md:block">{{ __('translate.formModalDesc') }}</p>
                                         </div>
-                                        <form action="{{ route('contact.submit', ['lang' => $lang]) }}" method="post">
+                                        <form action="{{ route('contact.submit', ['lang' => $lang]) }}" method="post" id="contact-form-footer">
                                             @csrf
+                                            {{-- Honeypot поле (скрытое) --}}
+                                            <input type="text" 
+                                                   name="website" 
+                                                   id="website-footer" 
+                                                   tabindex="-1" 
+                                                   autocomplete="off" 
+                                                   style="position: absolute; left: -9999px; opacity: 0; pointer-events: none;"
+                                                   aria-hidden="true">
+                                            
+                                            {{-- Скрытые поля для защиты от спама --}}
+                                            <input type="hidden" name="recaptcha_token" id="recaptcha_token_footer">
+                                            <input type="hidden" name="form_started_at" id="form_started_at_footer">
+                                            
                                             <div class="flex flex-wrap gap-4">
                                                 <label class="field">
                                                     <input type="text" name="name" class="field-input"
-                                                        placeholder="{{ __('translate.formName') }}">
+                                                        placeholder="{{ __('translate.formName') }}" required>
                                                 </label>
                                                 <label class="field">
                                                     <input type="text" name="phone" class="field-input"
-                                                        placeholder="{{ __('translate.formPhone') }}">
+                                                        placeholder="{{ __('translate.formPhone') }}" required>
                                                 </label>
                                             </div>
                                             <div class="flex flex-wrap gap-4">
                                                 <label class="field">
                                                     <input type="text" name="subject" class="field-input"
-                                                        placeholder="{{ __('translate.formProject') }}">
+                                                        placeholder="{{ __('translate.formProject') }}" required>
                                                 </label>
                                                 <label class="field">
-                                                    <input type="text" name="email" class="field-input"
-                                                        placeholder="{{ __('translate.formEmail') }}">
+                                                    <input type="email" name="email" class="field-input"
+                                                        placeholder="{{ __('translate.formEmail') }}" required>
                                                 </label>
                                             </div>
                                             <input type="text" name="message" class="field-input field-textarea mt-5"
-                                                placeholder="{{ __('translate.formComment') }}">
+                                                placeholder="{{ __('translate.formComment') }}" required>
                                             <button type="submit"
                                                 class="send-p btn !flex items-center text-white text-[32px] lg:text-[60px] font-bold tracking-[3px] p-0">
                                                 {{ __('translate.sendText') }}
@@ -126,5 +139,49 @@
             </div>
         </div>
     </div>
+
+    @if(config('services.recaptcha.site_key'))
+    <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
+    @endif
+    
+    <script>
+        (function() {
+            const form = document.getElementById('contact-form-footer');
+            if (!form) return;
+            
+            const formStartedAtInput = document.getElementById('form_started_at_footer');
+            const recaptchaTokenInput = document.getElementById('recaptcha_token_footer');
+            const recaptchaSiteKey = @json(config('services.recaptcha.site_key'));
+            
+            // Записываем время начала заполнения формы
+            if (formStartedAtInput) {
+                formStartedAtInput.value = Math.floor(Date.now() / 1000);
+            }
+            
+            // Обработка отправки формы с reCAPTCHA
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (typeof grecaptcha !== 'undefined' && recaptchaSiteKey) {
+                    grecaptcha.ready(function() {
+                        grecaptcha.execute(recaptchaSiteKey, {action: 'submit_contact'})
+                            .then(function(token) {
+                                if (recaptchaTokenInput) {
+                                    recaptchaTokenInput.value = token;
+                                }
+                                form.submit();
+                            })
+                            .catch(function(error) {
+                                console.error('reCAPTCHA error:', error);
+                                alert('Ошибка проверки безопасности. Пожалуйста, попробуйте еще раз.');
+                            });
+                    });
+                } else {
+                    // Если reCAPTCHA не настроена, отправляем форму напрямую
+                    form.submit();
+                }
+            });
+        })();
+    </script>
 
 </footer>
