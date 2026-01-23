@@ -280,12 +280,19 @@ function initSwiper() {
 
     if (swiperInstance) swiperInstance.destroy(true, true);
 
+    // Проверяем количество слайдов для loop режима
+    const slides = document.querySelectorAll(".mySwiper .swiper-slide");
+    const slidesCount = slides.length;
+    // Для loop нужно минимум 3 слайда на мобильных и 6 на десктопе (при slidesPerView: "auto")
+    const minSlidesForLoop = isMobile ? 3 : 6;
+    const enableLoop = slidesCount >= minSlidesForLoop;
+
     swiperInstance = new Swiper(".mySwiper", {
         grabCursor: true,
         slidesPerView: "auto",
         centeredSlides: isMobile,
         spaceBetween: isMobile ? 20 : 0,
-        loop: true,
+        loop: enableLoop,
         speed: 800,
         slideToClickedSlide: true,
         threshold: 10,

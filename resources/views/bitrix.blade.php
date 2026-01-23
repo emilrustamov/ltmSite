@@ -512,11 +512,17 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Проверяем количество слайдов для loop режима
+            const myCasesSlides = document.querySelectorAll('.myCases .swiper-slide');
+            const myCasesCount = myCasesSlides.length;
+            // Для loop нужно минимум slidesPerView * 2 слайдов (для максимального breakpoint: 3 * 2 = 6)
+            const enableMyCasesLoop = myCasesCount >= 6;
+
             new Swiper('.myCases', {
                 // если импортируете ES-модули, раскомментируйте строку ниже
                 // modules: [Navigation, Pagination],
 
-                loop: true,
+                loop: enableMyCasesLoop,
                 grabCursor: true,
                 slidesPerView: 1,
                 spaceBetween: 24,
@@ -548,9 +554,16 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Проверяем количество слайдов для loop режима
+            const certSlides = document.querySelectorAll('.certificatesSlider .swiper-slide');
+            const certCount = certSlides.length;
+            // Для loop нужно минимум slidesPerView * 2 слайдов (для максимального breakpoint: 3 * 2 = 6)
+            // У нас 8 сертификатов, этого достаточно
+            const enableCertLoop = certCount >= 6;
+
             new Swiper('.certificatesSlider', {
                 // modules:[Navigation, Pagination, Autoplay, EffectCoverflow], // если импортируете
-                loop: true,
+                loop: enableCertLoop,
                 grabCursor: true,
                 spaceBetween: 24,
 
