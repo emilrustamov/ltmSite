@@ -474,5 +474,6 @@ return [
     'salary' => 'Зарплата',
     'requirements' => 'Требования',
     'conditions' => 'Условия',
+    'noJobsAvailable' => 'Нет доступных вакансий',
 
 ];

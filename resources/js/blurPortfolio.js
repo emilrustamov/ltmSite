@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!gridContainer) return;
 
   const onMouseEnter = (event) => {
-    const gridItem = event.target.closest('.grid-item');
+    const gridItem = event.target && event.target.closest ? event.target.closest('.grid-item') : null;
     if (!gridItem) return;
 
     const image = gridItem.querySelector('img');
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const onMouseLeave = (event) => {
-    const gridItem = event.target.closest('.grid-item');
+    const gridItem = event.target && event.target.closest ? event.target.closest('.grid-item') : null;
     if (!gridItem) return;
 
     const allImages = gridContainer.querySelectorAll('.grid-item img');

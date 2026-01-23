@@ -537,5 +537,6 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
     'salary' => 'Aýlyk',
     'requirements' => 'Talaplar',
     'conditions' => 'Şertler',
+    'noJobsAvailable' => 'Elýeterli iş ýok',
 
 ];

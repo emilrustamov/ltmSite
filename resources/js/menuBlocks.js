@@ -50,6 +50,16 @@
 
         // Переопределяем textContent, innerText и innerHTML
         try {
+            // Проверяем, не переопределено ли уже свойство
+            const existingTextContent = Object.getOwnPropertyDescriptor(linkAddress, 'textContent');
+            const existingInnerText = Object.getOwnPropertyDescriptor(linkAddress, 'innerText');
+            const existingInnerHTML = Object.getOwnPropertyDescriptor(linkAddress, 'innerHTML');
+            
+            // Если свойства уже переопределены и неконфигурируемы, пропускаем
+            if (existingTextContent && !existingTextContent.configurable) {
+                return;
+            }
+
             // Сохраняем оригинальные дескрипторы
             const originalTextContent = Object.getOwnPropertyDescriptor(Node.prototype, 'textContent');
             const originalInnerText = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'innerText');
@@ -90,18 +100,22 @@
 
             // Блокируем прямое изменение текстового узла
             if (linkAddress.firstChild && linkAddress.firstChild.nodeType === Node.TEXT_NODE) {
-                Object.defineProperty(linkAddress.firstChild, 'textContent', {
-                    get: () => FIXED_TEXT,
-                    set: (value) => {
-                        if (originalTextContent && originalTextContent.set) {
-                            originalTextContent.set.call(linkAddress.firstChild, FIXED_TEXT);
-                        }
-                    },
-                    configurable: false
-                });
+                const existingChildTextContent = Object.getOwnPropertyDescriptor(linkAddress.firstChild, 'textContent');
+                if (!existingChildTextContent || existingChildTextContent.configurable) {
+                    Object.defineProperty(linkAddress.firstChild, 'textContent', {
+                        get: () => FIXED_TEXT,
+                        set: (value) => {
+                            if (originalTextContent && originalTextContent.set) {
+                                originalTextContent.set.call(linkAddress.firstChild, FIXED_TEXT);
+                            }
+                        },
+                        configurable: false
+                    });
+                }
             }
         } catch (e) {
-            console.warn('Не удалось переопределить свойства:', e);
+            // Тихо игнорируем ошибки переопределения
+            // console.warn('Не удалось переопределить свойства:', e);
         }
     }
 
@@ -121,18 +135,26 @@
     // Защита от изменения через делегирование событий
     document.addEventListener('mouseenter', function(e) {
         const linkAddress = document.getElementById("linkAddress");
-        if (linkAddress && (e.target.id === 'instLink' || e.target.id === 'linkedLink' || e.target.closest('.media-links'))) {
-            if (linkAddress.textContent !== FIXED_TEXT) {
-                linkAddress.textContent = FIXED_TEXT;
+        if (linkAddress && e.target) {
+            const isTarget = e.target.id === 'instLink' || e.target.id === 'linkedLink';
+            const isClosest = e.target.closest && e.target.closest('.media-links');
+            if (isTarget || isClosest) {
+                if (linkAddress.textContent !== FIXED_TEXT) {
+                    linkAddress.textContent = FIXED_TEXT;
+                }
             }
         }
     }, true);
     
     document.addEventListener('mouseover', function(e) {
         const linkAddress = document.getElementById("linkAddress");
-        if (linkAddress && (e.target.id === 'instLink' || e.target.id === 'linkedLink' || e.target.closest('.media-links'))) {
-            if (linkAddress.textContent !== FIXED_TEXT) {
-                linkAddress.textContent = FIXED_TEXT;
+        if (linkAddress && e.target) {
+            const isTarget = e.target.id === 'instLink' || e.target.id === 'linkedLink';
+            const isClosest = e.target.closest && e.target.closest('.media-links');
+            if (isTarget || isClosest) {
+                if (linkAddress.textContent !== FIXED_TEXT) {
+                    linkAddress.textContent = FIXED_TEXT;
+                }
             }
         }
     }, true);
@@ -168,14 +190,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Обработчик клика на кнопку меню
-    menuButton.addEventListener("click", function () {
-        // Bootstrap сам управляет открытием/закрытием через data-bs-toggle
-        // Здесь мы только запускаем анимацию, если меню открывается
-        if (!menuOpen && complexMenuModal) {
-            // Проверяем, что модальное окно действительно открывается
-            // Анимация будет запущена через событие shown.bs.modal
-        }
-    });
+    if (menuButton) {
+        menuButton.addEventListener("click", function () {
+            // Bootstrap сам управляет открытием/закрытием через data-bs-toggle
+            // Здесь мы только запускаем анимацию, если меню открывается
+            if (!menuOpen && complexMenuModal) {
+                // Проверяем, что модальное окно действительно открывается
+                // Анимация будет запущена через событие shown.bs.modal
+            }
+        });
+    }
 
     closeButtons.forEach(btn => {
         if (btn) {
@@ -213,34 +237,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Переопределяем textContent и innerText для полной блокировки
         if (linkAddress) {
+            // Проверяем, не переопределено ли уже свойство
+            const existingTextContent = Object.getOwnPropertyDescriptor(linkAddress, 'textContent');
+            const existingInnerText = Object.getOwnPropertyDescriptor(linkAddress, 'innerText');
+            
+            // Если свойства уже переопределены и неконфигурируемы, пропускаем
+            if (existingTextContent && !existingTextContent.configurable) {
+                return;
+            }
+
             const originalTextContentSetter = Object.getOwnPropertyDescriptor(Node.prototype, 'textContent')?.set;
             const originalInnerTextSetter = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'innerText')?.set;
             
-            Object.defineProperty(linkAddress, 'textContent', {
-                get: function() {
-                    return FIXED_TEXT;
-                },
-                set: function(value) {
-                    // Игнорируем любые попытки изменить текст
-                    if (originalTextContentSetter) {
-                        originalTextContentSetter.call(this, FIXED_TEXT);
-                    }
-                },
-                configurable: false
-            });
+            try {
+                Object.defineProperty(linkAddress, 'textContent', {
+                    get: function() {
+                        return FIXED_TEXT;
+                    },
+                    set: function(value) {
+                        // Игнорируем любые попытки изменить текст
+                        if (originalTextContentSetter) {
+                            originalTextContentSetter.call(this, FIXED_TEXT);
+                        }
+                    },
+                    configurable: false
+                });
 
-            Object.defineProperty(linkAddress, 'innerText', {
-                get: function() {
-                    return FIXED_TEXT;
-                },
-                set: function(value) {
-                    // Игнорируем любые попытки изменить текст
-                    if (originalInnerTextSetter) {
-                        originalInnerTextSetter.call(this, FIXED_TEXT);
-                    }
-                },
-                configurable: false
-            });
+                Object.defineProperty(linkAddress, 'innerText', {
+                    get: function() {
+                        return FIXED_TEXT;
+                    },
+                    set: function(value) {
+                        // Игнорируем любые попытки изменить текст
+                        if (originalInnerTextSetter) {
+                            originalInnerTextSetter.call(this, FIXED_TEXT);
+                        }
+                    },
+                    configurable: false
+                });
+            } catch (e) {
+                // Тихо игнорируем ошибки переопределения
+                // console.warn('Не удалось переопределить свойства:', e);
+            }
         }
 
         // Блокируем все события мыши на иконках социальных сетей

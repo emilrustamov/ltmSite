@@ -11,9 +11,18 @@
     <meta property="og:image" content="{{ config('app.url') }}/assets/images/ltm.png">
     <meta property="og:site_name" content="Lebizli Tehnologiya Merkezi (LTM)">
     @php
-        // ② таблица соответствия для Open Graph
+        // ② таблица соответствия для Open Graph
         $ogLocales = ['ru' => 'ru_RU', 'en' => 'en_US', 'tm' => 'tk_TM'];
         $ogLocale = $ogLocales[$lang ?? app()->getLocale()] ?? 'ru_RU';
+        
+        // Добавляем название города к keywords в зависимости от языка
+        $cityNames = ['ru' => 'Ашхабад', 'en' => 'Ashgabat', 'tm' => 'Aşgabat'];
+        $currentLang = $lang ?? app()->getLocale();
+        $cityName = $cityNames[$currentLang] ?? 'Ашхабад';
+        
+        // Формируем keywords с добавлением города
+        $baseKeywords = trim(@yield('metaKey') ?: '');
+        $keywords = $baseKeywords ? $baseKeywords . ', ' . $cityName : $cityName;
     @endphp
 
     <meta property="og:locale" content="{{ $ogLocale }}"> {{-- ② OG‑локаль --}}
@@ -23,7 +32,7 @@
     <meta name="publisher" content="Lebizli Tehnologiya Merkezi (LTM)">
     <meta property="og:title" content="@yield('ogTitle')">
     <meta itemprop="description" name="description" content="@yield('metaDesc')">
-    <meta itemprop="keywords" name="keywords" content="@yield('metaKey')">
+    <meta itemprop="keywords" name="keywords" content="{{ $keywords }}">
     <meta name='freelancehunt' content='c02792cc8b8b525'>
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -32,7 +41,7 @@
     <meta name="apple-mobile-web-app-title" content="LTM" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <script type='application/ld+json'> </script>
+    {{-- JSON-LD removed to prevent Facebook Pixel parsing errors --}}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TMJMPE0M9"></script>
     <script>
         var texts = @json(__('translate.texts'));
@@ -169,7 +178,7 @@
         <i class="fa-solid fa-rocket text-[#1a1515] transition-all duration-300 ease-in-out group-hover:text-white"></i>
     </button>
 
-    <div class="crt-overlay" data-bg="../images/oEI9uBYSzLpBK.gif"></div>
+    <div class="crt-overlay" data-bg="{{ asset('assets/images/oEI9uBYSzLpBK.gif') }}"></div>
 
 </body>
 

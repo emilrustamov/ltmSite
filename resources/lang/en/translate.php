@@ -446,5 +446,6 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'salary' => 'Salary',
     'requirements' => 'Requirements',
     'conditions' => 'Conditions',
+    'noJobsAvailable' => 'No jobs available',
 
 ];
