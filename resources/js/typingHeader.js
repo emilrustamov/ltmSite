@@ -1,10 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const typingElement = document.querySelector(".typing-text");
+    
+    // Проверяем наличие элемента и текстов
+    if (!typingElement || typeof texts === 'undefined' || !Array.isArray(texts) || texts.length === 0) {
+        return;
+    }
+    
     let textIndex = 0;
     let charIndex = 0;
     const typingDelay = 100;
     const erasingDelay = 50;
     const newTextDelay = 2000;
-    const typingElement = document.querySelector(".typing-text");
 
     function typeText() {
         if (charIndex < texts[textIndex].length) {

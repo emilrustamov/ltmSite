@@ -8,34 +8,38 @@
     <meta name="csrf_token" content="{{ csrf_token() }}">
     
     @php
-        // Все поддерживаемые локали
-        $locales = ['ru', 'en', 'tm'];
-        $lang = $lang ?? app()->getLocale();
-        $segments = request()->segments();
-        $slug = implode('/', array_slice($segments, 1)); // '' для главной
-        
-        // Получаем мета-данные
-        $title = trim($__env->yieldContent('title', ''));
-        $ogTitle = trim($__env->yieldContent('ogTitle', $title));
-        $metaDesc = trim($__env->yieldContent('metaDesc', ''));
-        $metaKey = trim($__env->yieldContent('metaKey', ''));
-        
-        // Динамическое изображение для Open Graph
-        $ogImage = $__env->yieldContent('ogImage', config('app.url') . '/assets/images/ltm.png');
-        $ogImageWidth = $__env->yieldContent('ogImageWidth', '1200');
-        $ogImageHeight = $__env->yieldContent('ogImageHeight', '630');
-        
-        // URL текущей страницы
-        $currentUrl = url($lang . ($slug ? '/' . $slug : ''));
-        
-        // Таблица соответствия для Open Graph
-        $ogLocales = ['ru' => 'ru_RU', 'en' => 'en_US', 'tm' => 'tk_TM'];
-        $ogLocale = $ogLocales[$lang] ?? 'ru_RU';
-        
-        // Тип контента для Open Graph
-        $ogType = $__env->yieldContent('ogType', 'website');
-    @endphp
+    // Все поддерживаемые локали
+    $locales = ['ru', 'en', 'tm'];
+    $lang = $lang ?? app()->getLocale();
+    $segments = request()->segments();
+    $slug = implode('/', array_slice($segments, 1)); // '' для главной
 
+    // Получаем мета-данные
+    $title = trim($__env->yieldContent('title', ''));
+    $ogTitle = trim($__env->yieldContent('ogTitle', $title));
+    $metaDesc = trim($__env->yieldContent('metaDesc', ''));
+    $baseKeywords = trim($__env->yieldContent('metaKey', ''));
+
+    // Добавляем название города к keywords в зависимости от языка
+    $cityNames = ['ru' => 'Ашхабад', 'en' => 'Ashgabat', 'tm' => 'Aşgabat'];
+    $cityName = $cityNames[$lang] ?? 'Ашхабад';
+    $metaKey = $baseKeywords ? $baseKeywords . ', ' . $cityName : $cityName;
+
+    // Динамическое изображение для Open Graph
+    $ogImage = $__env->yieldContent('ogImage', config('app.url') . '/assets/images/ltm.png');
+    $ogImageWidth = $__env->yieldContent('ogImageWidth', '1200');
+    $ogImageHeight = $__env->yieldContent('ogImageHeight', '630');
+
+    // URL текущей страницы
+    $currentUrl = url($lang . ($slug ? '/' . $slug : ''));
+
+    // Таблица соответствия для Open Graph
+    $ogLocales = ['ru' => 'ru_RU', 'en' => 'en_US', 'tm' => 'tk_TM'];
+    $ogLocale = $ogLocales[$lang] ?? 'ru_RU';
+
+    // Тип контента для Open Graph
+    $ogType = $__env->yieldContent('ogType', 'website');
+@endphp
     {{-- Основные мета-теги --}}
     <title itemprop="headline">{{ $title ?: 'Lebizli Tehnologiya Merkezi (LTM)' }}</title>
     <meta name="description" content="{{ $metaDesc }}">
@@ -264,7 +268,7 @@
         <i class="fa-solid fa-rocket text-[#1a1515] transition-all duration-300 ease-in-out group-hover:text-white"></i>
     </button>
 
-    <div class="crt-overlay" data-bg="../images/oEI9uBYSzLpBK.gif"></div>
+    <div class="crt-overlay" data-bg="{{ asset('assets/images/oEI9uBYSzLpBK.gif') }}"></div>
    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
 

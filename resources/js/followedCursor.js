@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const followedButton = document.querySelector('.followed-button');
   
+    // Проверяем наличие элемента перед добавлением обработчиков
+    if (!followedButton) return;
+  
     followedButton.addEventListener('mouseenter', () => {
         followedButton.style.transform = 'scale(1.2)';
     });
