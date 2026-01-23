@@ -8,39 +8,38 @@
     <meta name="csrf_token" content="{{ csrf_token() }}">
     
     @php
-        // Все поддерживаемые локали
-        $locales = ['ru', 'en', 'tm'];
-        $lang = $lang ?? app()->getLocale();
-        $segments = request()->segments();
-        $slug = implode('/', array_slice($segments, 1)); // '' для главной
-        
-        // Получаем мета-данные
-        $title = trim(@yield('title', ''));
-        $ogTitle = trim(@yield('ogTitle', $title));
-        $metaDesc = trim(@yield('metaDesc', ''));
-        $baseKeywords = trim(@yield('metaKey', ''));
-        
-        // Добавляем название города к keywords в зависимости от языка
-        $cityNames = ['ru' => 'Ашхабад', 'en' => 'Ashgabat', 'tm' => 'Aşgabat'];
-        $cityName = $cityNames[$lang] ?? 'Ашхабад';
-        $metaKey = $baseKeywords ? $baseKeywords . ', ' . $cityName : $cityName;
-        
-        // Динамическое изображение для Open Graph
-        $ogImage = @yield('ogImage', config('app.url') . '/assets/images/ltm.png');
-        $ogImageWidth = @yield('ogImageWidth', '1200');
-        $ogImageHeight = @yield('ogImageHeight', '630');
-        
-        // URL текущей страницы
-        $currentUrl = url($lang . ($slug ? '/' . $slug : ''));
-        
-        // Таблица соответствия для Open Graph
-        $ogLocales = ['ru' => 'ru_RU', 'en' => 'en_US', 'tm' => 'tk_TM'];
-        $ogLocale = $ogLocales[$lang] ?? 'ru_RU';
-        
-        // Тип контента для Open Graph
-        $ogType = @yield('ogType', 'website');
-    @endphp
+    // Все поддерживаемые локали
+    $locales = ['ru', 'en', 'tm'];
+    $lang = $lang ?? app()->getLocale();
+    $segments = request()->segments();
+    $slug = implode('/', array_slice($segments, 1)); // '' для главной
 
+    // Получаем мета-данные
+    $title = trim($__env->yieldContent('title', ''));
+    $ogTitle = trim($__env->yieldContent('ogTitle', $title));
+    $metaDesc = trim($__env->yieldContent('metaDesc', ''));
+    $baseKeywords = trim($__env->yieldContent('metaKey', ''));
+
+    // Добавляем название города к keywords в зависимости от языка
+    $cityNames = ['ru' => 'Ашхабад', 'en' => 'Ashgabat', 'tm' => 'Aşgabat'];
+    $cityName = $cityNames[$lang] ?? 'Ашхабад';
+    $metaKey = $baseKeywords ? $baseKeywords . ', ' . $cityName : $cityName;
+
+    // Динамическое изображение для Open Graph
+    $ogImage = $__env->yieldContent('ogImage', config('app.url') . '/assets/images/ltm.png');
+    $ogImageWidth = $__env->yieldContent('ogImageWidth', '1200');
+    $ogImageHeight = $__env->yieldContent('ogImageHeight', '630');
+
+    // URL текущей страницы
+    $currentUrl = url($lang . ($slug ? '/' . $slug : ''));
+
+    // Таблица соответствия для Open Graph
+    $ogLocales = ['ru' => 'ru_RU', 'en' => 'en_US', 'tm' => 'tk_TM'];
+    $ogLocale = $ogLocales[$lang] ?? 'ru_RU';
+
+    // Тип контента для Open Graph
+    $ogType = $__env->yieldContent('ogType', 'website');
+@endphp
     {{-- Основные мета-теги --}}
     <title itemprop="headline">{{ $title ?: 'Lebizli Tehnologiya Merkezi (LTM)' }}</title>
     <meta name="description" content="{{ $metaDesc }}">
@@ -138,7 +137,7 @@
     {{-- Google Analytics --}}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5TMJMPE0M9"></script>
     <script>
-        var texts = @json(__('translate.texts'));
+        var texts = @json(trans('translate.texts'));
     </script>
 
     <!-- Meta Pixel Code -->
