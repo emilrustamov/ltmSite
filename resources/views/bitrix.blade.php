@@ -361,7 +361,7 @@
             <div class="swiper-wrapper">
 
                 {{-- 🔖 Добавьте сюда все свои изображения (10 + шт.) --}}
-                @foreach (['cert1.webp', 'cert10.webp', 'cert2.webp', 'cert3.webp', 'cert4.webp', 'cert5.webp', 'cert6.webp', 'cert7.webp', 'cert8.webp'] as $file)
+                @foreach (['cert1.webp', 'cert2.webp', 'cert10.webp', 'cert3.webp', 'cert4.webp', 'cert5.webp', 'cert6.webp', 'cert7.webp', 'cert8.webp'] as $file)
                     <div class="swiper-slide">
                         <img data-src="{{ asset('webp/' . $file) }}" alt="{{ __('translate.bitrix_certificate') }}"
                             class="mx-auto object-contain drop-shadow-lg lazyload">
