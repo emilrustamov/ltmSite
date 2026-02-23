@@ -172,7 +172,7 @@
                     </div>
                 </div>
 
-                <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#e31e24] flex flex-col fade-in"
+                <!-- <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#e31e24] flex flex-col fade-in"
                     itemscope itemtype="http://schema.org/Service">
                     <div class="flex flex-col h-full">
 <svg class="mb-4" width="48" height="34" viewBox="0 0 48 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -198,7 +198,7 @@
                         {{ __('translate.readMore') }}
                     </a>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#2b2a2a] flex flex-col fade-in"
                     itemscope itemtype="http://schema.org/Service">
