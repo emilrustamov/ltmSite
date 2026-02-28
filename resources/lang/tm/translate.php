@@ -539,7 +539,9 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
     'conditions' => 'Şertler',
     'noJobsAvailable' => 'Elýeterli iş ýok',
 
-
+    
+    'teltonika' => 'Teltonika',
+    
     'metaKeyTeltonika' => 'Teltonika, Teltonika Telematics, GPS gözegçilik, awtopark dolandyryşy, IoT çözgütleri, ulag yzarlaýyş, telematika',
     'titleTeltonika' => 'Teltonika Telematics Türkmenistanda | LTM Studio',
     'metaDescTeltonika' => 'Teltonika Telematics — ulaglar üçin GPS gözegçilik, awtopark dolandyryşy we IoT taslamalary boýunça çözgütler. Biznes we korporatiw ulgamlary üçin enjamlar.',
