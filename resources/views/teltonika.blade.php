@@ -63,7 +63,7 @@
           [
             'title' => __('translate.teltonika_card5_title'),
             'subtitle' => __('translate.teltonika_card5_subtitle'),
-            'image' => asset('webp/5-tel.png'),
+            'image' => asset('webp/5-tel.webp'),
             'color' => '#1f2329',
           ],
           ];
