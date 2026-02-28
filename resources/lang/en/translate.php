@@ -449,6 +449,8 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'noJobsAvailable' => 'No jobs available',
 
 
+    'teltonika' => 'Teltonika',
+
     'metaKeyTeltonika' => 'Teltonika, Teltonika Telematics, GPS monitoring, fleet management, IoT solutions, vehicle tracking, telematics',
     'titleTeltonika' => 'Teltonika Telematics in Turkmenistan | LTM Studio',
     'metaDescTeltonika' => 'Teltonika Telematics — solutions for GPS vehicle monitoring, fleet management, and IoT projects. Equipment for business and enterprise systems.',
