@@ -476,6 +476,8 @@ return [
     'conditions' => 'Условия',
     'noJobsAvailable' => 'Нет доступных вакансий',
 
+    'teltonika' => 'Teltonika',
+
     'metaKeyTeltonika' => 'Teltonika, Teltonika Telematics, GPS мониторинг, управление автопарком, IoT решения, трекинг транспорта, телематика',
     'titleTeltonika' => 'Teltonika Telematics в Туркменистане | LTM Studio',
     'metaDescTeltonika' => 'Teltonika Telematics — решения для GPS мониторинга транспорта, управления автопарком и IoT проектов. Оборудование для бизнеса и корпоративных систем.',
