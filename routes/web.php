@@ -412,6 +412,14 @@ Route::prefix('{lang}')
             return view('about_us', compact('leftMenu', 'currentPage', 'lang'));
         })->name('about_us');
 
+        //teltonika
+        Route::get('/teltonika', function ($lang) {
+            App::setLocale($lang);
+            $leftMenu = true;
+            $currentPage = '';
+            return view('teltonika', compact('leftMenu', 'currentPage', 'lang'));
+        })->name('teltonika');
+
         Route::get('/portfolio/{id}', function($lang, $id){
             $item = \App\Models\Portfolio::find($id);
             if (! $item) {
