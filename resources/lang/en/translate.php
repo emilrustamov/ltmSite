@@ -448,4 +448,39 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'conditions' => 'Conditions',
     'noJobsAvailable' => 'No jobs available',
 
+
+    'metaKeyTeltonika' => 'Teltonika, Teltonika Telematics, GPS monitoring, fleet management, IoT solutions, vehicle tracking, telematics',
+    'titleTeltonika' => 'Teltonika Telematics in Turkmenistan | LTM Studio',
+    'metaDescTeltonika' => 'Teltonika Telematics — solutions for GPS vehicle monitoring, fleet management, and IoT projects. Equipment for business and enterprise systems.',
+
+    'teltonika_our_competencies' => 'Our Teltonika Competencies',
+    'teltonika_certificate_alt' => 'Certificate',
+
+    'teltonika_description_text1' => 'Teltonika Telematics is an international provider of telematics solutions offering GPS devices and IoT solutions for vehicle monitoring and fleet management. The company develops reliable hardware and software solutions that help businesses efficiently manage resources, optimize costs, and improve safety.',
+    'teltonika_branchs_text' => 'Teltonika Group Divisions',
+    'teltonika_card1_title' => 'Teltonika Telematics',
+    'teltonika_card1_subtitle' => 'GPS vehicle monitoring and fleet management',
+    'teltonika_card2_title' => 'Teltonika Networks',
+    'teltonika_card2_subtitle' => 'Industrial routers and IoT',
+    'teltonika_card3_title' => 'Teltonika Energy',
+    'teltonika_card3_subtitle' => 'Smart charging stations',
+    'teltonika_card4_title' => 'Teltonika Telemedic',
+    'teltonika_card4_subtitle' => 'Remote health monitoring solutions',
+    'teltonika_card5_title' => 'Teltonika EMS',
+    'teltonika_card5_subtitle' => 'Electronics contract manufacturing',
+
+    'teltonika_possibilities_text' => 'Teltonika Telematics Capabilities',
+    'teltonika_advantage1_title' => 'Tracking',
+    'teltonika_advantage1_description' => 'Real-time vehicle tracking and data monitoring.',
+    'teltonika_advantage2_title' => 'Configuration',
+    'teltonika_advantage2_description' => 'Device configuration for various business scenarios and needs.',
+    'teltonika_advantage3_title' => 'Management',
+    'teltonika_advantage3_description' => 'Remote device setup and management.',
+    'teltonika_advantage4_title' => 'Efficiency',
+    'teltonika_advantage4_description' => 'Increased efficiency and reduced operational costs.',
+    'teltonika_advantage5_title' => 'Resources',
+    'teltonika_advantage5_description' => 'Control and monitoring of vehicles and assets.',
+    'teltonika_advantage6_title' => 'Security',
+    'teltonika_advantage6_description' => 'Enhanced security and data protection.',
+
 ];
