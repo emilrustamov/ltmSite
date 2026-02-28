@@ -176,66 +176,6 @@
         </div>
     </section>
 
-    <section class="container px-4 my-10">
-        <h2 class="text-3xl font-bold mb-6 text-center">{{ __('translate.bitrix_our_cases') }}</h2>
-
-        @if(!empty($bitrixProjects) && $bitrixProjects->count() > 0)
-            <div class="swiper myCases">
-                <div class="swiper-wrapper">
-                    @foreach ($bitrixProjects as $project)
-                        @php
-                            $projectTitle = $project->translation($lang)?->title ?? $project->translation('ru')?->title ?? '';
-                            $projectLink = '/' . $lang . '/portfolio/' . $project->slug;
-                            $projectImage = $project->getFirstMediaUrl('portfolio-images', 'webp');
-                            if (!$projectImage && $project->photo) {
-                                $projectImage = asset('storage/' . $project->photo);
-                            }
-                        @endphp
-
-                        <div class="swiper-slide">
-                            <div class="border rounded-xl overflow-hidden shadow-lg group bg-[#1c1b1b]">
-                                <a href="{{ $projectLink }}">
-                                    @if($projectImage)
-                                        <img data-src="{{ $projectImage }}" alt="{{ $projectTitle }}"
-                                            class="w-full object-cover transition-transform duration-300 group-hover:scale-105 lazyload">
-                                    @else
-                                        <div class="w-full h-48 bg-gray-700 flex items-center justify-center">
-                                            <span class="text-gray-400">No image</span>
-                                        </div>
-                                    @endif
-                                </a>
-
-                                <div class="p-4 text-center">
-                                    <h3 class="text-xl font-semibold mb-2 text-white">{{ $projectTitle }}</h3>
-
-                                    <a href="{{ $projectLink }}"
-                                        class="inline-flex items-center gap-2 bg-[#e31e24] text-white px-4 py-2 rounded
-                                          hover:bg-[#b91217] transition-colors">
-                                        {{ __('translate.bitrix_more') }}
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-
-                {{-- навигация / пагинация --}}
-                <div class="swiper-button-prev !text-white hover:!text-[#e31e24]"></div>
-                <div class="swiper-button-next !text-white hover:!text-[#e31e24]"></div>
-                <div class="swiper-pagination !bottom-0"></div>
-            </div>
-        @else
-            <div class="text-center py-8 text-gray-400">
-                <p>{{ __('translate.bitrix_no_projects') ?? 'Пока нет проектов в категории Bitrix' }}</p>
-            </div>
-        @endif
-    </section>
-
      <!-- Simple tab switching script -->
      <script>
         function showTab(tabName) {
