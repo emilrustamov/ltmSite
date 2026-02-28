@@ -476,4 +476,38 @@ return [
     'conditions' => 'Условия',
     'noJobsAvailable' => 'Нет доступных вакансий',
 
+    'metaKeyTeltonika' => 'Teltonika, Teltonika Telematics, GPS мониторинг, управление автопарком, IoT решения, трекинг транспорта, телематика',
+    'titleTeltonika' => 'Teltonika Telematics в Туркменистане | LTM Studio',
+    'metaDescTeltonika' => 'Teltonika Telematics — решения для GPS мониторинга транспорта, управления автопарком и IoT проектов. Оборудование для бизнеса и корпоративных систем.',
+
+    'teltonika_our_competencies' => 'Наши компетенции в Teltonika',
+    'teltonika_certificate_alt' => 'Сертификат',
+    'teltonika_description_text1'  => 'Teltonika Telematics — международный поставщик телематических решений, предлагающий GPS-устройства и IoT-решения для мониторинга транспорта и управления автопарком. Компания разрабатывает надежные аппаратные и программные решения, помогающие бизнесу эффективно управлять ресурсами, оптимизировать расходы и повышать безопасность.',
+
+    'teltonika_branchs_text' => 'Направления Teltonika Group',
+    'teltonika_card1_title' => 'Teltonika Telematics',
+    'teltonika_card1_subtitle' => 'GPS-мониторинг транспорта и управление автопарком',
+    'teltonika_card2_title' => 'Teltonika Networks',
+    'teltonika_card2_subtitle' => 'Промышленные роутеры и IoT',
+    'teltonika_card3_title' => 'Teltonika Energy',
+    'teltonika_card3_subtitle' => 'Интеллектуальные зарядные станции',
+    'teltonika_card4_title' => 'Teltonika Telemedic',
+    'teltonika_card4_subtitle' => 'Решения дистанционного мониторинга здоровья',
+    'teltonika_card5_title' => 'Teltonika EMS',
+    'teltonika_card5_subtitle' => 'Контрактное производство электроники',
+
+    'teltonika_possibilities_text' => 'Возможности Teltonika Telematics',
+    'teltonika_advantage1_title' => 'Трекинг',
+    'teltonika_advantage1_description' => 'Отслеживание транспорта и получение данных в режиме реального времени.',
+    'teltonika_advantage2_title' => 'Конфигурация',
+    'teltonika_advantage2_description' => 'Настройка оборудования под различные сценарии и задачи бизнеса.',
+    'teltonika_advantage3_title' => 'Управление',
+    'teltonika_advantage3_description' => 'Дистанционная настройка и управление устройствами.',
+    'teltonika_advantage4_title' => 'Эффективность',
+    'teltonika_advantage4_description' => 'Повышение эффективности и снижение операционных расходов.',
+    'teltonika_advantage5_title' => 'Ресурсы',
+    'teltonika_advantage5_description' => 'Контроль использования транспорта и активов.',
+    'teltonika_advantage6_title' => 'Безопасность',
+    'teltonika_advantage6_description' => 'Повышение уровня безопасности и защита данных.',
+
 ];
