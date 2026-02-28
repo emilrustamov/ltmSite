@@ -539,4 +539,39 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
     'conditions' => 'Şertler',
     'noJobsAvailable' => 'Elýeterli iş ýok',
 
+
+    'metaKeyTeltonika' => 'Teltonika, Teltonika Telematics, GPS gözegçilik, awtopark dolandyryşy, IoT çözgütleri, ulag yzarlaýyş, telematika',
+    'titleTeltonika' => 'Teltonika Telematics Türkmenistanda | LTM Studio',
+    'metaDescTeltonika' => 'Teltonika Telematics — ulaglar üçin GPS gözegçilik, awtopark dolandyryşy we IoT taslamalary boýunça çözgütler. Biznes we korporatiw ulgamlary üçin enjamlar.',
+    
+    'teltonika_our_competencies' => 'Teltonika boýunça biziň başarnyklarymyz',
+    'teltonika_certificate_alt' => 'Şahadatnama',
+    
+    'teltonika_description_text1' => 'Teltonika Telematics — ulaglary gözegçilik etmek we awtoparky dolandyrmak üçin GPS enjamlaryny we IoT çözgütlerini hödürleýän halkara telematika çözgütleriniň üpjün edijisidir. Kompaniýa ygtybarly apparat we programma üpjünçilik çözgütlerini işläp taýýarlaýar, bu bolsa bizneslere serişdeleri netijeli dolandyrmaga, çykdajylary optimizirlemäge we howpsuzlygy ýokarlandyrmaga mümkinçilik berýär.',
+    'teltonika_branchs_text' => 'Teltonika Group ugurlary',
+    'teltonika_card1_title' => 'Teltonika Telematics',
+    'teltonika_card1_subtitle' => 'Ulaglaryň GPS gözegçiligi we awtopark dolandyryşy',
+    'teltonika_card2_title' => 'Teltonika Networks',
+    'teltonika_card2_subtitle' => 'Senagat routerleri we IoT',
+    'teltonika_card3_title' => 'Teltonika Energy',
+    'teltonika_card3_subtitle' => 'Akylly zarýad stansiýalary',
+    'teltonika_card4_title' => 'Teltonika Telemedic',
+    'teltonika_card4_subtitle' => 'Uzak aralykdan saglygy gözegçilik çözgütleri',
+    'teltonika_card5_title' => 'Teltonika EMS',
+    'teltonika_card5_subtitle' => 'Elektronika boýunça şertnamaly önümçilik',
+    
+    'teltonika_possibilities_text' => 'Teltonika Telematics mümkinçilikleri',
+    'teltonika_advantage1_title' => 'Yzarlaýyş',
+    'teltonika_advantage1_description' => 'Ulaglary real wagt tertibinde yzarlamak we maglumatlary almak.',
+    'teltonika_advantage2_title' => 'Sazlama',
+    'teltonika_advantage2_description' => 'Enjamlary dürli biznes ssenariýalaryna laýyklykda sazlamak.',
+    'teltonika_advantage3_title' => 'Dolandyryş',
+    'teltonika_advantage3_description' => 'Enjamlary uzak aralykdan sazlamak we dolandyrmak.',
+    'teltonika_advantage4_title' => 'Netijelilik',
+    'teltonika_advantage4_description' => 'Netijeliligi ýokarlandyrmak we operasion çykdajylary azaltmak.',
+    'teltonika_advantage5_title' => 'Serişdeler',
+    'teltonika_advantage5_description' => 'Ulaglaryň we aktiwleriň ulanylyşyna gözegçilik etmek.',
+    'teltonika_advantage6_title' => 'Howpsuzlyk',
+    'teltonika_advantage6_description' => 'Howpsuzlygy ýokarlandyrmak we maglumatlary goramak.',
+
 ];
