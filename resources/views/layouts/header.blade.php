@@ -32,6 +32,11 @@
                 itemprop="url">{{ __('translate.bitrix') }}</a>
         </div>
         <div class="nav-item">
+            <a href="/{{ $lang }}/teltonika"
+                class="text-sm md:text-base {{ Request::is($lang . '/teltonika*') ? 'active' : '' }}"
+                itemprop="url">{{ __('translate.teltonika') }}</a>
+        </div>
+        <div class="nav-item">
             <a href="/{{ $lang }}/about_us"
                 class="text-sm md:text-base {{ Request::is($lang . '/about_us*') ? 'active' : '' }}"
                 itemprop="url">{{ __('translate.aboutUs') }}</a>
@@ -230,6 +235,7 @@
         <a href="/{{ $lang }}/">{{ __('translate.mainPage') }}</a>
         <a href="/{{ $lang }}/services">{{ __('translate.services') }}</a>
         <a href="/{{ $lang }}/bitrix24">{{ __('translate.bitrix') }}</a>
+        <a href="/{{ $lang }}/teltonika">{{ __('translate.teltonika') }}</a>
         <a href="/{{ $lang }}/about_us">{{ __('translate.aboutUs') }}</a>
         <a href="/{{ $lang }}/portfolio">{{ __('translate.portfolio') }}</a>
         <a href="/{{ $lang }}/jobs">{{ __('translate.jobs') }}</a>
