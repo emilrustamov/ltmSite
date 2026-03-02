@@ -19,7 +19,7 @@
     </div>
 
     <!-- Меню (только десктоп, центрировано) -->
-    <div class="hidden md:flex justify-center items-center gap-4 w-full md:w-1/2 lg:w-1/3 z-[999] whitespace-nowrap"
+    <div class="hidden lg:flex justify-center items-center gap-4 w-full lg:w-1/3 z-[999] whitespace-nowrap"
         itemscope itemtype="http://schema.org/SiteNavigationElement">
         <div class="nav-item">
             <a href="/{{ $lang }}/services"
@@ -110,14 +110,14 @@
 
         <!-- Меню (десктоп) -->
         <div id="menuButton"
-            class="hidden md:block w-20 bg-[var(--primary)] text-center hover:rounded-[20%] hover:scale-105 transition duration-300 ease-linear"
+            class="hidden lg:block w-20 bg-[var(--primary)] text-center hover:rounded-[20%] hover:scale-105 transition duration-300 ease-linear"
             data-bs-toggle="modal" data-bs-target="#complexMenuModal">
             {!! nl2br(__('translate.menu')) !!}
         </div>
 
         <!-- Мобильное меню (бургер) -->
         <button id="mobileMenuOpen"
-            class="block md:hidden bg-[#e31e24] text-white rounded-full flex items-center justify-center w-full h-full">
+            class="block lg:hidden bg-[#e31e24] text-white rounded-full flex items-center justify-center w-full h-full">
             <i class="fa-solid fa-bars text-[18px]"></i>
         </button>
     </div>
@@ -216,7 +216,7 @@
 </div>
 
 <div id="mobileMenuModal"
-    class="fixed inset-0 bg-[#1c1b1b] text-white z-[999999] p-6 flex flex-col translate-y-full transition-transform duration-500 ease-in-out md:hidden">
+    class="fixed inset-0 bg-[#1c1b1b] text-white z-[999999] p-6 flex flex-col translate-y-full transition-transform duration-500 ease-in-out lg:hidden">
     <div class="flex justify-between items-center mb-6">
         <h2 class="text-2xl font-bold">Только для самых смелых</h2>
         <button id="mobileMenuClose"><i class="fa fa-close text-3xl"></i></button>
