@@ -17,7 +17,7 @@
             <div class="mt-6">
                 <!-- Здесь расположите картинку сертификата -->
                 <img data-src="{{ asset('webp/teltonika-certif.webp') }}"
-                    alt="{{ __('translate.teltonika_certificate_alt') }}" class="h-[800px] w-auto mx-auto object-contain drop-shadow-lg lazyload lazyload">
+                    alt="{{ __('translate.teltonika_certificate_alt') }}" class="h-[400px] md:h-[500px] lg:h-[600px] xl:h-[800px] w-auto mx-auto object-contain drop-shadow-lg lazyload lazyload">
             </div>
         </div>
     </section>
