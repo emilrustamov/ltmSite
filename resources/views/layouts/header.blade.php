@@ -48,17 +48,17 @@
                 class="hidden absolute left-0 top-full backdrop-blur-md bg-white/10 border-b border-white/20 mt-3 shadow-lg rounded-lg py-3 min-w-[180px] z-50">
 
                 <a href="/{{ $lang }}/services"
-                    class="block px-4 py-2 hover:!bg-[#e31e24] hover:!text-white text-sm  {{ Request::is($lang . '/services*') ? 'bg-[#e31e2426] !text-[#ff6b7a]' : '' }}"
+                    class="block px-4 py-2 hover:!bg-[#e31e24] hover:!text-white text-sm  {{ Request::is($lang . '/services*') ? 'bg-[#e31e244f] !text-[#ff6b7a]' : '' }}"
                     itemprop="url">{{ __('translate.allServices') }}
                 </a>
 
                 <a href="/{{ $lang }}/bitrix24"
-                    class="block px-4 py-2 hover:!bg-[#e31e24] hover:!text-white text-sm  {{ Request::is($lang . '/bitrix*') ? 'bg-[#e31e2426] !text-[#ff6b7a]' : '' }}"
+                    class="block px-4 py-2 hover:!bg-[#e31e24] hover:!text-white text-sm  {{ Request::is($lang . '/bitrix*') ? 'bg-[#e31e244f] !text-[#ff6b7a]' : '' }}"
                     itemprop="url">{{ __('translate.bitrix') }}
                 </a>
 
                 <a href="/{{ $lang }}/teltonika"
-                    class="block px-4 py-2 hover:!bg-[#e31e24]  hover:!text-white text-sm  {{ Request::is($lang . '/teltonika*') ? 'bg-[#e31e2426] !text-[#ff6b7a]' : '' }}"
+                    class="block px-4 py-2 hover:!bg-[#e31e24]  hover:!text-white text-sm  {{ Request::is($lang . '/teltonika*') ? 'bg-[#e31e244f] !text-[#ff6b7a]' : '' }}"
                     itemprop="url">{{ __('translate.teltonika') }}
                 </a>
             </div>
