@@ -2,6 +2,7 @@
 
 return [
     'services' => 'Serwisler',
+    'allServices' => 'Ähli serwisler',
     'aboutUs' => 'Biz barada',
     'aboutUsTitle' => 'LTM ：',
     'portfolio' => 'Portfolio',
