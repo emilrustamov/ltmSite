@@ -2,6 +2,7 @@
 
 return [
     'services' => 'Services',
+    'productsmenu' => 'Products',
     'allServices' => 'All services',
     'aboutUs' => 'About Us',
     'aboutUsTitle' => 'LTM :',
