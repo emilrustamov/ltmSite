@@ -21,12 +21,12 @@
     <!-- Меню (только десктоп, центрировано) -->
     <div class="hidden lg:flex justify-center items-center gap-4 w-full lg:w-1/3 z-[999] whitespace-nowrap"
         itemscope itemtype="http://schema.org/SiteNavigationElement">
-        <!-- <div class="nav-item">
+        <div class="nav-item">
             <a href="/{{ $lang }}/services"
                 class="text-sm md:text-base {{ Request::is($lang . '/services*') ? 'active' : '' }}"
                 itemprop="url">{{ __('translate.services') }}</a>
         </div>
-        <div class="nav-item">
+        <!-- <div class="nav-item">
             <a href="/{{ $lang }}/bitrix24"
                 class="text-sm md:text-base {{ Request::is($lang . '/bitrix*') ? 'active' : '' }}"
                 itemprop="url">{{ __('translate.bitrix') }}</a>
@@ -38,20 +38,14 @@
         </div> -->
         <div class="nav-item relative">
             <button id="servicesToggle"
-                class="text-sm md:text-base flex items-center gap-1">
-                {{ __('translate.services') }}
+                class="text-sm md:text-base flex items-center gap-1 !font-normal">
+                {{ __('translate.productsmenu') }}
                 <i id="servicesArrow"
-                    class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    class="fa-solid fa-chevron-down text-xs transition-transform duration-300" style="height:11px; width:11px"></i>
             </button>
 
             <div id="servicesMenu"
                 class="hidden absolute left-0 top-full backdrop-blur-md bg-white/10 border-b border-white/20 mt-3 shadow-lg rounded-lg py-3 min-w-[180px] z-50">
-
-                <a href="/{{ $lang }}/services"
-                    class="block px-4 py-2 hover:!bg-[#e31e24] hover:!text-white text-sm  {{ Request::is($lang . '/services*') ? 'bg-[#e31e244f] !text-[#ff6b7a]' : '' }}"
-                    itemprop="url">{{ __('translate.allServices') }}
-                </a>
-
                 <a href="/{{ $lang }}/bitrix24"
                     class="block px-4 py-2 hover:!bg-[#e31e24] hover:!text-white text-sm  {{ Request::is($lang . '/bitrix*') ? 'bg-[#e31e244f] !text-[#ff6b7a]' : '' }}"
                     itemprop="url">{{ __('translate.bitrix') }}
