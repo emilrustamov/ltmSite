@@ -2,6 +2,7 @@
 
 return [
     'services' => 'Serwisler',
+    'productsmenu' => 'Çözgütler',
     'allServices' => 'Ähli serwisler',
     'aboutUs' => 'Biz barada',
     'aboutUsTitle' => 'LTM ：',
