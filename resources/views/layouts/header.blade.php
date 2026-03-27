@@ -45,7 +45,7 @@
             </button>
 
             <div id="servicesMenu"
-                class="hidden absolute left-0 top-full backdrop-blur-md bg-white/10 border-b border-white/20 mt-3 shadow-lg rounded-lg py-3 min-w-[180px] z-50">
+                class="hidden absolute left-0 top-full backdrop-blur-md bg-white/10 border-b border-white/20 shadow-lg rounded-lg py-3 min-w-[180px] z-50">
                 <a href="/{{ $lang }}/bitrix24"
                     class="block px-4 py-2 hover:!bg-[#e31e24] hover:!text-white text-sm  {{ Request::is($lang . '/bitrix*') ? 'bg-[#e31e244f] !text-[#ff6b7a]' : '' }}"
                     itemprop="url">{{ __('translate.bitrix') }}
@@ -303,24 +303,59 @@
         const toggle = document.getElementById('servicesToggle');
         const menu = document.getElementById('servicesMenu');
         const arrow = document.getElementById('servicesArrow');
+        const navItem = toggle.closest('.nav-item');
 
-        toggle.addEventListener('click', (e) => {
-            e.stopPropagation();
+        if (!toggle || !menu || !arrow || !navItem) return;
+
+        const openMenu = () => {
+            menu.classList.remove('hidden');
+            arrow.classList.add('rotate-180');
+        };
+
+        const closeMenu = () => {
+            menu.classList.add('hidden');
+            arrow.classList.remove('rotate-180');
+        };
+
+        const toggleMenu = () => {
             menu.classList.toggle('hidden');
             arrow.classList.toggle('rotate-180');
-        });
+        };
 
-        document.addEventListener('click', (e) => {
-            if (!toggle.contains(e.target) && !menu.contains(e.target)) {
-                menu.classList.add('hidden');
-                arrow.classList.remove('rotate-180');
+        // hover для desktop
+        navItem.addEventListener('mouseenter', () => {
+            if (window.innerWidth >= 1024) {
+                openMenu();
             }
         });
 
+        navItem.addEventListener('mouseleave', () => {
+            if (window.innerWidth >= 1024) {
+                closeMenu();
+            }
+        });
+
+        // click для touch / fallback
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            if (window.innerWidth < 1024) {
+                toggleMenu();
+            }
+        });
+
+        // клик вне меню
+        document.addEventListener('click', (e) => {
+            if (!navItem.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        // Esc
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                menu.classList.add('hidden');
-                arrow.classList.remove('rotate-180');
+                closeMenu();
             }
         });
     });
