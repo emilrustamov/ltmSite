@@ -51,6 +51,13 @@
   transform: scale(1.1);
 }
 
+.portfolio-text{
+  color: white;
+}
+.portfolio-text:hover{
+  color: #e31e24
+}
+
 .arrow {
   position: absolute;
   padding: 50px;
