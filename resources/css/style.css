@@ -1265,8 +1265,8 @@ section {
   width: 100%;
   transition: color 0.3s ease; 
 }
-.slide-title:hover {
-  color: #e31e24;
+.carousel-custom-item:hover .slide-title {
+    color: #e31e24; /* Твой красный цвет */
 }
 
 
