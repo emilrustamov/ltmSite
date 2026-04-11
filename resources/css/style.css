@@ -1263,7 +1263,12 @@ section {
   text-shadow: 1px 1px 5px #0000007d;
   display: flex;
   width: 100%;
+  transition: color 0.3s ease; 
 }
+.slide-title:hover {
+  color: #e31e24;
+}
+
 
 
 .close {
