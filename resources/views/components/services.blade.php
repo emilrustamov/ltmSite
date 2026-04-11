@@ -26,6 +26,30 @@
                     </div>
                 </div>
 
+
+                <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#2b2a2a] flex flex-col fade-in"
+                    itemscope itemtype="http://schema.org/Service">
+                    <div class="flex flex-col h-full">
+                        <svg class="w-10 h-10 mb-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path d="M18 13V8a4 4 0 10-8 0v5" />
+                        <path d="M6 17h12" />
+                        <circle cx="6" cy="17" r="2" />
+                        <circle cx="18" cy="17" r="2" />
+                    </svg>
+                    <h3 class="text-6xl font-bold mb-4" itemprop="name">{{ __('translate.servTitle4') }}</h3>
+                    <p class="text-3xl flex-grow mb-4 m-0" itemprop="description">
+                        {{ __('translate.servDesc4') }}
+                    </p>
+                    <a href="/{{ $lang }}/portfolio"
+                        class="mt-auto w-fit !px-10 !py-6 bg-[#bc2c2c] hover:bg-[#e31e24] rounded font-bold text-white text-2xl mt-auto">
+                        {{ __('translate.readMore') }}
+                    </a>
+                    </div>
+                </div>
+
+                
+
                 <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#bc2c2c] flex flex-col fade-in"
                     itemscope itemtype="http://schema.org/Service">
                     <div class="flex flex-col h-full">
@@ -67,26 +91,7 @@
                     </div>
                 </div>
 
-                <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#2b2a2a] flex flex-col fade-in"
-                    itemscope itemtype="http://schema.org/Service">
-                    <div class="flex flex-col h-full">
-                        <svg class="w-10 h-10 mb-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24">
-                        <path d="M18 13V8a4 4 0 10-8 0v5" />
-                        <path d="M6 17h12" />
-                        <circle cx="6" cy="17" r="2" />
-                        <circle cx="18" cy="17" r="2" />
-                    </svg>
-                    <h3 class="text-6xl font-bold mb-4" itemprop="name">{{ __('translate.servTitle4') }}</h3>
-                    <p class="text-3xl flex-grow mb-4 m-0" itemprop="description">
-                        {{ __('translate.servDesc4') }}
-                    </p>
-                    <a href="/{{ $lang }}/portfolio"
-                        class="mt-auto w-fit !px-10 !py-6 bg-[#bc2c2c] hover:bg-[#e31e24] rounded font-bold text-white text-2xl mt-auto">
-                        {{ __('translate.readMore') }}
-                    </a>
-                    </div>
-                </div>
+
 
 
 
