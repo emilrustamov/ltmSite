@@ -5,7 +5,7 @@ return [
     'productsmenu' => 'Çözgütler',
     'allServices' => 'Ähli serwisler',
     'aboutUs' => 'Biz barada',
-    'aboutUsTitle' => 'Lebizli Tehnologiya Merkezi(LTM) ：',
+    'aboutUsTitle' => 'Lebizli Tehnologiya Merkezi (LTM) ：',
     'portfolio' => 'Portfolio',
     'bitrix' => 'Bitrix24',
     'blog' => 'Blog',
@@ -82,15 +82,15 @@ return [
     'moreThan2' => 'IT kompaniýasyndan hem giň',
 
     'history' => 'Kompaniýanyň taryhy',
-    'aboutHistory' => "📚 Lebizli Tehnologiya Merkezi(LTM)  — Türkmenistanda web sahypalaryny, mobil goşundylary döretmek we Bitrix24 ulgamyny ornaşdyrmak boýunça döwrebap IT çözgütlerini hödürleýän kompaniýa. Biz uly we orta biznesler bilen işleýäris, diňe sanly önümleri döretmek däl-de, eýsem olaryň iş prosesindäki 'agry nokatlaryny' IT arkaly çözmegi maksat edinýäris.\n\n
+    'aboutHistory' => "📚 Lebizli Tehnologiya Merkezi (LTM)  — Türkmenistanda web sahypalaryny, mobil goşundylary döretmek we Bitrix24 ulgamyny ornaşdyrmak boýunça döwrebap IT çözgütlerini hödürleýän kompaniýa. Biz uly we orta biznesler bilen işleýäris, diňe sanly önümleri döretmek däl-de, eýsem olaryň iş prosesindäki 'agry nokatlaryny' IT arkaly çözmegi maksat edinýäris.\n\n
 
-👨‍💻 'Biz — hünärmenler topary' diýen söz ähli saýtlarda bar, emma biz beýlekilerden tapawutly. Lebizli Tehnologiya Merkezi(LTM)  — iri kompaniýalarda 4+ ýyllyk tejribesi bolan IT hünärmenlerinden ybarat topar. Biz öz proýektlerimizi döretmek we müşderilere täzeçe, döredijilikli çözgütleri hödürlemek üçin birleşdik. Lebizli Tehnologiya Merkezi(LTM) -da öň korporatiw çäklendirmeleriň kölegesinde galan pikirleri we çemeleşmeleri batyrgaý we innowasion görnüşde durmuşa geçirýäris.\n\n
+👨‍💻 'Biz — hünärmenler topary' diýen söz ähli saýtlarda bar, emma biz beýlekilerden tapawutly. Lebizli Tehnologiya Merkezi (LTM)  — iri kompaniýalarda 4+ ýyllyk tejribesi bolan IT hünärmenlerinden ybarat topar. Biz öz proýektlerimizi döretmek we müşderilere täzeçe, döredijilikli çözgütleri hödürlemek üçin birleşdik. Lebizli Tehnologiya Merkezi (LTM) -da öň korporatiw çäklendirmeleriň kölegesinde galan pikirleri we çemeleşmeleri batyrgaý we innowasion görnüşde durmuşa geçirýäris.\n\n
 
 💡 Biziň ýörelgämiz — müşderiniň netijesine gönükdirilen iş we onuň işine hakykatdan hem peýda berjek zatlary teklip etmek. Her bir proýekte aýratyn çemeleşýäris, käwagt iň amatly çözgüt taýýar şablon bolsa-da (bu elbetde gowy däldir((( ), biz ony hem saýlap bilýäris.\n\n
 
 🚀 Maksatlaryňyza has laýyk gelýän aýratyn önümi döretmek mümkinçiligi bar bolsa — biz şol ýoly hödürläris. Biz müşderilerimize ösüşe tarap ýol açýan netijeli çözgütleri teklip edýäris we tehniki kynçylyklaryň hemmesini özümize alýarys.\n\n
 
-🤝 Lebizli Tehnologiya Merkezi(LTM)  — tehnologik innowasiýalara we sanly transformasiýa tarap ýolda siziň ygtybarly hyzmatdaşlaryňyz. Biz diňe bir meseläňizi çözüp goýbermeris — eýsem biziň hödürleýän çözgütlerimiz, bäsdeşleriňiz hünärini üýtgetmegine-de sebäp bolup biler.\n",
+🤝 Lebizli Tehnologiya Merkezi (LTM)  — tehnologik innowasiýalara we sanly transformasiýa tarap ýolda siziň ygtybarly hyzmatdaşlaryňyz. Biz diňe bir meseläňizi çözüp goýbermeris — eýsem biziň hödürleýän çözgütlerimiz, bäsdeşleriňiz hünärini üýtgetmegine-de sebäp bolup biler.\n",
     'aboutStatistics' => 'Холодная статистика',
 
 
@@ -113,7 +113,7 @@ return [
     'valueSubCont' => 'Proýektleriň arasynda biz öwrenýärdik, öwrenýäris we ösüşi dowam etdirýäris',
     'exp' => 'Näçe öwrenseňem, tejribäniň ýerine geçjek zat ýok😉',
     'valueJobs' => 'Grafiki dizaýn babatda biz güýçli ösüş gazandyk: Aşgabat boýunça at dakmak (neýming) işleri bilen meşgullanýarys, ýokary derejede logotipleri we olara degişli korporatiw stil döredýäris, satylýan web sahypalaryny taýýarlaýarys, önümler üçin gaplama dizaýnlaryny işläp düzýäris hem-de söwda we sergi stendleriniň konsepsiýalaryny düzýäris.',
-    'aboutSpecTitle' => 'Lebizli Tehnologiya Merkezi(LTM) -nyň ýöriteleşen ugurlary',
+    'aboutSpecTitle' => 'Lebizli Tehnologiya Merkezi (LTM) -nyň ýöriteleşen ugurlary',
     'aboutSpecSub' => 'Biz başarmaýan işimize baş goşmaýarys, ýöne täze çözgütleri öwrenmekdenem gorkmaýarys — biz yzygider ösýäris we netijämiz has-da  gowulaşýar.',
     'spec1' => 'Разработка веб-сайтов и интернет магазинов',
     'spec1Sub' => "Создание сайтов и интернет-магазинов любой\n сложности с использованием\n современных технологий",
@@ -164,7 +164,7 @@ Biziň superwaýzerlerimiz işlerimizi mümkin boldugyça amatly ýagdaýda meý
     'mailHr' => 'info@ltm.',
     'aboutFooterSubCont' => '– belki, siz biziň toparymyzyň täze agzasy bolarsyňyz.',
 
-    'portfolioTitle' => 'Lebizli Tehnologiya Merkezi(LTM) -nyň taslamalary',
+    'portfolioTitle' => 'Lebizli Tehnologiya Merkezi (LTM) -nyň taslamalary',
     'portfolioSub' => 'Много интересных кейсов, за которые не стыдно)',
     'portfolioFilterAll' => 'Ähli taslamalar',
     'portfolioFilterEmpty' => 'Taslamalar tapylmady. Başga kategoriýalary synap görüň.',
@@ -194,7 +194,7 @@ Biziň superwaýzerlerimiz işlerimizi mümkin boldugyça amatly ýagdaýda meý
 
     'descForm' => 'Her bir beýik syýahat ilkinji ädimden başlanýar.  
 Biznes dünýä­sinde şol ädim täze mümkinçilikleriň we üstünlikleriň gapysyny açyp bilýän ýönekeý bir habar bolup biler.  
-Lebizli Tehnologiya Merkezi(LTM) -da biz her bir ýüzlenmäniň içinde ösüşe we täzeçillige mümkinçilik bardygyna ynanýarys.',
+Lebizli Tehnologiya Merkezi (LTM) -da biz her bir ýüzlenmäniň içinde ösüşe we täzeçillige mümkinçilik bardygyna ynanýarys.',
 
 
     'formModalTitle' => 'Başlaýarysmy?',
@@ -266,20 +266,20 @@ Netijede, işiňiziň ösmegine kömek edýän möhüm çözgütleri döredýär
 
     'aboutUsFooter2' => 'Biziň üçin esasy zat — netije.  
 "Işiň çylşyrymlylygyna garamazdan, biz täze pikirleri ýüze çykarýarys."
-Lebizli Tehnologiya Merkezi(LTM)  — pikir bilen duýgyny baglanyşdyrýan studiýa. Biz muny başarýarys!',
+Lebizli Tehnologiya Merkezi (LTM)  — pikir bilen duýgyny baglanyşdyrýan studiýa. Biz muny başarýarys!',
 
-    'aboutUsFooter3' => 'Lebizli Tehnologiya Merkezi(LTM)  — Türkmenistanda web sahypalary, mobil priloženiýalary taýýarlamak we Bitrix24 ulgamyny ornaşdyrmak boýunça IT çözgütleri hödürleýän kompaniýa.  
+    'aboutUsFooter3' => 'Lebizli Tehnologiya Merkezi (LTM)  — Türkmenistanda web sahypalary, mobil priloženiýalary taýýarlamak we Bitrix24 ulgamyny ornaşdyrmak boýunça IT çözgütleri hödürleýän kompaniýa.  
 Biz orta we uly biznes üçin işläp, diňe sanly önüm döretmek bilen çäklenmän, eýsem IT arkaly iş prosesindäki kynçylyklary hem çözmäge kömek edýäris.',
 
     'aboutUsFooter4' => '"Biz — professional topar" diýen söz her bir saýtda gabat gelýär.  
 Emma biz başga ugurdan ýöremegi saýladyk.  
-Lebizli Tehnologiya Merkezi(LTM)  — iri kompaniýalarda 4+ ýyl tejribesi bolan IT hünärmenleriň topary.  
+Lebizli Tehnologiya Merkezi (LTM)  — iri kompaniýalarda 4+ ýyl tejribesi bolan IT hünärmenleriň topary.  
 Biz  öz taslamalarymyzy döretmek we müşderilerimize täze, döredijilikli çözgütleri hödürlemek üçin birleşdik.  
-Biz Lebizli Tehnologiya Merkezi(LTM) -da  öň korporatiw çäklendirmeler sebäpli durmuşa geçirilmedik pikirleri amala aşyrmaga mümkinçilik aldyk — indi bolsa batyrgaý we innowasion çözgütleri hödürleýäris.',
+Biz Lebizli Tehnologiya Merkezi (LTM) -da  öň korporatiw çäklendirmeler sebäpli durmuşa geçirilmedik pikirleri amala aşyrmaga mümkinçilik aldyk — indi bolsa batyrgaý we innowasion çözgütleri hödürleýäris.',
 
     'aboutUsFooter5' => 'Biziň ýörelgämiz — müşderiniň netijesine gönükdirilen iş we onuň işine hakykatdan hem peýda berjek zatlary teklip etmek. Her bir proýekte aýratyn çemeleşýäris, käwagt iň amatly çözgüt taýýar şablon bolsa-da (bu elbetde gowy däldir((( ), biz ony hem saýlap bilýäris.Maksatlaryňyza has laýyk gelýän aýratyn önümi döretmek mümkinçiligi bar bolsa — biz şol ýoly hödürläris. Biz müşderilerimize ösüşe tarap ýol açýan netijeli çözgütleri teklip edýäris we tehniki kynçylyklaryň hemmesini özümize alýarys.',
-    'aboutUsFooter6' => 'Lebizli Tehnologiya Merkezi(LTM)  — tehnologik innowasiýalara we sanly transformasiýa tarap ýolda siziň ygtybarly hyzmatdaşlaryňyz. Biz diňe bir meseläňizi çözüp goýbermeris — eýsem biziň hödürleýän çözgütlerimiz, bäsdeşleriňiz hünärini üýtgetmegine-de sebäp bolup biler.',
-    'abt1' => 'Lebizli Tehnologiya Merkezi(LTM)  — işiňiz üçin toplumlaýyn IT çözgütleri hödürleýän kompaniýa.  
+    'aboutUsFooter6' => 'Lebizli Tehnologiya Merkezi (LTM)  — tehnologik innowasiýalara we sanly transformasiýa tarap ýolda siziň ygtybarly hyzmatdaşlaryňyz. Biz diňe bir meseläňizi çözüp goýbermeris — eýsem biziň hödürleýän çözgütlerimiz, bäsdeşleriňiz hünärini üýtgetmegine-de sebäp bolup biler.',
+    'abt1' => 'Lebizli Tehnologiya Merkezi (LTM)  — işiňiz üçin toplumlaýyn IT çözgütleri hödürleýän kompaniýa.  
 Biz diňe bir web sahypalaryny ýa-da mobil goşundylary däl, eýsem kompaniýanyň ösüşini çaltlandyrmaga we içerki iş proseslerini gowulandyrmaga kömek edýän strategik gurallary döredýäris.  
 Döwrüň talaplaryna laýyk tehnologiýalary ornaşdyrmak müşderilerimiziň öndürijiligini ýokarlandyrmaga we iş tertibini optimizirlemäge ýardam berýär.',
 
@@ -289,7 +289,7 @@ Taslamaňyz diňe ownuk üýtgetmeleri talap edýän bolsa-da, ýa-da bar bolan 
 
     'our_serv_title' => 'Biziň hyzmatlarymyz',
 
-    'abtLtm' => 'Lebizli Tehnologiya Merkezi(LTM)  — işiňiz üçin toplumlaýyn IT çözgütleri hödürleýän hünärmenleriň topary.  
+    'abtLtm' => 'Lebizli Tehnologiya Merkezi (LTM)  — işiňiz üçin toplumlaýyn IT çözgütleri hödürleýän hünärmenleriň topary.  
 Biz diňe bir web sahypalaryny ýa-da mobil goşundylary däl-de, kompaniýanyň ösüşini çaltlandyrmaga we içerki iş proseslerini gowulandyrmaga mümkinçilik berýän strategik gurallary döredýäris.  
 Döwrüň häzirki tehnologiýalaryny ornaşdyrmak müşderilerimize öndürijiligi ýokarlandyrmaga we iş tertibini optimizirlemäge kömek edýär.',
 
@@ -473,7 +473,7 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
     'bitrix_our_cases' => 'Biziň taslamalarymyz',
     'bitrix_more' => 'Giňişleýin',
 
-    'metaDescBitrix' => 'Resmi Bitrix24 hyzmatdaşlary Türkmenistanda. Lebizli Tehnologiya Merkezi(LTM) Türkmenistanyň çäginde Bitrix24 ulgamynyň ornaşdyrylmagyny we sazlamasyny hödürleýär. Biznesiň awtomatlaşdyrylmagy, CRM, taslamalaryň dolandyrylyşy we üstünlik üçin integrasiýa.',
+    'metaDescBitrix' => 'Resmi Bitrix24 hyzmatdaşlary Türkmenistanda. Lebizli Tehnologiya Merkezi (LTM) Türkmenistanyň çäginde Bitrix24 ulgamynyň ornaşdyrylmagyny we sazlamasyny hödürleýär. Biznesiň awtomatlaşdyrylmagy, CRM, taslamalaryň dolandyrylyşy we üstünlik üçin integrasiýa.',
 'metaKeyBitrix'  => 'Resmi Bitrix24 hyzmatdaşlary Türkmenistanda, Bitrix24 Türkmenistan, Bitrix24 ornaşdyrmak, CRM sazlamak Türkmenistan, biznesi awtomatlaşdyrmak Türkmenistan, Bitrix24 IT hyzmatlary',
 'titleBitrix'       => 'Bitrix24 Türkmenistan',
 
@@ -545,7 +545,7 @@ Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem
     'teltonika' => 'Teltonika',
     
     'metaKeyTeltonika' => 'Teltonika, Teltonika Telematics, GPS gözegçilik, awtopark dolandyryşy, IoT çözgütleri, ulag yzarlaýyş, telematika',
-    'titleTeltonika' => 'Teltonika Telematics Türkmenistanda | Lebizli Tehnologiya Merkezi(LTM)',
+    'titleTeltonika' => 'Teltonika Telematics Türkmenistanda | Lebizli Tehnologiya Merkezi (LTM)',
     'metaDescTeltonika' => 'Teltonika Telematics — ulaglar üçin GPS gözegçilik, awtopark dolandyryşy we IoT taslamalary boýunça çözgütler. Biznes we korporatiw ulgamlary üçin enjamlar.',
     
     'teltonika_our_competencies' => 'Teltonika boýunça biziň başarnyklarymyz',
