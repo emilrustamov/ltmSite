@@ -23,7 +23,7 @@
                             @endif
                         @endif
                         <div class="line"></div>
-                        <h2>
+                        <h2 class="portfolio-text">
                             {!! $portf->translation($lang)?->title ?? 'No title' !!}
                             <span class="not-viewed-label" style="display: inline-block; font-size: 0.7rem; color: white; background: #e31e24; margin-left: 0.5rem; border-radius: 0.25rem; padding: 2px 6px;">Не просмотрено</span>
                             <span class="viewed-label" style="display: none; font-size: 0.7rem; color: white; background: #28a745; margin-left: 0.5rem; border-radius: 0.25rem; padding: 2px 6px;">Просмотрено</span>
