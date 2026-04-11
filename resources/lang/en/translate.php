@@ -5,7 +5,7 @@ return [
     'productsmenu' => 'Products',
     'allServices' => 'All services',
     'aboutUs' => 'About Us',
-    'aboutUsTitle' => 'LTM :',
+    'aboutUsTitle' => 'Lebizli Tehnologiya Merkezi(LTM) :',
     'portfolio' => 'Portfolio',
     'bitrix' => 'Bitrix24',
     'blog' => 'Blog',
@@ -78,11 +78,11 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'moreThan2' => 'an IT company',
 
     'history' => 'Company history',
-    'aboutHistory' => "📚 LTM - an IT company offering modern solutions in website development, mobile applications and Bitrix24 platform implementation in Turkmenistan. We focus on large and medium businesses, helping them not just create digital products but eliminate 'pain points' in their business processes through IT solutions.\n\n
-👨‍💻 'We are a team of professionals' - this sounds like every other website, but we choose to move differently. LTM  is a team of IT specialists with 4+ years of experience in major companies. We united to create our own projects and offer clients something new and creative. At LTM , we can implement ideas and approaches that previously remained in the shadows of corporate limitations, introducing bold and innovative solutions.\n\n
+    'aboutHistory' => "📚 Lebizli Tehnologiya Merkezi(LTM) - an IT company offering modern solutions in website development, mobile applications and Bitrix24 platform implementation in Turkmenistan. We focus on large and medium businesses, helping them not just create digital products but eliminate 'pain points' in their business processes through IT solutions.\n\n
+👨‍💻 'We are a team of professionals' - this sounds like every other website, but we choose to move differently. Lebizli Tehnologiya Merkezi(LTM)  is a team of IT specialists with 4+ years of experience in major companies. We united to create our own projects and offer clients something new and creative. At Lebizli Tehnologiya Merkezi(LTM) , we can implement ideas and approaches that previously remained in the shadows of corporate limitations, introducing bold and innovative solutions.\n\n
 💡 Our principle is to always work for the client\'s results and offer what truly helps your business. We approach each project individually, selecting solutions for specific tasks, even if the optimal solution turns out to be a ready-made template (which isn\'t ideal).\n\n
 🚀 But if there\'s an opportunity to create a unique product that better serves your goals, we\'ll propose that path. In any case, our task is to provide clients with tools that will contribute to their development and competitiveness, without burdening you with technical issues and problems.\n\n
-🤝 LTM  - your reliable partner on the path to technological innovation and digital transformation. We don\'t just solve your tasks - we do it in a way that will make your competitors want to change professions.\n",
+🤝 Lebizli Tehnologiya Merkezi(LTM)  - your reliable partner on the path to technological innovation and digital transformation. We don\'t just solve your tasks - we do it in a way that will make your competitors want to change professions.\n",
 
     'aboutStatistics' => 'Cold statistics',
     'years' => 'years in IT',
@@ -105,7 +105,7 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'valueSubCont' => 'Between projects, we studied, continue to learn, and keep improving',
     'exp' => 'Nothing beats experience, no matter how much you study😉',
     'valueJobs' => 'We\'ve excelled in graphic design: creating naming across Ashgabat, developing highly professional logos and corresponding brand identities, building sales websites, working on product packaging, conceptualizing retail and exhibition spaces.',
-    'aboutSpecTitle' => 'LTM  Specialization',
+    'aboutSpecTitle' => 'Lebizli Tehnologiya Merkezi(LTM)  Specialization',
     'aboutSpecSub' => 'We don\'t aim to do what we can\'t, but we\'re not afraid to explore new solutions - we grow and improve our results',
     'spec1' => 'Website and online store development',
     'spec1Sub' => "Creating websites and online stores of any\ncomplexity using modern\ntechnologies",
@@ -144,7 +144,7 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'mailHr' => 'info@ltm.',
     'aboutFooterSubCont' => '- you might become part of our team.',
 
-    'portfolioTitle' => 'LTM  Projects',
+    'portfolioTitle' => 'Lebizli Tehnologiya Merkezi(LTM)  Projects',
     'portfolioSub' => 'Many interesting cases we\'re proud of)',
     'portfolioFilterAll' => 'All projects',
     'portfolioFilterEmpty' => 'No projects found. Try choosing other categories.',
@@ -169,7 +169,7 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'formComment' => 'Your comment or description',
 
     'titleForm' => "Transform your ideas into action:\ncontact us right now!",
-    'descForm' => 'Every great journey begins with a first step. In business world, this step can be a simple message that opens doors to new opportunities and success. At "LTM ", we believe that behind every request lies potential for innovation and transformation.',
+    'descForm' => 'Every great journey begins with a first step. In business world, this step can be a simple message that opens doors to new opportunities and success. At "Lebizli Tehnologiya Merkezi(LTM)", we believe that behind every request lies potential for innovation and transformation.',
 
     'formModalTitle' => 'Shall we start?',
     'formModalDesc' => 'With us, projects go smoothly and effortlessly, let\'s get acquainted!',
@@ -207,15 +207,15 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
 
     
     'aboutUsFooter1' => 'We create "details and tools" that move your business forward. Developing each idea, we expand its values and philosophy, creating important solutions that help businesses achieve necessary growth.',
-    'aboutUsFooter2' => 'Our company puts "efficiency" first, and despite all business pragmatism, we find many creative ideas to implement solutions that can connect you with your audience for years to come. LTM  that can!',
-    'aboutUsFooter3' => 'LTM  - an IT company offering solutions in website development, mobile applications and Bitrix24 platform implementation in Turkmenistan. We focus on large and medium businesses, helping not just create digital products but eliminate "pain points" in business processes through IT solutions.',
-    'aboutUsFooter4' => '"We are a team of professionals" - this sounds like every other website, but we choose to move differently. LTM  is a team of IT specialists with 4+ years of experience in major companies. We united to create our own projects and offer clients something new and creative. At LTM  we can implement ideas and approaches that previously remained in the shadows of corporate limitations, introducing bold and innovative solutions.',
+    'aboutUsFooter2' => 'Our company puts "efficiency" first, and despite all business pragmatism, we find many creative ideas to implement solutions that can connect you with your audience for years to come. Lebizli Tehnologiya Merkezi(LTM)  that can!',
+    'aboutUsFooter3' => 'Lebizli Tehnologiya Merkezi(LTM)  - an IT company offering solutions in website development, mobile applications and Bitrix24 platform implementation in Turkmenistan. We focus on large and medium businesses, helping not just create digital products but eliminate "pain points" in business processes through IT solutions.',
+    'aboutUsFooter4' => '"We are a team of professionals" - this sounds like every other website, but we choose to move differently. Lebizli Tehnologiya Merkezi(LTM)  is a team of IT specialists with 4+ years of experience in major companies. We united to create our own projects and offer clients something new and creative. At Lebizli Tehnologiya Merkezi(LTM)  we can implement ideas and approaches that previously remained in the shadows of corporate limitations, introducing bold and innovative solutions.',
     'aboutUsFooter5' => 'Our principle is to always work for client results and offer what truly helps your business. We approach each project individually, selecting solutions for specific tasks, even if the optimal solution turns out to be a ready-made template, which isn\'t ideal(((. But if there\'s opportunity to create a unique product that better serves your goals, we\'ll propose that path. In any case our task is to provide clients with tools that will contribute to their development and competitiveness, without burdening you with technical issues and problems.',
-    'aboutUsFooter6' => 'LTM  - your reliable partner on the path to technological innovation and digital transformation. We don\'t just solve your tasks - we do it in a way that will make your competitors want to change professions.',
-    'abt1' => 'LTM  - a company offering comprehensive IT solutions for your business. We create not just websites or apps, but strategic tools capable of accelerating company development and improving internal processes. Implementing modern technologies helps our clients improve productivity and optimize workflows, adapting to new challenges.',
+    'aboutUsFooter6' => 'Lebizli Tehnologiya Merkezi(LTM)  - your reliable partner on the path to technological innovation and digital transformation. We don\'t just solve your tasks - we do it in a way that will make your competitors want to change professions.',
+    'abt1' => 'Lebizli Tehnologiya Merkezi(LTM) - a company offering comprehensive IT solutions for your business. We create not just websites or apps, but strategic tools capable of accelerating company development and improving internal processes. Implementing modern technologies helps our clients improve productivity and optimize workflows, adapting to new challenges.',
     'abt2' => 'Our approach is based on close collaboration with clients. We thoroughly study business specifics to offer the most suitable and effective solutions. Even if your project requires minor adjustments or complete rethinking of existing processes, we\'re ready to propose the optimal option that will ensure long-term results.',
     'our_serv_title' => 'Our services',
-    'abtLtm' => 'LTM  is a team of professionals offering comprehensive IT solutions for your business. We create not just websites or apps, but strategic tools capable of accelerating company development and improving internal processes. Implementing modern technologies helps our clients improve productivity and optimize workflows, adapting to new challenges.',
+    'abtLtm' => 'Lebizli Tehnologiya Merkezi(LTM)  is a team of professionals offering comprehensive IT solutions for your business. We create not just websites or apps, but strategic tools capable of accelerating company development and improving internal processes. Implementing modern technologies helps our clients improve productivity and optimize workflows, adapting to new challenges.',
     'abtLtm1' => 'Our approach is based on close collaboration with clients. We thoroughly study business specifics to offer the most suitable and effective solutions. Even if your project requires minor adjustments or complete rethinking of existing processes, we\'re ready to propose the optimal option that will ensure long-term results.',
     'abtLtm3' => 'We\'re ready to cooperate with IT companies, production teams, PR agencies, architectural s and others. If you have an offer, you can contact us.',
     'viewAll' => 'View all',
@@ -382,7 +382,7 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'bitrix_our_cases' => 'Our Cases',
     'bitrix_more' => 'Learn More',
 
-    'metaDescBitrix' => 'Official Bitrix24 Partners in Turkmenistan. LTM offers implementation and configuration of the Bitrix24 system in Turkmenistan. Business automation, CRM, project management, and integration for your success.',
+    'metaDescBitrix' => 'Official Bitrix24 Partners in Turkmenistan. Lebizli Tehnologiya Merkezi(LTM) offers implementation and configuration of the Bitrix24 system in Turkmenistan. Business automation, CRM, project management, and integration for your success.',
     'metaKeyBitrix'  => 'Official Bitrix24 Partners in Turkmenistan, Bitrix24 in Turkmenistan, Bitrix24 implementation, CRM setup in Turkmenistan, business automation in Turkmenistan, Bitrix24 IT services',
     'titleBitrix'       => 'Bitrix24 in Turkmenistan',
 
@@ -402,7 +402,7 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'titleProjectDetails'       => '- Lebizli Tehnologiya Merkezi (LTM) - IT Company in Turkmenistan',
 
     'metaDescPortfolio' => 'Explore the portfolio of Lebizli Tehnologiya Merkezi (LTM), an IT company in Turkmenistan. Examples of websites, mobile apps, e-commerce projects, and Bitrix24 implementations.',
-    'metaKeyPortfolio'  => 'Lebizli Tehnologiya Merkezi portfolio, LTM IT company, IT portfolio Turkmenistan, website development Turkmenistan, Bitrix24 examples Turkmenistan',
+    'metaKeyPortfolio'  => 'Lebizli Tehnologiya Merkezi portfolio, Lebizli Tehnologiya Merkezi(LTM) IT company, IT portfolio Turkmenistan, website development Turkmenistan, Bitrix24 examples Turkmenistan',
     'titlePortfolio'       => 'Portfolio of Lebizli Tehnologiya Merkezi (LTM) - IT Company in Turkmenistan',
 
     'metaDescServices' => 'Lebizli Tehnologiya Merkezi (LTM) is an IT company in Turkmenistan offering services in website development, mobile apps, e-commerce, and Bitrix24 implementation for your business.',
@@ -416,9 +416,9 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'allJobsTitle' => 'All Job Positions',
     'allJobsSubtitle' => 'Find the right position in our team',
     'jobsMetaDesc' => 'Open positions at IT company Lebizli Tehnologiya Merkezi (LTM) in Turkmenistan. Join our development team.',
-    'jobsMetaKey' => 'IT jobs Turkmenistan, programmer jobs Turkmenistan, LTM careers, IT career Turkmenistan',
+    'jobsMetaKey' => 'IT jobs Turkmenistan, programmer jobs Turkmenistan, Lebizli Tehnologiya Merkezi(LTM) careers, IT career Turkmenistan',
     'allJobsMetaDesc' => 'All open positions at IT company Lebizli Tehnologiya Merkezi (LTM) in Turkmenistan.',
-    'allJobsMetaKey' => 'IT jobs Turkmenistan, programmer jobs Turkmenistan, LTM careers, IT career Turkmenistan',
+    'allJobsMetaKey' => 'IT jobs Turkmenistan, programmer jobs Turkmenistan, Lebizli Tehnologiya Merkezi(LTM) careers, IT career Turkmenistan',
     'open' => 'Open',
     'closed' => 'Closed',
     'jobDetails' => 'Job Details',
@@ -454,7 +454,7 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'teltonika' => 'Teltonika',
 
     'metaKeyTeltonika' => 'Teltonika, Teltonika Telematics, GPS monitoring, fleet management, IoT solutions, vehicle tracking, telematics',
-    'titleTeltonika' => 'Teltonika Telematics in Turkmenistan | LTM Studio',
+    'titleTeltonika' => 'Teltonika Telematics in Turkmenistan | Lebizli Tehnologiya Merkezi(LTM)',
     'metaDescTeltonika' => 'Teltonika Telematics — solutions for GPS vehicle monitoring, fleet management, and IoT projects. Equipment for business and enterprise systems.',
 
     'teltonika_our_competencies' => 'Our Teltonika Competencies',
