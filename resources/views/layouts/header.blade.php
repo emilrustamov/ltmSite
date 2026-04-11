@@ -85,15 +85,20 @@
 
     <!-- Контакты и язык -->
     <div class="flex justify-end items-center gap-4 w-1/2 sm:w-2/3 md:w-1/4 text-sm sm:text-base md:text-2xl font-bold">
-        <a href="tel:+99361648605" class="whitespace-nowrap">+993 61 00 97 92</a>
+        <!-- <a href="tel:+99361648605" class="whitespace-nowrap">+993 61 00 97 92</a> -->
+        <a href="tel:+99361009792" class="whitespace-nowrap flex items-center">
+            <i class="fa fa-phone block lg:!hidden"></i>
+            <span class="hidden lg:block">+993 61 00 97 92</span>
+        </a>
+
 
         <!-- Языки (только десктоп) -->
         <!-- Языки (десктоп) -->
         <div class="hidden md:flex gap-5">
             @php
-                $current = Route::currentRouteName();
-                $params = request()->route()->parameters();
-                $langs = ['ru', 'en', 'tm'];
+            $current = Route::currentRouteName();
+            $params = request()->route()->parameters();
+            $langs = ['ru', 'en', 'tm'];
             @endphp
 
             <!-- ▸ триггер и меню в одном .relative блоке  -->
@@ -114,14 +119,14 @@
                     class="hidden absolute left-0 top-full mt-2 bg-[#e31e24] text-white rounded px-4 py-2 z-50 shadow">
                     <ul class="text-center !list-none">
                         @foreach ($langs as $l)
-                            @if (($params['lang'] ?? app()->getLocale()) !== $l)
-                                <li class="py-1 hover:underline">
-                                    <a
-                                        href="{{ route($current, array_merge($params, ['lang' => $l])) }}{{ request()->getQueryString() ? '?' . request()->getQueryString() : '' }}">
-                                        {{ strtoupper($l) }}
-                                    </a>
-                                </li>
-                            @endif
+                        @if (($params['lang'] ?? app()->getLocale()) !== $l)
+                        <li class="py-1 hover:underline">
+                            <a
+                                href="{{ route($current, array_merge($params, ['lang' => $l])) }}{{ request()->getQueryString() ? '?' . request()->getQueryString() : '' }}">
+                                {{ strtoupper($l) }}
+                            </a>
+                        </li>
+                        @endif
                         @endforeach
                     </ul>
                 </div>
@@ -138,7 +143,7 @@
 
         <!-- Мобильное меню (бургер) -->
         <button id="mobileMenuOpen"
-            class="block lg:hidden bg-[#e31e24] text-white rounded-full flex items-center justify-center w-full h-full">
+            class="block lg:hidden bg-[#e31e24] text-white rounded-full flex items-center justify-center px-3 py-2 w-auto h-full">
             <i class="fa-solid fa-bars text-[18px]"></i>
         </button>
     </div>
@@ -154,11 +159,11 @@
         </div>
     </div>
     @if (!empty($leftMenu))
-        <div class="rowLeftHeader">
-            <a href="/{{ $lang }}/">
-                <p>{{ __('translate.mainPage') }}</p>
-            </a>
-        </div>
+    <div class="rowLeftHeader">
+        <a href="/{{ $lang }}/">
+            <p>{{ __('translate.mainPage') }}</p>
+        </a>
+    </div>
     @endif
 </div>
 
@@ -242,7 +247,7 @@
         <h2 class="text-2xl font-bold">Только для самых смелых</h2>
         <button id="mobileMenuClose"><i class="fa fa-close text-3xl"></i></button>
     </div>
-
+<!-- modal okno -->
     <a href="tel:+99361009792" class="text-lg mb-4 font-semibold flex items-center">
         <i class="fa fa-phone mr-2"></i> +993 61 00 97 92
     </a>
