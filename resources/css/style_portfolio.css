@@ -51,11 +51,14 @@
   transform: scale(1.1);
 }
 
-.portfolio-text{
-  color: white;
+.content:hover .portfolio-text {
+  color: #e31e24;
 }
-.portfolio-text:hover{
-  color: #e31e24
+
+/* Оставляем базовый цвет */
+.portfolio-text {
+  color: white;
+  transition: color 0.3s ease; /* Добавь для плавности */
 }
 
 .arrow {
