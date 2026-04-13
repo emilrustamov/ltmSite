@@ -249,5 +249,8 @@
                 gap: 6px;
             }
         }
+            .section ul {
+             padding-left: 40px !important;
+        }
     </style>
 @endsection
