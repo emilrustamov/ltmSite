@@ -371,5 +371,7 @@
     <script src="{{ asset('js/admin-validation.js') }}"></script>
     
     @yield('scripts')
+    @stack('styles')
+    @stack('scripts')
 </body>
 </html>
