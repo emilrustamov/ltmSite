@@ -361,4 +361,32 @@ function confirmDelete() {
     document.getElementById('delete-form').submit();
 }
 </script>
+@push('scripts')
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const fields = [
+        'target_ru', 'target_en', 'target_tm',
+        'desc_ru', 'desc_en', 'desc_tm',
+        'res_ru', 'res_en', 'res_tm'
+    ];
+
+    fields.forEach(id => {
+        const el = document.querySelector('#' + id);
+        if (el) {
+            ClassicEditor.create(el).catch(console.error);
+        }
+    });
+});
+</script>
+@endpush
+@push('styles')
+<style>
+.ck-editor__editable {
+    min-height: 200px !important;
+}
+</style>
+@endpush
+@endsection
 @endsection
