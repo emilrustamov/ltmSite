@@ -8,7 +8,7 @@
 
                 
 <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#350000] flex flex-col fade-in"
-                    itemscope itemtype="http://schema.org/Service">
+                    itemscope itemtype="https://schema.org/Service">
                     <div class="flex flex-col h-full">
                         <svg class="w-10 h-10 mb-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
@@ -28,7 +28,7 @@
 
 
                 <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#2b2a2a] flex flex-col fade-in"
-                    itemscope itemtype="http://schema.org/Service">
+                    itemscope itemtype="https://schema.org/Service">
                     <div class="flex flex-col h-full">
                         <svg class="w-10 h-10 mb-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
@@ -51,7 +51,7 @@
                 
 
                 <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#bc2c2c] flex flex-col fade-in"
-                    itemscope itemtype="http://schema.org/Service">
+                    itemscope itemtype="https://schema.org/Service">
                     <div class="flex flex-col h-full">
                         <svg class="w-10 h-10 mb-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
@@ -72,7 +72,7 @@
 
 
                 <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#e31e24] flex flex-col fade-in"
-                    itemscope itemtype="http://schema.org/Service">
+                    itemscope itemtype="https://schema.org/Service">
                     <div class="flex flex-col h-full">
                         <svg class="w-10 h-10 mb-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
@@ -96,7 +96,7 @@
 
 
                 <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#350000] flex flex-col fade-in"
-                    itemscope itemtype="http://schema.org/Service">
+                    itemscope itemtype="https://schema.org/Service">
                     <div class="flex flex-col h-full">
 <svg class="mb-4" width="44" height="41" viewBox="0 0 44 41" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M17.4271 9.2052L18.4185 9.70091C18.5878 9.78556 18.7629 9.85808 18.9424 9.91794L19.9255 10.2456C20.3333 10.3816 20.7605 10.4509 21.1904 10.4509H21.2945C21.6216 10.4509 21.9474 10.4108 22.2647 10.3315L22.6067 10.246C22.8898 10.1752 23.1643 10.0736 23.4254 9.9431L24.9012 9.2052" stroke="white" stroke-linecap="round"/>
@@ -139,7 +139,7 @@
                 </div>
 
                 <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#bc2c2c] flex flex-col fade-in"
-                    itemscope itemtype="http://schema.org/Service">
+                    itemscope itemtype="https://schema.org/Service">
                     <div class="flex flex-col h-full">
 <svg  class="mb-4" width="32" height="35" viewBox="0 0 32 35" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M23.8801 20.8013V22.0184C23.8801 22.0955 23.9158 22.1684 23.9767 22.2158L27.9527 25.3058" stroke="#FFFFFF" stroke-linecap="round"/>
@@ -178,7 +178,7 @@
                 </div>
 
                 <!-- <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#e31e24] flex flex-col fade-in"
-                    itemscope itemtype="http://schema.org/Service">
+                    itemscope itemtype="https://schema.org/Service">
                     <div class="flex flex-col h-full">
 <svg class="mb-4" width="48" height="34" viewBox="0 0 48 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="0.5" y="0.5" width="46.6" height="33" rx="0.5" stroke="#FFFFFF"/>
@@ -206,7 +206,7 @@
                 </div> -->
 
                 <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#2b2a2a] flex flex-col fade-in"
-                    itemscope itemtype="http://schema.org/Service">
+                    itemscope itemtype="https://schema.org/Service">
                     <div class="flex flex-col h-full">
 <svg class="mb-4" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M1.53296 8.52225L9.8979 3.67573L19.4801 9.18924M22.7628 9.18924L28.2763 1.83789" stroke="#FFFFFF" stroke-linecap="round"/>
@@ -232,7 +232,7 @@
                 </div>
 
                 <div class="swiper-slide  max-w-[400px] h-[660px] p-6 rounded-xl shadow-lg bg-[#bc2c2c] flex flex-col fade-in"
-                    itemscope itemtype="http://schema.org/Service">
+                    itemscope itemtype="https://schema.org/Service">
                     <div class="flex flex-col h-full">
 <svg class="mb-4" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M9.51501 29.3583L14.723 24.0457C14.77 23.9977 14.8343 23.9707 14.9015 23.9707H17.4471C17.5154 23.9707 17.5808 23.9427 17.6279 23.8933L19.6106 21.8157" stroke="#FFFFFF" stroke-linecap="round"/>

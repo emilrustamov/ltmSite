@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\TechnicalSkillController;
 use App\Http\Controllers\Admin\WorkFormatController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\CityController;
+use App\Models\JobPosition;
 use Illuminate\Pagination\Paginator;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
@@ -34,46 +35,45 @@ require __DIR__ . '/auth.php';
 Route::get('/sitemap.xml', function () {
     $langs = ['ru', 'en', 'tm'];
     $sitemap = Sitemap::create();
+    $baseUrl = rtrim(request()->getSchemeAndHttpHost(), '/');
+    if (!$baseUrl || str_contains($baseUrl, 'localhost')) {
+        $baseUrl = rtrim((string) config('app.url'), '/');
+    }
 
-    // 1. Главная страниц
     foreach ($langs as $l) {
-        $url = Url::create("/{$l}/")
+        $url = Url::create("{$baseUrl}/{$l}/")
             ->setPriority(1.0)
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
             ->setLastModificationDate(now());
-        // добавляем hreflang
         foreach ($langs as $alt) {
-            $url->addAlternate($alt, "https://ltm.studio/{$alt}/");
+            $url->addAlternate($alt, "{$baseUrl}/{$alt}/");
         }
         $sitemap->add($url);
     }
 
-    // 2. Список портфолио
     foreach ($langs as $l) {
-        $url = Url::create("/{$l}/portfolio/")
+        $url = Url::create("{$baseUrl}/{$l}/portfolio/")
             ->setPriority(0.9)
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
             ->setLastModificationDate(now());
         foreach ($langs as $alt) {
-            $url->addAlternate($alt, "https://ltm.studio/{$alt}/portfolio/");
+            $url->addAlternate($alt, "{$baseUrl}/{$alt}/portfolio/");
         }
         $sitemap->add($url);
     }
 
-    // 3. Отдельные проекты
-    Portfolio::all()->each(function ($item) use ($sitemap, $langs) {
+    Portfolio::all()->each(function ($item) use ($sitemap, $langs, $baseUrl) {
         $slug = $item->slug;
-        $url = Url::create("/ru/portfolio/{$slug}")
+        $url = Url::create("{$baseUrl}/ru/portfolio/{$slug}")
             ->setPriority(0.8)
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
             ->setLastModificationDate($item->updated_at);
         foreach ($langs as $alt) {
-            $url->addAlternate($alt, "https://ltm.studio/{$alt}/portfolio/{$slug}");
+            $url->addAlternate($alt, "{$baseUrl}/{$alt}/portfolio/{$slug}");
         }
         $sitemap->add($url);
     });
 
-    // 4. Статические страницы
     $static = [
         '/services'  => [0.8, Url::CHANGE_FREQUENCY_MONTHLY],
         '/bitrix24'  => [0.7, Url::CHANGE_FREQUENCY_MONTHLY],
@@ -83,22 +83,44 @@ Route::get('/sitemap.xml', function () {
 
     foreach ($static as $path => [$prio, $freq]) {
         foreach ($langs as $l) {
-            $url = Url::create("/{$l}{$path}")
+            $url = Url::create("{$baseUrl}/{$l}{$path}")
                 ->setPriority($prio)
                 ->setChangeFrequency($freq)
                 ->setLastModificationDate(now());
             foreach ($langs as $alt) {
-                $url->addAlternate($alt, "https://ltm.studio/{$alt}{$path}");
+                $url->addAlternate($alt, "{$baseUrl}/{$alt}{$path}");
             }
             $sitemap->add($url);
         }
     }
 
+    foreach ($langs as $l) {
+        $url = Url::create("{$baseUrl}/{$l}/jobs")
+            ->setPriority(0.8)
+            ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+            ->setLastModificationDate(now());
+        foreach ($langs as $alt) {
+            $url->addAlternate($alt, "{$baseUrl}/{$alt}/jobs");
+        }
+        $sitemap->add($url);
+    }
+
+    JobPosition::query()->where('status', true)->get()->each(function ($item) use ($sitemap, $langs, $baseUrl) {
+        $url = Url::create("{$baseUrl}/ru/jobs/{$item->id}")
+            ->setPriority(0.7)
+            ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+            ->setLastModificationDate($item->updated_at);
+        foreach ($langs as $alt) {
+            $url->addAlternate($alt, "{$baseUrl}/{$alt}/jobs/{$item->id}");
+        }
+        $sitemap->add($url);
+    });
+
     return $sitemap->toResponse(request());
 });
 
 Route::get('/api/portfolio-count/{lang}', [PortfolioController::class, 'getPortfolioCount']);
-Route::get('/', fn() => redirect('/ru')); // Корень -> /ru по умолчанию
+Route::get('/', fn() => redirect('/ru', 301)); // Корень -> /ru по умолчанию
 
 
 // ---------------------------------------

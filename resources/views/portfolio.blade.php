@@ -547,6 +547,40 @@
             font-size: 1.2rem;
         }
 
+        .portfolio-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 8px;
+            flex-wrap: nowrap;
+        }
+
+        .portfolio-status {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .portfolio-status__badge {
+            display: inline-block;
+            font-size: 1rem;
+            line-height: 1;
+            color: #ffffff;
+            border-radius: 0.25rem;
+            padding: 6px 9px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+        }
+
+        .portfolio-status__badge--not-viewed {
+            background: #f0353a;
+        }
+
+        .portfolio-status__badge--viewed {
+            display: none;
+            background: #34c759;
+        }
+
         @media (max-width: 768px) {
             .portfolio-page {
                 gap: 20px;

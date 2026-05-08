@@ -3,48 +3,51 @@
 namespace App\Http\Controllers;
 
 use App\Constants\Permissions;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreContactRequest;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
+
 class ContactController extends Controller
 {
     /**
-     * Write code on Method
-     *
-     * @return response()
+     * Отображает страницу с формой контактов.
      */
     public function showForm()
     {
         return view('contact');
     }
+
     /**
-     * Write code on Method
-     *
-     * @return response()
+     * Сохраняет отправленную контактную форму.
      */
-    public function submitForm(Request $request)
+    public function submitForm(StoreContactRequest $request)
     {
-        $fields = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required|numeric',
-            'subject' => 'required',
-            'message' => 'required'
-        ]);
+        $fields = $request->validated();
 
         try {
-            // Сохраняем заявку в БД (письмо отправится автоматически через boot() метод)
+            $recentDuplicate = Contact::query()
+                ->where('email', $fields['email'])
+                ->where('phone', $fields['phone'])
+                ->where('created_at', '>=', now()->subMinutes(15))
+                ->exists();
+
+            if ($recentDuplicate) {
+                return redirect()->back()->withInput()->with('error', 'Вы уже отправляли сообщение недавно. Пожалуйста, повторите попытку немного позже.');
+            }
+
             Contact::create($fields);
-            
+
             return redirect()->back()->with('success', 'Форма отправлена успешно. Мы скоро с Вами свяжемся.');
         } catch (\Exception $e) {
-            // Выводим ошибку в логи Laravel
             \Log::error('Ошибка сохранения контакта: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Ошибка при отправке формы. Попробуйте позже.');
         }
     }
 
     // Админ методы
+    /**
+     * Возвращает список контактных заявок для администратора.
+     */
     public function index()
     {
         // Проверка разрешения на просмотр контактов
@@ -59,6 +62,9 @@ class ContactController extends Controller
         ]);
     }
 
+    /**
+     * Возвращает детальную страницу контактной заявки.
+     */
     public function show(Contact $contact)
     {
         // Проверка разрешения на просмотр контактов
@@ -71,6 +77,9 @@ class ContactController extends Controller
         ]);
     }
 
+    /**
+     * Удаляет контактную заявку.
+     */
     public function destroy(Contact $contact)
     {
         // Проверка разрешения на редактирование контактов

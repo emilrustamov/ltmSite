@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ $lang ?? app()->getLocale() }}">
 
-<head itemscope itemtype="http://schema.org/WPHeader">
+<head itemscope itemtype="https://schema.org/WPHeader">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf_token" content="{{ csrf_token() }}">
+    <meta name="recaptcha-site-key" content="{{ config('services.recaptcha.site_key') }}">
     
     @php
     // Все поддерживаемые локали
@@ -25,13 +26,25 @@
     $cityName = $cityNames[$lang] ?? 'Ашхабад';
     $metaKey = $baseKeywords ? $baseKeywords . ', ' . $cityName : $cityName;
 
+    $baseUrl = rtrim(request()->getSchemeAndHttpHost(), '/');
+    if (!$baseUrl || str_contains($baseUrl, 'localhost')) {
+        $baseUrl = rtrim((string) config('app.url'), '/');
+    }
+
     // Динамическое изображение для Open Graph
-    $ogImage = $__env->yieldContent('ogImage', config('app.url') . '/assets/images/ltm.png');
+    $ogImageRaw = trim($__env->yieldContent('ogImage', ''));
+    if ($ogImageRaw === '') {
+        $ogImage = $baseUrl . '/assets/images/ltm.png';
+    } elseif (str_starts_with($ogImageRaw, 'http://') || str_starts_with($ogImageRaw, 'https://')) {
+        $ogImage = $ogImageRaw;
+    } else {
+        $ogImage = $baseUrl . '/' . ltrim($ogImageRaw, '/');
+    }
     $ogImageWidth = $__env->yieldContent('ogImageWidth', '1200');
     $ogImageHeight = $__env->yieldContent('ogImageHeight', '630');
 
-    // URL текущей страницы
-    $currentUrl = url($lang . ($slug ? '/' . $slug : ''));
+    $currentUrl = $baseUrl . '/' . $lang . ($slug ? '/' . $slug : '');
+    $xDefaultUrl = $baseUrl . '/ru' . ($slug ? '/' . $slug : '');
 
     // Таблица соответствия для Open Graph
     $ogLocales = ['ru' => 'ru_RU', 'en' => 'en_US', 'tm' => 'tk_TM'];
@@ -44,7 +57,7 @@
     <title itemprop="headline">{{ $title ?: 'Lebizli Tehnologiya Merkezi (LTM)' }}</title>
     <meta name="description" content="{{ $metaDesc }}">
     <meta name="keywords" content="{{ $metaKey }}">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="robots" content="{{ trim($__env->yieldContent('metaRobots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1')) }}">
     <meta name="author" content="Lebizli Tehnologiya Merkezi (LTM)">
     <meta name="publisher" content="Lebizli Tehnologiya Merkezi (LTM)">
     <meta name="theme-color" content="#e31e24">
@@ -64,7 +77,7 @@
     <meta property="og:site_name" content="Lebizli Tehnologiya Merkezi (LTM)">
     <meta property="og:locale" content="{{ $ogLocale }}">
     <meta property="article:author" content="Lebizli Tehnologiya Merkezi (LTM)">
-    <meta property="article:publisher" content="{{ config('app.url') }}">
+    <meta property="article:publisher" content="{{ $baseUrl }}">
     
     {{-- Альтернативные локали для Open Graph --}}
     @foreach ($locales as $code)
@@ -90,9 +103,9 @@
     {{-- Canonical и HREFLANG --}}
     <link rel="canonical" href="{{ $currentUrl }}" />
     @foreach ($locales as $code)
-        <link rel="alternate" hreflang="{{ $code }}" href="{{ url($code . ($slug ? '/' . $slug : '')) }}" />
+        <link rel="alternate" hreflang="{{ $code }}" href="{{ $baseUrl . '/' . $code . ($slug ? '/' . $slug : '') }}" />
     @endforeach
-    <link rel="alternate" hreflang="x-default" href="{{ url($slug) }}" />
+    <link rel="alternate" hreflang="x-default" href="{{ $xDefaultUrl }}" />
 
     {{-- Favicon и иконки --}}
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -109,8 +122,8 @@
         "@type": "Organization",
         "name": "Lebizli Tehnologiya Merkezi (LTM)",
         "alternateName": "LTM",
-        "url": "{{ config('app.url') }}",
-        "logo": "{{ config('app.url') }}/assets/images/ltm.png",
+        "url": "{{ $baseUrl }}",
+        "logo": "{{ $baseUrl }}/assets/images/ltm.png",
         "description": "{{ $metaDesc ?: 'IT-компания в Туркменистане, предлагающая современные решения в области разработки сайтов, мобильных приложений и внедрения платформы Битрикс24' }}",
         "address": {
             "@type": "PostalAddress",
@@ -126,7 +139,7 @@
             "availableLanguage": ["ru", "en", "tm"]
         },
         "sameAs": [
-            "http://linkedin.com/company/ltm-studio",
+            "https://linkedin.com/company/ltm-studio",
             "https://www.instagram.com/lebizli_tehnologiya_merkezi"
         ]
     }
@@ -170,7 +183,7 @@
     <script src="{{ asset('assets/js/swiper.js') }}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-   <script>
+   {{-- <script>
 (function(w,d,u){
     try {
         var s=d.createElement('script');
@@ -185,7 +198,7 @@
         console.error('Bitrix24 tracker error:', e);
     }
 })(window,document,'https://cdn-ru.bitrix24.ru/b31120708/crm/tag/call.tracker.js');
-</script>
+</script> --}}
 
 </head>
 
@@ -215,6 +228,20 @@
 
 
         <div>
+            @if (session('success') || session('error'))
+                <div class="container mt-6">
+                    @if (session('success'))
+                        <div class="bg-green-600 text-white p-4 rounded-lg mb-4 text-center font-semibold">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="bg-red-600 text-white p-4 rounded-lg mb-4 text-center font-semibold">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                </div>
+            @endif
             @yield('content')
         </div>
 
@@ -271,8 +298,11 @@
     <div class="crt-overlay" data-bg="{{ asset('assets/images/oEI9uBYSzLpBK.gif') }}"></div>
    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
+    @if(config('services.recaptcha.site_key'))
+        <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
+    @endif
 
-   <script>
+   {{-- <script>
     (function(w, d, u) {
           var s = d.createElement('script');
           s.async = true;
@@ -280,7 +310,7 @@
           var h = d.getElementsByTagName('script')[0];
           h.parentNode.insertBefore(s, h);
       })(window, document, 'https://cdn-ru.bitrix24.ru/b31120708/crm/site_button/loader_1_11qky3.js');
-   </script>
+   </script> --}}
 
 </body>
 

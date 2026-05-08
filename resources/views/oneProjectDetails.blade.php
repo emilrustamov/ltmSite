@@ -31,12 +31,21 @@
 @endsection
 
 @php
+    $baseUrl = rtrim(request()->getSchemeAndHttpHost(), '/');
+    if (!$baseUrl || str_contains($baseUrl, 'localhost')) {
+        $baseUrl = rtrim((string) config('app.url'), '/');
+    }
+
     // Динамическое изображение для Open Graph
     $portfolioImage = $portfolio->getFirstMediaUrl('portfolio-images', 'webp');
     if (!$portfolioImage && $portfolio->photo) {
         $portfolioImage = asset('storage/' . $portfolio->photo);
     }
-    $ogImage = $portfolioImage ?: config('app.url') . '/assets/images/ltm.png';
+    $imageVersion = $portfolio->updated_at?->timestamp ?? $portfolio->id;
+    if ($portfolioImage) {
+        $portfolioImage .= '?v=' . $imageVersion;
+    }
+    $ogImage = $portfolioImage ?: $baseUrl . '/assets/images/ltm.png';
 @endphp
 
 @section('ogImage', $ogImage)
@@ -62,7 +71,7 @@
     "author": {
         "@type": "Organization",
         "name": "Lebizli Tehnologiya Merkezi (LTM)",
-        "url": "{{ config('app.url') }}",
+        "url": "{{ $baseUrl }}",
         "address": {
             "@type": "PostalAddress",
             "streetAddress": "2127 ул. (Г. Кулиева), здание \"Gökje\" 26A",
@@ -75,7 +84,7 @@
         "name": "Lebizli Tehnologiya Merkezi (LTM)",
         "logo": {
             "@type": "ImageObject",
-            "url": "{{ config('app.url') }}/assets/images/ltm.png",
+            "url": "{{ $baseUrl }}/assets/images/ltm.png",
             "width": 512,
             "height": 512
         }

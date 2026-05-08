@@ -314,20 +314,17 @@
         
         // Check for flash messages and show toasts
         document.addEventListener('DOMContentLoaded', function() {
-            // Success message
             @if(session('success'))
-                showToast('{{ session('success') }}', 'success');
+                showToast(@json(session('success')), 'success');
             @endif
-            
-            // Error message
+
             @if(session('error'))
-                showToast('{{ session('error') }}', 'error');
+                showToast(@json(session('error')), 'error');
             @endif
             
-            // Validation errors
             @if($errors->any())
                 @foreach($errors->all() as $error)
-                    showToast('{{ $error }}', 'error');
+                    showToast(@json($error), 'error');
                 @endforeach
             @endif
             

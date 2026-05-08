@@ -1,4 +1,6 @@
 import "./customJs.js";
+import "./form-guard.js";
+import "./application-form.js";
 import "./blurPortfolio.js";
 import "./customSlick.js";
 import "./cursor.js";

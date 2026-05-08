@@ -440,8 +440,12 @@
                             $projectTitle = $project->translation($lang)?->title ?? $project->translation('ru')?->title ?? '';
                             $projectLink = '/' . $lang . '/portfolio/' . $project->slug;
                             $projectImage = $project->getFirstMediaUrl('portfolio-images', 'webp');
+                            $projectImageVersion = $project->updated_at?->timestamp ?? $project->id;
                             if (!$projectImage && $project->photo) {
                                 $projectImage = asset('storage/' . $project->photo);
+                            }
+                            if ($projectImage) {
+                                $projectImage .= '?v=' . $projectImageVersion;
                             }
                         @endphp
 

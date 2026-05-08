@@ -20,7 +20,7 @@
 
     <!-- Меню (только десктоп, центрировано) -->
     <div class="hidden lg:flex justify-center items-center gap-4 w-full lg:w-1/3 z-[999] whitespace-nowrap"
-        itemscope itemtype="http://schema.org/SiteNavigationElement">
+        itemscope itemtype="https://schema.org/SiteNavigationElement">
         <div class="nav-item">
             <a href="/{{ $lang }}/services"
                 class="text-sm md:text-base {{ Request::is($lang . '/services*') ? 'active' : '' }}"

@@ -57,13 +57,13 @@
                 </div>
             @endif
             
-            @error('email')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            
-            @error('password')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
+            @if($errors->any())
+                <div class="alert alert-danger mb-3">
+                    @foreach($errors->all() as $error)
+                        <div>{{ $error }}</div>
+                    @endforeach
+                </div>
+            @endif
             
             <!-- Login Form -->
             <form method="POST" action="{{ route('login') }}">

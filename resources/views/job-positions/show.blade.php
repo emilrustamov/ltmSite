@@ -9,12 +9,17 @@
 @endsection
 
 @php
+    $baseUrl = rtrim(request()->getSchemeAndHttpHost(), '/');
+    if (!$baseUrl || str_contains($baseUrl, 'localhost')) {
+        $baseUrl = rtrim((string) config('app.url'), '/');
+    }
+
     // Динамическое изображение для Open Graph вакансии
     $jobImage = null;
     if ($jobPosition->image) {
         $jobImage = asset('storage/' . $jobPosition->image);
     }
-    $ogImage = $jobImage ?: config('app.url') . '/assets/images/ltm.png';
+    $ogImage = $jobImage ?: $baseUrl . '/assets/images/ltm.png';
     
     // Улучшенное описание с локализацией
     $jobName = $jobPosition->{'name_' . $lang} ?? $jobPosition->name_ru ?? '';
@@ -29,6 +34,20 @@
     if ($lang === 'ru') {
         $metaKeywords .= ', вакансии в Ашхабаде, работа в Туркменистане, IT-вакансии Туркменистан, программист в Ашхабаде';
     }
+
+    $employmentTypeMap = [
+        'full-time' => 'FULL_TIME',
+        'part-time' => 'PART_TIME',
+        'contract' => 'CONTRACTOR',
+        'temporary' => 'TEMPORARY',
+        'internship' => 'INTERN',
+        'volunteer' => 'VOLUNTEER',
+    ];
+    $employmentTypeSchema = $employmentTypeMap[$jobPosition->employment_type ?? ''] ?? 'OTHER';
+
+    $salaryRaw = (string) ($jobPosition->{'salary_' . $lang} ?? $jobPosition->salary_ru ?? '');
+    preg_match_all('/\d+(?:[.,]\d+)?/u', $salaryRaw, $salaryMatches);
+    $salaryNumbers = array_map(static fn ($n) => (float) str_replace(',', '.', $n), $salaryMatches[0] ?? []);
 @endphp
 
 @section('ogImage', $ogImage)
@@ -53,7 +72,7 @@
     },
     "datePosted": "{{ $jobPosition->created_at->toIso8601String() }}",
     "validThrough": "{{ $jobPosition->updated_at->addMonths(3)->toIso8601String() }}",
-    "employmentType": "{{ $jobPosition->employment_type ?? 'FULL_TIME' }}",
+    "employmentType": "{{ $employmentTypeSchema }}",
     @if($jobPosition->workFormat)
     "workHours": "{{ $jobPosition->workFormat->{'name_' . $lang} ?? $jobPosition->workFormat->name_ru }}",
     @endif
@@ -61,10 +80,10 @@
         "@type": "Organization",
         "name": "Lebizli Tehnologiya Merkezi (LTM)",
         "alternateName": "LTM",
-        "sameAs": "{{ config('app.url') }}",
+        "sameAs": "{{ $baseUrl }}",
         "logo": {
             "@type": "ImageObject",
-            "url": "{{ config('app.url') }}/assets/images/ltm.png",
+            "url": "{{ $baseUrl }}/assets/images/ltm.png",
             "width": 512,
             "height": 512
         },
@@ -87,13 +106,19 @@
             "addressCountryCode": "TM"
         }
     },
-    @if($jobPosition->{'salary_' . $lang} ?? $jobPosition->salary_ru)
+    @if(count($salaryNumbers) > 0)
     "baseSalary": {
         "@type": "MonetaryAmount",
         "currency": "TMT",
         "value": {
             "@type": "QuantitativeValue",
-            "value": "{{ $jobPosition->{'salary_' . $lang} ?? $jobPosition->salary_ru }}"
+            @if(count($salaryNumbers) > 1)
+            "minValue": {{ min($salaryNumbers) }},
+            "maxValue": {{ max($salaryNumbers) }},
+            @else
+            "value": {{ $salaryNumbers[0] }},
+            @endif
+            "unitText": "MONTH"
         }
     },
     @endif

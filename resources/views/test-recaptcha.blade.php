@@ -1,6 +1,7 @@
 @extends('layouts.base')
 
 @section('title', 'Тест reCAPTCHA')
+@section('metaRobots', 'noindex, nofollow, noarchive')
 
 @section('content')
 <div class="container mx-auto p-8">

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Log;
 
 class AntiSpamMiddleware
 {
+    private const RECAPTCHA_VERIFICATION_ENABLED = false;
+
     // Разрешенные действия для reCAPTCHA
     private const ALLOWED_ACTIONS = ['submit_application', 'submit_contact'];
     
@@ -76,7 +78,7 @@ class AntiSpamMiddleware
 
         $secretKey = config('services.recaptcha.secret_key');
 
-        if (!empty($secretKey)) {
+        if (self::RECAPTCHA_VERIFICATION_ENABLED && !empty($secretKey)) {
             $token = $request->input('recaptcha_token');
 
             if (empty($token)) {

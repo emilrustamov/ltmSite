@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 use App\Models\Portfolio;
+use App\Models\JobPosition;
 
 class GenerateSitemap extends Command
 {
@@ -14,7 +15,10 @@ class GenerateSitemap extends Command
 
     public function handle()
     {
-        $baseUrl = rtrim(config('app.url'), '/'); // убираем завершающий слэш на всякий
+        $baseUrl = rtrim((string) config('app.url'), '/');
+        if ($baseUrl === '' || str_contains($baseUrl, 'localhost') || str_contains($baseUrl, 'ltm.local')) {
+            $baseUrl = 'https://ltm.studio';
+        }
         $langs   = ['ru', 'en', 'tm'];
         $sitemap = Sitemap::create();
 
@@ -89,6 +93,36 @@ class GenerateSitemap extends Command
                 $sitemap->add($url);
             }
         }
+
+        foreach ($langs as $lang) {
+            $full = "{$baseUrl}/{$lang}/jobs";
+            $url  = Url::create($full)
+                ->setPriority(0.8)
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+                ->setLastModificationDate(now());
+
+            foreach ($langs as $alt) {
+                $url->addAlternate("{$baseUrl}/{$alt}/jobs", $alt);
+            }
+
+            $sitemap->add($url);
+        }
+
+        JobPosition::query()->where('status', true)->get()->each(function ($job) use ($sitemap, $langs, $baseUrl) {
+            foreach ($langs as $lang) {
+                $full = "{$baseUrl}/{$lang}/jobs/{$job->id}";
+                $url  = Url::create($full)
+                    ->setPriority(0.7)
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
+                    ->setLastModificationDate($job->updated_at ?? now());
+
+                foreach ($langs as $alt) {
+                    $url->addAlternate("{$baseUrl}/{$alt}/jobs/{$job->id}", $alt);
+                }
+
+                $sitemap->add($url);
+            }
+        });
 
         // Запись в файл
         $sitemap->writeToFile(public_path('sitemap.xml'));
