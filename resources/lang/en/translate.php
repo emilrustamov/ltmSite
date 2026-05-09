@@ -167,6 +167,20 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
     'formProject' => 'What\'s the project?',
     'formEmail' => 'Your email',
     'formComment' => 'Your comment or description',
+    'formCommentOptional' => 'Your comment or description (optional)',
+    'formPreferredContact' => 'Preferred contact method',
+    'formPreferredPhone' => 'Phone',
+    'formPreferredEmail' => 'Email',
+    'formPreferredSocial' => 'Social network',
+    'formContactDetails' => 'Specify phone, email or social profile',
+    'formNamePlaceholder' => 'Enter your name',
+    'formPhonePlaceholder' => 'Enter phone number',
+    'formEmailPlaceholder' => 'Enter email',
+    'formSocialContact' => 'Social network or messenger',
+    'formSocialContactPlaceholder' => 'Provide a link or @username',
+    'formProjectPlaceholder' => 'Briefly describe your project',
+    'formNeedToFill' => 'What needs to be done',
+    'formNeedToFillPlaceholder' => 'Describe your task for us',
 
     'titleForm' => "Transform your ideas into action:\ncontact us right now!",
     'descForm' => 'Every great journey begins with a first step. In business world, this step can be a simple message that opens doors to new opportunities and success. At "Lebizli Tehnologiya Merkezi (LTM)", we believe that behind every request lies potential for innovation and transformation.',
@@ -225,23 +239,23 @@ Our services cover the full spectrum of IT, including comprehensive solutions de
         'heading' => 'Our workflow stages',
         'steps' => [
             [
-                'title' => 'Analysis and preparation',
+                'title' => '🔍 Analysis and preparation',
                 'description' => 'First we study project requirements, define its goals and objectives, research audience and competitors. This allows creating a plan and selecting appropriate technologies for successful project execution.'
             ],
             [
-                'title' => 'Planning and design',
+                'title' => '🎨 Planning and design',
                 'description' => 'We develop website structure and concept, create page layouts and prototypes. Then we proceed to design development, selecting fonts, colors and graphic elements that match the brand and goals.'
             ],
             [
-                'title' => 'Development and functionality',
+                'title' => '⚙️ Development and functionality',
                 'description' => 'We implement core website functions: from feedback forms to integrations with external services and content management systems. We implement all necessary tools for stable website operation.'
             ],
             [
-                'title' => 'Testing and debugging',
+                'title' => '🧪 Testing and debugging',
                 'description' => 'Before launch, we conduct full website testing on different devices and browsers. We fix errors, optimize speed and performance to ensure comfortable user experience.'
             ],
             [
-                'title' => 'Launch and support',
+                'title' => '🚀 Launch and support',
                 'description' => 'After final checks, we upload the website to hosting and launch it. We train the client on project management and provide further support for its development and updates.'
             ],
         ],

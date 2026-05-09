@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\FormProtection;
 use App\Models\Application;
 use App\Models\City;
 use App\Models\Source;
@@ -11,10 +12,42 @@ use App\Models\JobPosition;
 use App\Models\TechnicalSkill;
 use App\Models\Language;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+
 class PublicApplicationController extends Controller
 {
+    /**
+     * @var array<string, array{check: string, custom: string, id: string, table: string}>
+     */
+    private const CUSTOM_FIELD_MAP = [
+        'city' => [
+            'check' => 'custom_city_check',
+            'custom' => 'custom_city',
+            'id' => 'city_id',
+            'table' => 'cities',
+        ],
+        'source' => [
+            'check' => 'custom_source_check',
+            'custom' => 'custom_source',
+            'id' => 'source_id',
+            'table' => 'sources',
+        ],
+        'work_format' => [
+            'check' => 'custom_work_format_check',
+            'custom' => 'custom_work_format',
+            'id' => 'work_format_id',
+            'table' => 'work_formats',
+        ],
+        'education' => [
+            'check' => 'custom_education_check',
+            'custom' => 'custom_education',
+            'id' => 'education_id',
+            'table' => 'educations',
+        ],
+    ];
+
+    /**
+     * Show public application form.
+     */
     public function create(Request $request)
     {
         $cities = City::active()->ordered()->get();
@@ -45,8 +78,20 @@ class PublicApplicationController extends Controller
         ));
     }
 
+    /**
+     * Store public application.
+     */
     public function store(Request $request)
     {
+        if (trim((string) $request->input('website', '')) !== '') {
+            abort(403);
+        }
+
+        $protectionError = app(FormProtection::class)->validate($request);
+        if ($protectionError !== null) {
+            return $this->errorResponse($request, $protectionError, 422, true);
+        }
+
         $positionParam = $request->input('position');
 
         $validationRules = [
@@ -87,42 +132,11 @@ class PublicApplicationController extends Controller
             'languages.*' => 'exists:languages,id',
         ];
 
-        if ($request->has('custom_city_check')) {
-            $validationRules['custom_city'] = 'required|string|max:255';
-            $validationRules['city_id'] = 'nullable|exists:cities,id';
-        } else {
-            $validationRules['city_id'] = 'required|exists:cities,id';
-            $validationRules['custom_city'] = 'nullable|string|max:255';
-        }
-
-        if ($request->has('custom_source_check')) {
-            $validationRules['custom_source'] = 'required|string|max:255';
-            $validationRules['source_id'] = 'nullable|exists:sources,id';
-        } else {
-            $validationRules['source_id'] = 'required|exists:sources,id';
-            $validationRules['custom_source'] = 'nullable|string|max:255';
-        }
-
-        if ($request->has('custom_work_format_check')) {
-            $validationRules['custom_work_format'] = 'required|string|max:255';
-            $validationRules['work_format_id'] = 'nullable|exists:work_formats,id';
-        } else {
-            $validationRules['work_format_id'] = 'required|exists:work_formats,id';
-            $validationRules['custom_work_format'] = 'nullable|string|max:255';
-        }
-
-        if ($request->has('custom_education_check')) {
-            $validationRules['custom_education'] = 'required|string|max:255';
-            $validationRules['education_id'] = 'nullable|exists:educations,id';
-        } else {
-            $validationRules['education_id'] = 'required|exists:educations,id';
-            $validationRules['custom_education'] = 'nullable|string|max:255';
-        }
+        $this->applyCustomFieldRules($request, $validationRules);
 
         $validated = $request->validate($validationRules);
 
-        // Дополнительная проверка на спам: дубликаты по email или IP за последние 24 часа
-        $recentDuplicate = Application::where(function($query) use ($validated, $request) {
+        $recentDuplicate = Application::where(function ($query) use ($validated) {
                 $query->where('email', $validated['email'])
                       ->orWhere('phone', $validated['phone']);
             })
@@ -136,40 +150,32 @@ class PublicApplicationController extends Controller
                 'phone' => $validated['phone'],
             ]);
 
-            return redirect()->back()
-                ->withInput()
-                ->with('error', 'Вы уже отправляли заявку недавно. Пожалуйста, подождите перед повторной отправкой.');
+            return $this->errorResponse(
+                $request,
+                'Вы уже отправляли заявку недавно. Пожалуйста, подождите перед повторной отправкой.',
+                422,
+                true
+            );
         }
 
-        // Проверка на подозрительные паттерны в данных
         if ($this->containsSpamPatterns($validated)) {
             \Log::warning('Spam blocked: suspicious patterns detected', [
                 'ip' => $request->ip(),
                 'email' => $validated['email'],
             ]);
 
-            return redirect()->back()
-                ->withInput()
-                ->with('error', 'Обнаружены подозрительные данные. Пожалуйста, проверьте введенную информацию.');
+            return $this->errorResponse(
+                $request,
+                'Обнаружены подозрительные данные. Пожалуйста, проверьте введенную информацию.',
+                422,
+                true
+            );
         }
 
-        $cityId = $request->has('custom_city_check') ? null : ($validated['city_id'] ?? null);
-        $customCity = $validated['custom_city'] ?? null;
-
-        $sourceId = $request->has('custom_source_check') ? null : ($validated['source_id'] ?? null);
-        $customSource = $validated['custom_source'] ?? null;
-
-        $workFormatId = $request->has('custom_work_format_check') ? null : ($validated['work_format_id'] ?? null);
-        $customWorkFormat = $validated['custom_work_format'] ?? null;
-
-        $educationId = $request->has('custom_education_check') ? null : ($validated['education_id'] ?? null);
-        $customEducation = $validated['custom_education'] ?? null;
-
-        // Сохраняем файл CV ПЕРЕД созданием Application, чтобы он был доступен при отправке email
+        $locationData = $this->resolveLocationData($request, $validated);
         $cvFilePath = null;
         if ($request->hasFile('cv_file')) {
-            // Используем store() для сохранения файла - он вернет относительный путь типа cv/filename.pdf
-            $cvFilePath = $request->file('cv_file')->store('cv', 'public');
+            $cvFilePath = $request->file('cv_file')->store('cv', 'private');
         }
 
         $application = Application::create([
@@ -179,77 +185,57 @@ class PublicApplicationController extends Controller
             'phone' => $validated['phone'],
             'date_of_birth' => $validated['date_of_birth'],
             'expected_salary' => $validated['expected_salary'],
-            'personal_info' => $validated['personal_info'],
-            'contact_info' => $validated['contact_info'],
-            'linkedin_url' => $validated['linkedin_url'],
-            'github_url' => $validated['github_url'],
-            'city_id' => $cityId,
-            'custom_city' => $customCity,
+            'personal_info' => $validated['personal_info'] ?? null,
+            'contact_info' => $validated['contact_info'] ?? null,
+            'linkedin_url' => $validated['linkedin_url'] ?? null,
+            'github_url' => $validated['github_url'] ?? null,
+            'city_id' => $locationData['city_id'],
+            'custom_city' => $locationData['custom_city'],
             'registration_address' => $validated['registration_address'],
-            'source_id' => $sourceId,
-            'custom_source' => $customSource,
-            'work_format_id' => $workFormatId,
-            'custom_work_format' => $customWorkFormat,
-            'education_id' => $educationId,
-            'custom_education' => $customEducation,
-            'custom_language' => $validated['custom_language'],
-            'custom_technical_skill' => $validated['custom_technical_skill'],
+            'source_id' => $locationData['source_id'],
+            'custom_source' => $locationData['custom_source'],
+            'work_format_id' => $locationData['work_format_id'],
+            'custom_work_format' => $locationData['custom_work_format'],
+            'education_id' => $locationData['education_id'],
+            'custom_education' => $locationData['custom_education'],
+            'custom_language' => $validated['custom_language'] ?? null,
+            'custom_technical_skill' => $validated['custom_technical_skill'] ?? null,
             'professional_plans' => $validated['professional_plans'],
-            'other_notes' => $validated['other_notes'],
-            'cv_file' => $cvFilePath, // Файл уже сохранен, добавляем путь сразу
+            'other_notes' => $validated['other_notes'] ?? null,
+            'cv_file' => $cvFilePath,
             'status' => true,
         ]);
 
-        if (!empty($validated['job_positions'])) {
-            $application->jobPositions()->sync($validated['job_positions']);
-        }
+        $this->syncRelationIfPresent($application, 'jobPositions', $validated['job_positions'] ?? []);
+        $this->syncRelationIfPresent($application, 'technicalSkills', $validated['technical_skills'] ?? []);
+        $this->syncRelationIfPresent($application, 'languages', $validated['languages'] ?? []);
 
-        if (!empty($validated['technical_skills'])) {
-            $application->technicalSkills()->sync($validated['technical_skills']);
-        }
-
-        if (!empty($validated['languages'])) {
-            $application->languages()->sync($validated['languages']);
-        }
-
-        if (!empty($validated['work_experiences'])) {
-            foreach ($validated['work_experiences'] as $index => $experience) {
-                $application->workExperiences()->create([
-                    'company_name' => $experience['company_name'],
-                    'position' => $experience['position'],
-                    'start_date' => $experience['start_date'],
-                    'end_date' => $experience['end_date'] ?? null,
-                    'description' => $experience['description'] ?? null,
-                ]);
-            }
-        }
-
-        if (!empty($validated['educational_institutions'])) {
-            foreach ($validated['educational_institutions'] as $index => $education) {
-                $application->educationalInstitutions()->create([
-                    'institution_name' => $education['institution_name'],
-                    'degree' => $education['degree'] ?? null,
-                    'faculty' => $education['faculty'] ?? null,
-                    'start_date' => $education['start_date'] ?? null,
-                    'end_date' => $education['end_date'] ?? null,
-                    'description' => $education['description'] ?? null,
-                ]);
-            }
-        }
+        $this->createManyIfPresent($application, 'workExperiences', $validated['work_experiences'] ?? []);
+        $this->createManyIfPresent($application, 'educationalInstitutions', $validated['educational_institutions'] ?? []);
 
         $redirectParams = [];
         if (!empty($positionParam)) {
             $redirectParams['position'] = $positionParam;
         }
 
-        return redirect()
-            ->route('applications.create', $redirectParams)
-            ->with('success', 'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.');
+        return $this->successResponse(
+            $request,
+            'Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.',
+            $redirectParams
+        );
     }
 
+    /**
+     * Return available skills by selected positions.
+     */
     public function getSkillsByPositions(Request $request)
     {
-        $positionIds = $request->input('positions', []);
+        $validated = $request->validate([
+            'positions' => ['nullable', 'array', 'max:20'],
+            'positions.*' => ['integer', 'exists:job_positions,id'],
+        ]);
+
+        $positionIds = $validated['positions'] ?? [];
 
         if (empty($positionIds)) {
             return response()->json(['skills' => []]);
@@ -267,10 +253,9 @@ class PublicApplicationController extends Controller
      */
     private function containsSpamPatterns(array $data): bool
     {
-        // Проверка на повторяющиеся символы (например, "aaaaaa" или "111111")
         $spamPatterns = [
-            '/(.)\1{5,}/', // Повторяющийся символ более 5 раз
-            '/^(.)\1+$/',  // Все символы одинаковые
+            '/(.)\1{5,}/',
+            '/^(.)\1+$/',
         ];
 
         $fieldsToCheck = ['name', 'surname', 'email', 'phone', 'professional_plans', 'personal_info'];
@@ -281,26 +266,22 @@ class PublicApplicationController extends Controller
             }
 
             $value = (string) $data[$field];
-            
-            // Проверка на повторяющиеся символы
+
             foreach ($spamPatterns as $pattern) {
                 if (preg_match($pattern, $value)) {
                     return true;
                 }
             }
 
-            // Проверка на подозрительно короткие значения в важных полях
             if (in_array($field, ['name', 'surname']) && strlen($value) < 2) {
                 return true;
             }
 
-            // Проверка на слишком длинные значения (возможный спам)
             if (strlen($value) > 1000 && in_array($field, ['professional_plans', 'personal_info', 'other_notes'])) {
                 return true;
             }
         }
 
-        // Проверка email на подозрительные домены
         if (isset($data['email'])) {
             $suspiciousDomains = [
                 'tempmail', 'guerrillamail', 'mailinator', '10minutemail',
@@ -316,5 +297,93 @@ class PublicApplicationController extends Controller
         }
 
         return false;
+    }
+
+    /**
+     * @param array<string, string> $validationRules
+     * @return void
+     */
+    private function applyCustomFieldRules(Request $request, array &$validationRules): void
+    {
+        foreach (self::CUSTOM_FIELD_MAP as $field) {
+            if ($request->has($field['check'])) {
+                $validationRules[$field['custom']] = 'required|string|max:255';
+                $validationRules[$field['id']] = "nullable|exists:{$field['table']},id";
+            } else {
+                $validationRules[$field['id']] = "required|exists:{$field['table']},id";
+                $validationRules[$field['custom']] = 'nullable|string|max:255';
+            }
+        }
+    }
+
+    /**
+     * @param array<string, mixed> $validated
+     * @return array<string, mixed>
+     */
+    private function resolveLocationData(Request $request, array $validated): array
+    {
+        $data = [];
+
+        foreach (self::CUSTOM_FIELD_MAP as $field) {
+            $isCustom = $request->has($field['check']);
+            $data[$field['id']] = $isCustom ? null : ($validated[$field['id']] ?? null);
+            $data[$field['custom']] = $validated[$field['custom']] ?? null;
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param array<int, mixed> $ids
+     * @return void
+     */
+    private function syncRelationIfPresent(Application $application, string $relation, array $ids): void
+    {
+        if (!empty($ids)) {
+            $application->{$relation}()->sync($ids);
+        }
+    }
+
+    /**
+     * @param array<int, array<string, mixed>> $records
+     * @return void
+     */
+    private function createManyIfPresent(Application $application, string $relation, array $records): void
+    {
+        if (!empty($records)) {
+            $application->{$relation}()->createMany($records);
+        }
+    }
+
+    /**
+     * @param array<string, mixed> $redirectParams
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+    private function successResponse(Request $request, string $message, array $redirectParams = [])
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['message' => $message]);
+        }
+
+        return redirect()
+            ->route('applications.create', $redirectParams)
+            ->with('success', $message);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+    private function errorResponse(Request $request, string $message, int $status, bool $withInput = false)
+    {
+        if ($request->expectsJson()) {
+            return response()->json(['message' => $message], $status);
+        }
+
+        $redirect = redirect()->back();
+        if ($withInput) {
+            $redirect = $redirect->withInput();
+        }
+
+        return $redirect->with('error', $message);
     }
 }

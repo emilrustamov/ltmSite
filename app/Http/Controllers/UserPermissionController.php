@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Constants\Permissions;
 use App\Models\Permission;
 use App\Models\User;
 use App\Traits\AutoSyncPermissions;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UserPermissionController extends Controller
 {
@@ -17,11 +15,6 @@ class UserPermissionController extends Controller
      */
     public function edit(User $user)
     {
-        // Проверяем права доступа
-        if (!Auth::user()->hasPermission(Permissions::USERS_PERMISSIONS)) {
-            abort(403, 'У вас нет прав для управления правами пользователей');
-        }
-
         // Автоматически синхронизируем разрешения
         $this->ensurePermissionsSynced();
 
@@ -36,11 +29,6 @@ class UserPermissionController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // Проверяем права доступа
-        if (!Auth::user()->hasPermission(Permissions::USERS_PERMISSIONS)) {
-            abort(403, 'У вас нет прав для управления правами пользователей');
-        }
-
         $request->validate([
             'permissions' => 'array',
             'permissions.*' => 'exists:permissions,name'
@@ -61,11 +49,6 @@ class UserPermissionController extends Controller
      */
     public function givePermission(User $user, Permission $permission)
     {
-        // Проверяем права доступа
-        if (!Auth::user()->hasPermission(Permissions::USERS_PERMISSIONS)) {
-            abort(403, 'У вас нет прав для управления правами пользователей');
-        }
-
         $user->givePermission($permission->name);
 
         return response()->json([
@@ -79,11 +62,6 @@ class UserPermissionController extends Controller
      */
     public function revokePermission(User $user, Permission $permission)
     {
-        // Проверяем права доступа
-        if (!Auth::user()->hasPermission(Permissions::USERS_PERMISSIONS)) {
-            abort(403, 'У вас нет прав для управления правами пользователей');
-        }
-
         $user->revokePermission($permission->name);
 
         return response()->json([

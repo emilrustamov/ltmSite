@@ -777,6 +777,8 @@ section {
 }
 
 #scrollBtn:hover i {
+  color: #ffffff !important;
+  opacity: 1 !important;
   animation: launch-wiggle 0.4s ease-in-out;
 }
 
@@ -785,28 +787,28 @@ section {
   z-index: 2;
 }
 
-/* Анимация взлёта ракеты */
 #scrollBtn.launched {
-  animation: rocket-launch 0.8s ease forwards;
+  pointer-events: none;
 }
 
-/* Ключевые кадры анимации взлёта */
-@keyframes rocket-launch {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh);
-    opacity: 0;
-  }
+#scrollBtn i {
+  transition: transform 0.2s ease, opacity 0.2s ease, color 0.2s ease;
 }
 
-/* Эффект дыма через псевдоэлемент */
+#scrollBtn.launched i {
+  animation: rocket-flight 0.8s ease-in-out infinite;
+}
+
+@keyframes rocket-flight {
+  0% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+  100% { transform: translateY(0) rotate(-2deg); }
+}
+
 #scrollBtn.launched::after {
   content: "";
   position: absolute;
-  bottom: -10px; /* немного ниже кнопки */
+  bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
   width: 40px;
@@ -815,10 +817,9 @@ section {
   opacity: 0;
   pointer-events: none;
   z-index: 1;
-  animation: smoke-effect 0.8s ease-out forwards;
+  animation: smoke-effect 0.8s ease-out infinite;
 }
 
-/* Анимация эффекта дыма */
 @keyframes smoke-effect {
   0% {
     opacity: 1;
@@ -828,6 +829,25 @@ section {
     opacity: 0;
     transform: translateX(-50%) translateY(-50px) scale(1.5);
   }
+}
+
+#scrollBtn.launch-complete i {
+  animation: rocket-exit 0.4s ease forwards;
+}
+
+@keyframes rocket-exit {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110px) scale(0.75);
+    opacity: 0;
+  }
+}
+
+#scrollBtn.launch-complete::after {
+  animation: smoke-effect 0.4s ease-out forwards;
 }
 
 

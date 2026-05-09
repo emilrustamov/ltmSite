@@ -41,7 +41,7 @@
                 class="text-sm md:text-base flex items-center gap-1 !font-normal">
                 {{ __('translate.productsmenu') }}
                 <i id="servicesArrow"
-                    class="fa-solid fa-chevron-down text-xs transition-transform duration-300" style="height:11px; width:11px"></i>
+                    class="fa-solid fa-chevron-down text-xs transition-transform duration-300 icon-size-11"></i>
             </button>
 
             <div id="servicesMenu"
@@ -66,7 +66,7 @@
             <a href="/{{ $lang }}/portfolio"
                 class="text-sm md:text-base {{ Request::is($lang . '/portfolio*') ? 'active' : '' }}" itemprop="url">
                 {{ __('translate.portfolio') }}
-                <span id="newProjectBadge" class="badge ml-1"></span>
+                <span id="newProjectBadge" class="badge ml-1" data-portfolio-count-url="{{ url('/api/portfolio-count/' . $lang) }}"></span>
             </a>
         </div>
 
@@ -87,6 +87,7 @@
     <div class="flex justify-end items-center gap-4 w-1/2 sm:w-2/3 md:w-1/4 text-sm sm:text-base md:text-2xl font-bold">
         <!-- <a href="tel:+99361648605" class="whitespace-nowrap">+993 61 00 97 92</a> -->
         <a href="tel:+99361009792" class="whitespace-nowrap flex items-center">
+            <span class="mr-1">📞</span>
             <i class="fa fa-phone block lg:!hidden"></i>
             <span class="hidden lg:block">+993 61 00 97 92</span>
         </a>
@@ -107,6 +108,7 @@
                 <!-- кнопка-триггер -->
                 <button id="langToggle" class="flex items-center gap-1 cursor-pointer select-none" aria-haspopup="true"
                     aria-expanded="false">
+                    <span>🌐</span>
                     <span>{{ strtoupper($lang) }}</span>
                     <i id="langArrow"
                         class="fa-solid fa-arrow-down-long text-[#e31e24] text-xl
@@ -168,8 +170,7 @@
 </div>
 
 <!-- Модалка десктопного меню -->
-<div class="modal fade modal-no-bg" id="complexMenuModal" aria-labelledby="exampleModalLabel" aria-hidden="true"
-    style="z-index: 9999">
+<div class="modal fade modal-no-bg modal-z-top" id="complexMenuModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content mobile-none">
             <div class="modal-body flex">
@@ -186,17 +187,18 @@
                             </div>
                         </div>
                         <div class="flex ml-3 lang-flex my-auto">
-                            <a class="menu-a" href="/ru/">Ru</a>
-                            <a class="menu-a" href="/en/">En</a>
-                            <a class="menu-a" href="/tm/">Tm</a>
+                            <a class="menu-a !text-[46px] leading-none" href="/ru/">Ru</a>
+                            <a class="menu-a !text-[46px] leading-none" href="/en/">En</a>
+                            <a class="menu-a !text-[46px] leading-none" href="/tm/">Tm</a>
                         </div>
                     </div>
                     <div class="big-block-content flex flex-col m-auto w-1/2 space-y-18">
                         <a href="/{{ $lang }}/services">
-                            <h3>{{ __('translate.allServ') }} </h3>
+                            <h3 class="!text-[46px] leading-none">{{ __('translate.allServ') }} </h3>
                         </a>
-                        <a href="tel:+99312753713" class="text-6xl">+993 12 75 37 13</a>
-                        <a href="mailto:info@ltm.studio" class="text-6xl">info@ltm.studio</a>
+                        <a href="tel:+99312753713" class="text-[clamp(46px,5vw,92px)] font-bold leading-none">+993 12 75 37 13</a>
+                        <a href="tel:+99361009792" class="text-[clamp(46px,5vw,92px)] font-bold leading-none">+993 61 00 97 92</a>
+                        <a href="mailto:{{ config('mail.from.address') }}" class="!text-[46px] leading-none">{{ config('mail.from.address') }}</a>
                         <div class="flex media-links">
                             <a class="menu-a" href="https://www.instagram.com/lebizli_tehnologiya_merkezi?igsh=a3ZwZHN3aXdtYzJ5" id="instLink" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-instagram"></i>
@@ -206,7 +208,7 @@
                             </a>
                         </div>
                         <a class="opacity-[0.7]" href="/{{ $lang }}/"
-                            id="linkAddress">https://ltm.studio/</a>
+                            id="linkAddress">{{ rtrim(config('app.url'), '/') }}/</a>
                     </div>
                 </div>
                 <div class="block-40">
@@ -284,186 +286,3 @@
     </button>
 </div>
 
-<!-- JS -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const openBtn = document.getElementById("mobileMenuOpen");
-        const closeBtn = document.getElementById("mobileMenuClose");
-        const modal = document.getElementById("mobileMenuModal");
-
-        if (openBtn && closeBtn && modal) {
-            openBtn.addEventListener("click", () => {
-                modal.classList.remove("translate-y-full");
-            });
-
-            closeBtn.addEventListener("click", () => {
-                modal.classList.add("translate-y-full");
-            });
-        }
-    });
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggle = document.getElementById('servicesToggle');
-        const menu = document.getElementById('servicesMenu');
-        const arrow = document.getElementById('servicesArrow');
-        const navItem = toggle.closest('.nav-item');
-
-        if (!toggle || !menu || !arrow || !navItem) return;
-
-        const openMenu = () => {
-            menu.classList.remove('hidden');
-            arrow.classList.add('rotate-180');
-        };
-
-        const closeMenu = () => {
-            menu.classList.add('hidden');
-            arrow.classList.remove('rotate-180');
-        };
-
-        const toggleMenu = () => {
-            menu.classList.toggle('hidden');
-            arrow.classList.toggle('rotate-180');
-        };
-
-        // hover для desktop
-        navItem.addEventListener('mouseenter', () => {
-            if (window.innerWidth >= 1024) {
-                openMenu();
-            }
-        });
-
-        navItem.addEventListener('mouseleave', () => {
-            if (window.innerWidth >= 1024) {
-                closeMenu();
-            }
-        });
-
-        // click для touch / fallback
-        toggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-
-            if (window.innerWidth < 1024) {
-                toggleMenu();
-            }
-        });
-
-        // клик вне меню
-        document.addEventListener('click', (e) => {
-            if (!navItem.contains(e.target)) {
-                closeMenu();
-            }
-        });
-
-        // Esc
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeMenu();
-            }
-        });
-    });
-</script>
-
-<style>
-    .badge {
-        background-color: #e31e24;
-        color: white;
-        border-radius: 1rem;
-        padding: 0 0.5rem;
-        display: none;
-        position: absolute;
-        right: -15px;
-        top: -10px;
-    }
-</style>
-
-<script>
-    document.addEventListener("DOMContentLoaded", async function() {
-        const badge = document.getElementById("newProjectBadge");
-        if (!badge) {
-            return;
-        }
-
-        let totalProjects = Number(window.totalProjectsCount || 0);
-
-        const updateBadge = () => {
-            const viewedProjects = JSON.parse(localStorage.getItem("viewedProjects") || "[]");
-            const newCount = Math.max(totalProjects - viewedProjects.length, 0);
-
-            if (newCount > 0) {
-                badge.textContent = newCount;
-                badge.style.display = "inline-block";
-            } else {
-                badge.textContent = "";
-                badge.style.display = "none";
-            }
-        };
-
-        const ensureTotalProjects = async () => {
-            if (totalProjects > 0) {
-                return totalProjects;
-            }
-
-            try {
-                const response = await fetch('/api/portfolio-count/{{ $lang }}');
-                if (!response.ok) {
-                    throw new Error(`Request failed with status ${response.status}`);
-                }
-                const data = await response.json();
-                totalProjects = Number(data.total || 0);
-                window.totalProjectsCount = totalProjects;
-            } catch (error) {
-                console.error('Ошибка загрузки количества проектов:', error);
-                totalProjects = 0;
-            }
-
-            return totalProjects;
-        };
-
-        await ensureTotalProjects();
-        updateBadge();
-
-        document.addEventListener('portfolio-viewed-updated', updateBadge);
-    });
-</script>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggle = document.getElementById('langToggle'); // кнопка
-        const menu = document.getElementById('langMenu'); // список
-        const arrow = document.getElementById('langArrow'); // иконка-стрелка
-
-        // открываем/закрываем меню по клику на кнопку
-        toggle.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            arrow.classList.toggle('rotate-180');
-            toggle.setAttribute(
-                'aria-expanded',
-                menu.classList.contains('hidden') ? 'false' : 'true'
-            );
-        });
-
-        // закрываем при клике вне меню
-        document.addEventListener('click', (e) => {
-            if (!toggle.contains(e.target) && !menu.contains(e.target)) {
-                if (!menu.classList.contains('hidden')) {
-                    menu.classList.add('hidden');
-                    arrow.classList.remove('rotate-180');
-                    toggle.setAttribute('aria-expanded', 'false');
-                }
-            }
-        });
-
-        // закрываем по Esc
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
-                menu.classList.add('hidden');
-                arrow.classList.remove('rotate-180');
-                toggle.setAttribute('aria-expanded', 'false');
-            }
-        });
-    });
-</script>

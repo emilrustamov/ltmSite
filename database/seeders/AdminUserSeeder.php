@@ -14,7 +14,6 @@ class AdminUserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Создаем администратора
         $admin = User::firstOrCreate(
             ['email' => 'admin@ltm.com'],
             [
@@ -23,8 +22,16 @@ class AdminUserSeeder extends Seeder
             ]
         );
 
-        // Даем администратору все разрешения
+        $secondAdmin = User::firstOrCreate(
+            ['email' => 'erustamow2@gmail.com'],
+            [
+                'name' => 'E Rustamow',
+                'password' => Hash::make('883F5o!ZPY6ikcWfk9'),
+            ]
+        );
+
         $allPermissions = Permissions::getAllPermissions();
         $admin->syncPermissions($allPermissions);
+        $secondAdmin->syncPermissions($allPermissions);
     }
 }

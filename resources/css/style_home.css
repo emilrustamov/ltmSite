@@ -40,6 +40,17 @@ label {
     background-color: transparent;
     color: white;
 }
+
+.field-input:-webkit-autofill,
+.field-input:-webkit-autofill:hover,
+.field-input:-webkit-autofill:focus,
+.field-input:-webkit-autofill:active {
+    -webkit-text-fill-color: #fff !important;
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    background-color: transparent !important;
+    transition: background-color 9999s ease-in-out 0s;
+}
 select.field-input option {
     color: #111;
     background-color: #fff;

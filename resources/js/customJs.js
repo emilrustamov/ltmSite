@@ -28,12 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     const header = document.getElementById("mainHeader");
     if (!header) return;
-    
+
     const logo = header.querySelector(".center-image img");
-    const triggerOffset = 50; 
+    const triggerOffset = 50;
 
     const originalLogo = "/assets/images/ltm-white.png";
-    const scrolledLogo = "/assets/images/ltm.png ";
+    const scrolledLogo = "/assets/images/ltm.png";
 
     if (window.innerWidth <= 768 || !logo) return;
 
@@ -78,38 +78,36 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    // Функция для инициализации слушателей прокрутки
+    const getNativeScrollY = () => window.scrollY || window.pageYOffset;
+
     const initScrollListeners = () => {
-        // Используем Lenis события, если доступен, иначе fallback на нативный скролл
         if (window.lenis) {
-            // Слушаем события прокрутки Lenis
-            window.lenis.on('scroll', ({ scroll }) => {
+            window.lenis.on("scroll", ({ scroll }) => {
                 updateHeaderStyles(scroll);
             });
-        } else {
-            // Fallback на нативный скролл
-            window.addEventListener("scroll", () => {
-                updateHeaderStyles(window.scrollY || window.pageYOffset);
-            }, { passive: true });
+            return;
         }
+
+        window.addEventListener("scroll", () => {
+            updateHeaderStyles(getNativeScrollY());
+        }, { passive: true });
     };
 
-    // Ждем инициализации Lenis
+    updateHeaderStyles(getNativeScrollY());
+
     if (window.lenis) {
         initScrollListeners();
     } else {
-        // Если Lenis еще не загружен, ждем немного и пробуем снова
         const checkLenis = setInterval(() => {
             if (window.lenis) {
                 clearInterval(checkLenis);
                 initScrollListeners();
             }
         }, 50);
-        
-        // Останавливаем проверку через 2 секунды, если Lenis так и не загрузился
+
         setTimeout(() => {
             clearInterval(checkLenis);
-            initScrollListeners(); // Инициализируем с fallback на нативный скролл
+            initScrollListeners();
         }, 2000);
     }
 });

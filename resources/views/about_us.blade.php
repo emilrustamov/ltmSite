@@ -37,7 +37,7 @@
         <div class="container">
             <div class="relative">
                 <div class="aboutUs_desc max-w-full lg:max-w-[90%]">
-                    <div class="about-us-photo" style="backface-visibility: hidden; transform: translate3d(0px, 0px, 0px);">
+                    <div class="about-us-photo about-photo-base">
                     </div>
 
                     <h1>{{ __('translate.aboutUsTitle') }}</h1>
@@ -61,10 +61,9 @@
                     <section>
                         <h2>{{ __('translate.aboutStatistics') }}</h2>
                         <div class="aboutUs_stats">
-                            <div class="about-us-photo-2"
-                                style="backface-visibility: hidden; transform: translate3d(0px, -143px, 0px)">
+                            <div class="about-us-photo-2 about-photo-offset-143">
                             </div>
-                            <div class="about-us-photo-3" style="transform: translate3d(0px, -158px, 0px)"></div>
+                            <div class="about-us-photo-3 about-photo-offset-158"></div>
                             @php
                                 $stats = [
                                     ['target' => '4+', 'desc' => __('translate.years')],
@@ -94,8 +93,7 @@
                         <h2>{{ __('translate.valueTitle') }}</h2>
                         <p>{{ __('translate.valueSub') }}</p>
                         <div class="aboutUs_virtues relative">
-                            <div class="about-us-photo-4"
-                                style="backface-visibility: hidden; transform: translate3d(0px, -187px, 0px);">
+                            <div class="about-us-photo-4 about-photo-offset-187">
                             </div>
                             <div class="about-us-photo-5"></div>
                             <ul class="flex flex-col md:flex-row gap-4 my-14 !list-none">

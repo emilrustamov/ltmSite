@@ -86,7 +86,7 @@
         {{ __('translate.call') }}
         <a class="text-red-500" href="tel:+99312753713">{!! nl2br(__('translate.number')) !!}</a>
         <strong>
-            <a class="" href="mailto:info@ltm.studio">
+            <a class="" href="mailto:{{ config('mail.from.address') }}">
                 {{ __('translate.write_to_email') }}
                 <span class="text-red-500"> {{ __('translate.mail') }} </span>
             </a>

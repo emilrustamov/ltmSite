@@ -2,34 +2,42 @@
   
 namespace App\Models;
   
+use App\Mail\ANMail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Mail;
-use App\Mail\ANMail;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
   
 class Contact extends Model
 {
     use HasFactory;
   
     public $fillable = ['name', 'email', 'phone', 'message', 'subject'];
-  
+
     /**
-     * Write code on Method
+     * Register model event handlers.
      *
-     * @return response()
+     * @return void
      */
-    public static function boot() {
-  
-        parent::boot();
-  
+    protected static function booted(): void
+    {
         static::created(function ($item) {
-            try {
-                $adminEmail = "hr@ltm.studio";
-                Mail::to($adminEmail)->send(new ANMail($item));
-            } catch (\Exception $e) {
-                // Логируем ошибку, но не прерываем сохранение
-                \Log::error('Ошибка отправки почты: ' . $e->getMessage());
-            }
+            dispatch(function () use ($item): void {
+                if (! config('mail.notifications_enabled')) {
+                    return;
+                }
+
+                $adminEmail = config('mail.from.address');
+                if (! $adminEmail) {
+                    return;
+                }
+
+                try {
+                    Mail::mailer('failover')->to($adminEmail)->send(new ANMail($item));
+                } catch (\Throwable $exception) {
+                    Log::error('Ошибка отправки почты: '.$exception->getMessage());
+                }
+            })->afterResponse();
         });
     }
 }

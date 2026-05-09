@@ -189,6 +189,20 @@ Biziň superwaýzerlerimiz işlerimizi mümkin boldugyça amatly ýagdaýda meý
     'formProject' => 'Taslamaňyz barada',
     'formEmail' => 'Email salgyňyz',
     'formComment' => 'Teswiriňiz ýa-da belligiňiz',
+    'formCommentOptional' => 'Teswiriňiz ýa-da belligiňiz (meýletin)',
+    'formPreferredContact' => 'Saýlanýan habarlaşyş görnüşi',
+    'formPreferredPhone' => 'Telefon',
+    'formPreferredEmail' => 'Email',
+    'formPreferredSocial' => 'Sosial tor',
+    'formContactDetails' => 'Telefon, email ýa-da sosial toruňyzy görkeziň',
+    'formNamePlaceholder' => 'Adyňyzy ýazyň',
+    'formPhonePlaceholder' => 'Telefon belgiňizi ýazyň',
+    'formEmailPlaceholder' => 'Email salgyňyzy ýazyň',
+    'formSocialContact' => 'Sosial tor ýa-da messenjer',
+    'formSocialContactPlaceholder' => 'Salgy ýa-da @username görkeziň',
+    'formProjectPlaceholder' => 'Taslama barada gysgaça ýazyň',
+    'formNeedToFill' => 'Näme ýerine ýetirilmeli',
+    'formNeedToFillPlaceholder' => 'Biz üçin meseläňizi beýan ediň',
 
     'titleForm' => "Pikirleriňizi hakyky taslama öwrüliň:\n şu wagt biziň bilen habarlaşyň!",
 
@@ -309,32 +323,32 @@ Taslamaňyz diňe ownuk üýtgetmeleri talap edýän ýagdaýda-da ýa-da bar bo
 
         'steps' => [
             [
-                'title' => 'Analiz we taýýarlyk',
+                'title' => '🔍 Analiz we taýýarlyk',
 
                 'description' => 'Ilki bilen biz proýektiň talaplaryny öwrenýäris, maksatlaryny we wezipelerini kesgitleýäris, maksatlaýyn topary we bäsdeşleri seljerýäris.  
 Bu bolsa proýekti üstünlikli ýerine ýetirmek üçin meýilnama düzmäge we laýyk tehnologiýalary saýlamaga mümkinçilik berýär.',
 
             ],
             [
-                'title' => 'Taslamalar we dizaýn',
+                'title' => '🎨 Taslamalar we dizaýn',
                 'description' => 'Web sahypanyň gurluşyny we konsepsiýasyny taýýarlaýarys, sahypalaryň maketlerini we prototiplerini düzýäris.  
 Soňra dizaýn işlerine geçýäris — şriftleri, reňkleri we brendiňize hem-de maksatlaryňyza laýyk grafiki elementleri saýlaýarys.',
 
             ],
             [
-                'title' => 'Programmirleme we funksional',
+                'title' => '⚙️ Programmirleme we funksional',
                 'description' => 'Web sahypanyň esasy funksiýalaryny işläp düzýäris — aragatnaşyk formalaryndan başlap, daşarky ulgamlara we mazmun dolandyryş platformalaryna çenli integrasiýalar.  
 Sahypanyň durnukly işlemegini üpjün etmek üçin ähli zerur gurallary ornaşdyrýarys.',
 
             ],
             [
-                'title' => 'Synag we sazlaýyş',
+                'title' => '🧪 Synag we sazlaýyş',
                 'description' => 'Web sahypa işe girizilmezinden ozal dürli enjamlar we brauzerler arkaly doly synagdan geçirilýär.  
 Ýalňyşlyklar düzedilýär, tizligi we öndürijiligi optimizasiýa edilýär, ulanyjy üçin amatly tejribe üpjün edilýär.',
 
             ],
             [
-                'title' => 'Işe girizmek we goldaw',
+                'title' => '🚀 Işe girizmek we goldaw',
                 'description' => 'Ahyrky barlaglardan soň web sahypany hostinge ýerleşdirýäris we işe girizýäris.  
 Taslamany dolandyrmak boýunça müşderä okuw berýäris we onuň ösüşi hem-de täzelenmegi üçin dowamly goldaw berýäris.',
 

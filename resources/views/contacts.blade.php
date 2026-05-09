@@ -25,8 +25,8 @@
                                 $contactsLinks = [
                                     [
                                         'icon' => 'fa fa-envelope',
-                                        'href' => 'mailto:info@ltm.studio',
-                                        'text' => 'info@ltm.studio',
+                                        'href' => 'mailto:' . config('mail.from.address'),
+                                        'text' => config('mail.from.address'),
                                     ],
                                     [
                                         'icon' => 'fa-brands fa-linkedin',
@@ -81,8 +81,7 @@
                             </div>
 
                             <!-- Задний текст -->
-                            <div class="sub-text-under-content absolute left-0 right-0 bottom-0 z-[-1] text-center text-[#1c1b1b] text-opacity-15 font-bold leading-none text-2xl sm:text-3xl md:text-[60px]"
-                                style="text-shadow: -1px 0 #f8052d, 0 1px #f8052d, 1px 0 #f8052d, 0 -1px #f8052d;">
+                            <div class="sub-text-under-content absolute left-0 right-0 bottom-0 z-[-1] text-center text-[#1c1b1b] text-opacity-15 font-bold leading-none text-2xl sm:text-3xl md:text-[60px] contacts-text-shadow">
                                 {!! nl2br(__('translate.contactsBackText')) !!}
                             </div>
 
@@ -93,7 +92,7 @@
                                         class="w-16 h-16 mx-auto lazyload" />
                                 </div>
                                 <div class="text-center text-xl md:text-2xl">
-                                    <a href="mailto:info@ltm.studio">
+                                    <a href="mailto:{{ config('mail.from.address') }}">
                                         {!! nl2br(__('translate.pigeon')) !!}
                                     </a>
                                 </div>

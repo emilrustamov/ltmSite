@@ -21,11 +21,6 @@
                     <i class="fab fa-linkedin"></i>
                 </a>
             </li>
-            <script type="text/javascript">
-                (function(){
-                    var WORKSPACE_VERIFICATION_CODE = 'f351680ba07e89ec449d67ed85310867';
-                })();
-            </script>
               <li>
             <a href="https://workspace.ru/contractors/ltm/" target="_blank">
                 <img src="https://workspace.ru/local/tools/verification.php?code=f351680ba07e89ec449d67ed85310867&type=ver1" alt="LTM на Workspace" width="100" />
@@ -34,7 +29,7 @@
         </ul>
         <!-- Workspace verefication code -->
      
-        <div id="modal" class="modal" style="height:100%">
+        <div id="modal" class="modal modal-full-height">
             <div class="modal-overlay">
                 <div class="modal-content">
                     <button id="closeModalButton" class="close"><i class="fa-solid fa-xmark"></i></button>
@@ -49,7 +44,7 @@
                                             </h2>
                                             <p class="hidden md:block">{{ __('translate.formModalDesc') }}</p>
                                         </div>
-                                        <form action="{{ route('contact.submit') }}" method="post" id="contact-form-footer" data-protected-form="true" data-recaptcha-action="submit_contact">
+                                        <form action="{{ route('contact.submit') }}" method="post" id="contact-form-footer" data-protected-form="true" data-recaptcha-action="submit_contact" data-ajax-submit="true">
                                             @csrf
                                             <x-protected-form-fields id-prefix="footer" />
                                             
@@ -65,16 +60,26 @@
                                             </div>
                                             <div class="flex flex-wrap gap-4">
                                                 <label class="field">
-                                                    <input type="text" name="subject" class="field-input"
-                                                        placeholder="{{ __('translate.formProject') }}" required>
+                                                    <select name="preferred_contact" class="field-input" required>
+                                                        <option value="">{{ __('translate.formPreferredContact') }}</option>
+                                                        <option value="phone">{{ __('translate.formPreferredPhone') }}</option>
+                                                        <option value="email">{{ __('translate.formPreferredEmail') }}</option>
+                                                        <option value="social">{{ __('translate.formPreferredSocial') }}</option>
+                                                    </select>
                                                 </label>
+                                                <label class="field">
+                                                    <input type="text" name="contact_details" class="field-input"
+                                                        placeholder="{{ __('translate.formContactDetails') }}" required>
+                                                </label>
+                                            </div>
+                                            <div class="flex flex-wrap gap-4">
                                                 <label class="field">
                                                     <input type="email" name="email" class="field-input"
                                                         placeholder="{{ __('translate.formEmail') }}" required>
                                                 </label>
                                             </div>
                                             <input type="text" name="message" class="field-input field-textarea mt-5"
-                                                placeholder="{{ __('translate.formComment') }}" required>
+                                                placeholder="{{ __('translate.formCommentOptional') }}">
                                             <button type="submit"
                                                 class="send-p btn !flex items-center text-white text-[32px] lg:text-[60px] font-bold tracking-[3px] p-0" data-form-submit>
                                                 {{ __('translate.sendText') }}
@@ -103,8 +108,7 @@
                                     </div>
         
                                     <!-- Задний текст -->
-                                    <div class="sub-text-under-content absolute left-0 right-0 bottom-0 z-[-1] text-center text-[#1c1b1b] text-opacity-15 font-bold leading-none text-2xl sm:text-3xl md:text-[60px]"
-                                        style="text-shadow: -1px 0 #f8052d, 0 1px #f8052d, 1px 0 #f8052d, 0 -1px #f8052d;">
+                                    <div class="sub-text-under-content absolute left-0 right-0 bottom-0 z-[-1] text-center text-[#1c1b1b] text-opacity-15 font-bold leading-none text-2xl sm:text-3xl md:text-[60px] contacts-text-shadow">
                                         {!! nl2br(__('translate.contactsBackText')) !!}
                                     </div>
         
@@ -115,7 +119,7 @@
                                                 class="w-16 h-16 mx-auto lazyload" />
                                         </div>
                                         <div class="text-center text-xl md:text-2xl">
-                                            <a href="mailto:info@ltm.studio">
+                                            <a href="mailto:{{ config('mail.from.address') }}">
                                                 {!! nl2br(__('translate.pigeon')) !!}
                                             </a>
                                         </div>

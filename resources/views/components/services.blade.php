@@ -1,5 +1,6 @@
-<div class="bg-[#1c1b1b] section">
-    <div class="container mx-auto">
+<div class="bg-[#1c1b1b] section relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 opacity-45 bg-no-repeat bg-contain bg-left-top mix-blend-screen" style="background-image: url('{{ asset('/webp/home-grid.webp') }}');"></div>
+    <div class="container mx-auto relative z-10">
         <h3 class="text-[#e31e24]">{{ __('translate.myRazbirayemsya') }}</h3>
         <div class="swiper mySwiper">
            
@@ -275,66 +276,4 @@
         </div>
     </div>
 </div>
-
-{{-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> --}}
-<script>
-  let swiperInstance = null;
-
-function initSwiper() {
-    const isMobile = window.innerWidth < 768;
-
-    if (swiperInstance) swiperInstance.destroy(true, true);
-
-    // Проверяем количество слайдов для loop режима
-    const slides = document.querySelectorAll(".mySwiper .swiper-slide");
-    const slidesCount = slides.length;
-    // Для loop нужно минимум 3 слайда на мобильных и 6 на десктопе (при slidesPerView: "auto")
-    const minSlidesForLoop = isMobile ? 3 : 6;
-    const enableLoop = slidesCount >= minSlidesForLoop;
-
-    swiperInstance = new Swiper(".mySwiper", {
-        grabCursor: true,
-        slidesPerView: "auto",
-        centeredSlides: isMobile,
-        spaceBetween: isMobile ? 20 : 0,
-        loop: enableLoop,
-        speed: 800,
-        slideToClickedSlide: true,
-        threshold: 10,
-        touchRatio: 1.2, // чуть более отзывчиво
-        resistanceRatio: 0.85, // мягкость при упоре в край
-        longSwipesRatio: 0.5, // меньше = сработает даже при коротком свайпе
-
-        effect: isMobile ? "slide" : "coverflow",
-        ...(isMobile
-            ? {}
-            : {
-                  coverflowEffect: {
-                      rotate: 50,
-                      stretch: 0,
-                      depth: 100,
-                      modifier: 1,
-                      slideShadows: true,
-                  },
-              }),
-
-        on: {
-            slideChangeTransitionEnd: () => {
-                document.querySelectorAll(".swiper-slide").forEach((slide) => {
-                    slide.classList.add("show");
-                });
-            },
-            init: () => {
-                document.querySelectorAll(".swiper-slide").forEach((slide) => {
-                    slide.classList.add("show");
-                });
-            },
-        },
-    });
-}
-
-window.addEventListener("DOMContentLoaded", initSwiper);
-window.addEventListener("resize", initSwiper);
-
-</script>
 

@@ -42,7 +42,7 @@
                         </div>
                     @endif
 
-    <form action="{{ route('applications.store') }}" method="POST" enctype="multipart/form-data" class="w-full" data-protected-form="true" data-recaptcha-action="submit_application" data-work-experience-index="{{ old('work_experiences') ? count(old('work_experiences')) : 0 }}" data-educational-institution-index="{{ old('educational_institutions') ? count(old('educational_institutions')) : 0 }}" data-skills-url="{{ route('api.positions.skills') }}" id="application-form">
+    <form action="{{ route('applications.store') }}" method="POST" enctype="multipart/form-data" class="w-full" data-protected-form="true" data-recaptcha-action="submit_application" data-ajax-submit="true" data-work-experience-index="{{ old('work_experiences') ? count(old('work_experiences')) : 0 }}" data-educational-institution-index="{{ old('educational_institutions') ? count(old('educational_institutions')) : 0 }}" data-skills-url="{{ route('api.positions.skills') }}" id="application-form">
                         @csrf
                         <input type="hidden" name="position" value="{{ old('position', request('position')) }}">
                         <x-protected-form-fields id-prefix="application" />

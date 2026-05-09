@@ -135,7 +135,7 @@
             "@type": "ContactPoint",
             "telephone": "+993-12-75-37-13",
             "contactType": "customer service",
-            "email": "info@ltm.studio",
+            "email": "{{ config('mail.from.address') }}",
             "availableLanguage": ["ru", "en", "tm"]
         },
         "sameAs": [
@@ -203,13 +203,12 @@
 </head>
 
 <body>
-    <div class="loaders position-fixed w-100 h-100 justify-content-center align-items-center"
-        style="background-color: #1c1b1b; z-index: 999999; display: flex;">
-        <div class="circle-container" style="top: 0%; left:0%; width:70rem; height: 70rem ">
-            <div class="scrolling-image" style="width:20rem; height:auto">
+    <div class="loaders position-fixed w-100 h-100 justify-content-center align-items-center loader-overlay">
+        <div class="circle-container loader-circle">
+            <div class="scrolling-image loader-scrolling-image">
                 <img src="{{ asset('/assets/images/circled-text.png') }}" alt="Scrolling decorative text image">
             </div>
-            <div class="center-image" style="width:10%; height:auto">
+            <div class="center-image loader-center-image">
                 <img src="{{ asset('/assets/images/ltm-white.png') }}" alt="Center LTM logo">
             </div>
         </div>
@@ -228,20 +227,12 @@
 
 
         <div>
-            @if (session('success') || session('error'))
-                <div class="container mt-6">
-                    @if (session('success'))
-                        <div class="bg-green-600 text-white p-4 rounded-lg mb-4 text-center font-semibold">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                    @if (session('error'))
-                        <div class="bg-red-600 text-white p-4 rounded-lg mb-4 text-center font-semibold">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-                </div>
-            @endif
+            <script>
+                window.__FLASH_TOASTS__ = {
+                    success: @json(session('success')),
+                    error: @json(session('error')),
+                };
+            </script>
             @yield('content')
         </div>
 
@@ -262,33 +253,6 @@
     </div>
 
     @include('layouts.scripts')
-
-    <script>
-        // Инициализируем Lenis
-        window.lenis = new Lenis({
-            duration: 1.5, // больше = более тягучий скролл
-            easing: t => 1 - Math.pow(1 - t, 4), // кинематографичный, лёгкий на старте, тяжёлый в конце
-            smooth: true,
-            smoothTouch: false, // оставляем нативный скролл на телефонах
-            direction: 'vertical', // можно сделать horizontal scroll, если нужно
-        });
-
-        function raf(time) {
-            window.lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
-
-        // Создаем событие после инициализации Lenis для других скриптов
-        document.addEventListener('DOMContentLoaded', () => {
-            // Небольшая задержка для полной инициализации
-            requestAnimationFrame(() => {
-                window.dispatchEvent(new CustomEvent('lenis:ready'));
-            });
-        });
-    </script>
-
 
     <button id="scrollBtn"
         class="hidden fixed bottom-5 right-8 z-[999] border-0 outline-none bg-white cursor-pointer p-4 rounded-[10px] text-[18px] transition-all duration-300 ease-in-out hover:bg-[#e31e24] group">
@@ -315,25 +279,3 @@
 </body>
 
 </html>
-<script>
-    window.addEventListener('load', () => {
-        // Задаём задержку, например, 3 секунды (3000 мс)
-        setTimeout(() => {
-            const overlay = document.querySelector('.crt-overlay');
-            if (overlay) {
-                // Получаем путь к изображению из data-атрибута
-                const bgUrl = overlay.getAttribute('data-bg');
-                if (bgUrl) {
-                    // Устанавливаем значение CSS-переменной --bg
-                    overlay.style.setProperty('--bg', `url(${bgUrl})`);
-                }
-            }
-        }, 5000);
-    });
-</script>
-<style>
-    .b24-widget-button-position-bottom-right {
-        bottom: 70px !important;
-        right: 0 !important;
-    }
-</style>

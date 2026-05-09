@@ -67,6 +67,14 @@
             'color' => '#1f2329',
           ],
           ];
+
+          $teltonikaCardBackgrounds = [
+            '#e31e24' => 'teltonika-card-bg-red',
+            '#2b2f36' => 'teltonika-card-bg-dark',
+            '#b10f1a' => 'teltonika-card-bg-deep-red',
+            '#6b1b22' => 'teltonika-card-bg-wine',
+            '#1f2329' => 'teltonika-card-bg-graphite',
+          ];
         @endphp
 
         @foreach($teltonikaCards as $card)
@@ -77,9 +85,7 @@
                 xl:min-h-[280px] w-[240px] w-full">
 
         <!-- Верхний цветной блок -->
-        <div class="px-8 pt-10 pb-50 xl:pb-30 text-white"
-             style="background: {{ $card['color'] }};
-                    clip-path: polygon(0 0, 100% 0, 100% 60%, 0 80%)">
+        <div class="px-8 pt-10 pb-50 xl:pb-30 text-white teltonika-card-header {{ $teltonikaCardBackgrounds[$card['color']] ?? 'teltonika-card-bg-red' }}">
 
             <h6 class="font-bold mb-0 !text-[24px] xl:!text-[20px]">
                 {{ $card['title'] }}
@@ -175,137 +181,5 @@
             </div>
         </div>
     </section>
-
-     <!-- Simple tab switching script -->
-     <script>
-        function showTab(tabName) {
-            /* переключаем кнопки */
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                const isActive = btn.id === 'tab-' + tabName;
-                btn.classList.toggle('active', isActive);
-                btn.classList.toggle('inactive', !isActive);
-            });
-
-            /* переключаем контент с тем же суффиксом */
-            document.querySelectorAll('.tab-content').forEach(cnt => {
-                cnt.classList.toggle('hidden', cnt.id !== 'content-' + tabName);
-            });
-        }
-
-        /* первичная инициализация */
-        document.addEventListener('DOMContentLoaded', () => showTab('cloud'));
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Проверяем количество слайдов для loop режима
-            const myCasesSlides = document.querySelectorAll('.myCases .swiper-slide');
-            const myCasesCount = myCasesSlides.length;
-            // Для loop нужно минимум slidesPerView * 2 слайдов (для максимального breakpoint: 3 * 2 = 6)
-            const enableMyCasesLoop = myCasesCount >= 6;
-
-            new Swiper('.myCases', {
-                // если импортируете ES-модули, раскомментируйте строку ниже
-                // modules: [Navigation, Pagination],
-
-                loop: enableMyCasesLoop,
-                grabCursor: true,
-                slidesPerView: 1,
-                spaceBetween: 24,
-
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-
-                // Адаптив: 1-2-3 карточки на разных экранах
-                breakpoints: {
-                    640: {
-                        slidesPerView: 1
-                    },
-                    768: {
-                        slidesPerView: 2
-                    },
-                    1024: {
-                        slidesPerView: 3
-                    },
-                },
-            });
-        });
-    </script>
-
-    <style>
-        /* базовые параметры */
-        .tab-btn {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            padding: .75rem 1.5rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            transition: .2s ease-out;
-            user-select: none;
-        }
-
-        /* стрелка */
-        .tab-btn .arrow {
-            width: 1rem;
-            height: 1rem;
-            opacity: 0;
-            transform: translateX(-4px);
-            transition: .2s;
-        }
-
-        /* ── НЕактивный ─────────────────────────────────────────── */
-        .tab-btn.inactive {
-            color: #374151;
-            /* text-gray-700 */
-            background: #ffffff;
-            /* bg-white      */
-            border: 1px solid #d1d5db;
-            /* border-gray-300 */
-            box-shadow: 0 1px 2px rgb(0 0 0 / .05);
-            cursor: pointer;
-        }
-
-        .tab-btn.inactive:hover {
-            color: #e31e24;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgb(0 0 0 / .1);
-        }
-
-        .tab-btn.inactive:hover .arrow {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* ── АКТИВНЫЙ ───────────────────────────────────────────── */
-        .tab-btn.active {
-            color: #fff;
-            background: #e31e24;
-            border: 1px solid transparent;
-            box-shadow: 0 6px 8px rgb(227 30 36 / .35);
-            cursor: default;
-            outline: none;
-        }
-
-        .tab-btn.active::after {
-            /* лёгкая «подсветка» кольцом */
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: 9999px;
-            box-shadow: 0 0 0 4px rgb(227 30 36 / .35);
-        }
-
-        .tab-btn.active .arrow {
-            display: none;
-        }
-    </style>
 
     @endsection

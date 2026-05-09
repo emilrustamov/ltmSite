@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Constants\Permissions;
 use App\Models\News;
 use App\Models\NewsTranslation;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -18,11 +16,6 @@ class NewsController extends Controller
     // Админ методы - resourceful
     public function index()
     {
-        // Проверяем права на просмотр новостей
-        if (!Auth::user()->hasPermission(Permissions::NEWS_VIEW)) {
-            abort(403, 'У вас нет прав для просмотра новостей');
-        }
-
         $news = News::with('categories.translations')->orderBy('created_at', 'desc')->paginate(20);
         return view('admin.news.index', [
             'news' => $news,
@@ -32,11 +25,6 @@ class NewsController extends Controller
 
     public function create()
     {
-        // Проверяем права на создание новостей
-        if (!Auth::user()->hasPermission(Permissions::NEWS_CREATE)) {
-            abort(403, 'У вас нет прав для создания новостей');
-        }
-
         $categories = Categories::with('translations')->where('status', 1)->get();
         return view('admin.news.create', [
             'categories' => $categories,

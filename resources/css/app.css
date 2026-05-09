@@ -6,3 +6,207 @@
 @import "tailwindcss";
 @import "swiper.css";
 @import 'style_jobs.css';
+
+.b24-widget-button-position-bottom-right {
+  bottom: 70px !important;
+  right: 0 !important;
+}
+
+.grecaptcha-badge {
+  left: 14px !important;
+  right: auto !important;
+  bottom: 14px !important;
+  width: 70px !important;
+  overflow: hidden !important;
+  transform: scale(0.85) !important;
+  transform-origin: left bottom !important;
+  transition: width 0.25s ease !important;
+}
+
+.grecaptcha-badge:hover,
+.grecaptcha-badge:focus-within {
+  width: 256px !important;
+}
+
+#contact-form-main .field-input {
+  background-color: rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+#contact-form-main .field-input:-webkit-autofill,
+#contact-form-main .field-input:-webkit-autofill:hover,
+#contact-form-main .field-input:-webkit-autofill:focus,
+#contact-form-main .field-input:-webkit-autofill:active {
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.18) inset !important;
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.18) inset !important;
+  border: 1px solid rgba(0, 0, 0, 0.35) !important;
+  caret-color: #ffffff !important;
+  transition: background-color 99999s ease-in-out 0s !important;
+}
+
+#contact-form-main [data-preferred-item] {
+  border: 1px solid rgba(0, 0, 0, 0.35) !important;
+  background-color: rgba(0, 0, 0, 0.18) !important;
+}
+
+#contact-form-main [data-preferred-item].is-active {
+  border-color: #e31e24 !important;
+  background-color: rgba(227, 30, 36, 0.22) !important;
+}
+
+.badge {
+  background-color: #e31e24;
+  color: #fff;
+  border-radius: 1rem;
+  padding: 0 0.5rem;
+  display: none;
+  position: absolute;
+  right: -15px;
+  top: -10px;
+}
+
+.loader-overlay {
+  background-color: #1c1b1b;
+  z-index: 999999;
+  display: flex;
+}
+
+.loader-circle {
+  top: 0;
+  left: 0;
+  width: 70rem;
+  height: 70rem;
+}
+
+.loader-scrolling-image {
+  width: 20rem;
+  height: auto;
+}
+
+.loader-center-image {
+  width: 10%;
+  height: auto;
+}
+
+.icon-size-11 {
+  width: 11px;
+  height: 11px;
+}
+
+.modal-z-top {
+  z-index: 9999;
+}
+
+.modal-full-height {
+  height: 100%;
+}
+
+.contacts-text-shadow {
+  text-shadow: -1px 0 #f8052d, 0 1px #f8052d, 1px 0 #f8052d, 0 -1px #f8052d;
+}
+
+.about-photo-base {
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.about-photo-offset-143 {
+  backface-visibility: hidden;
+  transform: translate3d(0, -143px, 0);
+}
+
+.about-photo-offset-158 {
+  transform: translate3d(0, -158px, 0);
+}
+
+.about-photo-offset-187 {
+  backface-visibility: hidden;
+  transform: translate3d(0, -187px, 0);
+}
+
+.teltonika-card-header {
+  clip-path: polygon(0 0, 100% 0, 100% 60%, 0 80%);
+}
+
+.teltonika-card-bg-red {
+  background: #e31e24;
+}
+
+.teltonika-card-bg-dark {
+  background: #2b2f36;
+}
+
+.teltonika-card-bg-deep-red {
+  background: #b10f1a;
+}
+
+.teltonika-card-bg-wine {
+  background: #6b1b22;
+}
+
+.teltonika-card-bg-graphite {
+  background: #1f2329;
+}
+
+.tab-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: 0.2s ease-out;
+  user-select: none;
+}
+
+.tab-btn .arrow {
+  width: 1rem;
+  height: 1rem;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: 0.2s;
+}
+
+.tab-btn.inactive {
+  color: #374151;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+  cursor: pointer;
+}
+
+.tab-btn.inactive:hover {
+  color: #e31e24;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
+}
+
+.tab-btn.inactive:hover .arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.tab-btn.active {
+  color: #fff;
+  background: #e31e24;
+  border: 1px solid transparent;
+  box-shadow: 0 6px 8px rgb(227 30 36 / 0.35);
+  cursor: default;
+  outline: none;
+}
+
+.tab-btn.active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  box-shadow: 0 0 0 4px rgb(227 30 36 / 0.35);
+}
+
+.tab-btn.active .arrow {
+  display: none;
+}

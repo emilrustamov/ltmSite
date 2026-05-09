@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Constants\Permissions;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use App\Models\Portfolio;
 use App\Models\PortfolioTranslation;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use App\Traits\LogsUserActivity;
@@ -19,11 +17,6 @@ class PortfolioController extends Controller
 
     public function index()
     {
-        // Проверка разрешения на просмотр портфолио
-        if (!Auth::user()->hasPermission(Permissions::PORTFOLIO_VIEW)) {
-            abort(403, 'У вас нет прав для просмотра портфолио');
-        }
-
         $portfolios = Portfolio::with([
                 'categories.translations' => function($query) {
                     $query->where('locale', 'ru');
@@ -43,11 +36,6 @@ class PortfolioController extends Controller
 
     public function create()
     {
-        // Проверка разрешения на создание портфолио
-        if (!Auth::user()->hasPermission(Permissions::PORTFOLIO_CREATE)) {
-            abort(403, 'У вас нет прав для создания портфолио');
-        }
-
         $categories = Categories::with('translations')->get();
         
         return view('admin.portfolios.create', [
@@ -57,11 +45,6 @@ class PortfolioController extends Controller
 
     public function store(Request $request)
     {
-        // Проверка разрешения на создание портфолио
-        if (!Auth::user()->hasPermission(Permissions::PORTFOLIO_CREATE)) {
-            abort(403, 'У вас нет прав для создания портфолио');
-        }
-
         $validated = $request->validate([
             'title_ru' => 'required|string|max:255',
             'title_en' => 'nullable|string|max:255',
@@ -147,11 +130,6 @@ class PortfolioController extends Controller
 
     public function edit(Portfolio $portfolio)
     {
-        // Проверка разрешения на редактирование портфолио
-        if (!Auth::user()->hasPermission(Permissions::PORTFOLIO_EDIT)) {
-            abort(403, 'У вас нет прав для редактирования портфолио');
-        }
-
         $categories = Categories::with('translations')->get();
         $portfolio->load(['categories', 'translations']);
         
@@ -163,11 +141,6 @@ class PortfolioController extends Controller
 
     public function update(Request $request, Portfolio $portfolio)
     {
-        // Проверка разрешения на редактирование портфолио
-        if (!Auth::user()->hasPermission(Permissions::PORTFOLIO_EDIT)) {
-            abort(403, 'У вас нет прав для редактирования портфолио');
-        }
-
         try {
             $request->validate([
                 'title_ru' => 'required|string|max:255',
@@ -252,11 +225,6 @@ class PortfolioController extends Controller
 
     public function destroy(Portfolio $portfolio)
     {
-        // Проверка разрешения на удаление портфолио
-        if (!Auth::user()->hasPermission(Permissions::PORTFOLIO_DELETE)) {
-            abort(403, 'У вас нет прав для удаления портфолио');
-        }
-
         $portfolio->clearMediaCollection('portfolio-images');
         $portfolio->delete();
 

@@ -52,10 +52,17 @@ trait HasPermissions
      */
     public function givePermission(string $permission): void
     {
-        $permissionModel = Permission::where('name', $permission)->first();
+        $permissionModel = Permission::firstOrCreate(
+            ['name' => $permission],
+            [
+                'display_name' => $permission,
+                'description' => null,
+            ]
+        );
         
-        if ($permissionModel && !$this->hasPermission($permission)) {
+        if (!$this->hasPermission($permission)) {
             $this->permissions()->attach($permissionModel->id);
+            $this->clearPermissionsCache();
         }
     }
 
@@ -78,6 +85,7 @@ trait HasPermissions
         
         if ($permissionModel) {
             $this->permissions()->detach($permissionModel->id);
+            $this->clearPermissionsCache();
         }
     }
 

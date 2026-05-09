@@ -95,6 +95,7 @@ class ContactFormTest extends TestCase
             'name' => 'Test User',
             'email' => 'test@example.com',
             'phone' => '99361009792',
+            'preferred_contact' => ['phone', 'email'],
             'subject' => 'Test subject',
             'message' => 'Test message',
             'form_started_at' => time() - 10,
